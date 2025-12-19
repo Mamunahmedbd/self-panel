@@ -15,6 +15,7 @@ import (
 
 	atlas "ariga.io/atlas/sql/schema"
 	"github.com/getsentry/sentry-go"
+	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
@@ -211,7 +212,7 @@ func (c *Container) initCache() {
 }
 
 func (c *Container) getDBAddr(dbName string) string {
-	c.databaseDSN = fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?sslmode=disable",
+	c.databaseDSN = fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=True",
 		c.Config.Database.User,
 		c.Config.Database.Password,
 		c.Config.Database.Hostname,
@@ -222,15 +223,13 @@ func (c *Container) getDBAddr(dbName string) string {
 }
 
 func (c *Container) getProdDBAddr(dbName string) string {
-
-	c.databaseDSN = fmt.Sprintf("postgresql://%s:%s@%s:%d/%s?sslmode=%s&sslrootcert=%s",
+    // Basic implementation for now, add SSL if needed later
+	c.databaseDSN = fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=True",
 		c.Config.Database.User,
 		c.Config.Database.Password,
 		c.Config.Database.Hostname,
 		c.Config.Database.Port,
 		dbName,
-		c.Config.Database.SslMode,
-		c.Config.Database.SslCertPath,
 	)
 	return c.databaseDSN
 }
@@ -255,14 +254,14 @@ func (c *Container) initDatabase() {
 			panic(err)
 		}
 	} else {
-
+		driverName := "mysql"
 		if c.Config.App.Environment == config.EnvProduction {
-			c.Database, err = sql.Open("pgx", c.getProdDBAddr(c.Config.Database.DatabaseNameProd))
+			c.Database, err = sql.Open(driverName, c.getProdDBAddr(c.Config.Database.DatabaseNameProd))
 			if err != nil {
 				panic(fmt.Sprintf("failed to connect to database: %v", err))
 			}
 		} else {
-			c.Database, err = sql.Open("pgx", c.getDBAddr(c.Config.Database.DatabaseNameLocal))
+			c.Database, err = sql.Open(driverName, c.getDBAddr(c.Config.Database.DatabaseNameLocal))
 			if err != nil {
 				panic(fmt.Sprintf("failed to connect to database: %v", err))
 			}
@@ -282,15 +281,10 @@ func (c *Container) initDatabase() {
 			if err = c.Database.Close(); err != nil {
 				panic(fmt.Sprintf("failed to close database connection: %v", err))
 			}
-			c.Database, err = sql.Open("pgx", c.getDBAddr(c.Config.Database.TestDatabase))
+			c.Database, err = sql.Open(driverName, c.getDBAddr(c.Config.Database.TestDatabase))
 			if err != nil {
 				panic(fmt.Sprintf("failed to connect to database: %v", err))
 			}
-		}
-		// Create the pgvector extension
-		_, err = c.Database.Exec("CREATE EXTENSION IF NOT EXISTS vector")
-		if err != nil {
-			panic(fmt.Sprintf("failed to enable pgvector: %v", err))
 		}
 	}
 }
@@ -320,7 +314,7 @@ func (c *Container) initORM() {
 	if c.Config.Database.DbMode == config.DBModeEmbedded {
 		activeDialect = c.Config.Database.EmbeddedDriver
 	} else {
-		activeDialect = dialect.Postgres
+		activeDialect = dialect.MySQL
 	}
 
 	drv := entsql.OpenDB(activeDialect, c.Database)

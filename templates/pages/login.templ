@@ -19,13 +19,13 @@ templ login(page *controller.Page, form *types.LoginForm) {
 		action={ templ.URL(page.ToURL("login.submit")) }
 	>
 		<div class="flex flex-col space-y-2 m-5">
-			<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
+			<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
 			<div class="control">
 				<input
 					id="email"
-					type="email"
+					type="text"
 					name="email"
-					placeholder="johny@hey.com"
+					placeholder="Enter your username"
 					class={ "bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:ps-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", form.Submission.GetFieldStatusClass("Email") }
 					value={ form.Email }
 				/>

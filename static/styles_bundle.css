@@ -7156,6 +7156,10 @@ details.collapse summary::-webkit-details-marker{
     width: 2.25rem;
   }
 
+  .sm\:w-auto{
+    width: auto;
+  }
+
   .sm\:flex-row{
     flex-direction: row;
   }

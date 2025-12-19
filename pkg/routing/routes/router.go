@@ -217,14 +217,14 @@ func externalRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 
 func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controller) {
 	emailRepo := *emailsmanager.NewEmailSubscriptionRepo(c.ORM)
-	storageRepo := storagerepo.NewStorageClient(c.Config, c.ORM)
-	profileRepo := *profilerepo.NewProfileRepo(c.ORM, storageRepo, nil)
-	subscriptionsRepo := subscriptions.NewSubscriptionsRepo(
-		c.ORM,
-		c.Config.App.OperationalConstants.ProTrialTimespanInDays,
-		c.Config.App.OperationalConstants.PaymentFailedGracePeriodInDays,
-	)
-	notificationSendPermissionRepo := notifierrepo.NewNotificationSendPermissionRepo(c.ORM)
+	// storageRepo := storagerepo.NewStorageClient(c.Config, c.ORM)
+	// profileRepo := *profilerepo.NewProfileRepo(c.ORM, storageRepo, nil)
+	// subscriptionsRepo := subscriptions.NewSubscriptionsRepo(
+	// 	c.ORM,
+	// 	c.Config.App.OperationalConstants.ProTrialTimespanInDays,
+	// 	c.Config.App.OperationalConstants.PaymentFailedGracePeriodInDays,
+	// )
+	// notificationSendPermissionRepo := notifierrepo.NewNotificationSendPermissionRepo(c.ORM)
 
 	landingPage := NewLandingPageRoute(ctr)
 	g.GET("/", landingPage.Get).Name = routeNames.RouteNameLandingPage
@@ -267,21 +267,21 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	userGroup.GET("/login", login.Get).Name = routeNames.RouteNameLogin
 	userGroup.POST("/login", login.Post).Name = routeNames.RouteNameLoginSubmit
 
-	register := NewRegisterRoute(ctr, profileRepo, *subscriptionsRepo, notificationSendPermissionRepo)
-	userGroup.GET("/register", register.Get).Name = routeNames.RouteNameRegister
-	userGroup.POST("/register", register.Post).Name = routeNames.RouteNameRegisterSubmit
+	// register := NewRegisterRoute(ctr, profileRepo, *subscriptionsRepo, notificationSendPermissionRepo)
+	// userGroup.GET("/register", register.Get).Name = routeNames.RouteNameRegister
+	// userGroup.POST("/register", register.Post).Name = routeNames.RouteNameRegisterSubmit
 
-	forgot := NewForgotPasswordRoute(ctr)
-	userGroup.GET("/password", forgot.Get).Name = routeNames.RouteNameForgotPassword
-	userGroup.POST("/password", forgot.Post).Name = routeNames.RouteNameForgotPasswordSubmit
+	// forgot := NewForgotPasswordRoute(ctr)
+	// userGroup.GET("/password", forgot.Get).Name = routeNames.RouteNameForgotPassword
+	// userGroup.POST("/password", forgot.Post).Name = routeNames.RouteNameForgotPasswordSubmit
 
-	resetGroup := userGroup.Group("/password/reset",
-		middleware.LoadUser(c.ORM),
-		middleware.LoadValidPasswordToken(c.Auth),
-	)
-	reset := NewResetPasswordRoute(ctr)
-	resetGroup.GET("/token/:user/:password_token/:token", reset.Get).Name = routeNames.RouteNameResetPassword
-	resetGroup.POST("/token/:user/:password_token/:token", reset.Post).Name = routeNames.RouteNameResetPasswordSubmit
+	// resetGroup := userGroup.Group("/password/reset",
+	// 	middleware.LoadUser(c.ORM),
+	// 	middleware.LoadValidPasswordToken(c.Auth),
+	// )
+	// reset := NewResetPasswordRoute(ctr)
+	// resetGroup.GET("/token/:user/:password_token/:token", reset.Get).Name = routeNames.RouteNameResetPassword
+	// resetGroup.POST("/token/:user/:password_token/:token", reset.Post).Name = routeNames.RouteNameResetPasswordSubmit
 
 	if ctr.Container.Config.App.Environment != config.EnvProduction {
 		// These facilitate triggering specific errors and seeing what they look like in the UI
