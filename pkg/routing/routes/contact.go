@@ -5,9 +5,8 @@ import (
 
 	"github.com/mikestefanello/pagoda/pkg/context"
 	"github.com/mikestefanello/pagoda/pkg/controller"
-	"github.com/mikestefanello/pagoda/pkg/repos/msg"
-
 	"github.com/mikestefanello/pagoda/pkg/types"
+
 	"github.com/mikestefanello/pagoda/templates"
 	"github.com/mikestefanello/pagoda/templates/layouts"
 	"github.com/mikestefanello/pagoda/templates/pages"
@@ -34,15 +33,9 @@ func (c *contact) Get(ctx echo.Context) error {
 	page.Title = "Contact us"
 	page.Form = &types.ContactForm{}
 	page.Component = pages.Contact(&page)
-	page.HTMX.Request.Boosted = true
-
 	if form := ctx.Get(context.FormKey); form != nil {
 		page.Form = form.(*types.ContactForm)
 	}
-	msg.Success(ctx, "Success!")
-	msg.Warning(ctx, "Warning!")
-	msg.Danger(ctx, "Danger!")
-	msg.Info(ctx, "Info!")
 
 	return c.RenderPage(ctx, page)
 }
