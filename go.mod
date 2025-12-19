@@ -1,6 +1,6 @@
 module github.com/mikestefanello/pagoda
 
-go 1.23.0
+go 1.25
 
 require (
 	ariga.io/atlas v0.20.1-0.20240321075817-75fd3b1accbf
