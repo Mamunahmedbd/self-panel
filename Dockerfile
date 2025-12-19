@@ -1,0 +1,90 @@
+# Stage 1: Build Frontend Assets
+FROM node:18-alpine AS frontend-builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+# Build Tailwind and JS bundles
+# Note: Using 'npm run build' which triggers the build script in package.json
+RUN npm run build
+RUN npx tailwindcss -i ./styles/styles.css -o ./static/styles_bundle.css --minify
+
+# Stage 2: Build the Go application
+FROM golang:1.24.3-bullseye AS backend-builder
+WORKDIR /app
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# NOTE: Install necessary libraries for SQLite
+RUN apt-get update && apt-get install -y \
+    gcc \
+    musl-dev \
+    sqlite3 \
+    libsqlite3-dev
+
+# Copy Go modules and download dependencies
+COPY go.mod go.sum ./
+RUN go mod tidy
+RUN go mod download
+
+# Copy the source code
+COPY . .
+
+ENV CGO_ENABLED=1
+ENV GOOS=linux
+ENV GOARCH=amd64
+
+# Build the application
+RUN GOARCH=amd64  go build -ldflags="-s -w" -gcflags=all=-l -o /app/goship-web ./cmd/web/main.go
+RUN GOARCH=amd64  go build -ldflags="-s -w" -gcflags=all=-l -o /app/goship-worker ./cmd/worker/main.go
+RUN GOARCH=amd64  go build -ldflags="-s -w" -gcflags=all=-l -o /app/goship-seed ./cmd/seed/main.go
+
+# Install asynq tools
+RUN go install github.com/hibiken/asynq/tools/asynq@latest
+
+################################################
+# Stage 3: Create a smaller runtime image
+################################################
+FROM ubuntu:22.04
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates
+
+# Copy the compiled binaries from the builder image
+COPY --from=backend-builder /app/goship-web /goship-web
+COPY --from=backend-builder /app/goship-worker /goship-worker
+COPY --from=backend-builder /app/goship-seed /goship-seed
+
+# Copy asynq tool
+COPY --from=backend-builder /go/bin/asynq /usr/local/bin/
+
+# Copy Assets from Frontend Stage
+# This ensures we use the version we just built
+COPY --from=frontend-builder /app/static /static
+
+# Copy the templates
+COPY templates/ /app/templates/
+
+# Optional: Bind to a TCP port (document the ports the application listens on)
+EXPOSE 8000
+EXPOSE 8080
+
+# Define an entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+COPY config/config.yaml .
+# Service worker is usually in static/root, but copying just in case if your logic expects it elsewhere
+COPY service-worker.js /service-worker.js
+
+# Below is only used if you need to use PWABuilder to make a native Android app
+# RUN mkdir pwabuilder-android-wrapper
+# COPY pwabuilder-android-wrapper/assetlinks.json pwabuilder-android-wrapper/assetlinks.json
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Clean up any unnecessary files
+RUN apt-get purge -y gcc musl-dev libsqlite3-dev && apt-get autoremove -y && apt-get clean
