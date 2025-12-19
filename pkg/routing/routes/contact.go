@@ -21,6 +21,12 @@ type (
 	}
 )
 
+func NewContactRoute(ctr controller.Controller) contact {
+	return contact{
+		Controller: ctr,
+	}
+}
+
 func (c *contact) Get(ctx echo.Context) error {
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main

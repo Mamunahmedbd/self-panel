@@ -283,14 +283,14 @@ func JS() templ.Component {
 
 func sentrySessionReplay() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_sentrySessionReplay_bec7`,
-		Function: `function __templ_sentrySessionReplay_bec7(){<script defer async 
+		Name: `__templ_sentrySessionReplay_ba3a`,
+		Function: `function __templ_sentrySessionReplay_ba3a(){<script defer async
 	src="https://js.sentry-cdn.com/1a4df3451703a57a67ad24c6c517a50c.min.js"
 	crossorigin="anonymous"
 	></script>
 }`,
-		Call:       templ.SafeScript(`__templ_sentrySessionReplay_bec7`),
-		CallInline: templ.SafeScriptInline(`__templ_sentrySessionReplay_bec7`),
+		Call:       templ.SafeScript(`__templ_sentrySessionReplay_ba3a`),
+		CallInline: templ.SafeScriptInline(`__templ_sentrySessionReplay_ba3a`),
 	}
 }
 
@@ -389,14 +389,14 @@ func JSFooter(page *controller.Page) templ.Component {
 
 func htmxOnLoad() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_htmxOnLoad_9866`,
-		Function: `function __templ_htmxOnLoad_9866(){htmx.onLoad(function(content) {
+		Name: `__templ_htmxOnLoad_2299`,
+		Function: `function __templ_htmxOnLoad_2299(){htmx.onLoad(function(content) {
 		initializeJS();
-	});	
-	
+	});
+
 }`,
-		Call:       templ.SafeScript(`__templ_htmxOnLoad_9866`),
-		CallInline: templ.SafeScriptInline(`__templ_htmxOnLoad_9866`),
+		Call:       templ.SafeScript(`__templ_htmxOnLoad_2299`),
+		CallInline: templ.SafeScriptInline(`__templ_htmxOnLoad_2299`),
 	}
 }
 
@@ -480,7 +480,7 @@ func TextFooter(page *controller.Page) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var19 string
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameAboutUs))
+		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameContact))
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 217, Col: 55}
 		}

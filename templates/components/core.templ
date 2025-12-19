@@ -92,7 +92,7 @@ templ JS() {
 	<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
 	<script defer async src="https://cdn.jsdelivr.net/npm/@marcreichel/alpine-timeago@latest/dist/alpine-timeago.min.js" defer></script>
 	<script defer async src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-tooltip@1.x.x/dist/cdn.min.js" defer></script>
-	// I added morph because I was facing this issue https://github.com/alpinejs/alpine/discussions/3985 with the home feed buttons. However, it did not fix it...but, 
+	// I added morph because I was facing this issue https://github.com/alpinejs/alpine/discussions/3985 with the home feed buttons. However, it did not fix it...but,
 	// people are suggesting to use it for htmx to play more nicely with Alpine, which is certainly a problem I've faced before. Leaving in the hopes it actually helps
 	// with weird alpine/htmx bugs, but to revisit.
 	<script defer async src="https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
@@ -118,7 +118,7 @@ templ JS() {
 }
 
 script sentrySessionReplay() {
-	<script defer async 
+	<script defer async
 	src="https://js.sentry-cdn.com/1a4df3451703a57a67ad24c6c517a50c.min.js"
 	crossorigin="anonymous"
 	></script>
@@ -170,8 +170,8 @@ templ JSFooter(page *controller.Page) {
 script htmxOnLoad() {
 	htmx.onLoad(function(content) {
 		initializeJS();
-	});	
-	
+	});
+
 }
 
 script htmxWindowOnLoad() {
@@ -214,7 +214,7 @@ templ TextFooter(page *controller.Page) {
 				>
 					<li>
 						<a
-							hx-get={ page.ToURL(routenames.RouteNameAboutUs) }
+							hx-get={ page.ToURL(routenames.RouteNameContact) }
 							class="hover:underline me-4 md:me-6 cursor-pointer"
 						>
 							Contact Us

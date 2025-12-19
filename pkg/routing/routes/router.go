@@ -257,6 +257,10 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	privacyPolicy := NewPrivacyPolicyRoute(ctr)
 	g.GET("/privacy-policy", privacyPolicy.Get).Name = routeNames.RouteNamePrivacyPolicy
 
+	contact := NewContactRoute(ctr)
+	g.GET("/contact", contact.Get).Name = routeNames.RouteNameContact
+	g.POST("/contact", contact.Post).Name = routeNames.RouteNameContactSubmit
+
 	userGroup := g.Group("/user", middleware.RequireNoAuthentication())
 
 	login := NewLoginRoute(ctr)
