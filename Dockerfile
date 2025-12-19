@@ -1,17 +1,5 @@
-# Stage 1: Build Frontend Assets
-FROM node:18-alpine AS frontend-builder
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
-COPY . .
-# Build Tailwind and JS bundles
-# Note: Using 'npm run build' which triggers the build script in package.json
-RUN npm run build
-RUN npx tailwindcss -i ./styles/styles.css -o ./static/styles_bundle.css --minify
-
-# Stage 2: Build the Go application
-FROM golang:1.24.3-bullseye AS backend-builder
-WORKDIR /app
+# Stage 1: Build the Go application
+FROM golang:1.24.3-bullseye AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -44,26 +32,21 @@ RUN GOARCH=amd64  go build -ldflags="-s -w" -gcflags=all=-l -o /app/goship-seed 
 RUN go install github.com/hibiken/asynq/tools/asynq@latest
 
 ################################################
-# Stage 3: Create a smaller runtime image
+# Stage 2: Create a smaller runtime image
 ################################################
 FROM ubuntu:22.04
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
-    curl \
-    ca-certificates
+    curl
 
 # Copy the compiled binaries from the builder image
-COPY --from=backend-builder /app/goship-web /goship-web
-COPY --from=backend-builder /app/goship-worker /goship-worker
-COPY --from=backend-builder /app/goship-seed /goship-seed
+COPY --from=builder /app/goship-web /goship-web
+COPY --from=builder /app/goship-worker /goship-worker
+COPY --from=builder /app/goship-seed /goship-seed
 
 # Copy asynq tool
-COPY --from=backend-builder /go/bin/asynq /usr/local/bin/
-
-# Copy Assets from Frontend Stage
-# This ensures we use the version we just built
-COPY --from=frontend-builder /app/static /static
+COPY --from=builder /go/bin/asynq /usr/local/bin/
 
 # Copy the templates
 COPY templates/ /app/templates/
@@ -77,8 +60,8 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 COPY config/config.yaml .
-# Service worker is usually in static/root, but copying just in case if your logic expects it elsewhere
 COPY service-worker.js /service-worker.js
+COPY static /static
 
 # Below is only used if you need to use PWABuilder to make a native Android app
 # RUN mkdir pwabuilder-android-wrapper
