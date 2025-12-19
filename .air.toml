@@ -19,7 +19,7 @@ exclude_dir = [
 ]
 args_bin = []
 bin = "./tmp/main.exe"
-cmd = "templ generate; go build -o ./tmp/main.exe cmd/web/main.go"
+cmd = "templ generate; $env:CGO_ENABLED=\"0\"; go build -o ./tmp/main.exe cmd/web/main.go"
 delay = 1000
 exclude_file = []
 exclude_regex = [".*_templ.go", "_test.go"]
