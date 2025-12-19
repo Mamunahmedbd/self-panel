@@ -72,7 +72,7 @@ templ login(page *controller.Page, form *types.LoginForm) {
 				>Cancel</a>
 			</div>
 		</div>
-		@components.AuthButtons(page, false, true, true)
+		@components.AuthButtons(page, false, false, false)
 		@components.FormCSRF(page.CSRF)
 	</form>
 }
