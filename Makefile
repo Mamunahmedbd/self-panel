@@ -153,10 +153,10 @@ watch-js: ## Build JS/Svelte assets (auto reload changes)
 	npm run watch
 
 build-css: ## Build CSS assets (auto reload changes)
-	npx tailwindcss -i ./styles/styles.css -o ./static/styles_bundle.css
+	npx postcss ./styles/styles.css -o ./static/styles_bundle.css
 
 watch-css: ## Build CSS assets (auto reload changes)
-	npx tailwindcss -i ./styles/styles.css -o ./static/styles_bundle.css --watch
+	npx postcss ./styles/styles.css -o ./static/styles_bundle.css --watch
 
 
 .PHONY: run

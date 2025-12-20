@@ -1,11 +1,8 @@
-@import './tailwind_components.css';
+@import "./tailwind_components.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 
 [x-cloak] {
   display: none !important;
@@ -26,7 +23,10 @@
 
 .hover-brightness:hover {
   transition: filter 0.3s ease;
-  background-image: linear-gradient(rgba(0, 0, 0, var(--brightness-hover)), rgba(0, 0, 0, var(--brightness-hover)));
+  background-image: linear-gradient(
+    rgba(0, 0, 0, var(--brightness-hover)),
+    rgba(0, 0, 0, var(--brightness-hover))
+  );
 }
 
 .tiptap .is-empty:first-child:before {
