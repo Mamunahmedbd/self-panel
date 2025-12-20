@@ -62,17 +62,17 @@ cache:
 
 database:
   dbMode: "standalone"
-  embeddedDriver: "sqlite3"
-  embeddedConnection: "dbs/main.db?_journal=WAL&_timeout=5000&_fk=true"
-  embeddedTestConnection: ":memory:?_journal=WAL&_timeout=5000&_fk=true"
+  #  embeddedDriver: "sqlite3"
+  #  embeddedConnection: "dbs/main.db?_journal=WAL&_timeout=5000&_fk=true"
+  #  embeddedTestConnection: ":memory:?_journal=WAL&_timeout=5000&_fk=true"
   hostname: "localhost"
   port: 3308
   user: "mim_it"
   password: "P@$$mim_it!1"
   databaseNameLocal: "mim_it"
   testDatabase: "goship_testdb"
-  sslCertPath: "prod-ca-2021.cer"
-  sslMode: "require"
+#  sslCertPath: "prod-ca-2021.cer"
+#  sslMode: "require"
 
 mail:
   hostname: "localhost"
