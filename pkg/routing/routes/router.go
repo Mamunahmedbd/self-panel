@@ -228,6 +228,9 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	enterpriseInternet := NewEnterpriseInternetRoute(ctr)
 	g.GET("/enterprise-internet", enterpriseInternet.Get).Name = routeNames.RouteNameEnterpriseInternet
 
+	blog := NewBlogRoute(ctr)
+	g.GET("/blog", blog.Get).Name = routeNames.RouteNameBlog
+
 	clearCookie := NewClearCookiesRoute(ctr)
 	g.GET("/clear-cookie", clearCookie.Get).Name = "clearCookie"
 

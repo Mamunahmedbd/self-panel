@@ -17,6 +17,7 @@ const (
 	RouteNameHomeInternet            = "home_internet"
 	RouteNameEnterpriseInternet      = "enterprise_internet"
 	RouteNameLandingPage             = "landing_page"
+	RouteNameBlog                    = "blog"
 	RouteNamePreferences             = "preferences"
 	RouteNameGetPhone                = "phone.get"
 	RouteNameUpdatePhoneNum          = "phone.save"

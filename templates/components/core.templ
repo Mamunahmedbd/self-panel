@@ -237,9 +237,9 @@ templ TextFooter(page *controller.Page) {
 					<h3 class="text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm">Company</h3>
 					<ul class="space-y-4 text-sm">
 						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Coverage Area</a></li>
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Blogs & News</a></li>
+						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameBlog)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Blogs & News</a></li>
 						<li><a hx-get={ page.ToURL(routenames.RouteNameContact) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Contact Us</a></li>
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">About Us</a></li>
+						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameAboutUs)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">About Us</a></li>
 					</ul>
 				</div>
 

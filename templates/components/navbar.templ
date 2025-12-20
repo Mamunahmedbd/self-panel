@@ -87,7 +87,7 @@ templ Navbar(page *controller.Page) {
 				class="flex items-center"
 			>
 				<div class="mr-5">
-					@BlogButton()
+					@BlogButton(page)
 				</div>
 				@ThemeToggle("navbar-theme-toggle")
 				if page.IsAuth && page.IsFullyOnboarded {
@@ -280,17 +280,13 @@ templ DocsButton(page *controller.Page) {
 	</a>
 }
 
-templ BlogButton() {
+templ BlogButton(page *controller.Page) {
 	<a
-		href="https://tobyluxembourg.com"
+		href={ templ.URL(page.ToURL(routenames.RouteNameBlog)) }
 		id="blog-header-menu-item"
-		target="_blank"
+		class="flex items-center space-x-2 p-2 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors group cursor-pointer"
 	>
-		<div class="flex flex-col justify-center">
-			<div class="flex w-full items-center justify-center">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 lucide lucide-book-open-text-icon lucide-book-open-text"><path d="M12 7v14"></path><path d="M16 12h2"></path><path d="M16 8h2"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path><path d="M6 12h2"></path><path d="M6 8h2"></path></svg>
-			</div>
-			<div class="text-xs">Blog</div>
-		</div>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform"><path d="M12 7v14"></path><path d="M16 12h2"></path><path d="M16 8h2"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path><path d="M6 12h2"></path><path d="M6 8h2"></path></svg>
+		<span class="font-bold">Blog</span>
 	</a>
 }

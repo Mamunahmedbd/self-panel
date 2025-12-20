@@ -1,0 +1,148 @@
+package pages
+
+import (
+	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/types"
+)
+
+templ Blog(page *controller.Page) {
+	if data, ok := page.Data.(types.BlogPage); ok {
+		<div class="bg-slate-50 dark:bg-gray-950 min-h-screen">
+			<!-- Hero Section -->
+			<section class="relative pt-32 pb-20 overflow-hidden bg-white dark:bg-gray-950">
+				<div class="absolute top-0 right-0 -z-10 opacity-20 dark:opacity-10">
+					<div class="w-[600px] h-[600px] bg-gradient-to-br from-indigo-600 to-blue-600 rounded-full blur-3xl animate-pulse"></div>
+				</div>
+
+				<div class="max-w-screen-xl mx-auto px-6 text-center">
+					<div class="inline-flex items-center space-x-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
+						<span>Our Blog</span>
+					</div>
+					<h1 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-8 tracking-tight">
+						{ data.Title }
+					</h1>
+					<p class="text-xl text-slate-700 dark:text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed">
+						{ data.Subtitle }
+					</p>
+				</div>
+			</section>
+
+			<!-- Categories Filter -->
+			<section class="py-12 sticky top-[72px] z-30 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-y border-slate-100 dark:border-gray-800">
+				<div class="max-w-screen-xl mx-auto px-6">
+					<div class="flex flex-wrap items-center justify-center gap-4">
+						for i, cat := range data.Categories {
+							<button class={ "px-6 py-2 rounded-full text-sm font-bold transition-all duration-300",
+								templ.KV("bg-indigo-600 text-white shadow-lg shadow-indigo-500/30", i == 0),
+								templ.KV("bg-slate-100 dark:bg-gray-900 text-slate-600 dark:text-gray-400 hover:bg-slate-200 dark:hover:bg-gray-800", i != 0) }>
+								{ cat }
+							</button>
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Featured Post & Grid -->
+			<section class="py-24 max-w-screen-xl mx-auto px-6">
+				<div class="grid lg:grid-cols-3 gap-12">
+					for _, post := range data.Posts {
+						if post.Featured {
+							<div class="lg:col-span-3">
+								<div class="group relative bg-white dark:bg-gray-900 rounded-[3.5rem] overflow-hidden border border-slate-200 dark:border-gray-800 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col lg:flex-row items-center">
+									<div class="w-full lg:w-1/2 h-[400px] overflow-hidden">
+										<img src={ post.ImageURL } class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={ post.Title }/>
+									</div>
+									<div class="w-full lg:w-1/2 p-12 space-y-6">
+										<div class="flex items-center space-x-4">
+											<span class="px-4 py-1.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400 rounded-full text-xs font-black uppercase tracking-widest">
+												{ post.Category }
+											</span>
+											<span class="text-sm font-bold text-slate-400">{ post.Date }</span>
+										</div>
+										<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+											{ post.Title }
+										</h2>
+										<p class="text-lg text-slate-700 dark:text-gray-400 font-medium">
+											{ post.Summary }
+										</p>
+										<div class="flex items-center justify-between pt-4">
+											<div class="flex items-center space-x-3">
+												<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-gray-800 flex items-center justify-center text-indigo-600 font-bold">
+													{ post.Author[0:1] }
+												</div>
+												<span class="font-bold text-slate-900 dark:text-white">{ post.Author }</span>
+											</div>
+											<a href="#" class="inline-flex items-center space-x-2 text-indigo-600 font-black hover:translate-x-2 transition-transform">
+												<span>Read More</span>
+												<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+											</a>
+										</div>
+									</div>
+									<div class="absolute top-8 right-8 px-6 py-2 bg-indigo-600 text-white text-xs font-black uppercase rounded-full tracking-widest shadow-lg">
+										Featured Post
+									</div>
+								</div>
+							</div>
+						} else {
+							<div class="group flex flex-col h-full bg-white dark:bg-gray-900 rounded-[3rem] border border-slate-200 dark:border-gray-800 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+								<div class="h-64 overflow-hidden relative">
+									<img src={ post.ImageURL } class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={ post.Title }/>
+									<span class="absolute top-6 left-6 px-4 py-1.5 bg-white/90 dark:bg-gray-900/90 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-black uppercase tracking-widest backdrop-blur-sm">
+										{ post.Category }
+									</span>
+								</div>
+								<div class="p-10 flex flex-col flex-grow space-y-5">
+									<div class="text-sm font-bold text-slate-400">{ post.Date } • { post.ReadTime }</div>
+									<h3 class="text-2xl font-black text-slate-900 dark:text-white leading-tight group-hover:text-indigo-600 transition-colors">
+										{ post.Title }
+									</h3>
+									<p class="text-slate-700 dark:text-gray-400 font-medium line-clamp-3">
+										{ post.Summary }
+									</p>
+									<div class="pt-4 mt-auto">
+										<a href="#" class="inline-flex items-center space-x-2 text-indigo-600 font-black group-hover:translate-x-2 transition-transform">
+											<span>Read Story</span>
+											<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+										</a>
+									</div>
+								</div>
+							</div>
+						}
+					}
+				</div>
+
+				<!-- Pagination -->
+				<div class="mt-24 flex justify-center items-center space-x-4">
+					<button class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 transition-all">
+						<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+					</button>
+					<button class="w-12 h-12 rounded-2xl bg-indigo-600 text-white font-black shadow-lg shadow-indigo-500/30">1</button>
+					<button class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-gray-400 font-black hover:bg-slate-50 transition-all">2</button>
+					<button class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-gray-400 font-black hover:bg-slate-50 transition-all">3</button>
+					<button class="w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 transition-all">
+						<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+					</button>
+				</div>
+			</section>
+
+			<!-- Newsletter Banner -->
+			<section class="py-24 max-w-screen-xl mx-auto px-6">
+				<div class="bg-slate-900 dark:bg-indigo-950 rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+					<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent)] pointer-events-none"></div>
+					<div class="relative z-10 max-w-2xl mx-auto space-y-8">
+						<h2 class="text-3xl md:text-5xl font-black text-white leading-tight">Stay updated with ISP breakthroughs</h2>
+						<p class="text-slate-400 text-lg font-medium opacity-90">
+							Subscribe to our newsletter and never miss an update on network upgrades, security alerts, and exclusive tech guides.
+						</p>
+						<form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+							<input type="email" placeholder="Your email address" class="flex-grow px-8 py-5 bg-white/5 border-2 border-white/10 rounded-2xl text-white outline-none focus:border-indigo-500 transition-all font-medium"/>
+							<button type="submit" class="px-10 py-5 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all transform active:scale-95 shadow-xl">
+								Join Now
+							</button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	}
+}
