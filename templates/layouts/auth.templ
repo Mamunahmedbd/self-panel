@@ -14,7 +14,7 @@ templ Auth(content templ.Component, page *controller.Page) {
 			@components.CSS()
 			@components.JS()
 		</head>
-		<body id="body">
+		<body id="body" class="transition-colors duration-300 dark:bg-gray-900">
 			<!-- This is the mobile view drawer -->
 			<div class="lg:hidden block">
 			</div>
@@ -24,8 +24,8 @@ templ Auth(content templ.Component, page *controller.Page) {
 			</div>
 			<div
 				id="main-content"
-				class="bg-primary base-100 text-base-content flex-grow mx-auto 
-				items-center w-full min-h-screen"
+				class="bg-primary dark:bg-gray-900 text-base-content dark:text-gray-100 flex-grow mx-auto
+				items-center w-full min-h-screen transition-colors duration-300"
 			>
 				<div class="lg:hidden mx-auto flex flex-row justify-around items-center">
 					<span>
@@ -38,10 +38,10 @@ templ Auth(content templ.Component, page *controller.Page) {
 					<span></span>
 				</div>
 				<div
-					class="w-full max-w-2xl mx-auto base-300 md:shadow-lg rounded-lg overflow-hidden p-1 sm:p-5 md:p-8 lg:px-15"
+					class="w-full max-w-xl mx-auto bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 mb-10 transition-all duration-300"
 				>
 					if len(page.Title) > 0 {
-						<h1 class="text-4xl font-bold text-center mb-2">{ page.Title }</h1>
+						<h1 class="text-4xl font-black text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent italic">{ page.Title }</h1>
 					}
 					<div class="pt-2 sm:px-8">
 						@components.Messages(page)

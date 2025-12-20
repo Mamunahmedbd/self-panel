@@ -51,7 +51,7 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body id=\"body\"><!-- This is the mobile view drawer --><div class=\"lg:hidden block\"></div><!-- Navbar only visible on desktop --><div class=\"hidden lg:block\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body id=\"body\" class=\"transition-colors duration-300 dark:bg-gray-900\"><!-- This is the mobile view drawer --><div class=\"lg:hidden block\"></div><!-- Navbar only visible on desktop --><div class=\"hidden lg:block\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -59,7 +59,7 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div id=\"main-content\" class=\"bg-primary base-100 text-base-content flex-grow mx-auto \r\n\t\t\t\titems-center w-full min-h-screen\"><div class=\"lg:hidden mx-auto flex flex-row justify-around items-center\"><span>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div id=\"main-content\" class=\"bg-primary dark:bg-gray-900 text-base-content dark:text-gray-100 flex-grow mx-auto\r\n\t\t\t\titems-center w-full min-h-screen transition-colors duration-300\"><div class=\"lg:hidden mx-auto flex flex-row justify-around items-center\"><span>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -93,19 +93,19 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></a> <span></span></div><div class=\"w-full max-w-2xl mx-auto base-300 md:shadow-lg rounded-lg overflow-hidden p-1 sm:p-5 md:p-8 lg:px-15\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></a> <span></span></div><div class=\"w-full max-w-xl mx-auto bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 mb-10 transition-all duration-300\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if len(page.Title) > 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h1 class=\"text-4xl font-bold text-center mb-2\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<h1 class=\"text-4xl font-black text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent italic\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(page.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/layouts/auth.templ`, Line: 44, Col: 66}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/layouts/auth.templ`, Line: 44, Col: 187}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
