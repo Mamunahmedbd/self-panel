@@ -64,10 +64,6 @@ func LandingPage(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = AnimateOnScrollLibrary().Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
 			templ_7745c5c3_Err = heroSection(data).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -116,10 +112,6 @@ func LandingPage(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = landingPageJS().Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -150,7 +142,7 @@ func heroSection(d types.LandingPage) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"relative w-full overflow-hidden bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900\"><!-- Background Image with Overlay --><div class=\"absolute inset-0\"><img src=\"/files/isp_hero_banner.png\" class=\"w-full h-full object-cover\" alt=\"High Speed Internet\" loading=\"eager\"><div class=\"absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent\"></div></div><!-- Content --><div class=\"relative z-10 flex flex-col justify-center min-h-[600px] md:min-h-[700px] max-w-screen-xl px-6 md:px-8 mx-auto text-white py-16 md:py-20\"><div class=\"max-w-3xl\"><h1 class=\"text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight\" data-aos=\"fade-up\">MOST <br><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-orange-500 italic\">BANDWIDTH</span><br>CONSUMED</h1><div class=\"flex flex-wrap items-center gap-6 mb-10\" data-aos=\"fade-up\" data-aos-delay=\"100\"><div class=\"flex items-center bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20\"><span class=\"text-yellow-400 text-6xl md:text-7xl font-black mr-4\">#1</span><div class=\"flex flex-col leading-tight\"><span class=\"font-bold text-2xl\">Fiber</span> <span class=\"font-light text-lg text-gray-200\">Broadband</span></div></div><div class=\"bg-white/10 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20\"><span class=\"text-sm text-gray-300 block mb-1\">Ranked by</span> <span class=\"font-bold text-xl\">(:) APNIC</span></div></div><div class=\"flex flex-wrap gap-4\" data-aos=\"fade-up\" data-aos-delay=\"200\"><button class=\"bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 transform\">Explore Home Internet</button> <button class=\"bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white font-bold py-4 px-10 rounded-full transition-all duration-300\">View Packages</button></div></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"relative w-full overflow-hidden bg-gradient-to-br from-pink-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900\"><div class=\"max-w-screen-xl mx-auto px-6 md:px-12 py-16 md:py-20 my-10\"><div class=\"grid md:grid-cols-2 gap-12 items-center\"><!-- Left Content --><div class=\"space-y-8\"><div class=\"space-y-4\"><h2 class=\"text-5xl md:text-6xl lg:text-7xl font-black leading-tight\"><span class=\"text-red-500 italic\">MOST</span><br><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-red-600\">BANDWIDTH</span><br><span class=\"text-gray-800 dark:text-white italic\">CONSUMED</span></h2></div><div class=\"flex items-center gap-4 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-xl w-fit\"><div class=\"text-6xl font-black text-yellow-400\">#1</div><div><div class=\"text-xl font-bold text-gray-900 dark:text-white\">Fiber</div><div class=\"text-gray-600 dark:text-gray-300\">Broadband</div></div><div class=\"ml-4 pl-4 border-l-2 border-gray-300 dark:border-gray-600\"><div class=\"text-sm text-gray-600 dark:text-gray-400\">Ranked by</div><div class=\"font-bold text-gray-900 dark:text-white\">(:) APNIC</div></div></div><button class=\"bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 transform\">Explore Home Internet</button></div><!-- Right Images --><div class=\"relative h-[400px] md:h-[500px]\"><img src=\"/files/isp_hero_banner.png\" class=\"absolute top-2 right-0 w-64 md:w-80 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300\" alt=\"Family using internet\" loading=\"eager\"> <img src=\"/files/isp_hero_banner.png\" class=\"absolute bottom-0 left-0 w-56 md:w-72 rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300\" alt=\"People on devices\" loading=\"eager\"><!-- Decorative elements --><div class=\"absolute top-10 right-10 w-32 h-32 bg-yellow-400 rounded-full blur-3xl opacity-30 animate-pulse\"></div><div class=\"absolute bottom-10 left-10 w-40 h-40 bg-pink-400 rounded-full blur-3xl opacity-30 animate-pulse\" style=\"animation-delay: 1s;\"></div></div></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -253,7 +245,7 @@ func AnimateOnScrollLibrary() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<!-- Animate on scroll library --><link href=\"https://unpkg.com/aos@2.3.1/dist/aos.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/aos@2.3.1/dist/aos.js\"></script><script>\r\n        AOS.init();\r\n    </script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<!-- Animate on scroll library --><link href=\"https://unpkg.com/aos@2.3.1/dist/aos.css\" rel=\"stylesheet\"><script src=\"https://unpkg.com/aos@2.3.1/dist/aos.js\"></script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -461,7 +453,7 @@ func newsletterRegistration(page *controller.Page) templ.Component {
 			var templ_7745c5c3_Var13 string
 			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL("emailSubscribe"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 354, Col: 45}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 341, Col: 45}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 			if templ_7745c5c3_Err != nil {
@@ -580,7 +572,7 @@ func qaIndividualSection(qa types.QAItem) templ.Component {
 		var templ_7745c5c3_Var17 string
 		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(qa.Question)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 404, Col: 16}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 391, Col: 16}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
@@ -593,7 +585,7 @@ func qaIndividualSection(qa types.QAItem) templ.Component {
 		var templ_7745c5c3_Var18 string
 		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(qa.Answer)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 413, Col: 15}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 400, Col: 15}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 		if templ_7745c5c3_Err != nil {
@@ -635,7 +627,7 @@ func madeWithLove(d types.LandingPage) templ.Component {
 		var templ_7745c5c3_Var20 string
 		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs("Made With Sprinkles of Love and Tears of Frustration.")
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 440, Col: 60}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 427, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
@@ -706,7 +698,7 @@ func contactTeamSection(page *controller.Page, d types.LandingPage) templ.Compon
 		var templ_7745c5c3_Var23 templ.SafeURL
 		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameContact)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 585, Col: 64}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 572, Col: 64}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
@@ -719,7 +711,7 @@ func contactTeamSection(page *controller.Page, d types.LandingPage) templ.Compon
 		var templ_7745c5c3_Var24 templ.SafeURL
 		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("mailto:%s", d.ContactEmail)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 603, Col: 69}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 590, Col: 69}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 		if templ_7745c5c3_Err != nil {
@@ -849,7 +841,7 @@ func questionExample(questionType, prompt string) templ.Component {
 		var templ_7745c5c3_Var31 string
 		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(prompt)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 833, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 820, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 		if templ_7745c5c3_Err != nil {
@@ -865,15 +857,27 @@ func questionExample(questionType, prompt string) templ.Component {
 
 func landingPageJS() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_landingPageJS_0342`,
-		Function: `function __templ_landingPageJS_0342(){function initAOS() {
+		Name: `__templ_landingPageJS_ab3b`,
+		Function: `function __templ_landingPageJS_ab3b(){function initAOS() {
         if (typeof AOS !== 'undefined') {
-            AOS.init();
+            AOS.init({
+                duration: 800,
+                once: true,  // Animation happens only once
+                offset: 100,
+                easing: 'ease-in-out'
+            });
         }
     }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAOS);
+    } else {
+        initAOS();
+    }
 }`,
-		Call:       templ.SafeScript(`__templ_landingPageJS_0342`),
-		CallInline: templ.SafeScriptInline(`__templ_landingPageJS_0342`),
+		Call:       templ.SafeScript(`__templ_landingPageJS_ab3b`),
+		CallInline: templ.SafeScriptInline(`__templ_landingPageJS_ab3b`),
 	}
 }
 
