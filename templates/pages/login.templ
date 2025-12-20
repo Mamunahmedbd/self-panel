@@ -87,19 +87,6 @@ templ login(page *controller.Page, form *types.LoginForm) {
 			</div>
 		</div>
 
-		<div class="relative py-4">
-			<div class="absolute inset-0 flex items-center">
-				<div class="w-full border-t border-gray-100 dark:border-gray-800"></div>
-			</div>
-			<div class="relative flex justify-center text-xs uppercase">
-				<span class="bg-white dark:bg-gray-800/50 px-2 text-gray-500">Or continue with</span>
-			</div>
-		</div>
-
-		<div class="pt-2">
-			@components.AuthButtons(page, false)
-		</div>
-
 		@components.FormCSRF(page.CSRF)
 	</form>
 }

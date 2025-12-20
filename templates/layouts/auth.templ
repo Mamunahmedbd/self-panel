@@ -25,20 +25,20 @@ templ Auth(content templ.Component, page *controller.Page) {
 			<div
 				id="main-content"
 				class="bg-primary dark:bg-gray-900 text-base-content dark:text-gray-100 flex-grow mx-auto
-				items-center w-full min-h-screen transition-colors duration-300"
+				w-full min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300"
 			>
-				<div class="lg:hidden mx-auto flex flex-row justify-around items-center">
+				<div class="lg:hidden w-full flex flex-row justify-around items-center mb-8">
 					<span>
 						@components.ThemeToggle("landing-page-theme-toggle")
 					</span>
-					<a id="auth-logo-with-brand" href={ templ.URL(page.ToURL(routenames.RouteNameLandingPage)) } class="flex justify-center items-center space-x-3 my-8 hover:underline">
-						<img src="/files/icon.png" class="h-16" alt="Logo"/>
+					<a id="auth-logo-with-brand" href={ templ.URL(page.ToURL(routenames.RouteNameLandingPage)) } class="flex justify-center items-center space-x-3 hover:underline">
+						<img src="/files/icon.png" class="h-12" alt="Logo"/>
 						<span class="text-2xl font-semibold">{ page.AppName }</span>
 					</a>
 					<span></span>
 				</div>
 				<div
-					class="w-full max-w-xl mx-auto bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 mb-10 transition-all duration-300"
+					class="w-full max-w-xl bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 transition-all duration-300"
 				>
 					if len(page.Title) > 0 {
 						<h1 class="text-4xl font-black text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent italic">{ page.Title }</h1>

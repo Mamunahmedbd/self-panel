@@ -59,7 +59,7 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div id=\"main-content\" class=\"bg-primary dark:bg-gray-900 text-base-content dark:text-gray-100 flex-grow mx-auto\r\n\t\t\t\titems-center w-full min-h-screen transition-colors duration-300\"><div class=\"lg:hidden mx-auto flex flex-row justify-around items-center\"><span>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div id=\"main-content\" class=\"bg-primary dark:bg-gray-900 text-base-content dark:text-gray-100 flex-grow mx-auto\r\n\t\t\t\tw-full min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300\"><div class=\"lg:hidden w-full flex flex-row justify-around items-center mb-8\"><span>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -80,7 +80,7 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"flex justify-center items-center space-x-3 my-8 hover:underline\"><img src=\"/files/icon.png\" class=\"h-16\" alt=\"Logo\"> <span class=\"text-2xl font-semibold\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"flex justify-center items-center space-x-3 hover:underline\"><img src=\"/files/icon.png\" class=\"h-12\" alt=\"Logo\"> <span class=\"text-2xl font-semibold\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -93,7 +93,7 @@ func Auth(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></a> <span></span></div><div class=\"w-full max-w-xl mx-auto bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 mb-10 transition-all duration-300\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></a> <span></span></div><div class=\"w-full max-w-xl bg-white dark:bg-gray-800/50 dark:backdrop-blur-xl border border-gray-100 dark:border-gray-700 shadow-2xl rounded-3xl overflow-hidden p-6 sm:p-10 md:p-12 transition-all duration-300\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
