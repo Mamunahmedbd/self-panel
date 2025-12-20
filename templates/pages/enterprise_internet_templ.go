@@ -168,7 +168,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</a></div></div><div class=\"relative hidden lg:block\"><div class=\"absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-blue-500/20 rounded-[3rem] blur-2xl\"></div><div class=\"relative bg-white dark:bg-gray-800 p-4 rounded-[3rem] shadow-3xl border border-slate-100 dark:border-gray-700\"><div class=\"bg-slate-50 dark:bg-gray-900 rounded-[2.5rem] p-8 space-y-6\"><div class=\"flex justify-between items-center\"><div class=\"h-12 w-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/30\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"></path></svg></div><div class=\"text-right\"><div class=\"text-xs font-bold text-slate-400 uppercase tracking-widest\">Network Load</div><div class=\"text-xl font-black text-slate-900 dark:text-white line-clamp-1\">Optimized</div></div></div><div class=\"space-y-4\"><div class=\"h-2 w-full bg-slate-200 dark:bg-gray-700 rounded-full overflow-hidden\"><div class=\"h-full w-[85%] bg-indigo-600 animate-pulse\"></div></div><div class=\"grid grid-cols-3 gap-2\"><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center\"><span class=\"text-xs font-bold text-slate-400\">Jitter</span> <span class=\"text-sm font-black text-green-500\">0.2ms</span></div><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center\"><span class=\"text-xs font-bold text-slate-400\">Uptime</span> <span class=\"text-sm font-black text-indigo-500\">99.99%</span></div><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center\"><span class=\"text-xs font-bold text-slate-400\">Packet Loss</span> <span class=\"text-sm font-black text-green-500\">0%</span></div></div></div></div></div></div></div></div></section><!-- Features Grid --><section class=\"py-24 border-y border-slate-100 dark:border-gray-900 bg-white/50 dark:bg-black/20\"><div class=\"max-w-screen-xl mx-auto px-6\"><div class=\"grid md:grid-cols-3 gap-12\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</a></div></div><div class=\"relative hidden lg:block\"><div class=\"absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-blue-500/20 rounded-[3rem] blur-2xl\"></div><div class=\"relative bg-white dark:bg-gray-800 p-4 rounded-[3rem] shadow-3xl border border-slate-100 dark:border-gray-700\"><div class=\"bg-indigo-50/50 dark:bg-gray-900 rounded-[2.5rem] p-8 space-y-6\"><div class=\"flex justify-between items-center\"><div class=\"h-12 w-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/30\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"></path></svg></div><div class=\"text-right\"><div class=\"text-xs font-bold text-slate-500 dark:text-gray-500 uppercase tracking-widest\">Network Load</div><div class=\"text-xl font-black text-slate-900 dark:text-white line-clamp-1\">Optimized</div></div></div><div class=\"space-y-4\"><div class=\"h-2 w-full bg-slate-200 dark:bg-gray-700 rounded-full overflow-hidden\"><div class=\"h-full w-[85%] bg-indigo-600 animate-pulse transition-all duration-1000\"></div></div><div class=\"grid grid-cols-3 gap-2\"><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 flex flex-col items-center justify-center shadow-sm\"><span class=\"text-[10px] font-bold text-slate-500 dark:text-gray-500 uppercase tracking-tight\">Jitter</span> <span class=\"text-sm font-black text-green-600 dark:text-green-500\">0.2ms</span></div><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 flex flex-col items-center justify-center shadow-sm\"><span class=\"text-[10px] font-bold text-slate-500 dark:text-gray-500 uppercase tracking-tight\">Uptime</span> <span class=\"text-sm font-black text-indigo-600 dark:text-indigo-500\">99.99%</span></div><div class=\"h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 flex flex-col items-center justify-center shadow-sm\"><span class=\"text-[10px] font-bold text-slate-500 dark:text-gray-500 uppercase tracking-tight\">Loss</span> <span class=\"text-sm font-black text-green-600 dark:text-green-500\">0%</span></div></div></div></div></div></div></div></div></section><!-- Features Grid --><section class=\"py-24 border-y border-slate-100 dark:border-gray-900 bg-white dark:bg-black/20\"><div class=\"max-w-screen-xl mx-auto px-6\"><div class=\"grid md:grid-cols-3 gap-12\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -180,7 +180,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var11 = []any{"w-16 h-16 rounded-[2rem] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500",
 					templ.KV("bg-blue-600 text-white shadow-xl shadow-blue-500/30", i%3 == 0),
 					templ.KV("bg-indigo-600 text-white shadow-xl shadow-indigo-500/30", i%3 == 1),
-					templ.KV("bg-slate-900 text-white shadow-xl shadow-slate-500/30 dark:bg-slate-700", i%3 == 2)}
+					templ.KV("bg-slate-900 dark:bg-slate-700 text-white shadow-xl shadow-slate-500/30", i%3 == 2)}
 				templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -256,7 +256,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></section><!-- Packages --><section id=\"packages\" class=\"py-24 bg-slate-50 dark:bg-gray-950\"><div class=\"max-w-screen-xl mx-auto px-6\"><div class=\"flex flex-col md:flex-row justify-between items-end mb-16 gap-8\"><div class=\"space-y-4 max-w-2xl\"><h2 class=\"text-4xl md:text-5xl font-black text-slate-900 dark:text-white\">Enterprise Solutions</h2><p class=\"text-slate-600 dark:text-slate-400 font-medium\">Dedicated pricing for businesses that demand the highest levels of performance and availability.</p></div><div class=\"bg-indigo-600/10 dark:bg-indigo-900/20 px-6 py-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/50\"><span class=\"text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-widest text-sm\">Need a Custom Plan?</span> <a href=\"/contact\" class=\"block text-indigo-700 dark:text-indigo-300 font-black hover:underline mt-1\">Contact Sales Representative</a></div></div><div class=\"grid lg:grid-cols-4 md:grid-cols-2 gap-8\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</div></div></section><!-- Packages --><section id=\"packages\" class=\"py-24 bg-slate-50 dark:bg-gray-950\"><div class=\"max-w-screen-xl mx-auto px-6\"><div class=\"flex flex-col md:flex-row justify-between items-end mb-16 gap-8\"><div class=\"space-y-4 max-w-2xl\"><h2 class=\"text-4xl md:text-5xl font-black text-slate-900 dark:text-white\">Enterprise Solutions</h2><p class=\"text-slate-700 dark:text-slate-400 font-medium\">Dedicated pricing for businesses that demand the highest levels of performance and availability.</p></div><div class=\"bg-indigo-600/10 dark:bg-indigo-900/20 px-6 py-4 rounded-2xl border border-indigo-200 dark:border-indigo-900/50\"><span class=\"text-indigo-700 dark:text-indigo-400 font-bold uppercase tracking-widest text-sm\">Need a Custom Plan?</span> <a href=\"/contact\" class=\"block text-indigo-800 dark:text-indigo-300 font-black hover:underline mt-1\">Contact Sales Representative</a></div></div><div class=\"grid lg:grid-cols-4 md:grid-cols-2 gap-8\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -266,7 +266,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></section><!-- Technical Deep Dive --><section class=\"py-24 bg-slate-900 dark:bg-black rounded-[4rem] mx-6 my-10 overflow-hidden relative border border-slate-800\"><div class=\"absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.15),transparent)]\"></div><div class=\"max-w-screen-xl mx-auto px-10 relative z-10 grid lg:grid-cols-2 gap-20 items-center\"><div class=\"space-y-10\"><div class=\"space-y-6\"><h2 class=\"text-4xl md:text-6xl font-black text-white\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div></div></section><!-- Technical Deep Dive --><section class=\"py-24 bg-indigo-600 dark:bg-black rounded-[4rem] mx-6 my-10 overflow-hidden relative border border-indigo-700 dark:border-slate-800 transition-colors duration-500 shadow-2xl\"><div class=\"absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)] dark:bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.15),transparent)]\"></div><div class=\"max-w-screen-xl mx-auto px-10 relative z-10 grid lg:grid-cols-2 gap-20 items-center\"><div class=\"space-y-10\"><div class=\"space-y-6\"><h2 class=\"text-4xl md:text-6xl font-black text-white\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -279,7 +279,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</h2><p class=\"text-slate-400 text-lg leading-relaxed font-medium\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</h2><p class=\"text-indigo-50 dark:text-slate-400 text-lg leading-relaxed font-medium\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -297,27 +297,27 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			for _, stat := range data.Technical.Stats {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<div class=\"space-y-2\"><div class=\"text-5xl font-black text-white truncate\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<div class=\"space-y-2\"><div class=\"text-5xl font-black text-white truncate drop-shadow-sm\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var17 string
 				templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(stat.Value)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/enterprise_internet.templ`, Line: 154, Col: 74}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/enterprise_internet.templ`, Line: 154, Col: 89}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</div><div class=\"text-indigo-400 text-sm font-bold uppercase tracking-widest\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "</div><div class=\"text-indigo-100 dark:text-indigo-400 text-sm font-bold uppercase tracking-widest\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var18 string
 				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(stat.Label)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/enterprise_internet.templ`, Line: 155, Col: 94}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/enterprise_internet.templ`, Line: 155, Col: 115}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 				if templ_7745c5c3_Err != nil {
@@ -328,12 +328,12 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</div><div class=\"space-y-4 bg-white/5 p-8 rounded-[2rem] border border-white/10 backdrop-blur-sm\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "</div><div class=\"space-y-4 bg-white/10 dark:bg-white/5 p-8 rounded-[2rem] border border-white/20 dark:border-white/10 backdrop-blur-md\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			for _, point := range data.Technical.BulletPoints {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<div class=\"flex items-center space-x-4\"><div class=\"h-2 w-2 bg-indigo-500 rounded-full\"></div><span class=\"text-white font-bold\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "<div class=\"flex items-center space-x-4\"><div class=\"h-2 w-2 bg-white dark:bg-indigo-500 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]\"></div><span class=\"text-white font-bold\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -351,7 +351,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "</div></div><div class=\"relative\"><div class=\"absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-[2.5rem] opacity-20 blur-xl\"></div><div class=\"relative bg-[#0a0a0a] p-4 rounded-[2.5rem] border border-white/5\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "</div></div><div class=\"relative\"><div class=\"absolute -inset-1 bg-gradient-to-r from-white to-white dark:from-indigo-500 dark:to-blue-500 rounded-[2.5rem] opacity-20 blur-xl\"></div><div class=\"relative bg-white/20 dark:bg-[#0a0a0a] p-4 rounded-[2.5rem] border border-white/30 dark:border-white/5 shadow-2xl\"><img src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -364,12 +364,12 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"rounded-[2.2rem] w-full shadow-2xl grayscale hover:grayscale-0 transition-all duration-700\" alt=\"Enterprise Infrastructure\"></div></div></div></section><!-- FAQs --><section class=\"py-24 max-w-screen-xl mx-auto px-6\"><div class=\"text-center mb-16\"><h2 class=\"text-3xl md:text-5xl font-black text-slate-900 dark:text-white\">Common Inquiries</h2></div><div class=\"max-w-4xl mx-auto grid gap-6\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"rounded-[2.2rem] w-full shadow-2xl dark:grayscale dark:hover:grayscale-0 transition-all duration-700\" alt=\"Enterprise Infrastructure\"></div></div></div></section><!-- FAQs --><section class=\"py-24 max-w-screen-xl mx-auto px-6\"><div class=\"text-center mb-16\"><h2 class=\"text-3xl md:text-5xl font-black text-slate-900 dark:text-white\">Common Inquiries</h2></div><div class=\"max-w-4xl mx-auto grid gap-6\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			for _, faq := range data.FAQs {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<div class=\"bg-white dark:bg-gray-900 p-8 rounded-3xl border border-slate-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow\"><h4 class=\"text-xl font-black text-slate-900 dark:text-white mb-4\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<div class=\"bg-white dark:bg-gray-900 p-8 rounded-3xl border border-slate-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all duration-300\"><h4 class=\"text-xl font-black text-slate-900 dark:text-white mb-4\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -382,7 +382,7 @@ func enterpriseInternetContent(page *controller.Page) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</h4><p class=\"text-slate-600 dark:text-slate-400 font-medium leading-relaxed\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</h4><p class=\"text-slate-700 dark:text-slate-400 font-medium leading-relaxed\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -431,8 +431,8 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		var templ_7745c5c3_Var24 = []any{"relative group p-10 rounded-[3rem] border flex flex-col transition-all duration-500",
-			templ.KV("bg-white dark:bg-gray-900 border-indigo-600 shadow-2xl -translate-y-2 z-10", pkg.Popular),
-			templ.KV("bg-white dark:bg-gray-800 border-slate-100 dark:border-gray-700 hover:border-indigo-400 hover:shadow-xl", !pkg.Popular)}
+			templ.KV("bg-white dark:bg-gray-900 border-indigo-600 shadow-2xl -translate-y-2 z-10 ring-4 ring-indigo-500/10", pkg.Popular),
+			templ.KV("bg-white dark:bg-gray-800 border-slate-200 dark:border-gray-700 hover:border-indigo-400 hover:shadow-xl", !pkg.Popular)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var24...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -455,12 +455,12 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if pkg.Popular {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<div class=\"absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-xs font-black uppercase rounded-full tracking-widest\">Recommended</div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<div class=\"absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-xs font-black uppercase rounded-full tracking-widest shadow-lg shadow-indigo-600/20\">Recommended</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<div class=\"mb-10 text-center\"><h3 class=\"text-slate-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest mb-6\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<div class=\"mb-10 text-center\"><h3 class=\"text-slate-500 dark:text-slate-500 text-sm font-black uppercase tracking-widest mb-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -486,12 +486,12 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</span> <span class=\"text-lg font-bold ml-2 text-slate-400\">Mbps</span></div></div><div class=\"space-y-5 mb-12 flex-grow\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</span> <span class=\"text-lg font-bold ml-2 text-slate-500 dark:text-slate-400\">Mbps</span></div></div><div class=\"space-y-5 mb-12 flex-grow\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, feature := range pkg.Features {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div class=\"flex items-start space-x-3 text-sm font-bold text-slate-600 dark:text-slate-300\"><svg class=\"h-5 w-5 text-indigo-600 mt-0.5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" d=\"M5 13l4 4L19 7\"></path></svg> <span class=\"leading-tight\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div class=\"flex items-start space-x-3 text-sm font-bold text-slate-700 dark:text-slate-300\"><svg class=\"h-5 w-5 text-indigo-600 mt-0.5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" d=\"M5 13l4 4L19 7\"></path></svg> <span class=\"leading-tight\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -519,7 +519,7 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<span class=\"text-xs font-bold text-slate-400 block mb-1\">Starting from</span> <span class=\"text-4xl font-black text-slate-900 dark:text-white\">৳")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<span class=\"text-xs font-bold text-slate-500 dark:text-gray-500 block mb-1 uppercase tracking-tighter\">Starting from</span> <span class=\"text-4xl font-black text-slate-900 dark:text-white\">৳")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -532,7 +532,7 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</span> <span class=\"text-sm font-bold text-slate-400\">/mo</span>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</span> <span class=\"text-sm font-bold text-slate-500 dark:text-slate-400\">/mo</span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -541,7 +541,7 @@ func enterprisePackageCard(pkg types.InternetPackage) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var30 = []any{"w-full py-5 rounded-[1.5rem] font-black transition-all duration-300",
+		var templ_7745c5c3_Var30 = []any{"w-full py-5 rounded-[1.5rem] font-black transition-all duration-300 transform active:scale-95 shadow-md",
 			templ.KV("bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-500/25", pkg.Popular),
 			templ.KV("bg-slate-100 dark:bg-gray-700 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-gray-600", !pkg.Popular)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var30...)
