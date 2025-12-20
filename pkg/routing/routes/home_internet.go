@@ -26,7 +26,7 @@ func (c *homeInternet) Get(ctx echo.Context) error {
 	page.Name = templates.PageLanding // Or create a new constant
 	page.Title = "Home Internet - High Speed Fiber"
 
-	data := types.HomeInternetPage{
+	data := types.ProductLandingPage{
 		Hero: types.HeroSection{
 			Badge:       "High-Speed Fiber Connectivity",
 			Title:       "Home Internet",

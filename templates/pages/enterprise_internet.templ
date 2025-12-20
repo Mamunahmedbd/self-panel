@@ -1,0 +1,243 @@
+package pages
+
+import (
+	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/types"
+)
+
+templ EnterpriseInternet(page *controller.Page) {
+	@enterpriseInternetContent(page)
+}
+
+templ enterpriseInternetContent(page *controller.Page) {
+	if data, ok := page.Data.(types.ProductLandingPage); ok {
+		<div class="bg-slate-50 dark:bg-gray-950 min-h-screen">
+			<!-- Hero Section -->
+			<section class="relative pt-32 pb-20 overflow-hidden bg-white dark:bg-gray-950">
+				<div class="absolute top-0 right-0 -z-10 opacity-20 dark:opacity-10">
+					<div class="w-[600px] h-[600px] bg-gradient-to-br from-indigo-600 to-blue-600 rounded-full blur-3xl animate-pulse"></div>
+				</div>
+
+				<div class="max-w-screen-xl mx-auto px-6">
+					<div class="grid lg:grid-cols-2 gap-16 items-center">
+						<div class="space-y-8">
+							<div class="inline-flex items-center space-x-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-4 py-2 rounded-full text-sm font-bold tracking-wide uppercase">
+								<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.813a1 1 0 00-.788 0l-7 3a1 1 0 000 1.837l7 3a1 1 0 00.788 0l7-3a1 1 0 000-1.837l-7-3zM2.11 10.876a1 1 0 00-.11 1.74l7 3a1 1 0 00.788 0l7-3a1 1 0 00-.11-1.74l-6.89 2.953-6.89-2.953zM2.11 14.876a1 1 0 00-.11 1.74l7 3a1 1 0 00.788 0l7-3a1 1 0 00-.11-1.74l-6.89 2.953-6.89-2.953z"/></svg>
+								<span>{ data.Hero.Badge }</span>
+							</div>
+
+							<h1 class="text-5xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+								{ data.Hero.Title } <br/>
+								<span class="italic bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{ data.Hero.TitleItalic }</span>
+							</h1>
+
+							<p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl font-medium">
+								{ data.Hero.Text }
+							</p>
+
+							<div class="flex flex-wrap gap-4 pt-4">
+								<a href={ templ.URL(data.Hero.PrimaryCTA.URL) } class="px-10 py-5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-black rounded-2xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95">
+									{ data.Hero.PrimaryCTA.Text }
+								</a>
+								<a href={ templ.URL(data.Hero.SecondaryCTA.URL) } class="px-10 py-5 bg-white dark:bg-gray-900 text-slate-900 dark:text-white border-2 border-slate-100 dark:border-gray-800 hover:border-indigo-500 font-bold rounded-2xl transition-all duration-300">
+									{ data.Hero.SecondaryCTA.Text }
+								</a>
+							</div>
+						</div>
+
+						<div class="relative hidden lg:block">
+							<div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-blue-500/20 rounded-[3rem] blur-2xl"></div>
+							<div class="relative bg-white dark:bg-gray-800 p-4 rounded-[3rem] shadow-3xl border border-slate-100 dark:border-gray-700">
+								<div class="bg-slate-50 dark:bg-gray-900 rounded-[2.5rem] p-8 space-y-6">
+									<div class="flex justify-between items-center">
+										<div class="h-12 w-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+											<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+										</div>
+										<div class="text-right">
+											<div class="text-xs font-bold text-slate-400 uppercase tracking-widest">Network Load</div>
+											<div class="text-xl font-black text-slate-900 dark:text-white line-clamp-1">Optimized</div>
+										</div>
+									</div>
+									<div class="space-y-4">
+										<div class="h-2 w-full bg-slate-200 dark:bg-gray-700 rounded-full overflow-hidden">
+											<div class="h-full w-[85%] bg-indigo-600 animate-pulse"></div>
+										</div>
+										<div class="grid grid-cols-3 gap-2">
+											<div class="h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center">
+												<span class="text-xs font-bold text-slate-400">Jitter</span>
+												<span class="text-sm font-black text-green-500">0.2ms</span>
+											</div>
+											<div class="h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center">
+												<span class="text-xs font-bold text-slate-400">Uptime</span>
+												<span class="text-sm font-black text-indigo-500">99.99%</span>
+											</div>
+											<div class="h-16 bg-white dark:bg-gray-800 rounded-2xl border border-slate-100 dark:border-gray-700 flex flex-col items-center justify-center">
+												<span class="text-xs font-bold text-slate-400">Packet Loss</span>
+												<span class="text-sm font-black text-green-500">0%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Features Grid -->
+			<section class="py-24 border-y border-slate-100 dark:border-gray-900 bg-white/50 dark:bg-black/20">
+				<div class="max-w-screen-xl mx-auto px-6">
+					<div class="grid md:grid-cols-3 gap-12">
+						for i, feature := range data.Features {
+							<div class="group space-y-6">
+								<div class={ "w-16 h-16 rounded-[2rem] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500",
+                                    templ.KV("bg-blue-600 text-white shadow-xl shadow-blue-500/30", i%3 == 0),
+                                    templ.KV("bg-indigo-600 text-white shadow-xl shadow-indigo-500/30", i%3 == 1),
+                                    templ.KV("bg-slate-900 text-white shadow-xl shadow-slate-500/30 dark:bg-slate-700", i%3 == 2) }>
+									if string(feature.Icon) != "" {
+										@templ.Raw(string(feature.Icon))
+									} else {
+										if i%3 == 0 {
+											<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+										} else if i%3 == 1 {
+											<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+										} else {
+											<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+										}
+									}
+								</div>
+								<h3 class="text-2xl font-black text-slate-900 dark:text-white">{ feature.Title }</h3>
+								<p class="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{ feature.Description }</p>
+							</div>
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Packages -->
+			<section id="packages" class="py-24 bg-slate-50 dark:bg-gray-950">
+				<div class="max-w-screen-xl mx-auto px-6">
+					<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+						<div class="space-y-4 max-w-2xl">
+							<h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white">Enterprise Solutions</h2>
+							<p class="text-slate-600 dark:text-slate-400 font-medium">Dedicated pricing for businesses that demand the highest levels of performance and availability.</p>
+						</div>
+						<div class="bg-indigo-600/10 dark:bg-indigo-900/20 px-6 py-4 rounded-2xl border border-indigo-100 dark:border-indigo-900/50">
+							<span class="text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-widest text-sm">Need a Custom Plan?</span>
+							<a href="/contact" class="block text-indigo-700 dark:text-indigo-300 font-black hover:underline mt-1">Contact Sales Representative</a>
+						</div>
+					</div>
+
+					<div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+						for _, pkg := range data.Packages {
+							@enterprisePackageCard(pkg)
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Technical Deep Dive -->
+			<section class="py-24 bg-slate-900 dark:bg-black rounded-[4rem] mx-6 my-10 overflow-hidden relative border border-slate-800">
+				<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.15),transparent)]"></div>
+				<div class="max-w-screen-xl mx-auto px-10 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+					<div class="space-y-10">
+						<div class="space-y-6">
+							<h2 class="text-4xl md:text-6xl font-black text-white">{ data.Technical.Title }</h2>
+							<p class="text-slate-400 text-lg leading-relaxed font-medium">
+								{ data.Technical.Description }
+							</p>
+						</div>
+
+						<div class="grid grid-cols-2 gap-10">
+							for _, stat := range data.Technical.Stats {
+								<div class="space-y-2">
+									<div class="text-5xl font-black text-white truncate">{ stat.Value }</div>
+									<div class="text-indigo-400 text-sm font-bold uppercase tracking-widest">{ stat.Label }</div>
+								</div>
+							}
+						</div>
+
+						<div class="space-y-4 bg-white/5 p-8 rounded-[2rem] border border-white/10 backdrop-blur-sm">
+							for _, point := range data.Technical.BulletPoints {
+								<div class="flex items-center space-x-4">
+									<div class="h-2 w-2 bg-indigo-500 rounded-full"></div>
+									<span class="text-white font-bold">{ point }</span>
+								</div>
+							}
+						</div>
+					</div>
+
+					<div class="relative">
+						<div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-[2.5rem] opacity-20 blur-xl"></div>
+						<div class="relative bg-[#0a0a0a] p-4 rounded-[2.5rem] border border-white/5">
+							<img src={ data.Technical.ImageURL } class="rounded-[2.2rem] w-full shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Enterprise Infrastructure"/>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FAQs -->
+			<section class="py-24 max-w-screen-xl mx-auto px-6">
+				<div class="text-center mb-16">
+					<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">Common Inquiries</h2>
+				</div>
+				<div class="max-w-4xl mx-auto grid gap-6">
+					for _, faq := range data.FAQs {
+						<div class="bg-white dark:bg-gray-900 p-8 rounded-3xl border border-slate-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+							<h4 class="text-xl font-black text-slate-900 dark:text-white mb-4">{ faq.Question }</h4>
+							<p class="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">{ faq.Answer }</p>
+						</div>
+					}
+				</div>
+			</section>
+		</div>
+	}
+}
+
+templ enterprisePackageCard(pkg types.InternetPackage) {
+	<div class={ "relative group p-10 rounded-[3rem] border flex flex-col transition-all duration-500",
+		templ.KV("bg-white dark:bg-gray-900 border-indigo-600 shadow-2xl -translate-y-2 z-10", pkg.Popular),
+		templ.KV("bg-white dark:bg-gray-800 border-slate-100 dark:border-gray-700 hover:border-indigo-400 hover:shadow-xl", !pkg.Popular) }>
+
+		if pkg.Popular {
+			<div class="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-xs font-black uppercase rounded-full tracking-widest">
+				Recommended
+			</div>
+		}
+
+		<div class="mb-10 text-center">
+			<h3 class="text-slate-400 dark:text-slate-500 text-sm font-black uppercase tracking-widest mb-6">{ pkg.Name }</h3>
+			<div class="flex items-baseline justify-center">
+				<span class="text-6xl font-black text-slate-900 dark:text-white">{ pkg.Speed }</span>
+				<span class="text-lg font-bold ml-2 text-slate-400">Mbps</span>
+			</div>
+		</div>
+
+		<div class="space-y-5 mb-12 flex-grow">
+			for _, feature := range pkg.Features {
+				<div class="flex items-start space-x-3 text-sm font-bold text-slate-600 dark:text-slate-300">
+					<svg class="h-5 w-5 text-indigo-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+					<span class="leading-tight">{ feature }</span>
+				</div>
+			}
+		</div>
+
+		<div class="mt-auto space-y-6">
+			<div class="text-center">
+				if pkg.Price == "Custom" {
+					<span class="text-3xl font-black text-slate-900 dark:text-white">Custom Pricing</span>
+				} else {
+					<span class="text-xs font-bold text-slate-400 block mb-1">Starting from</span>
+					<span class="text-4xl font-black text-slate-900 dark:text-white">৳{ pkg.Price }</span>
+					<span class="text-sm font-bold text-slate-400">/mo</span>
+				}
+			</div>
+
+			<button class={ "w-full py-5 rounded-[1.5rem] font-black transition-all duration-300",
+				templ.KV("bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-500/25", pkg.Popular),
+				templ.KV("bg-slate-100 dark:bg-gray-700 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-gray-600", !pkg.Popular) }>
+				Select Plan
+			</button>
+		</div>
+	</div>
+}

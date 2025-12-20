@@ -10,7 +10,7 @@ templ HomeInternet(page *controller.Page) {
 }
 
 templ homeInternetContent(page *controller.Page) {
-	if data, ok := page.Data.(types.HomeInternetPage); ok {
+	if data, ok := page.Data.(types.ProductLandingPage); ok {
 		<div class="bg-white dark:bg-gray-950 min-h-screen">
 			<!-- Hero Section -->
 			<section class="relative pt-32 pb-20 overflow-hidden">

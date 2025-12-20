@@ -2,7 +2,7 @@ package types
 
 import "html/template"
 
-type HomeInternetPage struct {
+type ProductLandingPage struct {
 	Hero      HeroSection
 	Features  []Feature
 	Packages  []InternetPackage

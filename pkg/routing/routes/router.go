@@ -225,6 +225,9 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	homeInternet := NewHomeInternetRoute(ctr)
 	g.GET("/home-internet", homeInternet.Get).Name = routeNames.RouteNameHomeInternet
 
+	enterpriseInternet := NewEnterpriseInternetRoute(ctr)
+	g.GET("/enterprise-internet", enterpriseInternet.Get).Name = routeNames.RouteNameEnterpriseInternet
+
 	clearCookie := NewClearCookiesRoute(ctr)
 	g.GET("/clear-cookie", clearCookie.Get).Name = "clearCookie"
 

@@ -63,7 +63,7 @@ func homeInternetContent(page *controller.Page) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		if data, ok := page.Data.(types.HomeInternetPage); ok {
+		if data, ok := page.Data.(types.ProductLandingPage); ok {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"bg-white dark:bg-gray-950 min-h-screen\"><!-- Hero Section --><section class=\"relative pt-32 pb-20 overflow-hidden\"><div class=\"absolute top-0 right-0 -z-10 opacity-20 dark:opacity-10\"><div class=\"w-[600px] h-[600px] bg-gradient-to-br from-purple-600 to-pink-600 rounded-full blur-3xl animate-pulse\"></div></div><div class=\"max-w-screen-xl mx-auto px-6\"><div class=\"text-center space-y-8 max-w-4xl mx-auto\"><div class=\"inline-flex items-center space-x-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-4 py-2 rounded-full text-sm font-bold tracking-wide uppercase\"><span class=\"relative flex h-3 w-3\"><span class=\"animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75\"></span> <span class=\"relative inline-flex rounded-full h-3 w-3 bg-purple-500\"></span></span> <span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err

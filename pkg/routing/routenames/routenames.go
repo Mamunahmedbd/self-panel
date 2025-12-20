@@ -15,6 +15,7 @@ const (
 	RouteNameContactSubmit           = "contact.submit"
 	RouteNameAboutUs                 = "about"
 	RouteNameHomeInternet            = "home_internet"
+	RouteNameEnterpriseInternet      = "enterprise_internet"
 	RouteNameLandingPage             = "landing_page"
 	RouteNamePreferences             = "preferences"
 	RouteNameGetPhone                = "phone.get"
