@@ -56,11 +56,24 @@ func ThemeToggle(id string) templ.Component {
 
 func initThemeToggle(id string) templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_initThemeToggle_5e04`,
-		Function: `function __templ_initThemeToggle_5e04(id){renderSvelteComponent('ThemeToggle', id, {});
+		Name: `__templ_initThemeToggle_f3c2`,
+		Function: `function __templ_initThemeToggle_f3c2(id){function initComponent() {
+		if (typeof window.renderSvelteComponent === 'function') {
+			window.renderSvelteComponent('ThemeToggle', id, {});
+		} else {
+			// Retry after a short delay if Svelte bundle hasn't loaded yet
+			setTimeout(initComponent, 100);
+		}
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initComponent);
+	} else {
+		initComponent();
+	}
 }`,
-		Call:       templ.SafeScript(`__templ_initThemeToggle_5e04`, id),
-		CallInline: templ.SafeScriptInline(`__templ_initThemeToggle_5e04`, id),
+		Call:       templ.SafeScript(`__templ_initThemeToggle_f3c2`, id),
+		CallInline: templ.SafeScriptInline(`__templ_initThemeToggle_f3c2`, id),
 	}
 }
 

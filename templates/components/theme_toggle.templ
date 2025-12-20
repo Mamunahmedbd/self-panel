@@ -8,5 +8,18 @@ templ ThemeToggle(id string) {
 }
 
 script initThemeToggle(id string ) {
-	renderSvelteComponent('ThemeToggle', id, {});
+	function initComponent() {
+		if (typeof window.renderSvelteComponent === 'function') {
+			window.renderSvelteComponent('ThemeToggle', id, {});
+		} else {
+			// Retry after a short delay if Svelte bundle hasn't loaded yet
+			setTimeout(initComponent, 100);
+		}
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initComponent);
+	} else {
+		initComponent();
+	}
 }
