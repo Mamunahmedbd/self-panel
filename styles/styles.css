@@ -4,6 +4,8 @@
 
 @import "tailwindcss";
 
+@variant dark (.dark &);
+
 [x-cloak] {
   display: none !important;
 }
