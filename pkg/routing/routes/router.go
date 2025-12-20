@@ -222,6 +222,9 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	landingPage := NewLandingPageRoute(ctr)
 	g.GET("/", landingPage.Get).Name = routeNames.RouteNameLandingPage
 
+	homeInternet := NewHomeInternetRoute(ctr)
+	g.GET("/home-internet", homeInternet.Get).Name = routeNames.RouteNameHomeInternet
+
 	clearCookie := NewClearCookiesRoute(ctr)
 	g.GET("/clear-cookie", clearCookie.Get).Name = "clearCookie"
 

@@ -225,7 +225,7 @@ templ TextFooter(page *controller.Page) {
 				<div class="space-y-6">
 					<h3 class="text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm">Services</h3>
 					<ul class="space-y-4 text-sm">
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home Internet</a></li>
+						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameHomeInternet)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home Internet</a></li>
 						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Enterprise Internet</a></li>
 						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">SME Packages</a></li>
 						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Value Added Services</a></li>
