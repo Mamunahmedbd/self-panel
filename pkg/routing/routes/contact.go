@@ -28,7 +28,7 @@ func NewContactRoute(ctr controller.Controller) contact {
 
 func (c *contact) Get(ctx echo.Context) error {
 	page := controller.NewPage(ctx)
-	page.Layout = layouts.Main
+	page.Layout = layouts.LandingPage
 	page.Name = templates.PageContact
 	page.Title = "Contact us"
 	page.Form = &types.ContactForm{}
