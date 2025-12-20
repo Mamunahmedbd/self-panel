@@ -15,7 +15,7 @@ templ LandingPage(content templ.Component, page *controller.Page) {
 		</head>
 		<body>
 			// @components.BonfireBanner()
-			
+
 			<div class="hidden lg:block sticky top-0 z-10">
 				@components.Navbar(page)
 			</div>
@@ -24,8 +24,8 @@ templ LandingPage(content templ.Component, page *controller.Page) {
 			<div class="flex ">
 				<div
 					id="main-content"
-					class="flex-grow mx-auto items-center justify-center 
-					text-base-content min-h-screen bg-primary text-primary-content"
+					class="flex-grow mx-auto items-center justify-center
+					text-base-content min-h-screen bg-primary dark:bg-gray-900 text-primary-content dark:text-gray-100 transition-colors duration-300"
 				>
 					@content
 				</div>

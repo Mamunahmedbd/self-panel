@@ -57,7 +57,7 @@ func Navbar(page *controller.Page) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " class=\"bg-primary/80 text-primary-content backdrop-blur-md\" hx-target=\"#main-content\" hx-select=\"#main-content\" hx-swap=\"outerHTML show:window:top\" hx-indicator=\"next #page-loading\" hx-push-url=\"true\"><div class=\"container mx-auto px-4 py-2 flex justify-between items-center\"><a id=\"navbar-logo-with-brand\" href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " class=\"bg-primary/80 dark:bg-gray-900/80 text-primary-content dark:text-white backdrop-blur-md transition-colors duration-300\" hx-target=\"#main-content\" hx-select=\"#main-content\" hx-swap=\"outerHTML show:window:top\" hx-indicator=\"next #page-loading\" hx-push-url=\"true\"><div class=\"container mx-auto px-4 py-2 flex justify-between items-center\"><a id=\"navbar-logo-with-brand\" href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

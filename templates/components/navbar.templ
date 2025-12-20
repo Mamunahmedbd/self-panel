@@ -12,7 +12,7 @@ templ Navbar(page *controller.Page) {
 			hx-ext="sse"
 			sse-connect={ page.ToURL(routenames.RouteNameRealtime) }
 		}
-		class="bg-primary/80 text-primary-content backdrop-blur-md"
+		class="bg-primary/80 dark:bg-gray-900/80 text-primary-content dark:text-white backdrop-blur-md transition-colors duration-300"
 		hx-target="#main-content"
 		hx-select="#main-content"
 		hx-swap="outerHTML show:window:top"

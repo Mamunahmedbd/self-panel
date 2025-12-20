@@ -58,7 +58,7 @@ func LandingPage(content templ.Component, page *controller.Page) templ.Component
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><!-- Mobile PWA install button --><div class=\"flex \"><div id=\"main-content\" class=\"flex-grow mx-auto items-center justify-center \r\n\t\t\t\t\ttext-base-content min-h-screen bg-primary text-primary-content\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><!-- Mobile PWA install button --><div class=\"flex \"><div id=\"main-content\" class=\"flex-grow mx-auto items-center justify-center\r\n\t\t\t\t\ttext-base-content min-h-screen bg-primary dark:bg-gray-900 text-primary-content dark:text-gray-100 transition-colors duration-300\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

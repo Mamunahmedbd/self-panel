@@ -3669,6 +3669,14 @@
       background-color: var(--color-gray-900);
     }
   }
+  .dark\:bg-gray-900\/80 {
+    .dark & {
+      background-color: color-mix(in srgb, oklch(21% 0.034 264.665) 80%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-gray-900) 80%, transparent);
+      }
+    }
+  }
   .dark\:bg-gray-950 {
     .dark & {
       background-color: var(--color-gray-950);
