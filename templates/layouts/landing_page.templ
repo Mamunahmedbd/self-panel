@@ -21,18 +21,16 @@ templ LandingPage(content templ.Component, page *controller.Page) {
 			</div>
 			<!-- Mobile PWA install button -->
 			// @components.PWAMobileInstallButton(page)
-			<div class="flex ">
+			<div class="w-full">
 				<div
 					id="main-content"
-					class="flex-grow mx-auto items-center justify-center
-					text-base-content min-h-screen bg-primary dark:bg-gray-900 text-primary-content dark:text-gray-100 transition-colors duration-300"
+					class="w-full min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300"
 				>
 					@content
 				</div>
+				@components.TextFooter(page)
 			</div>
 			@components.PageLoadingIndicator()
-			// TODO: links not working when using here
-			// @components.TextFooter(page)
 			@components.JSFooter(page)
 		</body>
 	</html>

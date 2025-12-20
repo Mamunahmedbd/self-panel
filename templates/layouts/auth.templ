@@ -50,8 +50,7 @@ templ Auth(content templ.Component, page *controller.Page) {
 				</div>
 			</div>
 			@components.PageLoadingIndicator()
-			// TODO: Links not working when using here
-			// @components.TextFooter(page)
+			@components.TextFooter(page)
 			@components.JSFooter(page)
 		</body>
 	</html>
