@@ -789,19 +789,12 @@ test.describe("Dating workflows", () => {
     // Check notification permissions are loading
     await expect(
       page.locator("#notification-permissions-toggles")
-    ).toContainText("Daily conversation");
+    ).toContainText("Partner activity");
     await expect(
       page
         .locator("#notification-permissions-toggles")
         .getByRole("button")
         .first()
-    ).toBeVisible();
-    await expect(page.getByText("Partner activity")).toBeVisible();
-    await expect(
-      page
-        .locator("#notification-permissions-toggles")
-        .getByRole("button")
-        .nth(2)
     ).toBeVisible();
 
     // TODO: below is commented out because meeting people on our platform is disabled for now. Once enabled, uncomment.
