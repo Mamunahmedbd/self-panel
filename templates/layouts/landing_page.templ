@@ -16,9 +16,7 @@ templ LandingPage(content templ.Component, page *controller.Page) {
 		<body>
 			// @components.BonfireBanner()
 
-			<div class="hidden lg:block sticky top-0 z-10">
-				@components.Navbar(page)
-			</div>
+			@components.Navbar(page)
 			<!-- Mobile PWA install button -->
 			// @components.PWAMobileInstallButton(page)
 			<div class="w-full">

@@ -15,15 +15,12 @@ templ Main(content templ.Component, page *controller.Page) {
 		</head>
 		<body id="body">
 			// @components.BonfireBanner()
-			
+
 			<!-- This is the mobile view drawer -->
 			<div class="lg:hidden block">
 				// @components.Drawer(page)
 			</div>
-			<!-- Navbar only visible on desktop -->
-			<div class="hidden lg:block sticky top-0 z-10">
-				@components.Navbar(page)
-			</div>
+			@components.Navbar(page)
 			<!-- Mobile PWA install button -->
 			// @components.PWAMobileInstallButton(page)
 			<div

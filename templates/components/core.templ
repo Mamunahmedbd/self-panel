@@ -59,12 +59,6 @@ templ CSS() {
 		--safe-area-left: env(safe-area-inset-left);
 	}
 
-	#navbar {
-		padding-top: env(safe-area-inset-top);
-		// padding-left: env(safe-area-inset-left);
-		padding-right: 0; /* Adjust as needed */
-		padding-bottom: 0; /* Adjust as needed */
-	}
 	</style>
 }
 
@@ -227,7 +221,7 @@ templ TextFooter(page *controller.Page) {
 					<ul class="space-y-4 text-sm">
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameHomeInternet)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home Internet</a></li>
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameEnterpriseInternet)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Enterprise Internet</a></li>
-						<li><a hx-get={ page.ToURL(routenames.RouteNameContact) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Coverage Area</a></li>
+						<li><a href={ page.ToURL(routenames.RouteNameContact) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Coverage Area</a></li>
 
 					</ul>
 				</div>
@@ -236,9 +230,8 @@ templ TextFooter(page *controller.Page) {
 				<div class="space-y-6">
 					<h3 class="text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm">Company</h3>
 					<ul class="space-y-4 text-sm">
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Coverage Area</a></li>
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameBlog)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Blogs & News</a></li>
-						<li><a hx-get={ page.ToURL(routenames.RouteNameContact) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Contact Us</a></li>
+						<li><a href={ page.ToURL(routenames.RouteNameContact) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Contact Us</a></li>
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameAboutUs)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">About Us</a></li>
 					</ul>
 				</div>

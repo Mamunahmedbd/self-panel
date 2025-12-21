@@ -50,7 +50,7 @@ func Main(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body id=\"body\"><!-- This is the mobile view drawer --><div class=\"lg:hidden block\"></div><!-- Navbar only visible on desktop --><div class=\"hidden lg:block sticky top-0 z-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body id=\"body\"><!-- This is the mobile view drawer --><div class=\"lg:hidden block\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -58,7 +58,7 @@ func Main(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><!-- Mobile PWA install button --><div class=\"flex\"><!-- Main content --><div id=\"main-content\" class=\"bg-primary  max-w-screen w-screen overflow-x-hidden flex-grow mx-auto items-center justify-center base-100 text-base-content min-h-screen\"><div class=\"flex-grow mt-5 container mx-auto px-3 lg:px-36 xl:px-60\"><div id=\"bottomNavbarContent\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<!-- Mobile PWA install button --><div class=\"flex\"><!-- Main content --><div id=\"main-content\" class=\"bg-primary  max-w-screen w-screen overflow-x-hidden flex-grow mx-auto items-center justify-center base-100 text-base-content min-h-screen\"><div class=\"flex-grow mt-5 container mx-auto px-3 lg:px-36 xl:px-60\"><div id=\"bottomNavbarContent\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -70,7 +70,7 @@ func Main(content templ.Component, page *controller.Page) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(page.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/layouts/main.templ`, Line: 44, Col: 70}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/layouts/main.templ`, Line: 41, Col: 70}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {

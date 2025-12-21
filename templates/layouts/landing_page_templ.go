@@ -50,7 +50,7 @@ func LandingPage(content templ.Component, page *controller.Page) templ.Component
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body><div class=\"hidden lg:block sticky top-0 z-10\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -58,7 +58,7 @@ func LandingPage(content templ.Component, page *controller.Page) templ.Component
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><!-- Mobile PWA install button --><div class=\"w-full\"><div id=\"main-content\" class=\"w-full min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<!-- Mobile PWA install button --><div class=\"w-full\"><div id=\"main-content\" class=\"w-full min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -188,7 +188,7 @@ func CSS() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\"><link rel=\"preload\" href=\"https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\"></noscript><link rel=\"preload\" href=\"https://unpkg.com/tippy.js@6/dist/tippy.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://unpkg.com/tippy.js@6/dist/tippy.css\"></noscript><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css\"><style>\r\n\tbody {\r\n\t\tbackground-color: transparent;\r\n\t}\r\n\r\n\t:root {\r\n\t\t--safe-area-top: env(safe-area-inset-top);\r\n\t\t--safe-area-left: env(safe-area-inset-left);\r\n\t}\r\n\r\n\t#navbar {\r\n\t\tpadding-top: env(safe-area-inset-top);\r\n\t\t// padding-left: env(safe-area-inset-left);\r\n\t\tpadding-right: 0; /* Adjust as needed */\r\n\t\tpadding-bottom: 0; /* Adjust as needed */\r\n\t}\r\n\t</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\"><link rel=\"preload\" href=\"https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css\"></noscript><link rel=\"preload\" href=\"https://unpkg.com/tippy.js@6/dist/tippy.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\"><noscript><link rel=\"stylesheet\" href=\"https://unpkg.com/tippy.js@6/dist/tippy.css\"></noscript><link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css\"><style>\r\n\tbody {\r\n\t\tbackground-color: transparent;\r\n\t}\r\n\r\n\t:root {\r\n\t\t--safe-area-top: env(safe-area-inset-top);\r\n\t\t--safe-area-left: env(safe-area-inset-left);\r\n\t}\r\n\r\n\t</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -224,7 +224,7 @@ func JS() templ.Component {
 		var templ_7745c5c3_Var12 string
 		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(templ.JSONString(helpers.File("icon.png")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 74, Col: 94}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 68, Col: 94}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 		if templ_7745c5c3_Err != nil {
@@ -237,7 +237,7 @@ func JS() templ.Component {
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(helpers.File("svelte_bundle.js"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 83, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 77, Col: 47}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
@@ -250,7 +250,7 @@ func JS() templ.Component {
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(helpers.File("main.js"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 84, Col: 38}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 78, Col: 38}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
@@ -263,7 +263,7 @@ func JS() templ.Component {
 		var templ_7745c5c3_Var15 string
 		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(helpers.File("vanilla_bundle.js"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 85, Col: 48}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 79, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
@@ -276,7 +276,7 @@ func JS() templ.Component {
 		var templ_7745c5c3_Var16 string
 		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(helpers.ServiceWorkerFile("service-worker.js"))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 88, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 82, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
@@ -495,7 +495,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var20 string
 		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(page.AppName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 213, Col: 21}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 207, Col: 21}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 		if templ_7745c5c3_Err != nil {
@@ -508,7 +508,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var21 templ.SafeURL
 		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameHomeInternet)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 228, Col: 75}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 222, Col: 75}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 		if templ_7745c5c3_Err != nil {
@@ -521,46 +521,46 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var22 templ.SafeURL
 		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameEnterpriseInternet)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 229, Col: 81}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 223, Col: 81}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Enterprise Internet</a></li><li><a hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Enterprise Internet</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var23 string
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameContact))
+		var templ_7745c5c3_Var23 templ.SafeURL
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(page.ToURL(routenames.RouteNameContact))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 230, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 224, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Coverage Area</a></li></ul></div><!-- Column 3: Company --><div class=\"space-y-6\"><h3 class=\"text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm\">Company</h3><ul class=\"space-y-4 text-sm\"><li><a href=\"#\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Coverage Area</a></li><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Coverage Area</a></li></ul></div><!-- Column 3: Company --><div class=\"space-y-6\"><h3 class=\"text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm\">Company</h3><ul class=\"space-y-4 text-sm\"><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var24 templ.SafeURL
 		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameBlog)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 240, Col: 67}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 233, Col: 67}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Blogs & News</a></li><li><a hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Blogs & News</a></li><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var25 string
-		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameContact))
+		var templ_7745c5c3_Var25 templ.SafeURL
+		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinURLErrs(page.ToURL(routenames.RouteNameContact))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 241, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 234, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 		if templ_7745c5c3_Err != nil {
@@ -573,7 +573,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var26 templ.SafeURL
 		templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameAboutUs)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 242, Col: 70}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 235, Col: 70}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
 		if templ_7745c5c3_Err != nil {
@@ -586,7 +586,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var27 string
 		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(page.AppName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 271, Col: 53}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 264, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
 		if templ_7745c5c3_Err != nil {
@@ -599,7 +599,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var28 templ.SafeURL
 		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameTermsAndConditions)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 275, Col: 76}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 268, Col: 76}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 		if templ_7745c5c3_Err != nil {
@@ -612,7 +612,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var29 templ.SafeURL
 		templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNamePrivacyPolicy)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 276, Col: 71}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 269, Col: 71}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
 		if templ_7745c5c3_Err != nil {
@@ -625,7 +625,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		var templ_7745c5c3_Var30 templ.SafeURL
 		templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameRefundPolicy)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 277, Col: 70}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 270, Col: 70}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
 		if templ_7745c5c3_Err != nil {
