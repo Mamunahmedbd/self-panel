@@ -25,15 +25,15 @@ templ Metatags(page *controller.Page) {
 	if len(page.Metatags.Keywords) > 0 {
 		<meta name="keywords" content={ strings.Join(page.Metatags.Keywords, ", ") }/>
 	}
-	<meta name="application-name" content="Goship"/>
+	<meta name="application-name" content="Self Panel"/>
 	<meta name="msapplication-starturl" content="https://cherie.chatbond.app"/>
 	<meta name="mobile-web-app-capable" content="yes"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-	<meta name="apple-mobile-web-app-title" content="Goship"/>
+	<meta name="apple-mobile-web-app-title" content="Self Panel"/>
 	<link rel="apple-touch-startup-image" href="ios-startup.png"/>
 	<meta name="color-scheme" content="light dark"/>
-	<meta name="description" content="Goship is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once."/>
+	<meta name="description" content="Self Panel is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once."/>
 }
 
 templ CSS() {

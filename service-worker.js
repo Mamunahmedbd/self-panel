@@ -9,7 +9,7 @@
       Need an introduction to Service Workers? Check our docs here: https://docs.pwabuilder.com/#/home/sw-intro
       Want to learn more about how our Service Worker generation works? Check our docs here: https://docs.pwabuilder.com/#/studio/existing-app?id=add-a-service-worker
 
-      Did you know that Service Workers offer many more capabilities than just offline? 
+      Did you know that Service Workers offer many more capabilities than just offline?
         - Background Sync: https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/advanced-capabilities/06
         - Periodic Background Sync: https://web.dev/periodic-background-sync/
         - Push Notifications: https://microsoft.github.io/win-student-devs/#/30DaysOfPWA/advanced-capabilities/07?id=push-notifications-on-the-web
@@ -188,7 +188,7 @@ self.addEventListener("push", (event) => {
     console.log("[Service Worker] Push Received.");
 
     const data = event.data.json();
-    const title = data.title || "Goship";
+    const title = data.title || "Self Panel";
     // Extract the unread count from the push message data.
     const message = event.data.json();
     const unreadCount = message.unreadCount;

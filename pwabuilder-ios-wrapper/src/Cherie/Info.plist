@@ -110,7 +110,7 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>https://cherie.chatbond.app/auth/homeFeed</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Goship</string>
+			<string>Self Panel</string>
 		</dict></array>
 </dict>
 </plist>

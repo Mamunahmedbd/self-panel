@@ -230,6 +230,8 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 
 	blog := NewBlogRoute(ctr)
 	g.GET("/blog", blog.Get).Name = routeNames.RouteNameBlog
+	blogPost := NewBlogPostRoute(ctr)
+	g.GET("/blog/:id", blogPost.Get).Name = routeNames.RouteNameBlogPost
 
 	clearCookie := NewClearCookiesRoute(ctr)
 	g.GET("/clear-cookie", clearCookie.Get).Name = "clearCookie"

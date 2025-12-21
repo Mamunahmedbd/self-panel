@@ -11,13 +11,13 @@ templ DocumentationLandingPage(page *controller.Page) {
 		Build the same rich interfaces you would build with Javascript frameworks, but with HTML and Go. Limit the number of tools you use. Develop rapidly.
 		<h2 class="text-2xl font-semibold py-3">Why the Hell Do We Need Another Boilerplate?</h2>
 		<p>
-			Well, I noticed that there were none for Go. Now, I know most Go folks like to build it all themselves. 
+			Well, I noticed that there were none for Go. Now, I know most Go folks like to build it all themselves.
 			And while I love doing that myself, I have many project ideas for which I just want to build <em>that specific project</em>, not the entire infra surrounding it,
-			like auth, notifications, payments, file uploads etc. This project has served me well in bringing to production many projects so far. It has evolved far beyond 
+			like auth, notifications, payments, file uploads etc. This project has served me well in bringing to production many projects so far. It has evolved far beyond
 			what I originally planned for, though there is still so much potentional to expand on and implement for.
 		</p>
 		<p>
-			If you'd like a no-nonesense (or not too much?) starter kit to get your next project to production ASAP, 
+			If you'd like a no-nonesense (or not too much?) starter kit to get your next project to production ASAP,
 			while also using awesome technologies like Go, you've found a suitable starting point!
 		</p>
 		<div class="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
@@ -27,7 +27,7 @@ templ DocumentationLandingPage(page *controller.Page) {
 			<span class="sr-only">Info</span>
 			<div>
 				<span class="font-medium">Warning alert!</span> this project is in active development as I am adding things after first trying them
-				out in prod for <a href="https://cherie.chatbond.app/" target="_blank" class="font-mono text-blue-500 hover:text-purple-500 transition-colors transition ease-in-out delay-50 underline">Chérie</a>, 
+				out in prod for <a href="https://cherie.chatbond.app/" target="_blank" class="font-mono text-blue-500 hover:text-purple-500 transition-colors transition ease-in-out delay-50 underline">Chérie</a>,
 				a relationship app to grow your couple. Note that I
 				would welcome any help to develop this boilerplate ❤️.
 			</div>
@@ -48,7 +48,7 @@ templ docsPageLayout(page *controller.Page) {
 }
 
 templ techStack() {
-	<h2 class="text-2xl font-semibold">Tech Stack</h2>
+	<h2 class="text-2xl font-semibold">Tech Stack </h2>
 	@components.AccordionItem("Backend", true) {
 		<ul>
 			// Find icons in SVG at https://icon-sets.iconify.design/logos/postgresql/

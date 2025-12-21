@@ -12,7 +12,7 @@ http:
     key: ""
 
 app:
-  name: "GoShip"
+  name: "Self Panel"
   supportEmail: "info@goship.run"
   environment: "local"
   # Change this on any live environments

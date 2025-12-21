@@ -9,6 +9,7 @@ const (
 	PageLanding                Page = "landing"
 	PageContact                Page = "contact"
 	PageBlog                   Page = "blog"
+	PageBlogPost               Page = "blog_post"
 	PageError                  Page = "error"
 	PageForgotPassword         Page = "forgot-password"
 	PageHome                   Page = "home"

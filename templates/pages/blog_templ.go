@@ -10,7 +10,9 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
 	"github.com/mikestefanello/pagoda/pkg/types"
+	"strconv"
 )
 
 func Blog(page *controller.Page) templ.Component {
@@ -42,7 +44,7 @@ func Blog(page *controller.Page) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(data.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 22, Col: 18}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 24, Col: 18}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -55,7 +57,7 @@ func Blog(page *controller.Page) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(data.Subtitle)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 25, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 27, Col: 21}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -93,7 +95,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(cat)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 38, Col: 13}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 40, Col: 13}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -116,7 +118,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var7 string
 				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(post.ImageURL)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 51, Col: 32}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 53, Col: 32}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
@@ -129,7 +131,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(post.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 51, Col: 142}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 53, Col: 142}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 				if templ_7745c5c3_Err != nil {
@@ -142,7 +144,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var9 string
 				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(post.Category)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 53, Col: 24}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 55, Col: 24}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 				if templ_7745c5c3_Err != nil {
@@ -155,7 +157,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var10 string
 				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(post.Date)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 57, Col: 99}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 59, Col: 99}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 				if templ_7745c5c3_Err != nil {
@@ -168,7 +170,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var11 string
 				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(post.ReadTime)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 57, Col: 121}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 59, Col: 121}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
@@ -181,7 +183,7 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var12 string
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(post.Title)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 59, Col: 21}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 61, Col: 21}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 				if templ_7745c5c3_Err != nil {
@@ -194,18 +196,31 @@ func Blog(page *controller.Page) templ.Component {
 				var templ_7745c5c3_Var13 string
 				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(post.Summary)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 62, Col: 23}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 64, Col: 23}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</p><div class=\"pt-4 mt-auto\"><a href=\"#\" class=\"inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 font-black group-hover:translate-x-2 transition-transform\"><span>Read Story</span> <svg class=\"h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14 5l7 7m0 0l-7 7m7-7H3\"></path></svg></a></div></div></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</p><div class=\"pt-4 mt-auto\"><a href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var14 templ.SafeURL
+				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameBlogPost, strconv.Itoa(post.ID))))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/blog.templ`, Line: 67, Col: 93}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\" class=\"inline-flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 font-black group-hover:translate-x-2 transition-transform\"><span>Read Story</span> <svg class=\"h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14 5l7 7m0 0l-7 7m7-7H3\"></path></svg></a></div></div></div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</div><!-- Pagination --><div class=\"mt-24 flex justify-center items-center space-x-4\"><button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 19l-7-7 7-7\"></path></svg></button> <button class=\"w-12 h-12 rounded-2xl bg-indigo-600 text-white font-black shadow-lg shadow-indigo-500/30\">1</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-slate-400 font-black hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\">2</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-slate-400 font-black hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\">3</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></button></div></section><!-- Newsletter Banner --><section class=\"py-12 md:py-24 max-w-screen-xl mx-auto px-6\"><div class=\"bg-indigo-600 dark:bg-indigo-950 rounded-3xl md:rounded-[4rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl border border-indigo-500/20 dark:border-white/5\"><div class=\"absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)] dark:bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.1),transparent)] pointer-events-none\"></div><div class=\"relative z-10 max-w-2xl mx-auto space-y-6 md:space-y-8\"><h2 class=\"text-2xl md:text-5xl font-black text-white leading-tight\">Stay updated with ISP breakthroughs</h2><p class=\"text-indigo-50 dark:text-indigo-100 text-base md:text-lg font-medium opacity-90\">Subscribe to our newsletter and never miss an update on network upgrades, security alerts, and exclusive tech guides.</p><form class=\"flex flex-col sm:flex-row gap-4 max-w-md mx-auto\"><input type=\"email\" placeholder=\"Your email address\" class=\"flex-grow px-6 md:px-8 py-4 md:py-5 bg-white/10 dark:bg-white/5 border-2 border-white/20 dark:border-white/10 rounded-xl md:rounded-2xl text-white placeholder-indigo-100 dark:placeholder-indigo-300 outline-none focus:border-white transition-all font-medium text-sm md:text-base\"> <button type=\"submit\" class=\"px-8 md:px-10 py-4 md:py-5 bg-white text-indigo-600 dark:text-indigo-400 font-black rounded-xl md:rounded-2xl hover:bg-slate-50 dark:hover:bg-gray-900 transition-all transform active:scale-95 shadow-xl text-sm md:text-base\">Join Now</button></form></div></div></section></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div><!-- Pagination --><div class=\"mt-24 flex justify-center items-center space-x-4\"><button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 19l-7-7 7-7\"></path></svg></button> <button class=\"w-12 h-12 rounded-2xl bg-indigo-600 text-white font-black shadow-lg shadow-indigo-500/30\">1</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-slate-400 font-black hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\">2</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-slate-600 dark:text-slate-400 font-black hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\">3</button> <button class=\"w-12 h-12 rounded-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 flex items-center justify-center text-slate-400 hover:bg-slate-50 dark:hover:bg-gray-800 transition-all\"><svg class=\"h-6 w-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></button></div></section><!-- Newsletter Banner --><section class=\"py-12 md:py-24 max-w-screen-xl mx-auto px-6\"><div class=\"bg-indigo-600 dark:bg-indigo-950 rounded-3xl md:rounded-[4rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl border border-indigo-500/20 dark:border-white/5\"><div class=\"absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent)] dark:bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.1),transparent)] pointer-events-none\"></div><div class=\"relative z-10 max-w-2xl mx-auto space-y-6 md:space-y-8\"><h2 class=\"text-2xl md:text-5xl font-black text-white leading-tight\">Stay updated with ISP breakthroughs</h2><p class=\"text-indigo-50 dark:text-indigo-100 text-base md:text-lg font-medium opacity-90\">Subscribe to our newsletter and never miss an update on network upgrades, security alerts, and exclusive tech guides.</p><form class=\"flex flex-col sm:flex-row gap-4 max-w-md mx-auto\"><input type=\"email\" placeholder=\"Your email address\" class=\"flex-grow px-6 md:px-8 py-4 md:py-5 bg-white/10 dark:bg-white/5 border-2 border-white/20 dark:border-white/10 rounded-xl md:rounded-2xl text-white placeholder-indigo-100 dark:placeholder-indigo-300 outline-none focus:border-white transition-all font-medium text-sm md:text-base\"> <button type=\"submit\" class=\"px-8 md:px-10 py-4 md:py-5 bg-white text-indigo-600 dark:text-indigo-400 font-black rounded-xl md:rounded-2xl hover:bg-slate-50 dark:hover:bg-gray-900 transition-all transform active:scale-95 shadow-xl text-sm md:text-base\">Join Now</button></form></div></div></section></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
