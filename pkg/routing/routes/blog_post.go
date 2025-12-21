@@ -66,6 +66,7 @@ func (c *blogPost) Get(ctx echo.Context) error {
 
 	page.Title = post.Title
 	page.Data = post
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.BlogPost(&page)
 
 	return c.ctr.RenderPage(ctx, page)

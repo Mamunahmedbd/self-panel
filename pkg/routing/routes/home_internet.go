@@ -112,6 +112,7 @@ func (c *homeInternet) Get(ctx echo.Context) error {
 	}
 
 	page.Data = data
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.HomeInternet(&page)
 
 	return c.ctr.RenderPage(ctx, page)

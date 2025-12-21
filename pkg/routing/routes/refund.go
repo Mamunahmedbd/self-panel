@@ -26,6 +26,7 @@ func (c *refundPolicy) Get(ctx echo.Context) error {
 	page.Layout = layouts.LandingPage
 	page.Name = templates.PageRefundPolicy
 	page.Title = "Refund & Delivery Policy"
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.RefundPolicy(&page)
 	page.Data = types.AboutData{
 		SupportEmail: c.ctr.Container.Config.App.SupportEmail,

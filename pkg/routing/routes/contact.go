@@ -32,6 +32,7 @@ func (c *contact) Get(ctx echo.Context) error {
 	page.Name = templates.PageContact
 	page.Title = "Contact us"
 	page.Form = &types.ContactForm{}
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.Contact(&page)
 	if form := ctx.Get(context.FormKey); form != nil {
 		page.Form = form.(*types.ContactForm)

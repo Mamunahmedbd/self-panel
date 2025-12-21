@@ -79,6 +79,7 @@ func (c *blog) Get(ctx echo.Context) error {
 		Categories: []string{"All Post", "Technology", "Guides", "Enterprise", "Security"},
 	}
 
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.Blog(&page)
 
 	return c.ctr.RenderPage(ctx, page)

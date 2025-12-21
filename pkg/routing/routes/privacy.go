@@ -28,6 +28,7 @@ func (c *privacyPolicy) Get(ctx echo.Context) error {
 	page.Layout = layouts.LandingPage
 	page.Name = templates.PagePrivacyPolicy
 	page.Title = "Privacy Policy"
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.PrivacyPolicy(&page)
 	page.Data = types.AboutData{
 		SupportEmail: c.ctr.Container.Config.App.SupportEmail,

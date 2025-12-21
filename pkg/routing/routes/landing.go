@@ -92,6 +92,7 @@ func (c *landingPage) Get(ctx echo.Context) error {
 	page.Data = data
 	page.Name = templates.PageLanding
 	page.Component = pages.LandingPage(&page)
+	page.HTMX.Request.Boosted = true
 
 	// if c.ctr.Container.Config.App.Environment == config.EnvProduction {
 	// 	page.Cache.Enabled = true

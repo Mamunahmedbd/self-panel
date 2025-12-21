@@ -59,8 +59,8 @@ func (c *about) Get(ctx echo.Context) error {
 			},
 		},
 	}
-	page.Component = pages.About(&page)
 	page.HTMX.Request.Boosted = true
+	page.Component = pages.About(&page)
 
 	return c.ctr.RenderPage(ctx, page)
 }

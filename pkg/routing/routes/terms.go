@@ -25,6 +25,7 @@ func (c *terms) Get(ctx echo.Context) error {
 	page.Layout = layouts.LandingPage
 	page.Name = templates.PageTermsAndConditions
 	page.Title = "Terms & Conditions"
+	page.HTMX.Request.Boosted = true
 	page.Component = pages.Terms(&page)
 
 	return c.ctr.RenderPage(ctx, page)
