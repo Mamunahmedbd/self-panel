@@ -150,13 +150,13 @@ build-js: ## Build JS/Svelte assets
 .PHONY: build-js
 watch-js: ## Build JS/Svelte assets (auto reload changes)
 	npm install
-	npm run watch
+	npm run watch:js
 
 build-css: ## Build CSS assets (auto reload changes)
-	npx postcss ./styles/styles.css -o ./static/styles_bundle.css
+	npm run build:css
 
 watch-css: ## Build CSS assets (auto reload changes)
-	npx postcss ./styles/styles.css -o ./static/styles_bundle.css --watch
+	npm run watch:css
 
 
 .PHONY: run
@@ -164,8 +164,12 @@ watch-go: ## Run the application with air (auto reload changes)
 	air
 
 watch:
-	echo "Starting Air for Go hot-reloading..."
+	@echo "Starting Air for Go hot-reloading..."
 	air
+
+.PHONY: watch-all
+watch-all: ## Run all watchers (Go, CSS, JS) in a single terminal
+	npx concurrently -n "GO,CSS,JS" -c "cyan,magenta,yellow" "make watch-go" "make watch-css" "make watch-js"
 
 .PHONY: test
 test: ## Run all tests

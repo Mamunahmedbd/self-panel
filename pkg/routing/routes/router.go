@@ -236,6 +236,9 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	terms := NewTermsRoute(ctr)
 	g.GET("/terms", terms.Get).Name = routeNames.RouteNameTermsAndConditions
 
+	refund := NewRefundPolicyRoute(ctr)
+	g.GET("/refund-policy", refund.Get).Name = routeNames.RouteNameRefundPolicy
+
 	clearCookie := NewClearCookiesRoute(ctr)
 	g.GET("/clear-cookie", clearCookie.Get).Name = "clearCookie"
 

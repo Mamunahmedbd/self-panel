@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "watch": "watchexec --project-origin . -w javascript node build.mjs"
+    "build:css": "postcss ./styles/styles.css -o ./static/styles_bundle.css",
+    "watch:css": "postcss ./styles/styles.css -o ./static/styles_bundle.css --watch",
+    "watch:js": "watchexec --project-origin . -w javascript node build.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.12.7",
+    "concurrently": "^9.2.1",
     "daisyui": "^4.6.2",
     "esbuild": "^0.20.0",
     "esbuild-svelte": "^0.8.0",

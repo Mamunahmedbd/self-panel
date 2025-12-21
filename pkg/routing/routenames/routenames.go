@@ -30,6 +30,7 @@ const (
 	RouteNameDeleteAccountRequest    = "delete_account.request"
 	RouteNamePrivacyPolicy           = "privacy_policy"
 	RouteNameTermsAndConditions      = "terms_and_conditions"
+	RouteNameRefundPolicy            = "refund_policy"
 
 	RouteNameHomeFeed           = "home_feed"
 	RouteNameGetHomeFeedButtons = "home_feed.buttons"

@@ -227,8 +227,8 @@ templ TextFooter(page *controller.Page) {
 					<ul class="space-y-4 text-sm">
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameHomeInternet)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home Internet</a></li>
 						<li><a href={ templ.URL(page.ToURL(routenames.RouteNameEnterpriseInternet)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Enterprise Internet</a></li>
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">SME Packages</a></li>
-						<li><a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Value Added Services</a></li>
+						<li><a hx-get={ page.ToURL(routenames.RouteNameContact) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Coverage Area</a></li>
+
 					</ul>
 				</div>
 
@@ -274,7 +274,7 @@ templ TextFooter(page *controller.Page) {
 					<span class="text-rose-500 font-bold">DBID No: 178299482</span>
 					<a href={ templ.URL(page.ToURL(routenames.RouteNameTermsAndConditions)) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Terms & Conditions</a>
 					<a href={ templ.URL(page.ToURL(routenames.RouteNamePrivacyPolicy)) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Privacy Policy</a>
-					<a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Refund & Delivery Policy</a>
+					<a href={ templ.URL(page.ToURL(routenames.RouteNameRefundPolicy)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Refund & Delivery Policy</a>
 					<a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Approved Tariff</a>
 				</div>
 			</div>
