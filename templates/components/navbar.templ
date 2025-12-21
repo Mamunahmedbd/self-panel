@@ -10,6 +10,11 @@ templ Navbar(page *controller.Page) {
 	<div
 		x-data="{ mobileMenuOpen: false }"
 		class="relative"
+		hx-target="#main-content"
+		hx-select="#main-content"
+		hx-swap="outerHTML show:window:top"
+		hx-indicator="#page-loading"
+		hx-push-url="true"
 	>
 		<nav
 			id="navbar"
@@ -18,11 +23,6 @@ templ Navbar(page *controller.Page) {
 				sse-connect={ page.ToURL(routenames.RouteNameRealtime) }
 			}
 			class="fixed top-0 left-0 right-0 z-[100] bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-gray-100 dark:border-gray-900 transition-all duration-300"
-			hx-target="#main-content"
-			hx-select="#main-content"
-			hx-swap="outerHTML show:window:top"
-			hx-indicator="#page-loading"
-			hx-push-url="true"
 		>
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex justify-between items-center h-20">
