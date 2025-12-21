@@ -3,95 +3,123 @@ package pages
 import (
 	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/types"
-	"github.com/mikestefanello/pagoda/templates/components"
 )
 
 templ PrivacyPolicy(page *controller.Page) {
-	@components.PrevNavBarWithTitle("", "", "🔐 Privacy")
 	if data, ok := page.Data.(types.AboutData); ok {
-		@privacyPolicy(data)
-	}
-}
+		<div class="bg-white dark:bg-gray-950 min-h-screen">
+			<!-- Hero Section -->
+			<section class="relative pt-32 pb-16 md:pt-48 md:pb-24 border-b border-slate-100 dark:border-gray-900 bg-slate-50/50 dark:bg-gray-900/20">
+				<div class="absolute inset-0 -z-10 opacity-10 blur-3xl overflow-hidden">
+					<div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-500 rounded-full"></div>
+					<div class="absolute bottom-0 left-1/4 w-96 h-96 bg-indigo-500 rounded-full"></div>
+				</div>
 
-templ privacyPolicy(data types.AboutData) {
-	<div class="max-w-3xl mx-auto p-6 space-y-6">
-		<div class="space-y-4">
-			<h2 class="text-xl font-semibold">Privacy Policy</h2>
-			<p class="text-base">
-				{ "Championing trust and authentic connections." }
-			</p>
-			<p class="text-base">
-				{ "We're not a faceless conglomerate. We're a dedicated small team, committed to safeguarding your privacy and fostering real relationships. Your data is encrypted, not up for sale, and can be deleted at any time." }
-			</p>
-			<p class="text-base">
-				{ "We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this app, then you can be assured that it will only be used in accordance with this privacy statement." }
-			</p>
-			<h3 class="text-lg font-semibold">Information We Collect</h3>
-			<p class="text-base">
-				{ "For committed mode, we collect the following information:" }
-			</p>
-			<ul class="list-disc list-inside text-base pl-4">
-				<li>{ "Username and email" }</li>
-				<li>{ "Encrypted answers" }</li>
-				<li>{ "The times you use the app" }</li>
-			</ul>
-			<p class="text-base">
-				{ "For dating mode, we collect the following information:" }
-			</p>
-			<ul class="list-disc list-inside text-base pl-4">
-				<li>{ "Username and email" }</li>
-				<li>{ "Relationship preferences" }</li>
-				<li>{ "Location" }</li>
-				<li>{ "Encrypted answers" }</li>
-				<li>{ "The times you use the app" }</li>
-			</ul>
-			<h3 class="text-lg font-semibold">What We Do with the Information We Gather</h3>
-			<ul class="list-disc list-inside text-base pl-4">
-				<li>{ "Your information solely lives on our servers in an encrypted form" }</li>
-				<li>{ "We will never share any of your private data with a third party" }</li>
-				<li>{ "We may use the information to improve our products and services" }</li>
-				<li>{ "We may periodically send promotional emails about new products, special offers, or other information which we think you may find interesting using the email address which you have provided" }</li>
-				<li>{ "From time to time, we may also use your information to contact you for market research purposes. We may contact you by email or phone. We may use the information to customize the app according to your interests" }</li>
-			</ul>
-			<h3 class="text-lg font-semibold">Security</h3>
-			<p class="text-base">
-				{ "We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the information we collect online." }
-			</p>
-			<h3 class="text-lg font-semibold">Data Retention</h3>
-			<p class="text-base">
-				{ "We will retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, or as required by law." }
-			</p>
-			<h3 class="text-lg font-semibold">Your Rights</h3>
-			<p class="text-base">
-				{ "You have the right to request access to your personal data, to request correction or deletion of your personal data, to object to the processing of your personal data, and to request the restriction of processing of your personal data. If you wish to exercise any of these rights, please contact us at the provided email address." }
-			</p>
-			<h3 class="text-lg font-semibold">Cookies and Tracking</h3>
-			<p class="text-base">
-				{ "We may use cookies and similar tracking technologies to track activity on our app and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent." }
-			</p>
-			<h3 class="text-lg font-semibold">Changes to Privacy Policy</h3>
-			<p class="text-base">
-				{ "We may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page. You are advised to review this privacy policy periodically for any changes." }
-			</p>
-			<h3 class="text-lg font-semibold">Contact Us</h3>
-			<p class="text-base">
-				{ "If you believe that any information we are holding on you is incorrect or incomplete, please write to or email us as soon as possible at the above address. We will promptly correct any information found to be incorrect." }
-			</p>
-			<p class="text-base">
-				{ "If you have any bug reports, feature requests, or suggestions, please reach out to us. 🙏😃❤️" }
-			</p>
-			<p class="text-base">
-				{ "You can send us an email by clicking on the following:" }
-			</p>
-			<div class="flex justify-center w-full items-center">
-				<a
-					href={ "mailto:" + templ.SafeURL(data.SupportEmail) }
-					type="button"
-					class="justify-center items-center focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-				>
-					{ data.SupportEmail }
-				</a>
-			</div>
+				<div class="max-w-screen-xl mx-auto px-6 text-center">
+					<nav class="flex justify-center items-center space-x-2 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-6">
+						<span>Security Center</span>
+						<span class="text-slate-300">/</span>
+						<span class="text-slate-900 dark:text-white">Privacy Policy</span>
+					</nav>
+					<h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight mb-6">Your Privacy matters</h1>
+					<p class="text-slate-500 dark:text-gray-400 text-sm font-bold uppercase tracking-widest leading-relaxed">
+						Committed to protecting your digital footprint. Updated: Dec 20, 2025
+					</p>
+				</div>
+			</section>
+
+			<!-- Content Section -->
+			<section class="max-w-screen-xl mx-auto px-6 py-20">
+				<div class="flex flex-col lg:flex-row gap-16">
+					<!-- Sticky Navigation -->
+					<aside class="hidden lg:block w-64 shrink-0 sticky top-32 h-fit space-y-8">
+						<div class="space-y-4">
+							<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-gray-600">Sections</h4>
+							<nav class="flex flex-col space-y-3">
+								<a href="#overview" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">1. Overview</a>
+								<a href="#data-collection" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">2. Data Collection</a>
+								<a href="#usage" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">3. How We Use Data</a>
+								<a href="#security" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">4. Network Security</a>
+								<a href="#your-rights" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">5. Your Legal Rights</a>
+								<a href="#contact" class="text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 transition-colors">6. Contact Privacy Team</a>
+							</nav>
+						</div>
+
+						<div class="p-6 bg-slate-50 dark:bg-gray-900 rounded-2xl border border-slate-100 dark:border-gray-800">
+							<p class="text-xs font-medium text-slate-500 dark:text-gray-400 leading-relaxed">
+								Our privacy practices are built on transparency and encrypted security standards.
+							</p>
+						</div>
+					</aside>
+
+					<!-- Legal Content -->
+					<div class="flex-grow max-w-3xl">
+						<div class="prose prose-slate dark:prose-invert max-w-none
+							prose-headings:font-black prose-headings:tracking-tight prose-headings:text-slate-900 dark:prose-headings:text-white
+							prose-p:text-slate-600 dark:prose-p:text-gray-400 prose-p:leading-relaxed
+							prose-strong:text-slate-900 dark:prose-strong:text-white
+							prose-li:text-slate-600 dark:prose-li:text-gray-400
+							prose-a:text-indigo-600 dark:prose-a:text-indigo-400">
+
+							<h2 id="overview">1. Oversight & Transparency</h2>
+							<p>
+								At our ISP, we believe your data belongs to you. This Privacy Policy outlines how we collect, store, and protect your information when you use our high-speed internet services. We are dedicated to maintaining the highest security protocols to safeguard your digital life.
+							</p>
+
+							<h2 id="data-collection">2. Data Collection Protocols</h2>
+							<p>
+								To provide seamless connectivity, we collect minimal data required for network maintenance and billing compliance:
+							</p>
+							<ul>
+								<li>Account Identification (Name, Billing Address)</li>
+								<li>Network Logs (IP assignment, Bandwidth consumption)</li>
+								<li>Device identifiers for technical troubleshooting</li>
+								<li>Communication preferences</li>
+							</ul>
+
+							<h2 id="usage">3. How Your Information is Utilized</h2>
+							<p>
+								Your data is used strictly for operational excellence. We do not sell your personal browsing habits to third-party advertisers. Usage includes:
+							</p>
+							<ul>
+								<li>Service provisioning and dynamic IP management</li>
+								<li>Real-time network performance optimization</li>
+								<li>Fraud prevention and cybersecurity monitoring</li>
+								<li>Notifying you of critical maintenance or upgrades</li>
+							</ul>
+
+							<h2 id="security">4. Advanced Network Security</h2>
+							<p>
+								We employ carrier-grade encryption and firewall technologies. All billing data is handled via secure, PCI-compliant processors. Our infrastructure is monitored 24/7 to prevent unauthorized access or data breaches.
+							</p>
+
+							<h2 id="your-rights">5. Your Digital Rights</h2>
+							<p>
+								You have the right to request a full report of the data we hold regarding your account. Additionally, you may request data correction or deletion upon account termination, subject to local regulatory data retention laws.
+							</p>
+
+							<h2 id="contact">6. Contact Our Privacy Office</h2>
+							<p>
+								If you have concerns about your data or wish to exercise your rights under global privacy regulations, please reach out to our dedicated team.
+							</p>
+						</div>
+
+						<!-- Contact Banner -->
+						<div class="mt-20 p-10 bg-indigo-600 dark:bg-indigo-950 rounded-[3rem] text-center relative overflow-hidden shadow-2xl">
+							<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)] pointer-events-none"></div>
+							<div class="relative z-10 space-y-6">
+								<h3 class="text-2xl font-black text-white">Need privacy assistance?</h3>
+								<p class="text-indigo-100 dark:text-slate-400">Our security team responds to all privacy inquiries within 24 hours.</p>
+								<div class="flex justify-center">
+									<a href={ "mailto:" + templ.SafeURL(data.SupportEmail) } class="px-10 py-4 bg-white text-indigo-600 font-black rounded-xl hover:bg-slate-50 transition-all shadow-xl">
+										Email Privacy Team
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
-	</div>
+	}
 }
