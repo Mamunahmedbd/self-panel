@@ -29,6 +29,7 @@ const (
 	PageSuccessfullySubscribed Page = "successfully_subscribed"
 	PageDeleteAccount          Page = "delete_account.page"
 	PagePrivacyPolicy          Page = "privacy_policy"
+	PageTermsAndConditions     Page = "terms_and_conditions"
 	PageWiki                   Page = "wiki"
 
 	SSEAnsweredByFriend Page = "sse_answered_by_friend"

@@ -272,7 +272,7 @@ templ TextFooter(page *controller.Page) {
 				</div>
 				<div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2">
 					<span class="text-rose-500 font-bold">DBID No: 178299482</span>
-					<a href="#" class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Terms & Conditions</a>
+					<a hx-get={ page.ToURL(routenames.RouteNameTermsAndConditions) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Terms & Conditions</a>
 					<a hx-get={ page.ToURL(routenames.RouteNamePrivacyPolicy) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Privacy Policy</a>
 					<a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Refund & Delivery Policy</a>
 					<a href="#" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Approved Tariff</a>

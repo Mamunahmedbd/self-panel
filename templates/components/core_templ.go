@@ -579,20 +579,33 @@ func TextFooter(page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, ". All rights reserved.</div><div class=\"flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2\"><span class=\"text-rose-500 font-bold\">DBID No: 178299482</span> <a href=\"#\" class=\"cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Terms & Conditions</a> <a hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, ". All rights reserved.</div><div class=\"flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2\"><span class=\"text-rose-500 font-bold\">DBID No: 178299482</span> <a hx-get=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var27 string
-		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNamePrivacyPolicy))
+		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameTermsAndConditions))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 276, Col: 62}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 275, Col: 67}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Privacy Policy</a> <a href=\"#\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Refund & Delivery Policy</a> <a href=\"#\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Approved Tariff</a></div></div></div></footer><script>\r\n\t\tdocument.getElementById('currentYear').textContent = new Date().getFullYear();\r\n\t</script>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Terms & Conditions</a> <a hx-get=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var28 string
+		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNamePrivacyPolicy))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/components/core.templ`, Line: 276, Col: 62}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Privacy Policy</a> <a href=\"#\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Refund & Delivery Policy</a> <a href=\"#\" class=\"hover:text-purple-600 dark:hover:text-purple-400 transition-colors\">Approved Tariff</a></div></div></div></footer><script>\r\n\t\tdocument.getElementById('currentYear').textContent = new Date().getFullYear();\r\n\t</script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
