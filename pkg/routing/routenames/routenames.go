@@ -1,16 +1,9 @@
 package routenames
 
 const (
-	RouteNameForgotPassword          = "forgot_password"
-	RouteNameForgotPasswordSubmit    = "forgot_password.submit"
 	RouteNameLogin                   = "login"
 	RouteNameLoginSubmit             = "login.submit"
 	RouteNameLogout                  = "logout"
-	RouteNameRegister                = "register"
-	RouteNameRegisterSubmit          = "register.submit"
-	RouteNameResetPassword           = "reset_password"
-	RouteNameResetPasswordSubmit     = "reset_password.submit"
-	RouteNameVerifyEmail             = "verify_email"
 	RouteNameContact                 = "contact"
 	RouteNameContactSubmit           = "contact.submit"
 	RouteNameAboutUs                 = "about"
@@ -26,15 +19,10 @@ const (
 	RouteNameUpdateDisplayName       = "display_name.save"
 	RouteNameGetPhoneVerification    = "phone.verification"
 	RouteNameSubmitPhoneVerification = "phone.verification.submit"
-	RouteNameDeleteAccountPage       = "delete_account.page"
-	RouteNameDeleteAccountRequest    = "delete_account.request"
-	RouteNamePrivacyPolicy           = "privacy_policy"
-	RouteNameTermsAndConditions      = "terms_and_conditions"
-	RouteNameRefundPolicy            = "refund_policy"
 
-	RouteNameHomeFeed           = "home_feed"
-	RouteNameGetHomeFeedButtons = "home_feed.buttons"
-	RouteNameGetHomeFeedStats   = "home_feed.stats"
+	RouteNamePrivacyPolicy      = "privacy_policy"
+	RouteNameTermsAndConditions = "terms_and_conditions"
+	RouteNameRefundPolicy       = "refund_policy"
 
 	RouteNameProfile    = "profile"
 	RouteNameInstallApp = "install_app"
@@ -59,10 +47,4 @@ const (
 	RouteNamePaymentProcessorWebhook      = "stripe.webhook"
 	RouteNamePricingPage                  = "pricing_page"
 	RouteNamePaymentProcessorSuccess      = "stripe.success"
-
-	// NOTE: docs route is being actively worked on. Refer to Readme for up to date documentation.
-	RouteNameDocs               = "docs"
-	RouteNameDocsGettingStarted = "docs.getting_started"
-	RouteNameDocsGuidedTour     = "docs.guided_tour"
-	RouteNameDocsArchitecture   = "docs.architecture"
 )

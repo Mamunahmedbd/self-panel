@@ -30,7 +30,7 @@ func (c *landingPage) Get(ctx echo.Context) error {
 	page.Layout = layouts.LandingPage
 
 	if page.AuthUser != nil {
-		return c.ctr.Redirect(ctx, routenames.RouteNameHomeFeed)
+		return c.ctr.Redirect(ctx, routenames.RouteNameProfile)
 
 	}
 
@@ -40,7 +40,6 @@ func (c *landingPage) Get(ctx echo.Context) error {
 	page.Metatags.Keywords = []string{"Boilerplate", "HTMX", "AlpineJS", "Javascript", "Starter kit", "Startup", "Solopreneur", "Indie Hacking"}
 	data = types.LandingPage{
 		AppName:           string(c.ctr.Container.Config.App.Name),
-		UserSignupEnabled: c.ctr.Container.Config.App.OperationalConstants.UserSignupEnabled,
 
 		Title:      "Experience Ultra-Fast Internet",
 		Subtitle:   "Reliable, high-speed connectivity for your home and business. Stream, game, and work without limits.",
@@ -84,7 +83,6 @@ func (c *landingPage) Get(ctx echo.Context) error {
 		BackgroundPhoto2xl: "/files/isp_hero_banner.png",
 	}
 
-	data.UserSignupEnabled = c.ctr.Container.Config.App.OperationalConstants.UserSignupEnabledOnLandingPage
 	data.ContactEmail = c.ctr.Container.Config.Mail.FromAddress
 	data.ProductProCode = c.ctr.Container.Config.App.OperationalConstants.ProductProCode
 	data.ProductProPrice = fmt.Sprintf("%.2f", c.ctr.Container.Config.App.OperationalConstants.ProductProPrice)

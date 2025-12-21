@@ -176,7 +176,6 @@ func (g *preferences) Get(ctx echo.Context) error {
 
 	notificationPermissions := types.NotificationPermissionsData{
 		VapidPublicKey:                g.ctr.Container.Config.App.VapidPublicKey,
-		PermissionDailyNotif:          permissions[domain.NotificationPermissionDailyReminder],
 		PermissionPartnerActivity:     permissions[domain.NotificationPermissionNewFriendActivity],
 		SubscribedEndpoints:           subscribedEndpoints,
 		PhoneSubscriptionEnabled:      profile.PhoneNumberE164 != "" && profile.PhoneVerified,
@@ -450,5 +449,5 @@ func (p *onboarding) Get(ctx echo.Context) error {
 		return err
 	}
 
-	return p.ctr.RedirectWithDetails(ctx, routenames.RouteNameHomeFeed, "?just_finished_onboarding=true", http.StatusFound)
+	return p.ctr.RedirectWithDetails(ctx, routenames.RouteNameProfile, "?just_finished_onboarding=true", http.StatusFound)
 }

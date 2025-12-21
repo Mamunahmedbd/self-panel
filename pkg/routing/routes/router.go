@@ -184,23 +184,13 @@ func BuildRouter(c *services.Container) {
 	c.Web.HTTPErrorHandler = err.Get
 
 	generalRoutes(c, g, ctr)
-	documentationRoutes(c, g, ctr)
 
-	if c.Config.App.OperationalConstants.UserSignupEnabled {
-		coreAuthRoutes(c, g, ctr)
-		// sseRoutes(c, s, ctr)
-		externalRoutes(c, e, ctr)
-	}
+	coreAuthRoutes(c, g, ctr)
+	// sseRoutes(c, s, ctr)
+	externalRoutes(c, e, ctr)
 
 }
 
-func documentationRoutes(c *services.Container, g *echo.Group, ctr controller.Controller) {
-	docsRoute := NewDocsRoute(ctr)
-	g.GET("/docs", docsRoute.GetDocsHome).Name = routeNames.RouteNameDocs
-	g.GET("/docs/gettingStarted", docsRoute.GetDocsGettingStarted).Name = routeNames.RouteNameDocsGettingStarted
-	g.GET("/docs/guidedTour", docsRoute.GetDocsGuidedTour).Name = routeNames.RouteNameDocsGuidedTour
-	g.GET("/docs/architecture", docsRoute.GetDocsArchitecture).Name = routeNames.RouteNameDocsArchitecture
-}
 
 func externalRoutes(c *services.Container, g *echo.Group, ctr controller.Controller) {
 	subscriptionsRepo := subscriptions.NewSubscriptionsRepo(
@@ -333,9 +323,6 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	onboardingGroup.GET("/preferences/display-name/get", preferences.GetDisplayName).Name = routeNames.RouteNameGetDisplayName
 	onboardingGroup.POST("/preferences/display-name/save", preferences.SaveDisplayName).Name = routeNames.RouteNameUpdateDisplayName
 
-	deleteAccountRoute := NewDeleteAccountRoute(ctr, &profileRepo, subscriptionsRepo)
-	onboardingGroup.GET("/preferences/delete-account", deleteAccountRoute.DeleteAccountPage).Name = routeNames.RouteNameDeleteAccountPage
-	onboardingGroup.GET("/preferences/delete-account/now", deleteAccountRoute.DeleteAccountRequest).Name = routeNames.RouteNameDeleteAccountRequest
 
 	// TODO: move all pref routes to the preferences route (and not have a gazillion different ..)
 	finishOnboarding := NewOnboardingRoute(ctr, c.ORM, c.Tasks)
@@ -359,12 +346,7 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	// Auth group is for all routes that are accessible to a fully logged in and onboarded user
 	onboardedGroup := g.Group("/auth", middleware.RequireAuthentication(), middleware.RedirectToOnboardingIfNotComplete())
 
-	verifyEmail := NewVerifyEmailRoute(ctr)
-	g.GET("/email/verify/:token", verifyEmail.Get).Name = routeNames.RouteNameVerifyEmail
 
-	homeFeed := NewHomeFeedRoute(ctr, profileRepo, &c.Config.App.PageSize)
-	onboardedGroup.GET("/homeFeed", homeFeed.Get, middleware.SetLastSeenOnline(c.Auth)).Name = routeNames.RouteNameHomeFeed
-	onboardedGroup.GET("/homeFeed/buttons", homeFeed.GetHomeButtons).Name = routeNames.RouteNameGetHomeFeedButtons
 
 	singleProfile := NewProfileRoutes(ctr, &profileRepo)
 	onboardedGroup.GET("/profile", singleProfile.Get).Name = routeNames.RouteNameProfile

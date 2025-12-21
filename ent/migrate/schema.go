@@ -242,7 +242,7 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "type", Type: field.TypeEnum, Enums: []string{"new_private_message", "mutual_question_answered", "connection_engaged_with_question", "increment_num_unseen_msg", "decrement_num_unseen_msg", "update_num_notifs", "connection_request_accepted", "platform_update", "connection_reacted_to_answer", "committed_relationship_request", "breakup", "contact_request", "new_homefeed_qa_object", "payment_failed", "daily_conversation_reminder"}},
+		{Name: "type", Type: field.TypeEnum, Enums: []string{"new_private_message", "connection_engaged_with_question", "increment_num_unseen_msg", "decrement_num_unseen_msg", "update_num_notifs", "platform_update", "payment_failed"}},
 		{Name: "title", Type: field.TypeString, Default: ""},
 		{Name: "text", Type: field.TypeString},
 		{Name: "link", Type: field.TypeString, Nullable: true},
@@ -272,7 +272,7 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "permission", Type: field.TypeEnum, Enums: []string{"daily_reminder", "partner_activity"}},
+		{Name: "permission", Type: field.TypeEnum, Enums: []string{"partner_activity"}},
 		{Name: "platform", Type: field.TypeEnum, Enums: []string{"push", "fcm_push", "email", "sms"}},
 		{Name: "token", Type: field.TypeString},
 		{Name: "profile_id", Type: field.TypeInt},
@@ -303,7 +303,7 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "type", Type: field.TypeEnum, Enums: []string{"new_private_message", "mutual_question_answered", "connection_engaged_with_question", "increment_num_unseen_msg", "decrement_num_unseen_msg", "update_num_notifs", "connection_request_accepted", "platform_update", "connection_reacted_to_answer", "committed_relationship_request", "breakup", "contact_request", "new_homefeed_qa_object", "payment_failed", "daily_conversation_reminder"}},
+		{Name: "type", Type: field.TypeEnum, Enums: []string{"new_private_message", "connection_engaged_with_question", "increment_num_unseen_msg", "decrement_num_unseen_msg", "update_num_notifs", "platform_update", "payment_failed"}},
 		{Name: "send_minute", Type: field.TypeInt},
 		{Name: "profile_id", Type: field.TypeInt},
 	}
@@ -325,27 +325,6 @@ var (
 				Name:    "notificationtime_profile_id_type",
 				Unique:  true,
 				Columns: []*schema.Column{NotificationTimesColumns[5], NotificationTimesColumns[3]},
-			},
-		},
-	}
-	// PasswordTokensColumns holds the columns for the "password_tokens" table.
-	PasswordTokensColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "hash", Type: field.TypeString},
-		{Name: "created_at", Type: field.TypeTime},
-		{Name: "password_token_user", Type: field.TypeInt},
-	}
-	// PasswordTokensTable holds the schema information for the "password_tokens" table.
-	PasswordTokensTable = &schema.Table{
-		Name:       "password_tokens",
-		Columns:    PasswordTokensColumns,
-		PrimaryKey: []*schema.Column{PasswordTokensColumns[0]},
-		ForeignKeys: []*schema.ForeignKey{
-			{
-				Symbol:     "password_tokens_users_user",
-				Columns:    []*schema.Column{PasswordTokensColumns[3]},
-				RefColumns: []*schema.Column{UsersColumns[0]},
-				OnDelete:   schema.NoAction,
 			},
 		},
 	}
@@ -450,7 +429,7 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "type", Type: field.TypeEnum, Enums: []string{"daily_reminder", "partner_activity"}},
+		{Name: "type", Type: field.TypeEnum, Enums: []string{"partner_activity"}},
 		{Name: "profile_sent_emails", Type: field.TypeInt},
 	}
 	// SentEmailsTable holds the schema information for the "sent_emails" table.
@@ -475,7 +454,6 @@ var (
 		{Name: "name", Type: field.TypeString},
 		{Name: "email", Type: field.TypeString, Unique: true},
 		{Name: "password", Type: field.TypeString},
-		{Name: "verified", Type: field.TypeBool, Default: false},
 		{Name: "last_online", Type: field.TypeTime, Nullable: true},
 	}
 	// UsersTable holds the schema information for the "users" table.
@@ -574,7 +552,6 @@ var (
 		NotificationsTable,
 		NotificationPermissionsTable,
 		NotificationTimesTable,
-		PasswordTokensTable,
 		PhoneVerificationCodesTable,
 		ProfilesTable,
 		PwaPushSubscriptionsTable,
@@ -597,7 +574,6 @@ func init() {
 	NotificationsTable.ForeignKeys[0].RefTable = ProfilesTable
 	NotificationPermissionsTable.ForeignKeys[0].RefTable = ProfilesTable
 	NotificationTimesTable.ForeignKeys[0].RefTable = ProfilesTable
-	PasswordTokensTable.ForeignKeys[0].RefTable = UsersTable
 	PhoneVerificationCodesTable.ForeignKeys[0].RefTable = ProfilesTable
 	ProfilesTable.ForeignKeys[0].RefTable = ImagesTable
 	ProfilesTable.ForeignKeys[1].RefTable = UsersTable

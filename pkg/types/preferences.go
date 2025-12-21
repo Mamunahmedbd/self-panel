@@ -28,14 +28,9 @@ type (
 		NotificationPermissionsData NotificationPermissionsData
 	}
 
-	DeleteAccountData struct {
-		IsPaymentsEnabled          bool
-		HasUncancelledSubscription bool
-	}
 
 	NotificationPermissionsData struct {
 		// Permissions                    []domain.NotificationPermission
-		PermissionDailyNotif          domain.NotificationPermission
 		PermissionPartnerActivity     domain.NotificationPermission
 		VapidPublicKey                string
 		SubscribedEndpoints           []string

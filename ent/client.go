@@ -28,14 +28,11 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
-	"github.com/mikestefanello/pagoda/ent/passwordtoken"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
 	"github.com/mikestefanello/pagoda/ent/sentemail"
 	"github.com/mikestefanello/pagoda/ent/user"
-
-	stdsql "database/sql"
 )
 
 // Client is the client that holds all ent builders.
@@ -69,8 +66,6 @@ type Client struct {
 	NotificationPermission *NotificationPermissionClient
 	// NotificationTime is the client for interacting with the NotificationTime builders.
 	NotificationTime *NotificationTimeClient
-	// PasswordToken is the client for interacting with the PasswordToken builders.
-	PasswordToken *PasswordTokenClient
 	// PhoneVerificationCode is the client for interacting with the PhoneVerificationCode builders.
 	PhoneVerificationCode *PhoneVerificationCodeClient
 	// Profile is the client for interacting with the Profile builders.
@@ -105,7 +100,6 @@ func (c *Client) init() {
 	c.Notification = NewNotificationClient(c.config)
 	c.NotificationPermission = NewNotificationPermissionClient(c.config)
 	c.NotificationTime = NewNotificationTimeClient(c.config)
-	c.PasswordToken = NewPasswordTokenClient(c.config)
 	c.PhoneVerificationCode = NewPhoneVerificationCodeClient(c.config)
 	c.Profile = NewProfileClient(c.config)
 	c.PwaPushSubscription = NewPwaPushSubscriptionClient(c.config)
@@ -216,7 +210,6 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Notification:           NewNotificationClient(cfg),
 		NotificationPermission: NewNotificationPermissionClient(cfg),
 		NotificationTime:       NewNotificationTimeClient(cfg),
-		PasswordToken:          NewPasswordTokenClient(cfg),
 		PhoneVerificationCode:  NewPhoneVerificationCodeClient(cfg),
 		Profile:                NewProfileClient(cfg),
 		PwaPushSubscription:    NewPwaPushSubscriptionClient(cfg),
@@ -254,7 +247,6 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Notification:           NewNotificationClient(cfg),
 		NotificationPermission: NewNotificationPermissionClient(cfg),
 		NotificationTime:       NewNotificationTimeClient(cfg),
-		PasswordToken:          NewPasswordTokenClient(cfg),
 		PhoneVerificationCode:  NewPhoneVerificationCodeClient(cfg),
 		Profile:                NewProfileClient(cfg),
 		PwaPushSubscription:    NewPwaPushSubscriptionClient(cfg),
@@ -292,8 +284,8 @@ func (c *Client) Use(hooks ...Hook) {
 		c.EmailSubscription, c.EmailSubscriptionType, c.Emojis, c.FCMSubscriptions,
 		c.FileStorage, c.Image, c.ImageSize, c.Invitation, c.LastSeenOnline,
 		c.MonthlySubscription, c.Notification, c.NotificationPermission,
-		c.NotificationTime, c.PasswordToken, c.PhoneVerificationCode, c.Profile,
-		c.PwaPushSubscription, c.SentEmail, c.User,
+		c.NotificationTime, c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription,
+		c.SentEmail, c.User,
 	} {
 		n.Use(hooks...)
 	}
@@ -306,8 +298,8 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 		c.EmailSubscription, c.EmailSubscriptionType, c.Emojis, c.FCMSubscriptions,
 		c.FileStorage, c.Image, c.ImageSize, c.Invitation, c.LastSeenOnline,
 		c.MonthlySubscription, c.Notification, c.NotificationPermission,
-		c.NotificationTime, c.PasswordToken, c.PhoneVerificationCode, c.Profile,
-		c.PwaPushSubscription, c.SentEmail, c.User,
+		c.NotificationTime, c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription,
+		c.SentEmail, c.User,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -342,8 +334,6 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.NotificationPermission.mutate(ctx, m)
 	case *NotificationTimeMutation:
 		return c.NotificationTime.mutate(ctx, m)
-	case *PasswordTokenMutation:
-		return c.PasswordToken.mutate(ctx, m)
 	case *PhoneVerificationCodeMutation:
 		return c.PhoneVerificationCode.mutate(ctx, m)
 	case *ProfileMutation:
@@ -2297,155 +2287,6 @@ func (c *NotificationTimeClient) mutate(ctx context.Context, m *NotificationTime
 	}
 }
 
-// PasswordTokenClient is a client for the PasswordToken schema.
-type PasswordTokenClient struct {
-	config
-}
-
-// NewPasswordTokenClient returns a client for the PasswordToken from the given config.
-func NewPasswordTokenClient(c config) *PasswordTokenClient {
-	return &PasswordTokenClient{config: c}
-}
-
-// Use adds a list of mutation hooks to the hooks stack.
-// A call to `Use(f, g, h)` equals to `passwordtoken.Hooks(f(g(h())))`.
-func (c *PasswordTokenClient) Use(hooks ...Hook) {
-	c.hooks.PasswordToken = append(c.hooks.PasswordToken, hooks...)
-}
-
-// Intercept adds a list of query interceptors to the interceptors stack.
-// A call to `Intercept(f, g, h)` equals to `passwordtoken.Intercept(f(g(h())))`.
-func (c *PasswordTokenClient) Intercept(interceptors ...Interceptor) {
-	c.inters.PasswordToken = append(c.inters.PasswordToken, interceptors...)
-}
-
-// Create returns a builder for creating a PasswordToken entity.
-func (c *PasswordTokenClient) Create() *PasswordTokenCreate {
-	mutation := newPasswordTokenMutation(c.config, OpCreate)
-	return &PasswordTokenCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// CreateBulk returns a builder for creating a bulk of PasswordToken entities.
-func (c *PasswordTokenClient) CreateBulk(builders ...*PasswordTokenCreate) *PasswordTokenCreateBulk {
-	return &PasswordTokenCreateBulk{config: c.config, builders: builders}
-}
-
-// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
-// a builder and applies setFunc on it.
-func (c *PasswordTokenClient) MapCreateBulk(slice any, setFunc func(*PasswordTokenCreate, int)) *PasswordTokenCreateBulk {
-	rv := reflect.ValueOf(slice)
-	if rv.Kind() != reflect.Slice {
-		return &PasswordTokenCreateBulk{err: fmt.Errorf("calling to PasswordTokenClient.MapCreateBulk with wrong type %T, need slice", slice)}
-	}
-	builders := make([]*PasswordTokenCreate, rv.Len())
-	for i := 0; i < rv.Len(); i++ {
-		builders[i] = c.Create()
-		setFunc(builders[i], i)
-	}
-	return &PasswordTokenCreateBulk{config: c.config, builders: builders}
-}
-
-// Update returns an update builder for PasswordToken.
-func (c *PasswordTokenClient) Update() *PasswordTokenUpdate {
-	mutation := newPasswordTokenMutation(c.config, OpUpdate)
-	return &PasswordTokenUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOne returns an update builder for the given entity.
-func (c *PasswordTokenClient) UpdateOne(pt *PasswordToken) *PasswordTokenUpdateOne {
-	mutation := newPasswordTokenMutation(c.config, OpUpdateOne, withPasswordToken(pt))
-	return &PasswordTokenUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// UpdateOneID returns an update builder for the given id.
-func (c *PasswordTokenClient) UpdateOneID(id int) *PasswordTokenUpdateOne {
-	mutation := newPasswordTokenMutation(c.config, OpUpdateOne, withPasswordTokenID(id))
-	return &PasswordTokenUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// Delete returns a delete builder for PasswordToken.
-func (c *PasswordTokenClient) Delete() *PasswordTokenDelete {
-	mutation := newPasswordTokenMutation(c.config, OpDelete)
-	return &PasswordTokenDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
-}
-
-// DeleteOne returns a builder for deleting the given entity.
-func (c *PasswordTokenClient) DeleteOne(pt *PasswordToken) *PasswordTokenDeleteOne {
-	return c.DeleteOneID(pt.ID)
-}
-
-// DeleteOneID returns a builder for deleting the given entity by its id.
-func (c *PasswordTokenClient) DeleteOneID(id int) *PasswordTokenDeleteOne {
-	builder := c.Delete().Where(passwordtoken.ID(id))
-	builder.mutation.id = &id
-	builder.mutation.op = OpDeleteOne
-	return &PasswordTokenDeleteOne{builder}
-}
-
-// Query returns a query builder for PasswordToken.
-func (c *PasswordTokenClient) Query() *PasswordTokenQuery {
-	return &PasswordTokenQuery{
-		config: c.config,
-		ctx:    &QueryContext{Type: TypePasswordToken},
-		inters: c.Interceptors(),
-	}
-}
-
-// Get returns a PasswordToken entity by its id.
-func (c *PasswordTokenClient) Get(ctx context.Context, id int) (*PasswordToken, error) {
-	return c.Query().Where(passwordtoken.ID(id)).Only(ctx)
-}
-
-// GetX is like Get, but panics if an error occurs.
-func (c *PasswordTokenClient) GetX(ctx context.Context, id int) *PasswordToken {
-	obj, err := c.Get(ctx, id)
-	if err != nil {
-		panic(err)
-	}
-	return obj
-}
-
-// QueryUser queries the user edge of a PasswordToken.
-func (c *PasswordTokenClient) QueryUser(pt *PasswordToken) *UserQuery {
-	query := (&UserClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := pt.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(passwordtoken.Table, passwordtoken.FieldID, id),
-			sqlgraph.To(user.Table, user.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, false, passwordtoken.UserTable, passwordtoken.UserColumn),
-		)
-		fromV = sqlgraph.Neighbors(pt.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// Hooks returns the client hooks.
-func (c *PasswordTokenClient) Hooks() []Hook {
-	return c.hooks.PasswordToken
-}
-
-// Interceptors returns the client interceptors.
-func (c *PasswordTokenClient) Interceptors() []Interceptor {
-	return c.inters.PasswordToken
-}
-
-func (c *PasswordTokenClient) mutate(ctx context.Context, m *PasswordTokenMutation) (Value, error) {
-	switch m.Op() {
-	case OpCreate:
-		return (&PasswordTokenCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdate:
-		return (&PasswordTokenUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpUpdateOne:
-		return (&PasswordTokenUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
-	case OpDelete, OpDeleteOne:
-		return (&PasswordTokenDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
-	default:
-		return nil, fmt.Errorf("ent: unknown PasswordToken mutation op: %q", m.Op())
-	}
-}
-
 // PhoneVerificationCodeClient is a client for the PhoneVerificationCode schema.
 type PhoneVerificationCodeClient struct {
 	config
@@ -3342,22 +3183,6 @@ func (c *UserClient) GetX(ctx context.Context, id int) *User {
 	return obj
 }
 
-// QueryOwner queries the owner edge of a User.
-func (c *UserClient) QueryOwner(u *User) *PasswordTokenQuery {
-	query := (&PasswordTokenClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := u.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(user.Table, user.FieldID, id),
-			sqlgraph.To(passwordtoken.Table, passwordtoken.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, true, user.OwnerTable, user.OwnerColumn),
-		)
-		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
 // QueryProfile queries the profile edge of a User.
 func (c *UserClient) QueryProfile(u *User) *ProfileQuery {
 	query := (&ProfileClient{config: c.config}).Query()
@@ -3421,38 +3246,13 @@ type (
 	hooks struct {
 		EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions, FileStorage,
 		Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
-		Notification, NotificationPermission, NotificationTime, PasswordToken,
-		PhoneVerificationCode, Profile, PwaPushSubscription, SentEmail, User []ent.Hook
+		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
+		Profile, PwaPushSubscription, SentEmail, User []ent.Hook
 	}
 	inters struct {
 		EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions, FileStorage,
 		Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
-		Notification, NotificationPermission, NotificationTime, PasswordToken,
-		PhoneVerificationCode, Profile, PwaPushSubscription, SentEmail,
-		User []ent.Interceptor
+		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
+		Profile, PwaPushSubscription, SentEmail, User []ent.Interceptor
 	}
 )
-
-// ExecContext allows calling the underlying ExecContext method of the driver if it is supported by it.
-// See, database/sql#DB.ExecContext for more information.
-func (c *config) ExecContext(ctx context.Context, query string, args ...any) (stdsql.Result, error) {
-	ex, ok := c.driver.(interface {
-		ExecContext(context.Context, string, ...any) (stdsql.Result, error)
-	})
-	if !ok {
-		return nil, fmt.Errorf("Driver.ExecContext is not supported")
-	}
-	return ex.ExecContext(ctx, query, args...)
-}
-
-// QueryContext allows calling the underlying QueryContext method of the driver if it is supported by it.
-// See, database/sql#DB.QueryContext for more information.
-func (c *config) QueryContext(ctx context.Context, query string, args ...any) (*stdsql.Rows, error) {
-	q, ok := c.driver.(interface {
-		QueryContext(context.Context, string, ...any) (*stdsql.Rows, error)
-	})
-	if !ok {
-		return nil, fmt.Errorf("Driver.QueryContext is not supported")
-	}
-	return q.QueryContext(ctx, query, args...)
-}

@@ -15,7 +15,6 @@ var (
 	NotificationTypeUpdateNumNotifications        = NotificationType{"update_num_notifs"}
 	NotificationTypePlatformUpdate                = NotificationType{"platform_update"}
 	NotificationTypePaymentFailed                 = NotificationType{"payment_failed"}
-	NotificationTypeDailyConversationReminder     = NotificationType{"daily_conversation_reminder"}
 
 	NotificationTypes = enum.New(
 		NotificationTypeNewPrivateMessage,
@@ -25,7 +24,6 @@ var (
 		NotificationTypeUpdateNumNotifications,
 		NotificationTypePlatformUpdate,
 		NotificationTypePaymentFailed,
-		NotificationTypeDailyConversationReminder,
 	)
 )
 
@@ -33,11 +31,9 @@ var (
 type NotificationPermissionType enum.Member[string]
 
 var (
-	NotificationPermissionDailyReminder     = NotificationPermissionType{"daily_reminder"}
 	NotificationPermissionNewFriendActivity = NotificationPermissionType{"partner_activity"}
 
 	NotificationPermissions = enum.New(
-		NotificationPermissionDailyReminder,
 		NotificationPermissionNewFriendActivity,
 	)
 )
@@ -100,13 +96,11 @@ var (
 type BottomNavbarItem enum.Member[string]
 
 var (
-	BottomNavbarItemHome          = BottomNavbarItem{"home"}
 	BottomNavbarItemNotifications = BottomNavbarItem{"notifications"}
 	BottomNavbarItemSettings      = BottomNavbarItem{"settings"}
 	BottomNavbarItemProfile       = BottomNavbarItem{"profile"}
 
 	BottomNavbarItems = enum.New(
-		BottomNavbarItemHome,
 		BottomNavbarItemNotifications,
 		BottomNavbarItemSettings,
 		BottomNavbarItemProfile,

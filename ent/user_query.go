@@ -13,7 +13,6 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/mikestefanello/pagoda/ent/lastseenonline"
-	"github.com/mikestefanello/pagoda/ent/passwordtoken"
 	"github.com/mikestefanello/pagoda/ent/predicate"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/user"
@@ -26,7 +25,6 @@ type UserQuery struct {
 	order          []user.OrderOption
 	inters         []Interceptor
 	predicates     []predicate.User
-	withOwner      *PasswordTokenQuery
 	withProfile    *ProfileQuery
 	withLastSeenAt *LastSeenOnlineQuery
 	// intermediate query (i.e. traversal path).
@@ -63,28 +61,6 @@ func (uq *UserQuery) Unique(unique bool) *UserQuery {
 func (uq *UserQuery) Order(o ...user.OrderOption) *UserQuery {
 	uq.order = append(uq.order, o...)
 	return uq
-}
-
-// QueryOwner chains the current query on the "owner" edge.
-func (uq *UserQuery) QueryOwner() *PasswordTokenQuery {
-	query := (&PasswordTokenClient{config: uq.config}).Query()
-	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := uq.prepareQuery(ctx); err != nil {
-			return nil, err
-		}
-		selector := uq.sqlQuery(ctx)
-		if err := selector.Err(); err != nil {
-			return nil, err
-		}
-		step := sqlgraph.NewStep(
-			sqlgraph.From(user.Table, user.FieldID, selector),
-			sqlgraph.To(passwordtoken.Table, passwordtoken.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, true, user.OwnerTable, user.OwnerColumn),
-		)
-		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
-		return fromU, nil
-	}
-	return query
 }
 
 // QueryProfile chains the current query on the "profile" edge.
@@ -323,24 +299,12 @@ func (uq *UserQuery) Clone() *UserQuery {
 		order:          append([]user.OrderOption{}, uq.order...),
 		inters:         append([]Interceptor{}, uq.inters...),
 		predicates:     append([]predicate.User{}, uq.predicates...),
-		withOwner:      uq.withOwner.Clone(),
 		withProfile:    uq.withProfile.Clone(),
 		withLastSeenAt: uq.withLastSeenAt.Clone(),
 		// clone intermediate query.
 		sql:  uq.sql.Clone(),
 		path: uq.path,
 	}
-}
-
-// WithOwner tells the query-builder to eager-load the nodes that are connected to
-// the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (uq *UserQuery) WithOwner(opts ...func(*PasswordTokenQuery)) *UserQuery {
-	query := (&PasswordTokenClient{config: uq.config}).Query()
-	for _, opt := range opts {
-		opt(query)
-	}
-	uq.withOwner = query
-	return uq
 }
 
 // WithProfile tells the query-builder to eager-load the nodes that are connected to
@@ -443,8 +407,7 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 	var (
 		nodes       = []*User{}
 		_spec       = uq.querySpec()
-		loadedTypes = [3]bool{
-			uq.withOwner != nil,
+		loadedTypes = [2]bool{
 			uq.withProfile != nil,
 			uq.withLastSeenAt != nil,
 		}
@@ -467,13 +430,6 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := uq.withOwner; query != nil {
-		if err := uq.loadOwner(ctx, query, nodes,
-			func(n *User) { n.Edges.Owner = []*PasswordToken{} },
-			func(n *User, e *PasswordToken) { n.Edges.Owner = append(n.Edges.Owner, e) }); err != nil {
-			return nil, err
-		}
-	}
 	if query := uq.withProfile; query != nil {
 		if err := uq.loadProfile(ctx, query, nodes, nil,
 			func(n *User, e *Profile) { n.Edges.Profile = e }); err != nil {
@@ -490,37 +446,6 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 	return nodes, nil
 }
 
-func (uq *UserQuery) loadOwner(ctx context.Context, query *PasswordTokenQuery, nodes []*User, init func(*User), assign func(*User, *PasswordToken)) error {
-	fks := make([]driver.Value, 0, len(nodes))
-	nodeids := make(map[int]*User)
-	for i := range nodes {
-		fks = append(fks, nodes[i].ID)
-		nodeids[nodes[i].ID] = nodes[i]
-		if init != nil {
-			init(nodes[i])
-		}
-	}
-	query.withFKs = true
-	query.Where(predicate.PasswordToken(func(s *sql.Selector) {
-		s.Where(sql.InValues(s.C(user.OwnerColumn), fks...))
-	}))
-	neighbors, err := query.All(ctx)
-	if err != nil {
-		return err
-	}
-	for _, n := range neighbors {
-		fk := n.password_token_user
-		if fk == nil {
-			return fmt.Errorf(`foreign-key "password_token_user" is nil for node %v`, n.ID)
-		}
-		node, ok := nodeids[*fk]
-		if !ok {
-			return fmt.Errorf(`unexpected referenced foreign-key "password_token_user" returned %v for node %v`, *fk, n.ID)
-		}
-		assign(node, n)
-	}
-	return nil
-}
 func (uq *UserQuery) loadProfile(ctx context.Context, query *ProfileQuery, nodes []*User, init func(*User), assign func(*User, *Profile)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[int]*User)

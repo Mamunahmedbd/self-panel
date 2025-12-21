@@ -165,18 +165,6 @@ func (f NotificationTimeFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.V
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.NotificationTimeMutation", m)
 }
 
-// The PasswordTokenFunc type is an adapter to allow the use of ordinary
-// function as PasswordToken mutator.
-type PasswordTokenFunc func(context.Context, *ent.PasswordTokenMutation) (ent.Value, error)
-
-// Mutate calls f(ctx, m).
-func (f PasswordTokenFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
-	if mv, ok := m.(*ent.PasswordTokenMutation); ok {
-		return f(ctx, mv)
-	}
-	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.PasswordTokenMutation", m)
-}
-
 // The PhoneVerificationCodeFunc type is an adapter to allow the use of ordinary
 // function as PhoneVerificationCode mutator.
 type PhoneVerificationCodeFunc func(context.Context, *ent.PhoneVerificationCodeMutation) (ent.Value, error)

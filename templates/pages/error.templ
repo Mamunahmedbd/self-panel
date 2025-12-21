@@ -21,7 +21,7 @@ templ Error(page *controller.Page) {
 				</p>
 				<a
 					if page.IsAuth {
-						href={ templ.URL(page.ToURL(routenames.RouteNameHomeFeed)) }
+						href={ templ.URL(page.ToURL(routenames.RouteNameProfile)) }
 					} else {
 						href={ templ.URL(page.ToURL(routenames.RouteNameLandingPage)) }
 					}

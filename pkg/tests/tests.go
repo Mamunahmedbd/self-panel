@@ -118,15 +118,13 @@ func CreateRandomUser(orm *ent.Client) (*ent.User, error) {
 		Save(context.Background())
 }
 
-// CreateUser creates a new user and returns its ID.
-func CreateUser(ctx context.Context, client *ent.Client, name string, email string, password string, verified bool) *ent.User {
+func CreateUser(ctx context.Context, client *ent.Client, name string, email string, password string) *ent.User {
 	// Create a new user with the provided arguments
 	return client.User.
 		Create().
 		SetName(name).
 		SetEmail(email).
 		SetPassword(password).
-		SetVerified(verified).
 		SaveX(ctx)
 }
 

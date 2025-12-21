@@ -18,7 +18,6 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
-	"github.com/mikestefanello/pagoda/ent/passwordtoken"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
@@ -296,16 +295,6 @@ func init() {
 			return nil
 		}
 	}()
-	passwordtokenFields := schema.PasswordToken{}.Fields()
-	_ = passwordtokenFields
-	// passwordtokenDescHash is the schema descriptor for hash field.
-	passwordtokenDescHash := passwordtokenFields[0].Descriptor()
-	// passwordtoken.HashValidator is a validator for the "hash" field. It is called by the builders before save.
-	passwordtoken.HashValidator = passwordtokenDescHash.Validators[0].(func(string) error)
-	// passwordtokenDescCreatedAt is the schema descriptor for created_at field.
-	passwordtokenDescCreatedAt := passwordtokenFields[1].Descriptor()
-	// passwordtoken.DefaultCreatedAt holds the default value on creation for the created_at field.
-	passwordtoken.DefaultCreatedAt = passwordtokenDescCreatedAt.Default.(func() time.Time)
 	phoneverificationcodeMixin := schema.PhoneVerificationCode{}.Mixin()
 	phoneverificationcodeMixinFields0 := phoneverificationcodeMixin[0].Fields()
 	_ = phoneverificationcodeMixinFields0
@@ -411,10 +400,6 @@ func init() {
 	userDescPassword := userFields[2].Descriptor()
 	// user.PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	user.PasswordValidator = userDescPassword.Validators[0].(func(string) error)
-	// userDescVerified is the schema descriptor for verified field.
-	userDescVerified := userFields[3].Descriptor()
-	// user.DefaultVerified holds the default value on creation for the verified field.
-	user.DefaultVerified = userDescVerified.Default.(bool)
 }
 
 const (

@@ -35,8 +35,6 @@ func (User) Fields() []ent.Field {
 		field.String("password").
 			Sensitive().
 			NotEmpty(),
-		field.Bool("verified").
-			Default(false),
 		field.Time("last_online").
 			Optional(),
 	}
@@ -45,8 +43,6 @@ func (User) Fields() []ent.Field {
 // Edges of the User.
 func (User) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.From("owner", PasswordToken.Type).
-			Ref("user"),
 
 		edge.To("profile", Profile.Type).
 			Unique().

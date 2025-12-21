@@ -17,9 +17,6 @@
 
   export let addEmailSubscriptionEndpoint = "";
   export let deleteEmailSubscriptionEndpoint = "";
-  export let addSmsSubscriptionEndpoint = "";
-  export let deleteSmsSubscriptionEndpoint = "";
-  export let phoneSubscriptionEnabled = false;
 
   let isPwaPushNotificationsPossibleBoolean = false;
   let isIosNativeAppBoolean = false;

@@ -45,9 +45,6 @@ type NotificationPermission func(*sql.Selector)
 // NotificationTime is the predicate function for notificationtime builders.
 type NotificationTime func(*sql.Selector)
 
-// PasswordToken is the predicate function for passwordtoken builders.
-type PasswordToken func(*sql.Selector)
-
 // PhoneVerificationCode is the predicate function for phoneverificationcode builders.
 type PhoneVerificationCode func(*sql.Selector)
 

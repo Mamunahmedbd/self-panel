@@ -34,7 +34,6 @@ type (
 		NumQuestionsAnsweredByFriendButNotSelf   int
 		QuestionsAnsweredByFriendButNotSelf      []QuestionInEmail
 		QuestionsNotAnsweredInSocialCircle       []QuestionInEmail
-		UnsubscribeDailyUpdatesLink              string
 		UnsubscribePartnerActivityLink           string
 	}
 )

@@ -12,7 +12,6 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/mikestefanello/pagoda/ent/lastseenonline"
-	"github.com/mikestefanello/pagoda/ent/passwordtoken"
 	"github.com/mikestefanello/pagoda/ent/predicate"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/user"
@@ -79,20 +78,6 @@ func (uu *UserUpdate) SetNillablePassword(s *string) *UserUpdate {
 	return uu
 }
 
-// SetVerified sets the "verified" field.
-func (uu *UserUpdate) SetVerified(b bool) *UserUpdate {
-	uu.mutation.SetVerified(b)
-	return uu
-}
-
-// SetNillableVerified sets the "verified" field if the given value is not nil.
-func (uu *UserUpdate) SetNillableVerified(b *bool) *UserUpdate {
-	if b != nil {
-		uu.SetVerified(*b)
-	}
-	return uu
-}
-
 // SetLastOnline sets the "last_online" field.
 func (uu *UserUpdate) SetLastOnline(t time.Time) *UserUpdate {
 	uu.mutation.SetLastOnline(t)
@@ -111,21 +96,6 @@ func (uu *UserUpdate) SetNillableLastOnline(t *time.Time) *UserUpdate {
 func (uu *UserUpdate) ClearLastOnline() *UserUpdate {
 	uu.mutation.ClearLastOnline()
 	return uu
-}
-
-// AddOwnerIDs adds the "owner" edge to the PasswordToken entity by IDs.
-func (uu *UserUpdate) AddOwnerIDs(ids ...int) *UserUpdate {
-	uu.mutation.AddOwnerIDs(ids...)
-	return uu
-}
-
-// AddOwner adds the "owner" edges to the PasswordToken entity.
-func (uu *UserUpdate) AddOwner(p ...*PasswordToken) *UserUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
-	}
-	return uu.AddOwnerIDs(ids...)
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
@@ -165,27 +135,6 @@ func (uu *UserUpdate) AddLastSeenAt(l ...*LastSeenOnline) *UserUpdate {
 // Mutation returns the UserMutation object of the builder.
 func (uu *UserUpdate) Mutation() *UserMutation {
 	return uu.mutation
-}
-
-// ClearOwner clears all "owner" edges to the PasswordToken entity.
-func (uu *UserUpdate) ClearOwner() *UserUpdate {
-	uu.mutation.ClearOwner()
-	return uu
-}
-
-// RemoveOwnerIDs removes the "owner" edge to PasswordToken entities by IDs.
-func (uu *UserUpdate) RemoveOwnerIDs(ids ...int) *UserUpdate {
-	uu.mutation.RemoveOwnerIDs(ids...)
-	return uu
-}
-
-// RemoveOwner removes "owner" edges to PasswordToken entities.
-func (uu *UserUpdate) RemoveOwner(p ...*PasswordToken) *UserUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
-	}
-	return uu.RemoveOwnerIDs(ids...)
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
@@ -301,59 +250,11 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := uu.mutation.Password(); ok {
 		_spec.SetField(user.FieldPassword, field.TypeString, value)
 	}
-	if value, ok := uu.mutation.Verified(); ok {
-		_spec.SetField(user.FieldVerified, field.TypeBool, value)
-	}
 	if value, ok := uu.mutation.LastOnline(); ok {
 		_spec.SetField(user.FieldLastOnline, field.TypeTime, value)
 	}
 	if uu.mutation.LastOnlineCleared() {
 		_spec.ClearField(user.FieldLastOnline, field.TypeTime)
-	}
-	if uu.mutation.OwnerCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := uu.mutation.RemovedOwnerIDs(); len(nodes) > 0 && !uu.mutation.OwnerCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := uu.mutation.OwnerIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	if uu.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -497,20 +398,6 @@ func (uuo *UserUpdateOne) SetNillablePassword(s *string) *UserUpdateOne {
 	return uuo
 }
 
-// SetVerified sets the "verified" field.
-func (uuo *UserUpdateOne) SetVerified(b bool) *UserUpdateOne {
-	uuo.mutation.SetVerified(b)
-	return uuo
-}
-
-// SetNillableVerified sets the "verified" field if the given value is not nil.
-func (uuo *UserUpdateOne) SetNillableVerified(b *bool) *UserUpdateOne {
-	if b != nil {
-		uuo.SetVerified(*b)
-	}
-	return uuo
-}
-
 // SetLastOnline sets the "last_online" field.
 func (uuo *UserUpdateOne) SetLastOnline(t time.Time) *UserUpdateOne {
 	uuo.mutation.SetLastOnline(t)
@@ -529,21 +416,6 @@ func (uuo *UserUpdateOne) SetNillableLastOnline(t *time.Time) *UserUpdateOne {
 func (uuo *UserUpdateOne) ClearLastOnline() *UserUpdateOne {
 	uuo.mutation.ClearLastOnline()
 	return uuo
-}
-
-// AddOwnerIDs adds the "owner" edge to the PasswordToken entity by IDs.
-func (uuo *UserUpdateOne) AddOwnerIDs(ids ...int) *UserUpdateOne {
-	uuo.mutation.AddOwnerIDs(ids...)
-	return uuo
-}
-
-// AddOwner adds the "owner" edges to the PasswordToken entity.
-func (uuo *UserUpdateOne) AddOwner(p ...*PasswordToken) *UserUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
-	}
-	return uuo.AddOwnerIDs(ids...)
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
@@ -583,27 +455,6 @@ func (uuo *UserUpdateOne) AddLastSeenAt(l ...*LastSeenOnline) *UserUpdateOne {
 // Mutation returns the UserMutation object of the builder.
 func (uuo *UserUpdateOne) Mutation() *UserMutation {
 	return uuo.mutation
-}
-
-// ClearOwner clears all "owner" edges to the PasswordToken entity.
-func (uuo *UserUpdateOne) ClearOwner() *UserUpdateOne {
-	uuo.mutation.ClearOwner()
-	return uuo
-}
-
-// RemoveOwnerIDs removes the "owner" edge to PasswordToken entities by IDs.
-func (uuo *UserUpdateOne) RemoveOwnerIDs(ids ...int) *UserUpdateOne {
-	uuo.mutation.RemoveOwnerIDs(ids...)
-	return uuo
-}
-
-// RemoveOwner removes "owner" edges to PasswordToken entities.
-func (uuo *UserUpdateOne) RemoveOwner(p ...*PasswordToken) *UserUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
-	}
-	return uuo.RemoveOwnerIDs(ids...)
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
@@ -749,59 +600,11 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	if value, ok := uuo.mutation.Password(); ok {
 		_spec.SetField(user.FieldPassword, field.TypeString, value)
 	}
-	if value, ok := uuo.mutation.Verified(); ok {
-		_spec.SetField(user.FieldVerified, field.TypeBool, value)
-	}
 	if value, ok := uuo.mutation.LastOnline(); ok {
 		_spec.SetField(user.FieldLastOnline, field.TypeTime, value)
 	}
 	if uuo.mutation.LastOnlineCleared() {
 		_spec.ClearField(user.FieldLastOnline, field.TypeTime)
-	}
-	if uuo.mutation.OwnerCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := uuo.mutation.RemovedOwnerIDs(); len(nodes) > 0 && !uuo.mutation.OwnerCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := uuo.mutation.OwnerIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: true,
-			Table:   user.OwnerTable,
-			Columns: []string{user.OwnerColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(passwordtoken.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	if uuo.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{

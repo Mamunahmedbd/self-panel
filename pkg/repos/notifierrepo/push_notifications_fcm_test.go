@@ -20,7 +20,7 @@ func TestFcmHasPermissionsLeftAndTokenIsRegistered(t *testing.T) {
 	defer client.Close()
 
 	// Create user and profile.
-	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password")
 	subscriptionsRepo := subscriptions.NewSubscriptionsRepo(client, 10, 10)
 	profileRepo := profilerepo.NewProfileRepo(client, storagerepo.NewMockStorageClient(), subscriptionsRepo)
 
@@ -35,7 +35,7 @@ func TestFcmHasPermissionsLeftAndTokenIsRegistered(t *testing.T) {
 	assert.NoError(t, err)
 	_, err = client.NotificationPermission.Create().
 		SetProfileID(profile1.ID).
-		SetPermission(notificationpermission.Permission(domain.NotificationPermissionDailyReminder.Value)).
+		SetPermission(notificationpermission.Permission(domain.NotificationPermissionNewFriendActivity.Value)).
 		SetPlatform(notificationpermission.Platform(domain.NotificationPlatformPush.Value)).
 		SetToken(uuidToken.String()).
 		Save(ctx)

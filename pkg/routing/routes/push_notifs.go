@@ -279,9 +279,7 @@ func (c *outgoingNotifications) DeleteEmailSubscription(ctx echo.Context) error 
 
 	var notifName string
 
-	if *notifPermission == domain.NotificationPermissionDailyReminder {
-		notifName = "daily updates"
-	} else if *notifPermission == domain.NotificationPermissionNewFriendActivity {
+	if *notifPermission == domain.NotificationPermissionNewFriendActivity {
 		notifName = "partner activity"
 	} else {
 		log.Error().
@@ -360,7 +358,6 @@ func (c *outgoingNotifications) createNotificationsPage(ctx echo.Context, profil
 
 	notificationPermissions := types.NotificationPermissionsData{
 		VapidPublicKey:                c.ctr.Container.Config.App.VapidPublicKey,
-		PermissionDailyNotif:          permissions[domain.NotificationPermissionDailyReminder],
 		PermissionPartnerActivity:     permissions[domain.NotificationPermissionNewFriendActivity],
 		SubscribedEndpoints:           subscribedEndpoints,
 		PhoneSubscriptionEnabled:      profileEnt.PhoneNumberE164 != "" && profileEnt.PhoneVerified,

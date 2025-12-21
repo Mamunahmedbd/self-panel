@@ -18,19 +18,9 @@ app:
   # Change this on any live environments
   encryptionKey: "?E(G+KbPeShVmYq3t6w9z$C&F)J@McQf"
   timeout: "20s"
-  passwordToken:
-    expiration: "60m"
-    length: 64
-  emailVerificationTokenExpiration: "12h"
-  pageSize: 3
   operationalConstants:
     newsletterSignupEnabled: true
-    userSignupEnabled: true
-    userSignupEnabledOnLandingPage: true
-    questionInteractionValidLifetimeInDays: 7
-    numMinSharedAnswersForPrivateMessages: 3
     notifEmojiDebounceTime: "10m"
-    notifyNewAnswerFromUnansweredQuestionDebounceTime: "12h"
     minAnswerLen: 3
     paymentsEnabled: false
     proTrialTimespanInDays: 15
@@ -38,7 +28,6 @@ app:
     productProPrice: 1.49
     paymentFailedGracePeriodInDays: 3
     deleteStaleNotificationAfterDays: 15
-    maxLikedQuestionHistoryFreePlan: 3
   publicStripeKey: "pk_..."
   privateStripeKey: "sk_..."
   stripeWebhookSecret: "whsec_..."

@@ -96,13 +96,7 @@ type (
 		Environment   environment
 		EncryptionKey string
 		Timeout       time.Duration
-		PasswordToken struct {
-			Expiration time.Duration
-			Length     int
-		}
-		EmailVerificationTokenExpiration time.Duration
 		OperationalConstants             OperationalConstants
-		PageSize                         int
 		VapidPublicKey                   string
 		VapidPrivateKey                  string
 		SentryDsn                        string
@@ -117,12 +111,7 @@ type (
 
 	OperationalConstants struct {
 		NewsletterSignupEnabled                           bool
-		UserSignupEnabled                                 bool
-		UserSignupEnabledOnLandingPage                    bool
-		QuestionInteractionValidLifetimeInDays            int
-		NumMinSharedAnswersForPrivateMessages             int
 		NotifEmojiDebounceTime                            time.Duration
-		NotifyNewAnswerFromUnansweredQuestionDebounceTime time.Duration
 		MinAnswerLen                                      int
 		PaymentsEnabled                                   bool
 		ProTrialTimespanInDays                            int
@@ -130,7 +119,6 @@ type (
 		ProductProPrice                                   float32
 		PaymentFailedGracePeriodInDays                    int
 		DeleteStaleNotificationAfterDays                  int
-		MaxLikedQuestionHistoryFreePlan                   int
 	}
 
 	// CacheConfig stores the cache configuration

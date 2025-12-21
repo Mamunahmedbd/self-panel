@@ -15,7 +15,7 @@ templ BottomNav(page *controller.Page) {
 		style="padding-bottom: env(safe-area-inset-bottom);"
 	>
 		<div
-			class={ "grid h-full max-w-lg mx-auto font-medium grid-cols-4", }
+			class={ "grid h-full max-w-lg mx-auto font-medium grid-cols-3", }
 			x-cloak
 			x-data="{ selected: null }"
 			if page.SelectedBottomNavbarItem.Value == "home" {
@@ -34,36 +34,6 @@ templ BottomNav(page *controller.Page) {
 			hx-select="#bottomNavbarContent"
 			hx-swap="outerHTML show:window:top"
 		>
-			<button
-				id="bottomNavbarHomefeedButton"
-				hx-get={ page.ToURL(routenames.RouteNameHomeFeed) }
-				type="button"
-				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-100 dark:hover:bg-gray-800 group rounded-xl m-2"
-				@click="selected = 'home';"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="w-7 h-7 group-hover:text-blue-600 dark:group-hover:text-blue-500"
-					:class="{'hidden': selected === 'home', 'block text-gray-500 dark:text-gray-400': selected !== 'home'}"
-				><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l-2 0l9 -9l9 9l-2 0"></path><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path></svg>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 20 20"
-					fill="currentColor"
-					class="w-7 h-7 group-hover:text-blue-600 dark:group-hover:text-blue-500"
-					:class="{'block text-blue-500 dark:text-blue-400': selected === 'home', 'hidden': selected !== 'home'}"
-				>
-					<path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd"></path>
-				</svg>
-			</button>
 			// Notifications button
 			<button
 				id="bottom-navbar-notifications-button"

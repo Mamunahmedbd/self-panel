@@ -16,8 +16,8 @@ func TestNotifications(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "Ba Babagaya", "ba@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
+	user2 := tests.CreateUser(ctx, client, "Ba Babagaya", "ba@gmail.com", "password")
 
 	// Create profiles
 	notificationsRepo := notifierrepo.NewNotificationStorageRepo(client)

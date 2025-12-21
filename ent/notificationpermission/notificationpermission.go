@@ -75,7 +75,6 @@ type Permission string
 
 // Permission values.
 const (
-	PermissionDailyReminder   Permission = "daily_reminder"
 	PermissionPartnerActivity Permission = "partner_activity"
 )
 
@@ -86,7 +85,7 @@ func (pe Permission) String() string {
 // PermissionValidator is a validator for the "permission" field enum values. It is called by the builders before save.
 func PermissionValidator(pe Permission) error {
 	switch pe {
-	case PermissionDailyReminder, PermissionPartnerActivity:
+	case PermissionPartnerActivity:
 		return nil
 	default:
 		return fmt.Errorf("notificationpermission: invalid enum value for permission field: %q", pe)

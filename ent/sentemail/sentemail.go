@@ -77,7 +77,6 @@ type Type string
 
 // Type values.
 const (
-	TypeDailyReminder   Type = "daily_reminder"
 	TypePartnerActivity Type = "partner_activity"
 )
 
@@ -88,7 +87,7 @@ func (_type Type) String() string {
 // TypeValidator is a validator for the "type" field enum values. It is called by the builders before save.
 func TypeValidator(_type Type) error {
 	switch _type {
-	case TypeDailyReminder, TypePartnerActivity:
+	case TypePartnerActivity:
 		return nil
 	default:
 		return fmt.Errorf("sentemail: invalid enum value for type field: %q", _type)

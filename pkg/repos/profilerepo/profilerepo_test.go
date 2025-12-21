@@ -31,8 +31,8 @@ func TestGetProfileByID(t *testing.T) {
 	defer client.Close()
 
 	// Create users.
-	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "User", "user2@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password")
+	user2 := tests.CreateUser(ctx, client, "User", "user2@example.com", "password")
 
 	profileRepo := profilerepo.NewProfileRepo(client, storagerepo.NewMockStorageClient(), nil)
 
@@ -64,9 +64,9 @@ func TestGetProfileFriends(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "Joanne Bandi", "joane@gmail.com", "password", true)
-	user3 := tests.CreateUser(ctx, client, "James Bond", "james007@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
+	user2 := tests.CreateUser(ctx, client, "Joanne Bandi", "joane@gmail.com", "password")
+	user3 := tests.CreateUser(ctx, client, "James Bond", "james007@gmail.com", "password")
 
 	// Create profiles
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
@@ -116,8 +116,8 @@ func TestLinkAndUnlinkProfilesAsFriends(t *testing.T) {
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
 
 	// Create two users and profiles
-	user1 := tests.CreateUser(ctx, client, "User1", "user1@example.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "User2", "user2@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "User1", "user1@example.com", "password")
+	user2 := tests.CreateUser(ctx, client, "User2", "user2@example.com", "password")
 
 	profile1, err := profileRepo.CreateProfile(
 		ctx, user1, "bio1",
@@ -256,7 +256,7 @@ func TestDeletePhoto(t *testing.T) {
 	mockStorage.
 		On("UploadFile", mock.Anything, mock.Anything, mock.Anything).Return(&filestorageObject2.ID, nil).Once()
 
-	user1 := tests.CreateUser(ctx, client, "TestUser1", "test1@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "TestUser1", "test1@example.com", "password")
 
 	profile1, err := profileRepo.CreateProfile(ctx, user1, "Test bio 1", time.Now().AddDate(-30, 0, 0), nil, nil)
 	assert.NoError(t, err)
@@ -346,7 +346,7 @@ func TestSetProfilePhoto(t *testing.T) {
 		Return(&filestorageObject.ID, nil).
 		Twice() // For thumbnail and preview
 
-	user1 := tests.CreateUser(ctx, client, "TestUser1", "test1@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "TestUser1", "test1@example.com", "password")
 
 	profile, err := profileRepo.CreateProfile(ctx, user1, "Test bio 1", time.Now().AddDate(-30, 0, 0), nil, nil)
 	assert.NoError(t, err)
@@ -373,10 +373,10 @@ func TestDeleteUserData(t *testing.T) {
 	defer client.Close()
 
 	// Create users.
-	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "User", "user2@example.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "User", "user1@example.com", "password")
+	user2 := tests.CreateUser(ctx, client, "User", "user2@example.com", "password")
 
-	user3 := tests.CreateUser(ctx, client, "James Bond", "james007@gmail.com", "password", true)
+	user3 := tests.CreateUser(ctx, client, "James Bond", "james007@gmail.com", "password")
 
 	// Create profiles for users with different genders.
 	profileRepo := profilerepo.NewProfileRepo(client, storagerepo.NewMockStorageClient(), nil)

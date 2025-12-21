@@ -122,7 +122,7 @@ func (c *login) Post(ctx echo.Context) error {
 		return c.ctr.Redirect(ctx, routeNames.RouteNamePreferences)
 
 	}
-	return c.ctr.Redirect(ctx, routeNames.RouteNameHomeFeed)
+	return c.ctr.Redirect(ctx, routeNames.RouteNameProfile)
 }
 
 // redirectAfterLogin redirects a now logged-in user to a previously requested page.

@@ -169,32 +169,13 @@ func (r *NotificationStorageRepo) MarkNotificationAsRead(
 			return err
 		}
 	}
-	notif, err := r.orm.Notification.Query().
-		Where(
-			notification.IDEQ(notificationID),
-		).
-		Only(ctx)
-	if err != nil {
-		return err
-	}
-
-	deletable := domain.DeleteOnceReadNotificationTypesMap[*domain.NotificationTypes.Parse(notif.Type.String())]
-	if deletable {
-		return r.orm.Notification.
-			DeleteOneID(notificationID).
-			Exec(ctx)
-	} else {
-		// Update the notification in the database
-		_, err := r.orm.Notification.
-			UpdateOneID(notificationID).
-			SetRead(true).
-			SetReadAt(time.Now().UTC()).
-			Save(ctx)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
+	// Update the notification in the database
+	_, err := r.orm.Notification.
+		UpdateOneID(notificationID).
+		SetRead(true).
+		SetReadAt(time.Now().UTC()).
+		Save(ctx)
+	return err
 }
 
 // MarkAllNotificationAsRead updates all notifications' read status to true for a given profile ID.

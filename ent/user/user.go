@@ -25,25 +25,14 @@ const (
 	FieldEmail = "email"
 	// FieldPassword holds the string denoting the password field in the database.
 	FieldPassword = "password"
-	// FieldVerified holds the string denoting the verified field in the database.
-	FieldVerified = "verified"
 	// FieldLastOnline holds the string denoting the last_online field in the database.
 	FieldLastOnline = "last_online"
-	// EdgeOwner holds the string denoting the owner edge name in mutations.
-	EdgeOwner = "owner"
 	// EdgeProfile holds the string denoting the profile edge name in mutations.
 	EdgeProfile = "profile"
 	// EdgeLastSeenAt holds the string denoting the last_seen_at edge name in mutations.
 	EdgeLastSeenAt = "last_seen_at"
 	// Table holds the table name of the user in the database.
 	Table = "users"
-	// OwnerTable is the table that holds the owner relation/edge.
-	OwnerTable = "password_tokens"
-	// OwnerInverseTable is the table name for the PasswordToken entity.
-	// It exists in this package in order to avoid circular dependency with the "passwordtoken" package.
-	OwnerInverseTable = "password_tokens"
-	// OwnerColumn is the table column denoting the owner relation/edge.
-	OwnerColumn = "password_token_user"
 	// ProfileTable is the table that holds the profile relation/edge.
 	ProfileTable = "profiles"
 	// ProfileInverseTable is the table name for the Profile entity.
@@ -68,7 +57,6 @@ var Columns = []string{
 	FieldName,
 	FieldEmail,
 	FieldPassword,
-	FieldVerified,
 	FieldLastOnline,
 }
 
@@ -101,8 +89,6 @@ var (
 	EmailValidator func(string) error
 	// PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	PasswordValidator func(string) error
-	// DefaultVerified holds the default value on creation for the "verified" field.
-	DefaultVerified bool
 )
 
 // OrderOption defines the ordering options for the User queries.
@@ -138,28 +124,9 @@ func ByPassword(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldPassword, opts...).ToFunc()
 }
 
-// ByVerified orders the results by the verified field.
-func ByVerified(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldVerified, opts...).ToFunc()
-}
-
 // ByLastOnline orders the results by the last_online field.
 func ByLastOnline(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldLastOnline, opts...).ToFunc()
-}
-
-// ByOwnerCount orders the results by owner count.
-func ByOwnerCount(opts ...sql.OrderTermOption) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborsCount(s, newOwnerStep(), opts...)
-	}
-}
-
-// ByOwner orders the results by owner terms.
-func ByOwner(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newOwnerStep(), append([]sql.OrderTerm{term}, terms...)...)
-	}
 }
 
 // ByProfileField orders the results by profile field.
@@ -181,13 +148,6 @@ func ByLastSeenAt(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	return func(s *sql.Selector) {
 		sqlgraph.OrderByNeighborTerms(s, newLastSeenAtStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
-}
-func newOwnerStep() *sqlgraph.Step {
-	return sqlgraph.NewStep(
-		sqlgraph.From(Table, FieldID),
-		sqlgraph.To(OwnerInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.O2M, true, OwnerTable, OwnerColumn),
-	)
 }
 func newProfileStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(

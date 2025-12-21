@@ -82,7 +82,6 @@ func SeedUsers(cfg *config.Config, client *ent.Client, useS3 bool) error {
 			SetName(name).
 			SetEmail(email).
 			SetPassword(password).
-			SetVerified(true).
 			Save(ctx)
 
 		if err != nil {

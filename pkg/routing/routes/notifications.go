@@ -98,7 +98,8 @@ func (n *normalNotifications) Get(ctx echo.Context) error {
 	usr := ctx.Get(context.AuthenticatedUserKey).(*ent.User)
 	profile := usr.QueryProfile().FirstX(ctx.Request().Context())
 
-	notifications, err := n.notifierRepo.GetNotifications(ctx.Request().Context(), profile.ID, false, timestamp, &n.ctr.Container.Config.App.PageSize)
+	pageSize := 20
+	notifications, err := n.notifierRepo.GetNotifications(ctx.Request().Context(), profile.ID, false, timestamp, &pageSize)
 	if err != nil {
 		return err
 	}

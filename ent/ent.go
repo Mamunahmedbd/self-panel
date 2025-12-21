@@ -25,7 +25,6 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
-	"github.com/mikestefanello/pagoda/ent/passwordtoken"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
@@ -104,7 +103,6 @@ func checkColumn(table, column string) error {
 			notification.Table:           notification.ValidColumn,
 			notificationpermission.Table: notificationpermission.ValidColumn,
 			notificationtime.Table:       notificationtime.ValidColumn,
-			passwordtoken.Table:          passwordtoken.ValidColumn,
 			phoneverificationcode.Table:  phoneverificationcode.ValidColumn,
 			profile.Table:                profile.ValidColumn,
 			pwapushsubscription.Table:    pwapushsubscription.ValidColumn,

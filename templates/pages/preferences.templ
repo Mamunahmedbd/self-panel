@@ -29,9 +29,6 @@ templ Settings(page *controller.Page) {
 				@subscription(page, data.IsProfileFullyOnboarded, data.ActiveSubscriptionPlan, data.MonthlySybscriptionExpiration, data.IsTrial)
 			}
 			// TODO: not allowing this new phone flow for now
-			if data.IsProfileFullyOnboarded {
-				@deleteAccountAndData(page)
-			}
 			if !data.IsProfileFullyOnboarded {
 				@finishOnboarding(page)
 			} else {
@@ -43,7 +40,7 @@ templ Settings(page *controller.Page) {
 
 templ firstWelcome() {
 	<h1
-		class="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block 
+		class="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block
 		text-transparent bg-clip-text text-3xl md:text-4xl font-semibold mb-4"
 	>
 		Welcome! Let's onboard you!
@@ -55,7 +52,7 @@ templ DisplayName(page *controller.Page) {
 		id="displayName"
 	>
 		<h1 class="text-3xl md:text-4xl font-semibold mb-4 pt-10 md:pt-14 lg:pt-16 mb-4">
-			👤 Display Name 
+			👤 Display Name
 		</h1>
 		if form, ok := page.Form.(*types.DisplayNameForm); ok {
 			<div
@@ -90,7 +87,7 @@ templ DisplayName(page *controller.Page) {
 
 templ NotificationPermissions(page *controller.Page, data types.NotificationPermissionsData) {
 	<h1 class="text-3xl md:text-4xl font-semibold mb-4 pt-10 md:pt-14 lg:pt-16 mb-4">
-		🔔 Notifications 
+		🔔 Notifications
 	</h1>
 	<div class="text-base my-3">
 		We will only notify you about the essential, no spamming. This can be turned on or off at any time.
@@ -115,7 +112,7 @@ templ NotificationPermissions(page *controller.Page, data types.NotificationPerm
 			>
 				<ul class="w-full space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
 					<li>
-						Your partner answered a new question 
+						Your partner answered a new question
 					</li>
 					<li>
 						Your partner reacted to one of your answers
@@ -132,10 +129,9 @@ templ NotificationPermissions(page *controller.Page, data types.NotificationPerm
 script initPermissions(componentID string, d types.NotificationPermissionsData) {
 	console.log(d)
 	renderSvelteComponent("NotificationPermissions", componentID, {
-		"permissionDailyNotif": d.PermissionDailyNotif,
 		"permissionPartnerActivity": d.PermissionPartnerActivity,
 		"vapidPublicKey": d.VapidPublicKey,
-		
+
 		"addPushSubscriptionEndpoint": d.AddPushSubscriptionEndpoint,
 		"deletePushSubscriptionEndpoint": d.DeletePushSubscriptionEndpoint,
 
@@ -144,10 +140,10 @@ script initPermissions(componentID string, d types.NotificationPermissionsData) 
 
 		"addEmailSubscriptionEndpoint": d.AddEmailSubscriptionEndpoint,
 		"deleteEmailSubscriptionEndpoint": d.DeleteEmailSubscriptionEndpoint,
-		
+
 		"addSmsSubscriptionEndpoint": d.AddSmsSubscriptionEndpoint,
 		"deleteSmsSubscriptionEndpoint": d.DeleteSmsSubscriptionEndpoint,
-		
+
 		"subscribedEndpoints": d.SubscribedEndpoints,
 		"notificationTypeQueryParamKey" : d.NotificationTypeQueryParamKey,
 		"phoneSubscriptionEnabled": d.PhoneSubscriptionEnabled,
@@ -161,9 +157,9 @@ templ subscription(page *controller.Page, fullyOnboarded bool, plan domain.Produ
 		💳 Subscription
 	</h1>
 	<div class="text-base my-3">
-		You are currently on the 
+		You are currently on the
 		<span
-			class="font-bold bg-gradient-to-r dark:from-green-300 dark:to-yellow-300 
+			class="font-bold bg-gradient-to-r dark:from-green-300 dark:to-yellow-300
 		from-fuchsia-500 to-cyan-500 inline-block text-transparent bg-clip-text"
 		>
 			if isTrial {
@@ -363,25 +359,6 @@ script initNotificationPermissions(componentID, vapidPublicKey, addSubscriptionE
 	});
 }
 
-templ deleteAccountAndData(page *controller.Page) {
-	<h1 class="text-3xl md:text-4xl font-semibold mb-4 pt-10 md:pt-14 lg:pt-16 mb-4">
-		🦈 Dangerous Section 
-	</h1>
-	<div
-		class="flex flex-col space-y-4"
-	>
-		<button
-			hx-get={ page.ToURL(routenames.RouteNameDeleteAccountPage) }
-			hx-target="#main-content"
-			hx-select="#main-content"
-			hx-indicator="next #page-loading"
-			hx-swap="outerHTML show:window:top"
-			hx-push-url="true"
-			type="button"
-			class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-		>Delete my account and data</button>
-	</div>
-}
 
 templ AboutMe(page *controller.Page) {
 	<div id="aboutMe">
@@ -399,7 +376,7 @@ templ AboutMe(page *controller.Page) {
 						id="bio"
 						name="bio"
 						rows="4"
-						class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 
+						class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
 				dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
 						placeholder="Share something interesting about yourself...for example, what’s one thing you’re passionate about and why?"
 						hx-post={ page.ToURL(routenames.RouteNameUpdateBio) + "?csrf=" + page.CSRF }
@@ -416,7 +393,7 @@ templ AboutMe(page *controller.Page) {
 						id="bio"
 						name="bio"
 						rows="4"
-						class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 
+						class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
 				dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
 						placeholder="Share something interesting about yourself...for example, what’s one thing you’re passionate about and why?"
 					></textarea>
@@ -434,8 +411,8 @@ templ birthdate(page *controller.Page) {
 				type="date"
 				id="birthdate"
 				name="birthdate"
-				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-				block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
+				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+				block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
 				dark:focus:border-blue-500 w-full cursor-not-allowed"
 				placeholder="Select Date.."
 				value={ data.SelfBirthdate }
@@ -472,7 +449,7 @@ templ finishOnboarding(page *controller.Page) {
 		<!-- We need to load the full page because menu options will change once the profile is fully onboarded-->
 		<a href={ templ.URL(page.ToURL(routenames.RouteNameFinishOnboarding)) }>
 			<button
-				class="bg-gradient-to-r from-fuchsia-500 via-red-600 to-orange-400 
+				class="bg-gradient-to-r from-fuchsia-500 via-red-600 to-orange-400
 			hover:animate-pulse text-white py-2 px-4 rounded-lg inline-flex items-center"
 				aria-label="Finish onboarding"
 			>

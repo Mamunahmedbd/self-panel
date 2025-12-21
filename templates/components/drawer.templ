@@ -7,7 +7,7 @@ import (
 
 templ Drawer(page *controller.Page, showTopBar bool) {
 	<div
-		x-data="{ 
+		x-data="{
 			isOpen: window.innerWidth >= 1024,
 			conditionalToggle() {
 				if (window.innerWidth < 1024) {
@@ -46,7 +46,7 @@ templ drawerButtonToggle(page *controller.Page) {
 			class="text-white hover:text-blue-700 focus:outline-none"
 			type="button"
 			aria-controls="drawer"
-			style="background: radial-gradient(circle, rgba(0, 0, 0, 0.75) 20%, transparent 70%); 
+			style="background: radial-gradient(circle, rgba(0, 0, 0, 0.75) 20%, transparent 70%);
 			padding: 5px; border-radius: 50%; display: flex; justify-content: center; align-items: center;"
 		>
 			<svg
@@ -84,8 +84,8 @@ templ drawerButtonToggle(page *controller.Page) {
 templ drawerPanel(page *controller.Page, showTopBar bool) {
 	<div
 		id="drawer"
-		class="fixed top-0 lg:top-auto left-0 lg:left-auto z-50 h-screen p-4 overflow-y-auto 
-    	-translate-x-full lg:translate-x-0 transform transition duration-150 
+		class="fixed top-0 lg:top-auto left-0 lg:left-auto z-50 h-screen p-4 overflow-y-auto
+    	-translate-x-full lg:translate-x-0 transform transition duration-150
 		bg-primary text-primary-content w-64"
 		:class="{'-translate-x-full opacity-0':isOpen === false, 'translate-x-0 opacity-100': isOpen === true}"
 		aria-labelledby="drawer-label"
@@ -105,13 +105,7 @@ templ drawerPanel(page *controller.Page, showTopBar bool) {
 templ drawerMenu(page *controller.Page) {
 	<div class="py-4 overflow-y-auto">
 		<ul class="space-y-2 font-medium cursor-pointer">
-			@dropdownListEntryWithIcon(introIcon(), page.ToURL("documentation"), "Introduction")
-			@dropdownEntry(quickstartIcon(), "Quickstart") {
-				@dropdownListEntry("", "Getting Started")
-				@dropdownListEntry("", "Guided Tour")
-			}
 			@dropdownEntry(bookIcon(), "Guides") {
-				@dropdownListEntry(page.ToURL(routenames.RouteNameDocsArchitecture), "Architecture")
 				@dropdownListEntry("", "Authentication")
 				@dropdownListEntry("", "Authorization")
 				@dropdownListEntry("", "Payments")
@@ -144,7 +138,7 @@ templ drawerTopBar(page *controller.Page) {
 	<a
 		if page.IsAuth {
 			hx-swap="outerHTML show:window:top"
-			href={ templ.URL(page.ToURL(routenames.RouteNameHomeFeed)) }
+			href={ templ.URL(page.ToURL(routenames.RouteNameProfile)) }
 		} else {
 			href={ templ.URL(page.ToURL(routenames.RouteNameLandingPage)) }
 		}
@@ -164,7 +158,7 @@ templ drawerTopBar(page *controller.Page) {
 	<button
 		type="button"
 		aria-controls="drawer"
-		class="hover-brightness bg-transparent rounded-lg text-sm 
+		class="hover-brightness bg-transparent rounded-lg text-sm
         w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center lg:hidden
         transition duration-200"
 		@click="conditionalToggle()"
@@ -198,16 +192,6 @@ templ overlay() {
 
 templ SidebarSharedFields(page *controller.Page) {
 	<li>
-		<a
-			hx-get={ page.ToURL(routenames.RouteNameHomeFeed) }
-			@click="conditionalToggle()"
-			class="flex items-center p-2 rounded-lg hover-brightness hover:dark:bg-gray-700 group cursor-pointer"
-		>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-				<path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd"></path>
-			</svg>
-			<span class="ms-3">Feed</span>
-		</a>
 	</li>
 	<li>
 		<a
@@ -243,7 +227,7 @@ templ dropdownEntry(icon templ.Component, menuTitle string) {
 			type="button"
 			class="flex items-center w-full p-2 text-base transition duration-75 rounded-lg hover-brightness group"
 			aria-controls="dropdown-quickstart"
-			_="on click 
+			_="on click
 						toggle .hidden on the next <ul/>
 						then toggle .rotate-90 on .arrow-icon in me"
 		>

@@ -4,7 +4,6 @@ import "html/template"
 
 type LandingPage struct {
 	AppName           string
-	UserSignupEnabled bool
 
 	Title      string
 	Subtitle   string

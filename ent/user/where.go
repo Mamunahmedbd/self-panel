@@ -80,11 +80,6 @@ func Password(v string) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldPassword, v))
 }
 
-// Verified applies equality check predicate on the "verified" field. It's identical to VerifiedEQ.
-func Verified(v bool) predicate.User {
-	return predicate.User(sql.FieldEQ(FieldVerified, v))
-}
-
 // LastOnline applies equality check predicate on the "last_online" field. It's identical to LastOnlineEQ.
 func LastOnline(v time.Time) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldLastOnline, v))
@@ -365,16 +360,6 @@ func PasswordContainsFold(v string) predicate.User {
 	return predicate.User(sql.FieldContainsFold(FieldPassword, v))
 }
 
-// VerifiedEQ applies the EQ predicate on the "verified" field.
-func VerifiedEQ(v bool) predicate.User {
-	return predicate.User(sql.FieldEQ(FieldVerified, v))
-}
-
-// VerifiedNEQ applies the NEQ predicate on the "verified" field.
-func VerifiedNEQ(v bool) predicate.User {
-	return predicate.User(sql.FieldNEQ(FieldVerified, v))
-}
-
 // LastOnlineEQ applies the EQ predicate on the "last_online" field.
 func LastOnlineEQ(v time.Time) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldLastOnline, v))
@@ -423,29 +408,6 @@ func LastOnlineIsNil() predicate.User {
 // LastOnlineNotNil applies the NotNil predicate on the "last_online" field.
 func LastOnlineNotNil() predicate.User {
 	return predicate.User(sql.FieldNotNull(FieldLastOnline))
-}
-
-// HasOwner applies the HasEdge predicate on the "owner" edge.
-func HasOwner() predicate.User {
-	return predicate.User(func(s *sql.Selector) {
-		step := sqlgraph.NewStep(
-			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, true, OwnerTable, OwnerColumn),
-		)
-		sqlgraph.HasNeighbors(s, step)
-	})
-}
-
-// HasOwnerWith applies the HasEdge predicate on the "owner" edge with a given conditions (other predicates).
-func HasOwnerWith(preds ...predicate.PasswordToken) predicate.User {
-	return predicate.User(func(s *sql.Selector) {
-		step := newOwnerStep()
-		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
-			for _, p := range preds {
-				p(s)
-			}
-		})
-	})
 }
 
 // HasProfile applies the HasEdge predicate on the "profile" edge.

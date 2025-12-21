@@ -22,7 +22,6 @@ import (
 	"github.com/mikestefanello/pagoda/pkg/types"
 	"github.com/mikestefanello/pagoda/templates/emails"
 	"github.com/mikestefanello/pagoda/templates/layouts"
-	"github.com/rs/zerolog/log"
 )
 
 type UpdateEmailSender struct {
@@ -39,12 +38,8 @@ func NewUpdateEmailSender(orm *ent.Client, container *services.Container) *Updat
 }
 
 // GetAudience returns the audience who should receive update emails.
-// Partner and daily updates are always given together, such that if someone has partner notifs
-// turned on, if they receive an email, it will contain a daily update.
 // How many days in a row a person with "partner notifs" turned on will receive an email is determined
 // by the function that consumes GetAudience. The ideais to only send them an email if they have a new notif in the last n days.
-// On the other hand, if someone has daily update turned on, they will receive an email EVERY day,
-// which contains new questions, as well as any partner updates.
 func (e *UpdateEmailSender) GetAudience(ctx context.Context) ([]int, error) {
 
 	oneDayAgo := time.Now().Add(-24 * time.Hour)
@@ -55,39 +50,17 @@ func (e *UpdateEmailSender) GetAudience(ctx context.Context) ([]int, error) {
 			sentemail.And(
 				sentemail.CreatedAtGTE(oneDayAgo),
 				sentemail.Or(
-					sentemail.TypeEQ(sentemail.TypeDailyReminder),
 					sentemail.TypeEQ(sentemail.TypePartnerActivity),
 				),
 			),
 		),
 	)
 
-	// Get all users who gave permission for daily updates and partner updates
-	profilesWithDailyUpdates, err := e.orm.Profile.Query().
-		Where(
-			profile.HasNotificationPermissionsWith(
-				notificationpermission.PermissionEQ(notificationpermission.Permission(domain.NotificationPermissionDailyReminder.Value)),
-			),
-			alreadySentEmailFilter,
-		).
-		Select(profile.FieldID).
-		All(ctx)
-
-	if err != nil {
-		return nil, err
-	}
-
 	// Get all users who gave permission for partner updates
 	profilesWithOnlyPartnerUpdates, err := e.orm.Profile.Query().
 		Where(
 			profile.HasNotificationPermissionsWith(
 				notificationpermission.PermissionEQ(notificationpermission.Permission(domain.NotificationPermissionNewFriendActivity.Value)),
-			),
-			// No need to get those with daily permissions, as they will fall under the profilesWithDailyUpdatesQuery catchment.
-			profile.Not(
-				profile.HasNotificationPermissionsWith(
-					notificationpermission.PermissionEQ(notificationpermission.Permission(domain.NotificationPermissionDailyReminder.Value)),
-				),
 			),
 			// Unread notifications of the below type qualify as "partner updates".
 			profile.HasNotificationsWith(
@@ -107,23 +80,11 @@ func (e *UpdateEmailSender) GetAudience(ctx context.Context) ([]int, error) {
 
 	profileIDs := mapset.NewSet[int]()
 
-	for _, profile := range profilesWithDailyUpdates {
-		profileIDs.Add(profile.ID)
-	}
-
 	for _, profile := range profilesWithOnlyPartnerUpdates {
 		profileIDs.Add(profile.ID)
 	}
 
 	profileIDsSlice := profileIDs.ToSlice()
-
-	if len(profileIDsSlice) != (len(profilesWithDailyUpdates) + len(profilesWithOnlyPartnerUpdates)) {
-		log.Error().
-			Int("len(profileIDsSlice)", len(profileIDsSlice)).
-			Int("len(profilesWithDailyUpdates)", len(profilesWithDailyUpdates)).
-			Int("len(profilesWithOnlyPartnerUpdates)", len(profilesWithOnlyPartnerUpdates)).
-			Msg("there is an error in the queries to get the daily updates as the amounts do not match")
-	}
 
 	return profileIDsSlice, nil
 }
@@ -176,8 +137,6 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 
 	if len(questionsAnswered) > 0 && partnerUpdatePermissionToken == "" {
 		return errors.New("partner update permission token missing")
-	} else if len(questionsNotAnswered) > 0 && dailyUpdatePermissionToken == "" {
-		return errors.New("daily update permission token missing")
 	}
 
 	title := "New questions to answer!"
@@ -220,10 +179,6 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 	echoCtx := ech.NewContext(req, rec)
 
 	url := e.container.Web.Reverse(routenames.RouteNameDeleteEmailSubscriptionWithToken,
-		domain.NotificationPermissionDailyReminder.Value, dailyUpdatePermissionToken)
-	unsubscribeDailyUpdatesLink := fmt.Sprintf("%s%s", e.container.Config.HTTP.Domain, url)
-
-	url = e.container.Web.Reverse(routenames.RouteNameDeleteEmailSubscriptionWithToken,
 		domain.NotificationPermissionNewFriendActivity.Value, partnerUpdatePermissionToken)
 	unsubscribePartnerActivityLink := fmt.Sprintf("%s%s", e.container.Config.HTTP.Domain, url)
 
@@ -240,7 +195,6 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 		NumQuestionsAnsweredByFriendButNotSelf:   len(questionsAnswered),
 		QuestionsAnsweredByFriendButNotSelf:      questionsAnswered,
 		QuestionsNotAnsweredInSocialCircle:       questionsNotAnswered,
-		UnsubscribeDailyUpdatesLink:              unsubscribeDailyUpdatesLink,
 		UnsubscribePartnerActivityLink:           unsubscribePartnerActivityLink,
 	}
 
@@ -255,10 +209,7 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 		return err
 	}
 
-	emailType := domain.NotificationPermissionDailyReminder
-	if len(questionsAnswered) > 0 {
-		emailType = domain.NotificationPermissionNewFriendActivity
-	}
+	emailType := domain.NotificationPermissionNewFriendActivity
 	_, err = e.orm.SentEmail.Create().
 		SetProfileID(profileID).
 		SetType(sentemail.Type(emailType.Value)).

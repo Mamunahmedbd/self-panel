@@ -26,7 +26,7 @@ func TestGetCurrentlyActiveProduct(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
 
 	// Create pofilesr
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
@@ -94,8 +94,8 @@ func TestDeactivateExpiredSubscriptions(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
+	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password")
 
 	// Create pofilesr
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
@@ -150,7 +150,7 @@ func TestStripeCustomerIDs(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
 
 	// Create pofilesr
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
@@ -175,8 +175,8 @@ func TestCancelWithGracePeriod(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
+	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password")
 
 	// Create pofilesr
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)
@@ -263,8 +263,8 @@ func TestCancelOrRenew(t *testing.T) {
 	defer client.Close()
 
 	// Create users
-	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password", true)
-	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password", true)
+	user1 := tests.CreateUser(ctx, client, "Jo Bandi", "jo@gmail.com", "password")
+	user2 := tests.CreateUser(ctx, client, "Boris Yelstin", "boris@gmail.com", "password")
 
 	// Create pofilesr
 	profileRepo := profilerepo.NewProfileRepo(client, nil, nil)

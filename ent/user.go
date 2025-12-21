@@ -28,8 +28,6 @@ type User struct {
 	Email string `json:"email,omitempty"`
 	// Password holds the value of the "password" field.
 	Password string `json:"-"`
-	// Verified holds the value of the "verified" field.
-	Verified bool `json:"verified,omitempty"`
 	// LastOnline holds the value of the "last_online" field.
 	LastOnline time.Time `json:"last_online,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
@@ -40,24 +38,13 @@ type User struct {
 
 // UserEdges holds the relations/edges for other nodes in the graph.
 type UserEdges struct {
-	// Owner holds the value of the owner edge.
-	Owner []*PasswordToken `json:"owner,omitempty"`
 	// Profile holds the value of the profile edge.
 	Profile *Profile `json:"profile,omitempty"`
 	// LastSeenAt holds the value of the last_seen_at edge.
 	LastSeenAt []*LastSeenOnline `json:"last_seen_at,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [3]bool
-}
-
-// OwnerOrErr returns the Owner value or an error if the edge
-// was not loaded in eager-loading.
-func (e UserEdges) OwnerOrErr() ([]*PasswordToken, error) {
-	if e.loadedTypes[0] {
-		return e.Owner, nil
-	}
-	return nil, &NotLoadedError{edge: "owner"}
+	loadedTypes [2]bool
 }
 
 // ProfileOrErr returns the Profile value or an error if the edge
@@ -65,7 +52,7 @@ func (e UserEdges) OwnerOrErr() ([]*PasswordToken, error) {
 func (e UserEdges) ProfileOrErr() (*Profile, error) {
 	if e.Profile != nil {
 		return e.Profile, nil
-	} else if e.loadedTypes[1] {
+	} else if e.loadedTypes[0] {
 		return nil, &NotFoundError{label: profile.Label}
 	}
 	return nil, &NotLoadedError{edge: "profile"}
@@ -74,7 +61,7 @@ func (e UserEdges) ProfileOrErr() (*Profile, error) {
 // LastSeenAtOrErr returns the LastSeenAt value or an error if the edge
 // was not loaded in eager-loading.
 func (e UserEdges) LastSeenAtOrErr() ([]*LastSeenOnline, error) {
-	if e.loadedTypes[2] {
+	if e.loadedTypes[1] {
 		return e.LastSeenAt, nil
 	}
 	return nil, &NotLoadedError{edge: "last_seen_at"}
@@ -85,8 +72,6 @@ func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case user.FieldVerified:
-			values[i] = new(sql.NullBool)
 		case user.FieldID:
 			values[i] = new(sql.NullInt64)
 		case user.FieldName, user.FieldEmail, user.FieldPassword:
@@ -144,12 +129,6 @@ func (u *User) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				u.Password = value.String
 			}
-		case user.FieldVerified:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field verified", values[i])
-			} else if value.Valid {
-				u.Verified = value.Bool
-			}
 		case user.FieldLastOnline:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_online", values[i])
@@ -167,11 +146,6 @@ func (u *User) assignValues(columns []string, values []any) error {
 // This includes values selected through modifiers, order, etc.
 func (u *User) Value(name string) (ent.Value, error) {
 	return u.selectValues.Get(name)
-}
-
-// QueryOwner queries the "owner" edge of the User entity.
-func (u *User) QueryOwner() *PasswordTokenQuery {
-	return NewUserClient(u.config).QueryOwner(u)
 }
 
 // QueryProfile queries the "profile" edge of the User entity.
@@ -220,9 +194,6 @@ func (u *User) String() string {
 	builder.WriteString(u.Email)
 	builder.WriteString(", ")
 	builder.WriteString("password=<sensitive>")
-	builder.WriteString(", ")
-	builder.WriteString("verified=")
-	builder.WriteString(fmt.Sprintf("%v", u.Verified))
 	builder.WriteString(", ")
 	builder.WriteString("last_online=")
 	builder.WriteString(u.LastOnline.Format(time.ANSIC))
