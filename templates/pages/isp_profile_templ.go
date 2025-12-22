@@ -11,6 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import (
 	"fmt"
 	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
 	"github.com/mikestefanello/pagoda/pkg/types"
 	"time"
 )
@@ -43,20 +44,20 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(page.AuthClientName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 26, Col: 31}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 27, Col: 31}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "! 👋</h1><p class=\"text-gray-500 dark:text-gray-400 mt-2 font-medium text-lg\">Welcome back to your high-speed dashboard.</p></div><div class=\"flex items-center gap-4 bg-white/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex -space-x-2\"><div class=\"w-10 h-10 rounded-full bg-green-500/10 border-2 border-white dark:border-gray-900 flex items-center justify-center text-green-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l5 5L20 7\"></path></svg></div></div><div class=\"pr-5\"><p class=\"text-[9px] font-black uppercase text-gray-400 tracking-[0.2em] leading-none mb-1\">Status</p><div class=\"flex items-center gap-1.5\"><div class=\"w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse\"></div><p class=\"text-xs font-black text-green-500 uppercase\">Fiber Online</p></div></div></div></header><!-- Hero Stats Grid --><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\"><div class=\"relative group overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-blue-500/30 transition-all hover:scale-[1.03] hover:-translate-y-1 duration-500 ring-1 ring-white/20\"><div class=\"absolute -top-12 -right-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-all duration-700 group-hover:scale-125\"></div><div class=\"absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent\"></div><div class=\"relative z-10 flex flex-col h-full justify-between\"><div><p class=\"text-[10px] font-black uppercase text-blue-100/60 tracking-[0.2em] mb-3\">Available Credit</p><div class=\"flex items-baseline gap-2\"><span class=\"text-2xl font-black opacity-60\">৳</span><h2 class=\"text-5xl font-black tabular-nums tracking-tighter\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "! 👋</h1><p class=\"text-gray-500 dark:text-gray-400 mt-2 font-medium text-lg\">Welcome back to your high-speed dashboard.</p></div><div class=\"flex items-center gap-4 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex -space-x-2\"><div class=\"w-10 h-10 rounded-full bg-green-500/10 border-2 border-white dark:border-gray-900 flex items-center justify-center text-green-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l5 5L20 7\"></path></svg></div></div><div class=\"pr-5\"><p class=\"text-[9px] font-black uppercase text-gray-400 tracking-[0.2em] leading-none mb-1\">Status</p><div class=\"flex items-center gap-1.5\"><div class=\"w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse\"></div><p class=\"text-xs font-black text-green-500 uppercase\">Fiber Online</p></div></div></div></header><!-- Hero Stats Grid --><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\"><div class=\"relative group overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-blue-500/30 transition-all hover:scale-[1.03] hover:-translate-y-1 duration-500 ring-1 ring-white/20\"><div class=\"absolute -top-12 -right-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-all duration-700 group-hover:scale-125\"></div><div class=\"absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent\"></div><div class=\"relative z-10 flex flex-col h-full justify-between\"><div><p class=\"text-[10px] font-black uppercase text-blue-100/60 tracking-[0.2em] mb-3\">Available Credit</p><div class=\"flex items-baseline gap-2\"><span class=\"text-2xl font-black opacity-60\">৳</span><h2 class=\"text-5xl font-black tabular-nums tracking-tighter\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", data.Balance))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 57, Col: 104}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 58, Col: 104}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -67,15 +68,15 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL("balance.add"))
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameAddFunds))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 61, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 62, Col: 56}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"mt-10 w-full py-4.5 bg-white text-blue-700 hover:bg-blue-50 text-sm font-black rounded-2xl transition-all shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 flex items-center justify-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14\"></path><path d=\"M5 12h14\"></path></svg> Recharge Account</button></div></div><!-- Current Package Card --><div class=\"bg-white/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"></path><path d=\"m3.3 7 8.7 5 8.7-5\"></path><path d=\"M12 22V12\"></path></svg></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"mt-10 w-full py-4.5 bg-white text-blue-700 hover:bg-blue-50 text-sm font-black rounded-2xl transition-all shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 flex items-center justify-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14\"></path><path d=\"M5 12h14\"></path></svg> Recharge Account</button></div></div><!-- Current Package Card --><div class=\"bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"></path><path d=\"m3.3 7 8.7 5 8.7-5\"></path><path d=\"M12 22V12\"></path></svg></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -104,7 +105,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(data.PackageStatus)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 76, Col: 26}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 77, Col: 26}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -122,7 +123,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(data.CurrentPackage.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 81, Col: 132}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 82, Col: 132}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
@@ -135,7 +136,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f %s / Month", data.CurrentPackage.Price, data.CurrentPackage.Currency))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 82, Col: 142}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 83, Col: 142}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -156,15 +157,15 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var10 templ.SafeURL
-		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL("package.change")))
+		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameChangePlan)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 87, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 88, Col: 68}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\" class=\"flex items-center justify-center w-full py-4 bg-gray-50 dark:bg-gray-900/50 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-black rounded-2xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800 gap-2 overflow-hidden group/btn\">Upgrade Service <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"group-hover/btn:translate-x-1 transition-transform\"><path d=\"m9 18 6-6-6-6\"></path></svg></a></div></div><!-- Validity Card --><div class=\"bg-white/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5\"></path><path d=\"M16 2v4\"></path><path d=\"M8 2v4\"></path><path d=\"M3 10h5\"></path><path d=\"M17.5 17.5 16 16.3V14\"></path><circle cx=\"16\" cy=\"16\" r=\"6\"></circle></svg></div><span class=\"text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none\">Access Expiry</span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\" class=\"flex items-center justify-center w-full py-4 bg-gray-50 dark:bg-gray-900/50 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-black rounded-2xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800 gap-2 overflow-hidden group/btn\">Upgrade Service <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"group-hover/btn:translate-x-1 transition-transform\"><path d=\"m9 18 6-6-6-6\"></path></svg></a></div></div><!-- Validity Card --><div class=\"bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5\"></path><path d=\"M16 2v4\"></path><path d=\"M8 2v4\"></path><path d=\"M3 10h5\"></path><path d=\"M17.5 17.5 16 16.3V14\"></path><circle cx=\"16\" cy=\"16\" r=\"6\"></circle></svg></div><span class=\"text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none\">Access Expiry</span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -176,7 +177,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(data.ValidUntil.Format("02 Jan 2006"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 104, Col: 136}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 105, Col: 136}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -189,7 +190,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(getTimeRemaining(*data.ValidUntil))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 107, Col: 42}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 108, Col: 42}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -220,9 +221,9 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var13 string
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL("preferences"))
+		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNamePreferences))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 119, Col: 42}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 120, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
@@ -233,22 +234,22 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
-		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL("package.renew"))
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameRenewPackage))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 136, Col: 42}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 137, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\" class=\"flex flex-col items-center justify-center p-6 bg-blue-600 dark:bg-blue-500 text-white rounded-[2.5rem] transition-all hover:scale-[1.05] group relative overflow-hidden shadow-2xl active:scale-95\"><div class=\"absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity\"></div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"mb-2 transition-transform group-hover:rotate-12\"><path d=\"M12 2v10\"></path><path d=\"M18.4 4.6a10 10 0 1 1-12.8 0\"></path></svg> <span class=\"text-[10px] font-black uppercase tracking-[0.2em] leading-none\">Renew</span></button></div></div><!-- Main Content Grid --><div class=\"grid grid-cols-1 lg:grid-cols-12 gap-8\"><!-- Usage Analytics --><div class=\"lg:col-span-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10\"><div><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Your Connectivity</h3><p class=\"text-sm font-bold text-gray-400\">Real-time data consumption</p></div><div class=\"flex bg-gray-100 dark:bg-gray-900 p-1.5 rounded-[1.25rem]\"><button class=\"px-6 py-2 text-xs font-black bg-white dark:bg-gray-800 shadow-sm rounded-xl text-blue-600\">Daily</button> <button class=\"px-6 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors\">Weekly</button> <button class=\"px-6 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors\">Monthly</button></div></div><div class=\"grid grid-cols-1 sm:grid-cols-3 gap-6\"><div class=\"relative overflow-hidden p-8 bg-gradient-to-br from-blue-500/5 to-transparent dark:from-blue-500/10 dark:to-transparent rounded-[2rem] border border-blue-500/10 dark:border-blue-500/20 group hover:scale-[1.02] transition-all duration-500\"><div class=\"absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-all duration-700 group-hover:scale-125\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-600\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"></path><polyline points=\"7 10 12 15 17 10\"></polyline><line x1=\"12\" x2=\"12\" y1=\"3\" y2=\"15\"></line></svg></div><p class=\"text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4 leading-none\">Today</p><div class=\"flex items-baseline gap-1\"><p class=\"text-4xl font-black text-blue-600 dark:text-blue-400 tabular-nums tracking-tighter\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "\" class=\"flex flex-col items-center justify-center p-6 bg-blue-600 dark:bg-blue-500 text-white rounded-[2.5rem] transition-all hover:scale-[1.05] group relative overflow-hidden shadow-2xl active:scale-95\"><div class=\"absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity\"></div><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"mb-2 transition-transform group-hover:rotate-12\"><path d=\"M12 2v10\"></path><path d=\"M18.4 4.6a10 10 0 1 1-12.8 0\"></path></svg> <span class=\"text-[10px] font-black uppercase tracking-[0.2em] leading-none\">Renew</span></button></div></div><!-- Main Content Grid --><div class=\"grid grid-cols-1 lg:grid-cols-12 gap-8\"><!-- Usage Analytics --><div class=\"lg:col-span-8 bg-base-100/40 dark:bg-gray-800/80 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/10 ring-1 ring-black/10 dark:ring-white/10\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10\"><div><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Your Connectivity</h3><p class=\"text-sm font-bold text-gray-400\">Real-time data consumption</p></div><div class=\"flex bg-gray-100 dark:bg-gray-900 p-1.5 rounded-[1.25rem]\"><button class=\"px-6 py-2 text-xs font-black bg-white dark:bg-gray-800 shadow-sm rounded-xl text-blue-600\">Daily</button> <button class=\"px-6 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors\">Weekly</button> <button class=\"px-6 py-2 text-xs font-bold text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors\">Monthly</button></div></div><div class=\"grid grid-cols-1 sm:grid-cols-3 gap-6\"><div class=\"relative overflow-hidden p-8 bg-gradient-to-br from-blue-500/5 to-transparent dark:from-blue-500/10 dark:to-transparent rounded-[2rem] border border-blue-500/10 dark:border-blue-500/20 group hover:scale-[1.02] transition-all duration-500\"><div class=\"absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-all duration-700 group-hover:scale-125\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-600\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"></path><polyline points=\"7 10 12 15 17 10\"></polyline><line x1=\"12\" x2=\"12\" y1=\"3\" y2=\"15\"></line></svg></div><p class=\"text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4 leading-none\">Today</p><div class=\"flex items-baseline gap-1\"><p class=\"text-4xl font-black text-blue-600 dark:text-blue-400 tabular-nums tracking-tighter\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var15 string
 		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Today))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 168, Col: 132}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 169, Col: 132}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
@@ -261,7 +262,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		var templ_7745c5c3_Var16 string
 		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Weekly))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 177, Col: 136}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 178, Col: 136}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
@@ -274,7 +275,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		var templ_7745c5c3_Var17 string
 		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Monthly))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 185, Col: 137}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 186, Col: 137}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
@@ -292,7 +293,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			var templ_7745c5c3_Var18 string
 			templ_7745c5c3_Var18, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("height: %d%%", 20+(i*3)%70))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 192, Col: 133}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 193, Col: 133}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -303,93 +304,133 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</div><div class=\"relative z-10 text-center\"><div class=\"p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 inline-block mb-3\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-500\"><path d=\"M12 20v-6M6 20V10M18 20V4\"></path></svg></div><p class=\"text-sm font-black uppercase tracking-widest text-gray-400\">Traffic analytics coming soon</p></div></div></div><!-- Active Connections --><div class=\"lg:col-span-4 bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex items-center justify-between mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Active Devices</h3><span class=\"flex items-center gap-2 px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-[10px] font-black uppercase rounded-lg\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</div><div class=\"relative z-10 text-center\"><div class=\"p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 inline-block mb-3\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-500\"><path d=\"M12 20v-6M6 20V10M18 20V4\"></path></svg></div><p class=\"text-sm font-black uppercase tracking-widest text-gray-400\">Traffic analytics coming soon</p></div></div></div><!-- Recent Sessions --><div class=\"lg:col-span-4 bg-base-100/40 dark:bg-gray-800/80 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/10 ring-1 ring-black/10 dark:ring-white/10\"><div class=\"flex items-center justify-between mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Recent Sessions</h3><span class=\"flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase rounded-lg\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var19 string
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(data.LiveSessions)))
+		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(data.Sessions)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 209, Col: 42}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 210, Col: 38}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, " Active</span></div><div class=\"space-y-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, " Sessions</span></div><div class=\"space-y-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, s := range data.LiveSessions {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<div class=\"p-5 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.75rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-white/60 dark:hover:bg-gray-800/60 group shadow-sm\"><div class=\"flex items-center justify-between mb-4\"><div class=\"flex items-center gap-3\"><div class=\"relative\"><div class=\"w-2.5 h-2.5 bg-green-500 rounded-full animate-ping absolute\"></div><div class=\"w-2.5 h-2.5 bg-green-500 rounded-full relative shadow-[0_0_10px_rgba(34,197,94,0.5)]\"></div></div><span class=\"text-sm font-black text-gray-900 dark:text-white tracking-tight leading-none\">")
+		for _, s := range data.Sessions {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<div class=\"p-5 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.75rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-base-100/60 dark:hover:bg-gray-800/60 group shadow-sm\"><div class=\"flex items-center justify-between mb-4\"><div class=\"flex items-center gap-3\"><div class=\"w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full\"></div><span class=\"text-sm font-black text-gray-900 dark:text-white tracking-tight leading-none\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var20 string
-			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(s.IpAddress)
+			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(s.Framedipaddress)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 222, Col: 113}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 220, Col: 119}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "</span></div><span class=\"text-[10px] font-bold text-gray-400 uppercase tracking-widest\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var21 string
-			templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(s.StartTime.Format("15:04"))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 224, Col: 113}
+			if s.Acctstarttime != nil {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "<span class=\"text-[10px] font-bold text-gray-400 uppercase tracking-widest\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var21 string
+				templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(s.Acctstarttime.Format("15:04"))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 223, Col: 118}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "</span></div><div class=\"flex items-center justify-between\"><div class=\"flex items-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-500\"><path d=\"M12 2v20\"></path><path d=\"m17 17-5 5-5-5\"></path><path d=\"m17 7-5-5-5 5\"></path></svg> <span class=\"text-xs font-bold text-gray-500\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var22 string
-			templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(s.Download))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 229, Col: 80}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "</span></div><div class=\"flex items-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-purple-500\"><path d=\"M12 2v20\"></path><path d=\"m17 17-5 5-5-5\"></path><path d=\"m17 7-5-5-5 5\"></path></svg> <span class=\"text-xs font-bold text-gray-500\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</div><div class=\"flex items-center justify-between\"><div class=\"flex items-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-blue-500\"><path d=\"M12 2v20\"></path><path d=\"m17 17-5 5-5-5\"></path><path d=\"m17 7-5-5-5 5\"></path></svg> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var23 string
-			templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(s.Upload))
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 233, Col: 78}
+			if s.Acctinputoctets != nil {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<span class=\"text-xs font-bold text-gray-500\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var22 string
+				templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctinputoctets)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 230, Col: 97}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<span class=\"text-xs font-bold text-gray-500\">0 B</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div><div class=\"flex items-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-purple-500\"><path d=\"M12 2v20\"></path><path d=\"m17 17-5 5-5-5\"></path><path d=\"m17 7-5-5-5 5\"></path></svg> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</span></div></div></div>")
+			if s.Acctoutputoctets != nil {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "<span class=\"text-xs font-bold text-gray-500\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var23 string
+				templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctoutputoctets)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 238, Col: 98}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<span class=\"text-xs font-bold text-gray-500\">0 B</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		if len(data.LiveSessions) == 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"py-10 text-center\"><div class=\"w-16 h-16 bg-gray-50 dark:bg-gray-900/50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-dashed border-gray-200 dark:border-gray-800\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-gray-300 dark:text-gray-700\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg></div><p class=\"text-xs font-black text-gray-400 uppercase tracking-widest\">No devices connected</p></div>")
+		if len(data.Sessions) == 0 {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<div class=\"py-10 text-center\"><div class=\"w-16 h-16 bg-base-100/10 dark:bg-gray-900/40 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-dashed border-gray-100 dark:border-gray-800\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"text-gray-300 dark:text-gray-700\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"></path><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"></path></svg></div><p class=\"text-xs font-black text-gray-400 uppercase tracking-widest\">No recent sessions</p></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</div><button class=\"w-full mt-6 py-4 border-2 border-dashed border-gray-100 dark:border-gray-800 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 rounded-[1.5rem] text-xs font-black uppercase tracking-widest transition-all\">View Session History</button></div></div><!-- Footer Section: Transactions & Tickets --><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8\"><!-- Payment History --><div class=\"bg-white dark:bg-gray-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Payment History</h3><button class=\"px-5 py-2.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-black rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm\">Download Reports</button></div><div class=\"space-y-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "</div></div></div><!-- Footer Section: Transactions & Tickets --><div class=\"grid grid-cols-1 lg:grid-cols-2 gap-8\"><!-- Payment History --><div class=\"bg-base-100/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Payment History</h3><button class=\"px-5 py-2.5 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-black rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm\">Download Reports</button></div><div class=\"space-y-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, tx := range data.Payments {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<div class=\"flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.5rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.01] hover:bg-white/60 dark:hover:bg-gray-800/60 gap-4 shadow-sm\"><div class=\"flex items-center gap-4 min-w-0\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<div class=\"flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.5rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.01] hover:bg-base-100/60 dark:hover:bg-gray-800/60 gap-4 shadow-sm\"><div class=\"flex items-center gap-4 min-w-0\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -398,7 +439,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "<div class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "<div class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -411,7 +452,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -419,46 +460,46 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</div><div class=\"min-w-0\"><p class=\"text-sm font-black text-gray-900 dark:text-white truncate\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</div><div class=\"min-w-0\"><p class=\"text-sm font-black text-gray-900 dark:text-white truncate\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var26 string
 			templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionRef)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 271, Col: 97}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 276, Col: 97}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "</p><p class=\"text-[10px] font-bold text-gray-400 uppercase tracking-tighter\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "</p><p class=\"text-[10px] font-bold text-gray-400 uppercase tracking-tighter\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var27 string
 			templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionDate.Format("02 Jan 2006"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 272, Col: 125}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 277, Col: 125}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</p></div></div><div class=\"flex sm:flex-col items-center sm:items-end justify-between sm:justify-center pl-0 sm:pl-4 border-t sm:border-t-0 border-gray-50 dark:border-gray-700/50 pt-4 sm:pt-0\"><p class=\"text-lg font-black text-gray-900 dark:text-white tabular-nums tracking-tighter\">-")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "</p></div></div><div class=\"flex sm:flex-col items-center sm:items-end justify-between sm:justify-center pl-0 sm:pl-4 border-t sm:border-t-0 border-gray-50 dark:border-gray-700/50 pt-4 sm:pt-0\"><p class=\"text-lg font-black text-gray-900 dark:text-white tabular-nums tracking-tighter\">-")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var28 string
 			templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", tx.Amount))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 276, Col: 131}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 281, Col: 131}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "</p>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "</p>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -467,7 +508,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "<span class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, "<span class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -480,30 +521,30 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, "\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var31 string
 			templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(string(tx.Status))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 278, Col: 28}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 283, Col: 28}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</span></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, "</span></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "</div></div><!-- Support Tickets --><div class=\"bg-white dark:bg-gray-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50\"><div class=\"flex items-center justify-between mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Help & Support</h3><button onclick=\"document.getElementById('ticket-modal').classList.remove('hidden')\" class=\"w-12 h-12 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button></div><div class=\"grid grid-cols-1 gap-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, "</div></div><!-- Support Tickets --><div class=\"bg-base-100/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50\"><div class=\"flex items-center justify-between mb-8\"><h3 class=\"text-2xl font-black text-gray-900 dark:text-white tracking-tight\">Help & Support</h3><button onclick=\"document.getElementById('ticket-modal').classList.remove('hidden')\" class=\"w-12 h-12 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button></div><div class=\"grid grid-cols-1 gap-4\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, t := range data.Tickets {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "<div class=\"group p-6 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[2rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-white/60 dark:hover:bg-gray-800/60 cursor-pointer shadow-sm\"><div class=\"flex items-center justify-between mb-3\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 56, "<div class=\"group p-6 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[2rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-base-100/60 dark:hover:bg-gray-800/60 cursor-pointer shadow-sm\"><div class=\"flex items-center justify-between mb-3\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -512,7 +553,7 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "<span class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 57, "<span class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -525,96 +566,96 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, "\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var34 string
 			templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(string(t.Status))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 299, Col: 27}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 304, Col: 27}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "</span> <span class=\"text-[10px] font-bold text-gray-400 italic tracking-tighter\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, "</span> <span class=\"text-[10px] font-bold text-gray-400 italic tracking-tighter\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var35 string
 			templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinStringErrs(t.CreatedAt.Format("15:04 — 02 Jan"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 301, Col: 122}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 306, Col: 122}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, "</span></div><h4 class=\"text-base font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors leading-tight tracking-tight\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 60, "</span></div><h4 class=\"text-base font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors leading-tight tracking-tight\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var36 string
 			templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(t.Subject)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 303, Col: 154}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 308, Col: 154}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, "</h4><p class=\"text-sm font-medium text-gray-500 mt-2 line-clamp-2 leading-relaxed\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 61, "</h4><p class=\"text-sm font-medium text-gray-500 mt-2 line-clamp-2 leading-relaxed\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var37 string
 			templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(t.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 304, Col: 101}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 309, Col: 101}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, "</p></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 62, "</p></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
 		if len(data.Tickets) == 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, "<div class=\"flex flex-col items-center justify-center py-16 text-center\"><div class=\"w-20 h-20 bg-gray-100 dark:bg-gray-900 rounded-[2rem] flex items-center justify-center text-gray-300 dark:text-gray-700 mb-4 border border-dashed border-gray-200 dark:border-gray-800\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10\"></path></svg></div><p class=\"text-gray-400 font-black uppercase tracking-widest text-xs\">No active cases</p></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 63, "<div class=\"flex flex-col items-center justify-center py-16 text-center\"><div class=\"w-20 h-20 bg-gray-100 dark:bg-gray-900 rounded-[2rem] flex items-center justify-center text-gray-300 dark:text-gray-700 mb-4 border border-dashed border-gray-200 dark:border-gray-800\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10\"></path></svg></div><p class=\"text-gray-400 font-black uppercase tracking-widest text-xs\">No active cases</p></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 56, "</div></div></div><!-- Ticket Modal Overlay --><div id=\"ticket-modal\" class=\"fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-6 animate-in fade-in duration-300\"><div class=\"bg-white dark:bg-gray-900 rounded-[3rem] w-full max-w-xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.3)] transform transition-all animate-in zoom-in duration-300\"><div class=\"p-10 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gradient-to-r from-gray-50 to-transparent dark:from-gray-800/50\"><div><h3 class=\"text-3xl font-black text-gray-900 dark:text-white tracking-tight\">Report an Issue</h3><p class=\"text-sm font-medium text-gray-400 dark:text-gray-500 mt-1\">We'll get back to you as soon as possible.</p></div><button onclick=\"document.getElementById('ticket-modal').classList.add('hidden')\" class=\"w-12 h-12 bg-white dark:bg-gray-800 rounded-2xl flex items-center justify-center text-gray-400 hover:text-gray-900 dark:hover:text-white shadow-sm border border-gray-100 dark:border-gray-700 transition-all\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path></svg></button></div><form action=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 64, "</div></div></div><!-- Ticket Modal Overlay --><div id=\"ticket-modal\" class=\"fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-6 animate-in fade-in duration-300\"><div class=\"bg-white dark:bg-gray-900 rounded-[3rem] w-full max-w-xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.3)] transform transition-all animate-in zoom-in duration-300\"><div class=\"p-10 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gradient-to-r from-gray-50 to-transparent dark:from-gray-800/50\"><div><h3 class=\"text-3xl font-black text-gray-900 dark:text-white tracking-tight\">Report an Issue</h3><p class=\"text-sm font-medium text-gray-400 dark:text-gray-500 mt-1\">We'll get back to you as soon as possible.</p></div><button onclick=\"document.getElementById('ticket-modal').classList.add('hidden')\" class=\"w-12 h-12 bg-white dark:bg-gray-800 rounded-2xl flex items-center justify-center text-gray-400 hover:text-gray-900 dark:hover:text-white shadow-sm border border-gray-100 dark:border-gray-700 transition-all\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path></svg></button></div><form action=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var38 templ.SafeURL
-		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL("ticket.submit")))
+		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameTicketSubmit)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 331, Col: 57}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 336, Col: 74}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 57, "\" method=\"POST\" class=\"p-10 space-y-8\"><input type=\"hidden\" name=\"csrf\" value=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 65, "\" method=\"POST\" class=\"p-10 space-y-8\"><input type=\"hidden\" name=\"csrf\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var39 string
 		templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(page.CSRF)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 332, Col: 55}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 337, Col: 55}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, "\"><div class=\"space-y-3\"><label class=\"block text-xs font-black text-gray-400 uppercase tracking-widest ml-2\">What's the problem?</label> <input type=\"text\" name=\"subject\" required class=\"w-full bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-blue-500 rounded-[1.5rem] px-6 py-4 text-base font-medium focus:ring-0 transition-all dark:text-white placeholder-gray-400\" placeholder=\"e.g., Internet is slow\"></div><div class=\"space-y-3\"><label class=\"block text-xs font-black text-gray-400 uppercase tracking-widest ml-2\">Explain in detail</label> <textarea name=\"description\" required rows=\"5\" class=\"w-full bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-blue-500 rounded-[1.5rem] px-6 py-4 text-base font-medium focus:ring-0 transition-all dark:text-white placeholder-gray-400 resize-none\" placeholder=\"Provide as much detail as you can...\"></textarea></div><button type=\"submit\" class=\"w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-3xl transition-all shadow-xl shadow-blue-500/30 active:scale-[0.98] text-lg\">Submit Ticket</button></form></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 66, "\"><div class=\"space-y-3\"><label class=\"block text-xs font-black text-gray-400 uppercase tracking-widest ml-2\">What's the problem?</label> <input type=\"text\" name=\"subject\" required class=\"w-full bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-blue-500 rounded-[1.5rem] px-6 py-4 text-base font-medium focus:ring-0 transition-all dark:text-white placeholder-gray-400\" placeholder=\"e.g., Internet is slow\"></div><div class=\"space-y-3\"><label class=\"block text-xs font-black text-gray-400 uppercase tracking-widest ml-2\">Explain in detail</label> <textarea name=\"description\" required rows=\"5\" class=\"w-full bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent focus:border-blue-500 rounded-[1.5rem] px-6 py-4 text-base font-medium focus:ring-0 transition-all dark:text-white placeholder-gray-400 resize-none\" placeholder=\"Provide as much detail as you can...\"></textarea></div><button type=\"submit\" class=\"w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-3xl transition-all shadow-xl shadow-blue-500/30 active:scale-[0.98] text-lg\">Submit Ticket</button></form></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -624,10 +665,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 
 func getTxIconBg(txType string) string {
 	switch txType {
-	case "recharge":
+	case "ADVANCE_PAYMENT":
 		return "bg-green-500/10 text-green-600 dark:text-green-400"
-	case "package_renew":
+	case "RENEWAL", "AUTO_RENEWAL":
 		return "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+	case "REFUND", "TRANSFER_REFUND":
+		return "bg-amber-500/10 text-amber-600 dark:text-amber-400"
 	default:
 		return "bg-gray-500/10 text-gray-600 dark:text-gray-400"
 	}
@@ -655,18 +698,18 @@ func getTxIcon(txType string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		switch txType {
-		case "recharge":
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20\"></path><path d=\"m17 7-5-5-5 5\"></path></svg>")
+		case "ADVANCE_PAYMENT":
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 67, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20\"></path><path d=\"m17 7-5-5-5 5\"></path></svg>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-		case "package_renew":
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 60, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4\"></path><path d=\"M21 16H9\"></path></svg>")
+		case "RENEWAL", "AUTO_RENEWAL":
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 68, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4\"></path><path d=\"M21 16H9\"></path></svg>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		default:
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 61, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 1v22\"></path><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path></svg>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 69, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 1v22\"></path><path d=\"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"></path></svg>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -692,7 +735,7 @@ func getTxStatusClass(status string) string {
 		return "bg-green-500/10 text-green-600 dark:bg-green-500/20 dark:text-green-400"
 	case "pending":
 		return "bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400"
-	case "failed":
+	case "failed", "reversed":
 		return "bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
 	default:
 		return "bg-gray-500/10 text-gray-600 dark:bg-gray-500/20 dark:text-gray-400"

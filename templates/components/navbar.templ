@@ -22,7 +22,7 @@ templ Navbar(page *controller.Page) {
 				hx-ext="sse"
 				sse-connect={ page.ToURL(routenames.RouteNameRealtime) }
 			}
-			class="fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-gray-950/40 backdrop-blur-3xl border-b border-white/20 dark:border-white/5 transition-all duration-500 shadow-sm ring-1 ring-black/5 dark:ring-white/5"
+			class="fixed top-0 left-0 right-0 z-[100] bg-base-100/40 dark:bg-gray-950/40 backdrop-blur-3xl border-b border-white/20 dark:border-white/5 transition-all duration-500 shadow-sm ring-1 ring-black/5 dark:ring-white/5"
 		>
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex justify-between items-center h-20">

@@ -58,7 +58,7 @@ func Main(content templ.Component, page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<!-- Mobile PWA install button --><div class=\"flex\"><!-- Main content --><div id=\"main-content\" class=\"bg-primary  max-w-screen w-screen overflow-x-hidden flex-grow mx-auto items-center justify-center base-100 text-base-content min-h-screen\"><div class=\"flex-grow mt-5 container mx-auto px-3 lg:px-36 xl:px-60\"><div id=\"bottomNavbarContent\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<!-- Mobile PWA install button --><div class=\"flex\"><!-- Main content --><div id=\"main-content\" class=\"bg-primary  max-w-screen w-screen overflow-x-hidden flex-grow mx-auto items-center justify-center base-100 text-base-content min-h-screen\"><div class=\"flex-grow mt-5 container mx-auto px-3 lg:px-10\"><div id=\"bottomNavbarContent\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -25,7 +25,7 @@ templ Login(page *controller.Page) {
 				<p class="text-gray-500 dark:text-gray-400 font-medium">Please sign in to access your dashboard</p>
 			</div>
 
-			<div class="bg-white/40 dark:bg-gray-900/40 backdrop-blur-3xl p-8 md:p-12 rounded-[3.5rem] shadow-2xl shadow-black/10 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden group">
+			<div class="bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-3xl p-8 md:p-12 rounded-[3.5rem] shadow-2xl shadow-black/10 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden group">
 				<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 opacity-50 group-hover:opacity-100 transition-opacity"></div>
 				if form, ok := page.Form.(*types.LoginForm); ok {
 					@login(page, form)
@@ -59,7 +59,7 @@ templ login(page *controller.Page, form *types.LoginForm) {
 					name="username"
 					placeholder="Enter your username"
 					required
-					class={ "block w-full pl-14 pr-6 py-5 bg-white/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Username") }
+					class={ "block w-full pl-14 pr-6 py-5 bg-base-100/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-base-100 dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Username") }
 					value={ form.Username }
 				/>
 				@components.FormFieldErrors(form.Submission.GetFieldErrors("Username"))
@@ -80,7 +80,7 @@ templ login(page *controller.Page, form *types.LoginForm) {
 					name="password"
 					placeholder="•••••••••"
 					required
-					class={ "block w-full pl-14 pr-14 py-5 bg-white/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Password") }
+					class={ "block w-full pl-14 pr-14 py-5 bg-base-100/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-base-100 dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Password") }
 					value={ form.Password }
 				/>
 				<button @click="showPassword = !showPassword" type="button" class="absolute inset-y-0 right-0 pr-6 flex items-center text-gray-400 hover:text-purple-500 transition-colors">

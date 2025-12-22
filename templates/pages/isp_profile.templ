@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
 	"github.com/mikestefanello/pagoda/pkg/types"
 )
 
@@ -28,7 +29,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 				<p class="text-gray-500 dark:text-gray-400 mt-2 font-medium text-lg">Welcome back to your high-speed dashboard.</p>
 			</div>
 
-			<div class="flex items-center gap-4 bg-white/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5">
+			<div class="flex items-center gap-4 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5">
 				<div class="flex -space-x-2">
 					<div class="w-10 h-10 rounded-full bg-green-500/10 border-2 border-white dark:border-gray-900 flex items-center justify-center text-green-500 shadow-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
@@ -58,7 +59,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 						</div>
 					</div>
 					<button
-						hx-post={ page.ToURL("balance.add") }
+						hx-post={ page.ToURL(routenames.RouteNameAddFunds) }
 						class="mt-10 w-full py-4.5 bg-white text-blue-700 hover:bg-blue-50 text-sm font-black rounded-2xl transition-all shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 flex items-center justify-center gap-2">
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
 						Recharge Account
@@ -67,7 +68,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 			</div>
 
 			<!-- Current Package Card -->
-			<div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group">
+			<div class="bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group">
 				<div class="flex items-center justify-between mb-8">
 					<div class="p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
@@ -84,7 +85,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 					<h2 class="text-xl font-bold text-gray-400">No active plan</h2>
 				}
 				<div class="mt-8">
-					<a href={ templ.URL(page.ToURL("package.change")) } class="flex items-center justify-center w-full py-4 bg-gray-50 dark:bg-gray-900/50 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-black rounded-2xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800 gap-2 overflow-hidden group/btn">
+					<a href={ templ.URL(page.ToURL(routenames.RouteNameChangePlan)) } class="flex items-center justify-center w-full py-4 bg-gray-50 dark:bg-gray-900/50 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-black rounded-2xl transition-all border border-transparent hover:border-blue-100 dark:hover:border-blue-800 gap-2 overflow-hidden group/btn">
 						Upgrade Service
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover/btn:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
 					</a>
@@ -92,7 +93,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 			</div>
 
 			<!-- Validity Card -->
-			<div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group">
+			<div class="bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group">
 				<div class="flex items-center justify-between mb-8">
 					<div class="p-4 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-500 shadow-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>
@@ -116,7 +117,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 							type="checkbox"
 							checked?={ data.AutoRenew }
 							class="sr-only peer"
-							hx-post={ page.ToURL("preferences") }
+							hx-post={ page.ToURL(routenames.RouteNamePreferences) }
 						/>
 						<div class="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
 					</label>
@@ -133,7 +134,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 					<span class="text-[10px] font-black uppercase tracking-[0.2em] leading-none">Support</span>
 				</button>
 				<button
-					hx-post={ page.ToURL("package.renew") }
+					hx-post={ page.ToURL(routenames.RouteNameRenewPackage) }
 					class="flex flex-col items-center justify-center p-6 bg-blue-600 dark:bg-blue-500 text-white rounded-[2.5rem] transition-all hover:scale-[1.05] group relative overflow-hidden shadow-2xl active:scale-95">
 					<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 					<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mb-2 transition-transform group-hover:rotate-12"><path d="M12 2v10"/><path d="M18.4 4.6a10 10 0 1 1-12.8 0"/></svg>
@@ -145,7 +146,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 		<!-- Main Content Grid -->
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 			<!-- Usage Analytics -->
-			<div class="lg:col-span-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
+			<div class="lg:col-span-8 bg-base-100/40 dark:bg-gray-800/80 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/10 ring-1 ring-black/10 dark:ring-white/10">
 				<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
 					<div>
 						<h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Your Connectivity</h3>
@@ -201,68 +202,72 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 				</div>
 			</div>
 
-			<!-- Active Connections -->
-			<div class="lg:col-span-4 bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
+			<!-- Recent Sessions -->
+			<div class="lg:col-span-4 bg-base-100/40 dark:bg-gray-800/80 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/10 ring-1 ring-black/10 dark:ring-white/10">
 				<div class="flex items-center justify-between mb-8">
-					<h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Active Devices</h3>
-					<span class="flex items-center gap-2 px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-[10px] font-black uppercase rounded-lg">
-						{ fmt.Sprint(len(data.LiveSessions)) } Active
+					<h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Recent Sessions</h3>
+					<span class="flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase rounded-lg">
+						{ fmt.Sprint(len(data.Sessions)) } Sessions
 					</span>
 				</div>
 
 				<div class="space-y-4">
-					for _, s := range data.LiveSessions {
-						<div class="p-5 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.75rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-white/60 dark:hover:bg-gray-800/60 group shadow-sm">
+					for _, s := range data.Sessions {
+						<div class="p-5 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.75rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-base-100/60 dark:hover:bg-gray-800/60 group shadow-sm">
 							<div class="flex items-center justify-between mb-4">
 								<div class="flex items-center gap-3">
-									<div class="relative">
-										<div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping absolute"></div>
-										<div class="w-2.5 h-2.5 bg-green-500 rounded-full relative shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-									</div>
-									<span class="text-sm font-black text-gray-900 dark:text-white tracking-tight leading-none">{ s.IpAddress }</span>
+									<div class="w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full"></div>
+									<span class="text-sm font-black text-gray-900 dark:text-white tracking-tight leading-none">{ s.Framedipaddress }</span>
 								</div>
-								<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{ s.StartTime.Format("15:04") }</span>
+								if s.Acctstarttime != nil {
+									<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{ s.Acctstarttime.Format("15:04") }</span>
+								}
 							</div>
 							<div class="flex items-center justify-between">
 								<div class="flex items-center gap-2">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M12 2v20"/><path d="m17 17-5 5-5-5"/><path d="m17 7-5-5-5 5"/></svg>
-									<span class="text-xs font-bold text-gray-500">{ formatBytes(s.Download) }</span>
+									if s.Acctinputoctets != nil {
+										<span class="text-xs font-bold text-gray-500">{ formatBytes(uint64(*s.Acctinputoctets)) }</span>
+									} else {
+										<span class="text-xs font-bold text-gray-500">0 B</span>
+									}
 								</div>
 								<div class="flex items-center gap-2">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M12 2v20"/><path d="m17 17-5 5-5-5"/><path d="m17 7-5-5-5 5"/></svg>
-									<span class="text-xs font-bold text-gray-500">{ formatBytes(s.Upload) }</span>
+									if s.Acctoutputoctets != nil {
+										<span class="text-xs font-bold text-gray-500">{ formatBytes(uint64(*s.Acctoutputoctets)) }</span>
+									} else {
+										<span class="text-xs font-bold text-gray-500">0 B</span>
+									}
 								</div>
 							</div>
 						</div>
 					}
-					if len(data.LiveSessions) == 0 {
+					if len(data.Sessions) == 0 {
 						<div class="py-10 text-center">
-							<div class="w-16 h-16 bg-gray-50 dark:bg-gray-900/50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-dashed border-gray-200 dark:border-gray-800">
+							<div class="w-16 h-16 bg-base-100/10 dark:bg-gray-900/40 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-dashed border-gray-100 dark:border-gray-800">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300 dark:text-gray-700"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
 							</div>
-							<p class="text-xs font-black text-gray-400 uppercase tracking-widest">No devices connected</p>
+							<p class="text-xs font-black text-gray-400 uppercase tracking-widest">No recent sessions</p>
 						</div>
 					}
 				</div>
-				<button class="w-full mt-6 py-4 border-2 border-dashed border-gray-100 dark:border-gray-800 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600 rounded-[1.5rem] text-xs font-black uppercase tracking-widest transition-all">
-					View Session History
-				</button>
 			</div>
 		</div>
 
 		<!-- Footer Section: Transactions & Tickets -->
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 			<!-- Payment History -->
-			<div class="bg-white dark:bg-gray-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50">
+			<div class="bg-base-100/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50">
 				<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
 					<h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Payment History</h3>
-					<button class="px-5 py-2.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-black rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+					<button class="px-5 py-2.5 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-black rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
 						Download Reports
 					</button>
 				</div>
 				<div class="space-y-4">
 					for _, tx := range data.Payments {
-						<div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.5rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.01] hover:bg-white/60 dark:hover:bg-gray-800/60 gap-4 shadow-sm">
+						<div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[1.5rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.01] hover:bg-base-100/60 dark:hover:bg-gray-800/60 gap-4 shadow-sm">
 							<div class="flex items-center gap-4 min-w-0">
 								<div class={ "w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0", getTxIconBg(string(tx.Type)) }>
 									@getTxIcon(string(tx.Type))
@@ -284,7 +289,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 			</div>
 
 			<!-- Support Tickets -->
-			<div class="bg-white dark:bg-gray-800/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50">
+			<div class="bg-base-100/40 dark:bg-gray-800/40 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-sm border border-gray-100 dark:border-gray-700/50">
 				<div class="flex items-center justify-between mb-8">
 					<h3 class="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Help & Support</h3>
 					<button onclick="document.getElementById('ticket-modal').classList.remove('hidden')" class="w-12 h-12 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform shadow-xl">
@@ -293,7 +298,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 				</div>
 				<div class="grid grid-cols-1 gap-4">
 					for _, t := range data.Tickets {
-						<div class="group p-6 bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[2rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-white/60 dark:hover:bg-gray-800/60 cursor-pointer shadow-sm">
+						<div class="group p-6 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-md rounded-[2rem] border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:scale-[1.02] hover:bg-base-100/60 dark:hover:bg-gray-800/60 cursor-pointer shadow-sm">
 							<div class="flex items-center justify-between mb-3">
 								<span class={ "px-3 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm", getTicketStatusClass(string(t.Status)) }>
 									{ string(t.Status) }
@@ -328,7 +333,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
 					</button>
 				</div>
-				<form action={ templ.URL(page.ToURL("ticket.submit")) } method="POST" class="p-10 space-y-8">
+				<form action={ templ.URL(page.ToURL(routenames.RouteNameTicketSubmit)) } method="POST" class="p-10 space-y-8">
 					<input type="hidden" name="csrf" value={ page.CSRF } />
 					<div class="space-y-3">
 						<label class="block text-xs font-black text-gray-400 uppercase tracking-widest ml-2">What's the problem?</label>
@@ -349,10 +354,12 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 
 func getTxIconBg(txType string) string {
 	switch txType {
-	case "recharge":
+	case "ADVANCE_PAYMENT":
 		return "bg-green-500/10 text-green-600 dark:text-green-400"
-	case "package_renew":
+	case "RENEWAL", "AUTO_RENEWAL":
 		return "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+	case "REFUND", "TRANSFER_REFUND":
+		return "bg-amber-500/10 text-amber-600 dark:text-amber-400"
 	default:
 		return "bg-gray-500/10 text-gray-600 dark:text-gray-400"
 	}
@@ -360,9 +367,9 @@ func getTxIconBg(txType string) string {
 
 templ getTxIcon(txType string) {
 	switch txType {
-	case "recharge":
+	case "ADVANCE_PAYMENT":
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 7-5-5-5 5"/></svg>
-	case "package_renew":
+	case "RENEWAL", "AUTO_RENEWAL":
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M21 16H9"/></svg>
 	default:
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -386,7 +393,7 @@ func getTxStatusClass(status string) string {
 		return "bg-green-500/10 text-green-600 dark:bg-green-500/20 dark:text-green-400"
 	case "pending":
 		return "bg-amber-500/10 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400"
-	case "failed":
+	case "failed", "reversed":
 		return "bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
 	default:
 		return "bg-gray-500/10 text-gray-600 dark:bg-gray-500/20 dark:text-gray-400"

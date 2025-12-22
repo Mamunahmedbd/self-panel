@@ -1,34 +1,24 @@
 package components
 
-import "github.com/mikestefanello/pagoda/pkg/controller"
-import "github.com/mikestefanello/pagoda/pkg/routing/routenames"
+import (
+	"fmt"
+	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
+)
 
 templ BottomNav(page *controller.Page) {
 	<div
 		id="bottom-navbar"
-		navbar-state-data={ templ.JSONString(page.ShowBottomNavbar) }
 		if page.IsAuth && page.IsFullyOnboarded {
 			hx-ext="sse"
 			sse-connect={ page.ToURL(routenames.RouteNameRealtime) }
 		}
-		class="fixed bottom-0 left-0 z-50 w-full bg-white/80 dark:bg-gray-950/80 backdrop-blur-2xl border-t border-gray-100 dark:border-gray-800 pb-[env(safe-area-inset-bottom)]"
+		class="fixed bottom-0 left-0 z-50 w-full bg-base-100/60 dark:bg-gray-950/60 backdrop-blur-3xl border-t border-white/20 dark:border-white/5 pb-[env(safe-area-inset-bottom)] shadow-2xl ring-1 ring-black/5 dark:ring-white/5"
 	>
 		<div
 			class="grid h-16 max-w-lg mx-auto grid-cols-3 px-4"
 			x-cloak
-			x-data="{ selected: null }"
-			if page.SelectedBottomNavbarItem.Value == "home" {
-				x-data="{ selected: 'home' }"
-			}
-			if page.SelectedBottomNavbarItem.Value == "notifications" {
-				x-data="{ selected: 'notifications' }"
-			}
-			if page.SelectedBottomNavbarItem.Value == "settings" {
-				x-data="{ selected: 'settings' }"
-			}
-			if page.SelectedBottomNavbarItem.Value == "profile" {
-				x-data="{ selected: 'profile' }"
-			}
+			x-data={ fmt.Sprintf("{ selected: '%s' }", page.SelectedBottomNavbarItem.Value) }
 			hx-target="#main-content"
 			hx-select="#main-content"
 			hx-swap="outerHTML show:window:top"
@@ -50,7 +40,7 @@ templ BottomNav(page *controller.Page) {
 					</svg>
 					<span hx-disinherit="*">
 						<span
-							hx-get={ page.ToURL("normalNotificationsCount") }
+							hx-get={ page.ToURL(routenames.RouteNameNormalNotificationsCount) }
 							if page.IsFullyOnboarded {
 								hx-trigger="sse:update_num_notifs,load"
 							}

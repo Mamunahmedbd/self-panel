@@ -50,7 +50,7 @@ func (p *profilePrefsRoute) GetBio(ctx echo.Context) error {
 
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main
-	page.Component = pages.AboutMe(&page)
+	page.Component = pages.About(&page)
 	page.Name = templates.PagePreferences
 
 	page.Form = &types.ProfileBioFormData{
@@ -234,9 +234,14 @@ func (g *preferences) getCurrPreferencesData(ctx echo.Context) (*types.Preferenc
 		DefaultBirthdate:        domain.DefaultBirthdate.Format("2006-01-02"),
 
 		// if IsPaymentsEnabled is true, none of the subscription stuff matters and the entire app will be free
-		IsPaymentsEnabled:      g.ctr.Container.Config.App.OperationalConstants.PaymentsEnabled,
-		ActiveSubscriptionPlan: *activePlan,
-		IsTrial:                isTrial,
+		IsPaymentsEnabled: g.ctr.Container.Config.App.OperationalConstants.PaymentsEnabled,
+		IsTrial:           isTrial,
+	}
+
+	if activePlan != nil {
+		data.ActiveSubscriptionPlan = *activePlan
+	} else {
+		data.ActiveSubscriptionPlan = domain.ProductTypeFree
 	}
 
 	if subscriptionExpiredOn != nil {

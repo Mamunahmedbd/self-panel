@@ -58,7 +58,7 @@ func Navbar(page *controller.Page) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " class=\"fixed top-0 left-0 right-0 z-[100] bg-white/40 dark:bg-gray-950/40 backdrop-blur-3xl border-b border-white/20 dark:border-white/5 transition-all duration-500 shadow-sm ring-1 ring-black/5 dark:ring-white/5\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex justify-between items-center h-20\"><!-- Brand Logo --><div class=\"flex-shrink-0 flex items-center\"><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " class=\"fixed top-0 left-0 right-0 z-[100] bg-base-100/40 dark:bg-gray-950/40 backdrop-blur-3xl border-b border-white/20 dark:border-white/5 transition-all duration-500 shadow-sm ring-1 ring-black/5 dark:ring-white/5\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\"><div class=\"flex justify-between items-center h-20\"><!-- Brand Logo --><div class=\"flex-shrink-0 flex items-center\"><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

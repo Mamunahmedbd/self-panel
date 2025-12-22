@@ -11,37 +11,50 @@ import (
 var showVerificationComponentHandle = templ.NewOnceHandle()
 
 templ EditPhonePage(page *controller.Page) {
-	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "Edit Phone")
-	<div id="phone-number-section">
+	<!-- Premium Background Blobs -->
+	<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+		<div class="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] bg-blue-400/15 dark:bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
+		<div class="absolute bottom-[20%] -left-[10%] w-[45%] h-[45%] bg-purple-400/15 dark:bg-purple-600/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s"></div>
+	</div>
+
+	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "Phone Security")
+
+	<div class="relative z-10 p-4 md:p-8 lg:p-12 pb-24 max-w-2xl mx-auto space-y-12" id="phone-number-section">
 		if data, ok := page.Data.(*types.PhoneNumber); ok {
-			<h1 class="text-3xl md:text-4xl font-semibold mb-4 pt-10 md:pt-14 lg:pt-16">📱 Phone Number</h1>
-			<!-- Phone number -->
-			<div
-				class="flex flex-col space-y-4"
-			>
-				<form
-					class="flex items-center"
-					hx-post={ page.ToURL(routenames.RouteNameUpdatePhoneNum) + "?csrf=" + page.CSRF }
-					hx-trigger="savePhoneNumber from:#phone-number-placeholder"
-					hx-swap="none"
-					hx-push-url="false"
-				>
-					@phoneNumberField(data.PhoneNumberE164, data.CountryCode)
-				</form>
-				<div
-					id="phone-verification"
-					class="flex justify-center hidden"
-				>
-					<button
-						type="button"
-						class="w-fit text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-						hx-trigger="click"
-						hx-select="#phone-verification-section"
-						hx-target="#phone-verification"
-						hx-swap="outerHTML"
+			<div class="mb-12">
+				<h1 class="text-4xl font-black text-gray-900 dark:text-white tracking-tight">Identity Verification</h1>
+				<p class="text-gray-500 dark:text-gray-400 mt-2 font-medium">Protect your account with a verified mobile number.</p>
+			</div>
+
+			<div class="bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
+				<h2 class="text-xl font-black text-gray-900 dark:text-white uppercase tracking-widest text-[11px] mb-8">Mobile Number</h2>
+
+				<div class="flex flex-col space-y-8">
+					<form
+						class="flex items-center group/form"
+						hx-post={ page.ToURL(routenames.RouteNameUpdatePhoneNum) + "?csrf=" + page.CSRF }
+						hx-trigger="savePhoneNumber from:#phone-number-placeholder"
+						hx-swap="none"
 						hx-push-url="false"
-						hx-get={ page.ToURL(routenames.RouteNameGetPhoneVerification) }
-					>Get Code</button>
+					>
+						@phoneNumberField(data.PhoneNumberE164, data.CountryCode)
+					</form>
+
+					<div
+						id="phone-verification"
+						class="flex justify-center hidden pt-4 border-t border-gray-100 dark:border-gray-800"
+					>
+						<button
+							type="button"
+							class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 active:scale-95 transition-all shadow-xl"
+							hx-trigger="click"
+							hx-select="#phone-verification-section"
+							hx-target="#phone-verification"
+							hx-swap="outerHTML"
+							hx-push-url="false"
+							hx-get={ page.ToURL(routenames.RouteNameGetPhoneVerification) }
+						>Get Verification Code</button>
+					</div>
 				</div>
 			</div>
 		}
@@ -69,22 +82,22 @@ templ PhoneVerificationField(page *controller.Page) {
 				hx-push-url="false"
 			>
 				if data, ok := page.Data.(*types.SmsVerificationCodeInfo); ok {
-					<span>{ fmt.Sprintf("A verification code was sent to you, please input it below to confirm your phone number. It expires in %d minutes.", data.ExpirationInMinutes) }</span>
+					<span class="text-sm font-medium text-gray-500 dark:text-gray-400 text-center mb-6">{ fmt.Sprintf("A verification code was sent to you, please input it below to confirm your phone number. It expires in %d minutes.", data.ExpirationInMinutes) }</span>
 				}
-				<div class="flex flex-col space-y-2 m-5">
+				<div class="flex flex-col space-y-3 w-full max-w-xs mb-8">
 					<label
-						for="email"
-						class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						for="verification_code"
+						class="block text-xs font-black text-gray-400 uppercase tracking-widest ml-2"
 					>
 						Verification code
 					</label>
 					<div class="control">
 						<input
-							id="text"
+							id="verification_code"
 							type="text"
 							name="verification_code"
 							placeholder="123456"
-							class={ "bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:ps-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", form.Submission.GetFieldStatusClass("VerificationCode") }
+							class={ "block w-full px-6 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent rounded-2xl text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-blue-500 transition-all outline-none font-bold text-center tracking-[0.5em] text-xl shadow-inner", form.Submission.GetFieldStatusClass("VerificationCode") }
 							value={ form.VerificationCode }
 						/>
 						@components.FormFieldErrors(form.Submission.GetFieldErrors("VerificationCode"))
@@ -93,15 +106,27 @@ templ PhoneVerificationField(page *controller.Page) {
 				@components.Messages(page)
 				<button
 					type="button"
-					class="w-fit text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+					class="px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-xl shadow-blue-500/20"
 					hx-trigger="click"
 					hx-select="#phone-verification-section"
 					hx-target="#phone-verification-section"
 					hx-swap="outerHTML"
 					hx-push-url="false"
 					hx-post={ page.ToURL(routenames.RouteNameSubmitPhoneVerification) }
-				>Submit</button>
+				>Submit Code</button>
 			</form>
 		}
 	</div>
+}
+
+templ phoneNumberField(phoneNumberE164 string, countryCode string) {
+	<div id="phone-number-placeholder" class="w-full"></div>
+	@initPhoneNumberPicker("phone-number-placeholder", phoneNumberE164, countryCode)
+}
+
+script initPhoneNumberPicker(componentID string, phoneNumberE164 string, countryCode string) {
+	renderSvelteComponent("PhoneNumberPicker", componentID, {
+		"value": phoneNumberE164,
+		"country": countryCode,
+	});
 }

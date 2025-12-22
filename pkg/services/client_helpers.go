@@ -78,8 +78,8 @@ func (c *Container) GetISPProfileData(ctx echo.Context) (*types.ISPProfileData, 
 	// 4. Get Payment history
 	data.Payments, _ = c.GetPaymentHistory(ctx, client.Username, 10)
 
-	// 5. Get Session history
-	data.Sessions, _ = c.GetSessionHistory(ctx, client.Username, 10)
+	// 5. Get Session history (last 5 sessions)
+	data.Sessions, _ = c.GetSessionHistory(ctx, client.Username, 5)
 
 	// 6. Get Recent tickets
 	data.Tickets, _ = c.GetRecentTickets(ctx, client.ID, 5)
@@ -91,28 +91,49 @@ func (c *Container) GetUsageStats(ctx echo.Context, username string) types.ISPUs
 	var stats types.ISPUsageStats
 	dbCtx := ctx.Request().Context()
 
-	// Today's usage
-	today := time.Now().Truncate(24 * time.Hour)
-	rows, err := c.ORM.RadAcct.Query().
-		Where(
-			radacct.UsernameEQ(username),
-			radacct.AcctstarttimeGTE(today),
-		).
-		All(dbCtx)
-	if err == nil {
+	now := time.Now()
+
+	// Calculate time boundaries
+	todayStart := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+	weekStart := todayStart.AddDate(0, 0, -int(now.Weekday())) // Start of current week (Sunday)
+	monthStart := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, now.Location())
+
+	// Helper function to aggregate usage for a time period
+	aggregateUsage := func(startTime time.Time) uint64 {
+		var total uint64
+
+		rows, err := c.ORM.RadAcct.Query().
+			Where(
+				radacct.UsernameEQ(username),
+				radacct.AcctstarttimeGTE(startTime),
+			).
+			All(dbCtx)
+
+		if err != nil {
+			return 0
+		}
+
 		for _, r := range rows {
+			// Sum download (input octets)
 			if r.Acctinputoctets != nil {
-				stats.Today += uint64(*r.Acctinputoctets)
+				total += uint64(*r.Acctinputoctets)
 			}
+			// Sum upload (output octets)
 			if r.Acctoutputoctets != nil {
-				stats.Today += uint64(*r.Acctoutputoctets)
+				total += uint64(*r.Acctoutputoctets)
 			}
 		}
+
+		return total
 	}
 
-	// Total usage
-	// Better way would be sum in DB, but for now we aggregate
-	// (Pagination would be better for high volume)
+	// Calculate usage for each period
+	stats.Today = aggregateUsage(todayStart)
+	stats.Weekly = aggregateUsage(weekStart)
+	stats.Monthly = aggregateUsage(monthStart)
+
+	// Total usage (all time) - could be optimized with a separate query if needed
+	stats.Total = aggregateUsage(time.Time{}) // Unix epoch = all records
 
 	return stats
 }

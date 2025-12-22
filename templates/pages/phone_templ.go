@@ -39,29 +39,33 @@ func EditPhonePage(page *controller.Page) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "Edit Phone").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!-- Premium Background Blobs --><div class=\"fixed inset-0 overflow-hidden pointer-events-none z-0\"><div class=\"absolute -top-[10%] -right-[10%] w-[50%] h-[50%] bg-blue-400/15 dark:bg-blue-600/10 rounded-full blur-[120px] animate-pulse\"></div><div class=\"absolute bottom-[20%] -left-[10%] w-[45%] h-[45%] bg-purple-400/15 dark:bg-purple-600/10 rounded-full blur-[100px] animate-pulse\" style=\"animation-delay: 2s\"></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"phone-number-section\">")
+		templ_7745c5c3_Err = components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "Phone Security").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"relative z-10 p-4 md:p-8 lg:p-12 pb-24 max-w-2xl mx-auto space-y-12\" id=\"phone-number-section\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if data, ok := page.Data.(*types.PhoneNumber); ok {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<h1 class=\"text-3xl md:text-4xl font-semibold mb-4 pt-10 md:pt-14 lg:pt-16\">📱 Phone Number</h1><!-- Phone number --> <div class=\"flex flex-col space-y-4\"><form class=\"flex items-center\" hx-post=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"mb-12\"><h1 class=\"text-4xl font-black text-gray-900 dark:text-white tracking-tight\">Identity Verification</h1><p class=\"text-gray-500 dark:text-gray-400 mt-2 font-medium\">Protect your account with a verified mobile number.</p></div><div class=\"bg-white/40 dark:bg-gray-800/40 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5\"><h2 class=\"text-xl font-black text-gray-900 dark:text-white uppercase tracking-widest text-[11px] mb-8\">Mobile Number</h2><div class=\"flex flex-col space-y-8\"><form class=\"flex items-center group/form\" hx-post=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameUpdatePhoneNum) + "?csrf=" + page.CSRF)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 24, Col: 84}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 35, Col: 85}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" hx-trigger=\"savePhoneNumber from:#phone-number-placeholder\" hx-swap=\"none\" hx-push-url=\"false\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-trigger=\"savePhoneNumber from:#phone-number-placeholder\" hx-swap=\"none\" hx-push-url=\"false\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -69,25 +73,25 @@ func EditPhonePage(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</form><div id=\"phone-verification\" class=\"flex justify-center hidden\"><button type=\"button\" class=\"w-fit text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800\" hx-trigger=\"click\" hx-select=\"#phone-verification-section\" hx-target=\"#phone-verification\" hx-swap=\"outerHTML\" hx-push-url=\"false\" hx-get=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</form><div id=\"phone-verification\" class=\"flex justify-center hidden pt-4 border-t border-gray-100 dark:border-gray-800\"><button type=\"button\" class=\"px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 active:scale-95 transition-all shadow-xl\" hx-trigger=\"click\" hx-select=\"#phone-verification-section\" hx-target=\"#phone-verification\" hx-swap=\"outerHTML\" hx-push-url=\"false\" hx-get=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameGetPhoneVerification))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 43, Col: 67}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 55, Col: 68}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\">Get Code</button></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\">Get Verification Code</button></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -103,7 +107,7 @@ func EditPhonePage(page *controller.Page) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<script type=\"text/javascript\">\r\n            (function myFunc(){\r\n                document.getElementById('phone-number-placeholder').addEventListener('savePhoneNumber', (event) => {\r\n                    // Show the code validation section\r\n                    document.getElementById('phone-verification').classList.remove('hidden');\r\n                });\r\n            })();\r\n        </script>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<script type=\"text/javascript\">\r\n            (function myFunc(){\r\n                document.getElementById('phone-number-placeholder').addEventListener('savePhoneNumber', (event) => {\r\n                    // Show the code validation section\r\n                    document.getElementById('phone-verification').classList.remove('hidden');\r\n                });\r\n            })();\r\n        </script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -138,57 +142,57 @@ func PhoneVerificationField(page *controller.Page) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<div id=\"phone-verification-section\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div id=\"phone-verification-section\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if form, ok := page.Form.(*types.PhoneNumberVerification); ok {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<form class=\"flex items-center flex-col\" hx-post=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<form class=\"flex items-center flex-col\" hx-post=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameUpdatePhoneNum) + "?csrf=" + page.CSRF)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 66, Col: 83}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 79, Col: 83}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" hx-trigger=\"savePhoneNumber from:#phone-number-placeholder\" hx-swap=\"none\" hx-push-url=\"false\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" hx-trigger=\"savePhoneNumber from:#phone-number-placeholder\" hx-swap=\"none\" hx-push-url=\"false\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if data, ok := page.Data.(*types.SmsVerificationCodeInfo); ok {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<span>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<span class=\"text-sm font-medium text-gray-500 dark:text-gray-400 text-center mb-6\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var7 string
 				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("A verification code was sent to you, please input it below to confirm your phone number. It expires in %d minutes.", data.ExpirationInMinutes))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 72, Col: 168}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 85, Col: 246}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</span>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</span>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<div class=\"flex flex-col space-y-2 m-5\"><label for=\"email\" class=\"block mb-2 text-sm font-medium text-gray-900 dark:text-white\">Verification code</label><div class=\"control\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<div class=\"flex flex-col space-y-3 w-full max-w-xs mb-8\"><label for=\"verification_code\" class=\"block text-xs font-black text-gray-400 uppercase tracking-widest ml-2\">Verification code</label><div class=\"control\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var8 = []any{"bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:ps-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", form.Submission.GetFieldStatusClass("VerificationCode")}
+			var templ_7745c5c3_Var8 = []any{"block w-full px-6 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-transparent rounded-2xl text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-blue-500 transition-all outline-none font-bold text-center tracking-[0.5em] text-xl shadow-inner", form.Submission.GetFieldStatusClass("VerificationCode")}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<input id=\"text\" type=\"text\" name=\"verification_code\" placeholder=\"123456\" class=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<input id=\"verification_code\" type=\"text\" name=\"verification_code\" placeholder=\"123456\" class=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -201,20 +205,20 @@ func PhoneVerificationField(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\" value=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\" value=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(form.VerificationCode)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 88, Col: 36}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 101, Col: 36}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -222,7 +226,7 @@ func PhoneVerificationField(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -230,30 +234,76 @@ func PhoneVerificationField(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<button type=\"button\" class=\"w-fit text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800\" hx-trigger=\"click\" hx-select=\"#phone-verification-section\" hx-target=\"#phone-verification-section\" hx-swap=\"outerHTML\" hx-push-url=\"false\" hx-post=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "<button type=\"button\" class=\"px-10 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-xl shadow-blue-500/20\" hx-trigger=\"click\" hx-select=\"#phone-verification-section\" hx-target=\"#phone-verification-section\" hx-swap=\"outerHTML\" hx-push-url=\"false\" hx-post=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameSubmitPhoneVerification))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 102, Col: 70}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/phone.templ`, Line: 115, Col: 70}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\">Submit</button></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "\">Submit Code</button></form>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		return nil
 	})
+}
+
+func phoneNumberField(phoneNumberE164 string, countryCode string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var12 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var12 == nil {
+			templ_7745c5c3_Var12 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<div id=\"phone-number-placeholder\" class=\"w-full\"></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = initPhoneNumberPicker("phone-number-placeholder", phoneNumberE164, countryCode).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func initPhoneNumberPicker(componentID string, phoneNumberE164 string, countryCode string) templ.ComponentScript {
+	return templ.ComponentScript{
+		Name: `__templ_initPhoneNumberPicker_0133`,
+		Function: `function __templ_initPhoneNumberPicker_0133(componentID, phoneNumberE164, countryCode){renderSvelteComponent("PhoneNumberPicker", componentID, {
+		"value": phoneNumberE164,
+		"country": countryCode,
+	});
+}`,
+		Call:       templ.SafeScript(`__templ_initPhoneNumberPicker_0133`, componentID, phoneNumberE164, countryCode),
+		CallInline: templ.SafeScriptInline(`__templ_initPhoneNumberPicker_0133`, componentID, phoneNumberE164, countryCode),
+	}
 }
 
 var _ = templruntime.GeneratedTemplate

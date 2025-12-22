@@ -38,17 +38,17 @@ templ Settings(page *controller.Page) {
 					hx-get={ page.ToURL(routenames.RouteNameGetDisplayName) }
 					hx-swap="outerHTML"
 					hx-trigger="once,load"
-					class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5"
+					class="bg-base-100/40 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5"
 				>
 					@DisplayName(page)
 				</div>
 
-				<div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
+				<div class="bg-base-100/40 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
 					@NotificationPermissions(page, data.NotificationPermissionsData)
 				</div>
 
 				if data.IsPaymentsEnabled {
-					<div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
+					<div class="bg-base-100/40 dark:bg-gray-800/60 backdrop-blur-3xl rounded-[3rem] p-10 shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5">
 						@subscription(page, data.IsProfileFullyOnboarded, data.ActiveSubscriptionPlan, data.MonthlySybscriptionExpiration, data.IsTrial)
 					</div>
 				}

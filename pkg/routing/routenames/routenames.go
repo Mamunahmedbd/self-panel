@@ -20,6 +20,9 @@ const (
 	RouteNameGetPhoneVerification    = "phone.verification"
 	RouteNameSubmitPhoneVerification = "phone.verification.submit"
 
+	RouteNameNotifications            = "normalNotifications"
+	RouteNameNormalNotificationsCount = "normalNotificationsCount"
+
 	RouteNamePrivacyPolicy      = "privacy_policy"
 	RouteNameTermsAndConditions = "terms_and_conditions"
 	RouteNameRefundPolicy       = "refund_policy"
@@ -35,6 +38,7 @@ const (
 	RouteNameFinishOnboarding = "finish_onboarding"
 	RouteNameGetBio           = "profileBio.get"
 	RouteNameUpdateBio        = "profileBio.post"
+	RouteNameProfileBio       = "profileBio"
 
 	RouteNameGetPushSubscriptions             = "push_subscriptions.get"
 	RouteNameRegisterSubscription             = "notification_subscriptions.register"

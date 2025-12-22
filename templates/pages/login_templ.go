@@ -36,7 +36,7 @@ func Login(page *controller.Page) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"relative min-h-[80vh] flex items-center justify-center p-4\"><!-- Decorative Background --><div class=\"absolute inset-0 overflow-hidden pointer-events-none\"><div class=\"absolute top-1/4 -left-20 w-96 h-96 bg-purple-500/15 dark:bg-purple-600/10 rounded-full blur-[120px] animate-pulse\"></div><div class=\"absolute bottom-1/4 -right-20 w-96 h-96 bg-pink-500/15 dark:bg-pink-600/10 rounded-full blur-[120px] animate-pulse\" style=\"animation-delay: 2s\"></div></div><div class=\"w-full max-w-lg relative z-10\"><!-- Logo/Brand Section --><div class=\"text-center mb-10\"><div class=\"inline-flex items-center justify-center w-20 h-20 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-[2rem] shadow-2xl shadow-purple-500/30 mb-6 transform hover:rotate-6 transition-transform\"><img src=\"/files/favicon.png\" class=\"h-10 w-10 brightness-0 invert\" alt=\"Logo\"></div><h1 class=\"text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2\">Welcome Back</h1><p class=\"text-gray-500 dark:text-gray-400 font-medium\">Please sign in to access your dashboard</p></div><div class=\"bg-white/40 dark:bg-gray-900/40 backdrop-blur-3xl p-8 md:p-12 rounded-[3.5rem] shadow-2xl shadow-black/10 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden group\"><div class=\"absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 opacity-50 group-hover:opacity-100 transition-opacity\"></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"relative min-h-[80vh] flex items-center justify-center p-4\"><!-- Decorative Background --><div class=\"absolute inset-0 overflow-hidden pointer-events-none\"><div class=\"absolute top-1/4 -left-20 w-96 h-96 bg-purple-500/15 dark:bg-purple-600/10 rounded-full blur-[120px] animate-pulse\"></div><div class=\"absolute bottom-1/4 -right-20 w-96 h-96 bg-pink-500/15 dark:bg-pink-600/10 rounded-full blur-[120px] animate-pulse\" style=\"animation-delay: 2s\"></div></div><div class=\"w-full max-w-lg relative z-10\"><!-- Logo/Brand Section --><div class=\"text-center mb-10\"><div class=\"inline-flex items-center justify-center w-20 h-20 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-[2rem] shadow-2xl shadow-purple-500/30 mb-6 transform hover:rotate-6 transition-transform\"><img src=\"/files/favicon.png\" class=\"h-10 w-10 brightness-0 invert\" alt=\"Logo\"></div><h1 class=\"text-4xl font-black text-gray-900 dark:text-white tracking-tight mb-2\">Welcome Back</h1><p class=\"text-gray-500 dark:text-gray-400 font-medium\">Please sign in to access your dashboard</p></div><div class=\"bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-3xl p-8 md:p-12 rounded-[3.5rem] shadow-2xl shadow-black/10 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 relative overflow-hidden group\"><div class=\"absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 opacity-50 group-hover:opacity-100 transition-opacity\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -105,7 +105,7 @@ func login(page *controller.Page, form *types.LoginForm) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var5 = []any{"block w-full pl-14 pr-6 py-5 bg-white/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Username")}
+		var templ_7745c5c3_Var5 = []any{"block w-full pl-14 pr-6 py-5 bg-base-100/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-base-100 dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Username")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var5...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -148,7 +148,7 @@ func login(page *controller.Page, form *types.LoginForm) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var8 = []any{"block w-full pl-14 pr-14 py-5 bg-white/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-white dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Password")}
+		var templ_7745c5c3_Var8 = []any{"block w-full pl-14 pr-14 py-5 bg-base-100/50 dark:bg-gray-800/50 border-2 border-transparent rounded-[1.5rem] text-gray-900 dark:text-white focus:bg-base-100 dark:focus:bg-gray-800 focus:border-purple-500 transition-all outline-none font-black shadow-inner", form.Submission.GetFieldStatusClass("Password")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
