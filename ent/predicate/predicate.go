@@ -6,6 +6,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 )
 
+// ClientUser is the predicate function for clientuser builders.
+type ClientUser func(*sql.Selector)
+
 // EmailSubscription is the predicate function for emailsubscription builders.
 type EmailSubscription func(*sql.Selector)
 

@@ -9,6 +9,146 @@ import (
 )
 
 var (
+	// ClientsColumns holds the columns for the "clients" table.
+	ClientsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "name", Type: field.TypeString, Size: 255},
+		{Name: "username", Type: field.TypeString, Unique: true, Size: 255},
+		{Name: "password", Type: field.TypeString, Size: 255},
+		{Name: "mobile_number", Type: field.TypeString, Size: 255},
+		{Name: "email", Type: field.TypeString, Size: 255},
+		{Name: "photo", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "description", Type: field.TypeString, Nullable: true, Size: 2147483647},
+		{Name: "balance", Type: field.TypeFloat64, Default: 0},
+		{Name: "address_line1", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "address_line2", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "city", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "district", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "upazila", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "union_name", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "zip", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "status", Type: field.TypeEnum, Enums: []string{"active", "inactive"}, Default: "inactive"},
+		{Name: "payment_date", Type: field.TypeTime, Nullable: true},
+		{Name: "payment_type", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "auto_renew", Type: field.TypeBool, Default: true},
+		{Name: "c_name", Type: field.TypeString, Size: 32},
+		{Name: "vendor_id", Type: field.TypeInt},
+		{Name: "package_pool", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "user_profile", Type: field.TypeString, Nullable: true, Size: 64},
+		{Name: "next_user_profile", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "created_by", Type: field.TypeString, Size: 255},
+		{Name: "updated_by", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "created_date", Type: field.TypeTime},
+		{Name: "updated_date", Type: field.TypeTime, Nullable: true},
+	}
+	// ClientsTable holds the schema information for the "clients" table.
+	ClientsTable = &schema.Table{
+		Name:       "clients",
+		Columns:    ClientsColumns,
+		PrimaryKey: []*schema.Column{ClientsColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "clientuser_mobile_number",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[4]},
+			},
+			{
+				Name:    "clientuser_email",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[5]},
+			},
+			{
+				Name:    "clientuser_c_name",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[20]},
+			},
+			{
+				Name:    "clientuser_vendor_id",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[21]},
+			},
+			{
+				Name:    "clientuser_package_pool",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[22]},
+			},
+			{
+				Name:    "clientuser_user_profile",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[23]},
+			},
+			{
+				Name:    "clientuser_next_user_profile",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[24]},
+			},
+			{
+				Name:    "clientuser_auto_renew",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[19]},
+			},
+			{
+				Name:    "clientuser_created_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[27]},
+			},
+			{
+				Name:    "clientuser_created_by",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[25]},
+			},
+			{
+				Name:    "clientuser_status",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[16]},
+			},
+			{
+				Name:    "clientuser_name",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[1]},
+			},
+			{
+				Name:    "clientuser_balance",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[8]},
+			},
+			{
+				Name:    "clientuser_c_name_status_created_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[20], ClientsColumns[16], ClientsColumns[27]},
+			},
+			{
+				Name:    "clientuser_c_name_vendor_id_status_created_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[20], ClientsColumns[21], ClientsColumns[16], ClientsColumns[27]},
+			},
+			{
+				Name:    "clientuser_package_pool_status_created_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[22], ClientsColumns[16], ClientsColumns[27]},
+			},
+			{
+				Name:    "clientuser_auto_renew_status_c_name_created_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[19], ClientsColumns[16], ClientsColumns[20], ClientsColumns[27]},
+			},
+			{
+				Name:    "clientuser_vendor_id_package_pool_status",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[21], ClientsColumns[22], ClientsColumns[16]},
+			},
+			{
+				Name:    "clientuser_c_name_vendor_id_status",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[20], ClientsColumns[21], ClientsColumns[16]},
+			},
+			{
+				Name:    "clientuser_updated_date_status",
+				Unique:  false,
+				Columns: []*schema.Column{ClientsColumns[28], ClientsColumns[16]},
+			},
+		},
+	}
 	// EmailSubscriptionsColumns holds the columns for the "email_subscriptions" table.
 	EmailSubscriptionsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -539,6 +679,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		ClientsTable,
 		EmailSubscriptionsTable,
 		EmailSubscriptionTypesTable,
 		EmojisTable,
@@ -564,6 +705,9 @@ var (
 )
 
 func init() {
+	ClientsTable.Annotation = &entsql.Annotation{
+		Table: "clients",
+	}
 	FcmSubscriptionsTable.ForeignKeys[0].RefTable = ProfilesTable
 	ImagesTable.ForeignKeys[0].RefTable = ProfilesTable
 	ImageSizesTable.ForeignKeys[0].RefTable = ImagesTable

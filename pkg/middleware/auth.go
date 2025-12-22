@@ -44,6 +44,27 @@ func LoadAuthenticatedUser(
 					// TODO: cache profile photo URL somewhere in the stack
 					c.Set(context.AuthenticatedUserProfilePicURL, profileRepo.GetProfilePhotoThumbnailURL(u.ID))
 				}
+
+				// Load client data from session if available
+				sess, err := session.Get("session", c)
+				if err == nil {
+					if clientID, ok := sess.Values[context.ClientIDKey].(int); ok && clientID > 0 {
+						// Store client ID in context for easy access
+						c.Set(context.ClientIDKey, clientID)
+
+						// Load full client entity from database
+						client, err := authClient.ORM().ClientUser.Get(c.Request().Context(), clientID)
+						if err == nil {
+							// Store client entity in context
+							c.Set("AuthenticatedClient", client)
+						}
+					}
+					if clientUsername, ok := sess.Values[context.ClientUsernameKey].(string); ok {
+						// Store client username in context
+						c.Set(context.ClientUsernameKey, clientUsername)
+					}
+				}
+
 				c.Logger().Infof("auth user loaded in to context: %d", u.ID)
 			default:
 				return echo.NewHTTPError(

@@ -88,6 +88,10 @@ type Page struct {
 
 	AuthUserProfilePicURL string
 
+	// AuthClientName stores the name of the authenticated client (from clients table)
+	// This is used to display the actual client's name in the navbar
+	AuthClientName string
+
 	// AuthProfile stores the authenticated profile
 	AuthProfile *ent.Profile
 
@@ -180,6 +184,13 @@ func NewPage(ctx echo.Context) Page {
 	}
 	if u := ctx.Get(context.AuthenticatedUserProfilePicURL); u != nil {
 		p.AuthUserProfilePicURL = u.(string)
+	}
+
+	// Load client name from context if available
+	if authClient := ctx.Get("AuthenticatedClient"); authClient != nil {
+		if client, ok := authClient.(*ent.ClientUser); ok {
+			p.AuthClientName = client.Name
+		}
 	}
 
 	if u := ctx.Get(context.IsFromIOSApp); u != nil {

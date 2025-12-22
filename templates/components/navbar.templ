@@ -190,7 +190,11 @@ templ navbarUserMenu(page *controller.Page) {
 			class="absolute right-0 mt-3 w-64 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-800 py-4 z-50 overflow-hidden"
 		>
 			<div class="px-6 py-4 border-b border-gray-100 dark:border-gray-800 mb-2">
-				<p class="text-sm font-black text-gray-900 dark:text-white truncate">{ page.AuthUser.Name }</p>
+				if page.AuthClientName != "" {
+					<p class="text-sm font-black text-gray-900 dark:text-white truncate">{ page.AuthClientName }</p>
+				} else {
+					<p class="text-sm font-black text-gray-900 dark:text-white truncate">{ page.AuthUser.Name }</p>
+				}
 				<p class="text-xs text-gray-500 truncate">{ page.AuthUser.Email }</p>
 			</div>
 

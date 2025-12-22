@@ -12,6 +12,8 @@ import (
 // Tx is a transactional client that is created by calling Client.Tx().
 type Tx struct {
 	config
+	// ClientUser is the client for interacting with the ClientUser builders.
+	ClientUser *ClientUserClient
 	// EmailSubscription is the client for interacting with the EmailSubscription builders.
 	EmailSubscription *EmailSubscriptionClient
 	// EmailSubscriptionType is the client for interacting with the EmailSubscriptionType builders.
@@ -179,6 +181,7 @@ func (tx *Tx) Client() *Client {
 }
 
 func (tx *Tx) init() {
+	tx.ClientUser = NewClientUserClient(tx.config)
 	tx.EmailSubscription = NewEmailSubscriptionClient(tx.config)
 	tx.EmailSubscriptionType = NewEmailSubscriptionTypeClient(tx.config)
 	tx.Emojis = NewEmojisClient(tx.config)
@@ -206,7 +209,7 @@ func (tx *Tx) init() {
 // of them in order to commit or rollback the transaction.
 //
 // If a closed transaction is embedded in one of the generated entities, and the entity
-// applies a query, for example: EmailSubscription.QueryXXX(), the query will be executed
+// applies a query, for example: ClientUser.QueryXXX(), the query will be executed
 // through the driver which created this transaction.
 //
 // Note that txDriver is not goroutine safe.

@@ -49,6 +49,11 @@ func NewAuthClient(cfg *config.Config, orm *ent.Client) *AuthClient {
 	}
 }
 
+// ORM returns the ORM client
+func (c *AuthClient) ORM() *ent.Client {
+	return c.orm
+}
+
 // Login logs in a user of a given ID
 func (c *AuthClient) Login(ctx echo.Context, userID int) error {
 

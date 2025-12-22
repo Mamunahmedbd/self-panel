@@ -1,7 +1,6 @@
 package services
 
 import (
-	"context"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -33,7 +32,7 @@ import (
 	storagerepo "github.com/mikestefanello/pagoda/pkg/repos/storage"
 
 	// Required by ent
-	"github.com/mikestefanello/pagoda/ent/migrate"
+
 	_ "github.com/mikestefanello/pagoda/ent/runtime"
 	"github.com/mikestefanello/pagoda/ent/user"
 )
@@ -319,6 +318,11 @@ func (c *Container) initORM() {
 
 	drv := entsql.OpenDB(activeDialect, c.Database)
 	c.ORM = ent.NewClient(ent.Driver(drv))
+
+	// NOTE: Schema creation is disabled because we're using an existing database
+	// with pre-existing tables (especially the 'clients' table).
+	// If you need to create/update schema for other tables, uncomment and exclude clients:
+	/*
 	if err := c.ORM.Schema.Create(
 		context.Background(),
 		schema.WithDiffHook(renameColumnHook),
@@ -327,6 +331,7 @@ func (c *Container) initORM() {
 	); err != nil {
 		panic(fmt.Sprintf("failed to create database schema: %v", err))
 	}
+	*/
 }
 
 // TODO: not quite sure why I added the below ent hook. Might be removable for streamlining.

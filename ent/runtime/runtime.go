@@ -5,6 +5,7 @@ package runtime
 import (
 	"time"
 
+	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
 	"github.com/mikestefanello/pagoda/ent/emojis"
@@ -30,6 +31,212 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	clientuserFields := schema.ClientUser{}.Fields()
+	_ = clientuserFields
+	// clientuserDescName is the schema descriptor for name field.
+	clientuserDescName := clientuserFields[1].Descriptor()
+	// clientuser.NameValidator is a validator for the "name" field. It is called by the builders before save.
+	clientuser.NameValidator = func() func(string) error {
+		validators := clientuserDescName.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(name string) error {
+			for _, fn := range fns {
+				if err := fn(name); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescUsername is the schema descriptor for username field.
+	clientuserDescUsername := clientuserFields[2].Descriptor()
+	// clientuser.UsernameValidator is a validator for the "username" field. It is called by the builders before save.
+	clientuser.UsernameValidator = func() func(string) error {
+		validators := clientuserDescUsername.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(username string) error {
+			for _, fn := range fns {
+				if err := fn(username); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescPassword is the schema descriptor for password field.
+	clientuserDescPassword := clientuserFields[3].Descriptor()
+	// clientuser.PasswordValidator is a validator for the "password" field. It is called by the builders before save.
+	clientuser.PasswordValidator = func() func(string) error {
+		validators := clientuserDescPassword.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(password string) error {
+			for _, fn := range fns {
+				if err := fn(password); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescMobileNumber is the schema descriptor for mobile_number field.
+	clientuserDescMobileNumber := clientuserFields[4].Descriptor()
+	// clientuser.MobileNumberValidator is a validator for the "mobile_number" field. It is called by the builders before save.
+	clientuser.MobileNumberValidator = func() func(string) error {
+		validators := clientuserDescMobileNumber.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(mobile_number string) error {
+			for _, fn := range fns {
+				if err := fn(mobile_number); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescEmail is the schema descriptor for email field.
+	clientuserDescEmail := clientuserFields[5].Descriptor()
+	// clientuser.EmailValidator is a validator for the "email" field. It is called by the builders before save.
+	clientuser.EmailValidator = func() func(string) error {
+		validators := clientuserDescEmail.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(email string) error {
+			for _, fn := range fns {
+				if err := fn(email); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescPhoto is the schema descriptor for photo field.
+	clientuserDescPhoto := clientuserFields[6].Descriptor()
+	// clientuser.PhotoValidator is a validator for the "photo" field. It is called by the builders before save.
+	clientuser.PhotoValidator = clientuserDescPhoto.Validators[0].(func(string) error)
+	// clientuserDescBalance is the schema descriptor for balance field.
+	clientuserDescBalance := clientuserFields[8].Descriptor()
+	// clientuser.DefaultBalance holds the default value on creation for the balance field.
+	clientuser.DefaultBalance = clientuserDescBalance.Default.(float64)
+	// clientuser.BalanceValidator is a validator for the "balance" field. It is called by the builders before save.
+	clientuser.BalanceValidator = clientuserDescBalance.Validators[0].(func(float64) error)
+	// clientuserDescAddressLine1 is the schema descriptor for address_line1 field.
+	clientuserDescAddressLine1 := clientuserFields[9].Descriptor()
+	// clientuser.AddressLine1Validator is a validator for the "address_line1" field. It is called by the builders before save.
+	clientuser.AddressLine1Validator = clientuserDescAddressLine1.Validators[0].(func(string) error)
+	// clientuserDescAddressLine2 is the schema descriptor for address_line2 field.
+	clientuserDescAddressLine2 := clientuserFields[10].Descriptor()
+	// clientuser.AddressLine2Validator is a validator for the "address_line2" field. It is called by the builders before save.
+	clientuser.AddressLine2Validator = clientuserDescAddressLine2.Validators[0].(func(string) error)
+	// clientuserDescCity is the schema descriptor for city field.
+	clientuserDescCity := clientuserFields[11].Descriptor()
+	// clientuser.CityValidator is a validator for the "city" field. It is called by the builders before save.
+	clientuser.CityValidator = clientuserDescCity.Validators[0].(func(string) error)
+	// clientuserDescDistrict is the schema descriptor for district field.
+	clientuserDescDistrict := clientuserFields[12].Descriptor()
+	// clientuser.DistrictValidator is a validator for the "district" field. It is called by the builders before save.
+	clientuser.DistrictValidator = clientuserDescDistrict.Validators[0].(func(string) error)
+	// clientuserDescUpazila is the schema descriptor for upazila field.
+	clientuserDescUpazila := clientuserFields[13].Descriptor()
+	// clientuser.UpazilaValidator is a validator for the "upazila" field. It is called by the builders before save.
+	clientuser.UpazilaValidator = clientuserDescUpazila.Validators[0].(func(string) error)
+	// clientuserDescUnionName is the schema descriptor for union_name field.
+	clientuserDescUnionName := clientuserFields[14].Descriptor()
+	// clientuser.UnionNameValidator is a validator for the "union_name" field. It is called by the builders before save.
+	clientuser.UnionNameValidator = clientuserDescUnionName.Validators[0].(func(string) error)
+	// clientuserDescZip is the schema descriptor for zip field.
+	clientuserDescZip := clientuserFields[15].Descriptor()
+	// clientuser.ZipValidator is a validator for the "zip" field. It is called by the builders before save.
+	clientuser.ZipValidator = clientuserDescZip.Validators[0].(func(string) error)
+	// clientuserDescPaymentType is the schema descriptor for payment_type field.
+	clientuserDescPaymentType := clientuserFields[18].Descriptor()
+	// clientuser.PaymentTypeValidator is a validator for the "payment_type" field. It is called by the builders before save.
+	clientuser.PaymentTypeValidator = clientuserDescPaymentType.Validators[0].(func(string) error)
+	// clientuserDescAutoRenew is the schema descriptor for auto_renew field.
+	clientuserDescAutoRenew := clientuserFields[19].Descriptor()
+	// clientuser.DefaultAutoRenew holds the default value on creation for the auto_renew field.
+	clientuser.DefaultAutoRenew = clientuserDescAutoRenew.Default.(bool)
+	// clientuserDescCName is the schema descriptor for c_name field.
+	clientuserDescCName := clientuserFields[20].Descriptor()
+	// clientuser.CNameValidator is a validator for the "c_name" field. It is called by the builders before save.
+	clientuser.CNameValidator = func() func(string) error {
+		validators := clientuserDescCName.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(c_name string) error {
+			for _, fn := range fns {
+				if err := fn(c_name); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescVendorID is the schema descriptor for vendor_id field.
+	clientuserDescVendorID := clientuserFields[21].Descriptor()
+	// clientuser.VendorIDValidator is a validator for the "vendor_id" field. It is called by the builders before save.
+	clientuser.VendorIDValidator = clientuserDescVendorID.Validators[0].(func(int) error)
+	// clientuserDescPackagePool is the schema descriptor for package_pool field.
+	clientuserDescPackagePool := clientuserFields[22].Descriptor()
+	// clientuser.PackagePoolValidator is a validator for the "package_pool" field. It is called by the builders before save.
+	clientuser.PackagePoolValidator = clientuserDescPackagePool.Validators[0].(func(string) error)
+	// clientuserDescUserProfile is the schema descriptor for user_profile field.
+	clientuserDescUserProfile := clientuserFields[23].Descriptor()
+	// clientuser.UserProfileValidator is a validator for the "user_profile" field. It is called by the builders before save.
+	clientuser.UserProfileValidator = clientuserDescUserProfile.Validators[0].(func(string) error)
+	// clientuserDescNextUserProfile is the schema descriptor for next_user_profile field.
+	clientuserDescNextUserProfile := clientuserFields[24].Descriptor()
+	// clientuser.NextUserProfileValidator is a validator for the "next_user_profile" field. It is called by the builders before save.
+	clientuser.NextUserProfileValidator = clientuserDescNextUserProfile.Validators[0].(func(string) error)
+	// clientuserDescCreatedBy is the schema descriptor for created_by field.
+	clientuserDescCreatedBy := clientuserFields[25].Descriptor()
+	// clientuser.CreatedByValidator is a validator for the "created_by" field. It is called by the builders before save.
+	clientuser.CreatedByValidator = func() func(string) error {
+		validators := clientuserDescCreatedBy.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(created_by string) error {
+			for _, fn := range fns {
+				if err := fn(created_by); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// clientuserDescUpdatedBy is the schema descriptor for updated_by field.
+	clientuserDescUpdatedBy := clientuserFields[26].Descriptor()
+	// clientuser.UpdatedByValidator is a validator for the "updated_by" field. It is called by the builders before save.
+	clientuser.UpdatedByValidator = clientuserDescUpdatedBy.Validators[0].(func(string) error)
+	// clientuserDescCreatedDate is the schema descriptor for created_date field.
+	clientuserDescCreatedDate := clientuserFields[27].Descriptor()
+	// clientuser.DefaultCreatedDate holds the default value on creation for the created_date field.
+	clientuser.DefaultCreatedDate = clientuserDescCreatedDate.Default.(func() time.Time)
+	// clientuserDescUpdatedDate is the schema descriptor for updated_date field.
+	clientuserDescUpdatedDate := clientuserFields[28].Descriptor()
+	// clientuser.UpdateDefaultUpdatedDate holds the default value on update for the updated_date field.
+	clientuser.UpdateDefaultUpdatedDate = clientuserDescUpdatedDate.UpdateDefault.(func() time.Time)
+	// clientuserDescID is the schema descriptor for id field.
+	clientuserDescID := clientuserFields[0].Descriptor()
+	// clientuser.IDValidator is a validator for the "id" field. It is called by the builders before save.
+	clientuser.IDValidator = clientuserDescID.Validators[0].(func(int) error)
 	emailsubscriptionMixin := schema.EmailSubscription{}.Mixin()
 	emailsubscriptionMixinFields0 := emailsubscriptionMixin[0].Fields()
 	_ = emailsubscriptionMixinFields0

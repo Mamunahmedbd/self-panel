@@ -15,6 +15,7 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
 	"github.com/mikestefanello/pagoda/ent/emojis"
@@ -40,6 +41,8 @@ type Client struct {
 	config
 	// Schema is the client for creating, migrating and dropping schema.
 	Schema *migrate.Schema
+	// ClientUser is the client for interacting with the ClientUser builders.
+	ClientUser *ClientUserClient
 	// EmailSubscription is the client for interacting with the EmailSubscription builders.
 	EmailSubscription *EmailSubscriptionClient
 	// EmailSubscriptionType is the client for interacting with the EmailSubscriptionType builders.
@@ -87,6 +90,7 @@ func NewClient(opts ...Option) *Client {
 
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
+	c.ClientUser = NewClientUserClient(c.config)
 	c.EmailSubscription = NewEmailSubscriptionClient(c.config)
 	c.EmailSubscriptionType = NewEmailSubscriptionTypeClient(c.config)
 	c.Emojis = NewEmojisClient(c.config)
@@ -197,6 +201,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	return &Tx{
 		ctx:                    ctx,
 		config:                 cfg,
+		ClientUser:             NewClientUserClient(cfg),
 		EmailSubscription:      NewEmailSubscriptionClient(cfg),
 		EmailSubscriptionType:  NewEmailSubscriptionTypeClient(cfg),
 		Emojis:                 NewEmojisClient(cfg),
@@ -234,6 +239,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 	return &Tx{
 		ctx:                    ctx,
 		config:                 cfg,
+		ClientUser:             NewClientUserClient(cfg),
 		EmailSubscription:      NewEmailSubscriptionClient(cfg),
 		EmailSubscriptionType:  NewEmailSubscriptionTypeClient(cfg),
 		Emojis:                 NewEmojisClient(cfg),
@@ -258,7 +264,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 // Debug returns a new debug-client. It's used to get verbose logging on specific operations.
 //
 //	client.Debug().
-//		EmailSubscription.
+//		ClientUser.
 //		Query().
 //		Count(ctx)
 func (c *Client) Debug() *Client {
@@ -281,11 +287,11 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
-		c.EmailSubscription, c.EmailSubscriptionType, c.Emojis, c.FCMSubscriptions,
-		c.FileStorage, c.Image, c.ImageSize, c.Invitation, c.LastSeenOnline,
-		c.MonthlySubscription, c.Notification, c.NotificationPermission,
-		c.NotificationTime, c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription,
-		c.SentEmail, c.User,
+		c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType, c.Emojis,
+		c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize, c.Invitation,
+		c.LastSeenOnline, c.MonthlySubscription, c.Notification,
+		c.NotificationPermission, c.NotificationTime, c.PhoneVerificationCode,
+		c.Profile, c.PwaPushSubscription, c.SentEmail, c.User,
 	} {
 		n.Use(hooks...)
 	}
@@ -295,11 +301,11 @@ func (c *Client) Use(hooks ...Hook) {
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
-		c.EmailSubscription, c.EmailSubscriptionType, c.Emojis, c.FCMSubscriptions,
-		c.FileStorage, c.Image, c.ImageSize, c.Invitation, c.LastSeenOnline,
-		c.MonthlySubscription, c.Notification, c.NotificationPermission,
-		c.NotificationTime, c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription,
-		c.SentEmail, c.User,
+		c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType, c.Emojis,
+		c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize, c.Invitation,
+		c.LastSeenOnline, c.MonthlySubscription, c.Notification,
+		c.NotificationPermission, c.NotificationTime, c.PhoneVerificationCode,
+		c.Profile, c.PwaPushSubscription, c.SentEmail, c.User,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -308,6 +314,8 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 // Mutate implements the ent.Mutator interface.
 func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
+	case *ClientUserMutation:
+		return c.ClientUser.mutate(ctx, m)
 	case *EmailSubscriptionMutation:
 		return c.EmailSubscription.mutate(ctx, m)
 	case *EmailSubscriptionTypeMutation:
@@ -346,6 +354,139 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.User.mutate(ctx, m)
 	default:
 		return nil, fmt.Errorf("ent: unknown mutation type %T", m)
+	}
+}
+
+// ClientUserClient is a client for the ClientUser schema.
+type ClientUserClient struct {
+	config
+}
+
+// NewClientUserClient returns a client for the ClientUser from the given config.
+func NewClientUserClient(c config) *ClientUserClient {
+	return &ClientUserClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `clientuser.Hooks(f(g(h())))`.
+func (c *ClientUserClient) Use(hooks ...Hook) {
+	c.hooks.ClientUser = append(c.hooks.ClientUser, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `clientuser.Intercept(f(g(h())))`.
+func (c *ClientUserClient) Intercept(interceptors ...Interceptor) {
+	c.inters.ClientUser = append(c.inters.ClientUser, interceptors...)
+}
+
+// Create returns a builder for creating a ClientUser entity.
+func (c *ClientUserClient) Create() *ClientUserCreate {
+	mutation := newClientUserMutation(c.config, OpCreate)
+	return &ClientUserCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of ClientUser entities.
+func (c *ClientUserClient) CreateBulk(builders ...*ClientUserCreate) *ClientUserCreateBulk {
+	return &ClientUserCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *ClientUserClient) MapCreateBulk(slice any, setFunc func(*ClientUserCreate, int)) *ClientUserCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &ClientUserCreateBulk{err: fmt.Errorf("calling to ClientUserClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*ClientUserCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &ClientUserCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for ClientUser.
+func (c *ClientUserClient) Update() *ClientUserUpdate {
+	mutation := newClientUserMutation(c.config, OpUpdate)
+	return &ClientUserUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *ClientUserClient) UpdateOne(cu *ClientUser) *ClientUserUpdateOne {
+	mutation := newClientUserMutation(c.config, OpUpdateOne, withClientUser(cu))
+	return &ClientUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *ClientUserClient) UpdateOneID(id int) *ClientUserUpdateOne {
+	mutation := newClientUserMutation(c.config, OpUpdateOne, withClientUserID(id))
+	return &ClientUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for ClientUser.
+func (c *ClientUserClient) Delete() *ClientUserDelete {
+	mutation := newClientUserMutation(c.config, OpDelete)
+	return &ClientUserDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *ClientUserClient) DeleteOne(cu *ClientUser) *ClientUserDeleteOne {
+	return c.DeleteOneID(cu.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *ClientUserClient) DeleteOneID(id int) *ClientUserDeleteOne {
+	builder := c.Delete().Where(clientuser.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &ClientUserDeleteOne{builder}
+}
+
+// Query returns a query builder for ClientUser.
+func (c *ClientUserClient) Query() *ClientUserQuery {
+	return &ClientUserQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeClientUser},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a ClientUser entity by its id.
+func (c *ClientUserClient) Get(ctx context.Context, id int) (*ClientUser, error) {
+	return c.Query().Where(clientuser.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *ClientUserClient) GetX(ctx context.Context, id int) *ClientUser {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *ClientUserClient) Hooks() []Hook {
+	return c.hooks.ClientUser
+}
+
+// Interceptors returns the client interceptors.
+func (c *ClientUserClient) Interceptors() []Interceptor {
+	return c.inters.ClientUser
+}
+
+func (c *ClientUserClient) mutate(ctx context.Context, m *ClientUserMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&ClientUserCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&ClientUserUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&ClientUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&ClientUserDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown ClientUser mutation op: %q", m.Op())
 	}
 }
 
@@ -3244,14 +3385,14 @@ func (c *UserClient) mutate(ctx context.Context, m *UserMutation) (Value, error)
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions, FileStorage,
-		Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
+		ClientUser, EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions,
+		FileStorage, Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
 		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
 		Profile, PwaPushSubscription, SentEmail, User []ent.Hook
 	}
 	inters struct {
-		EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions, FileStorage,
-		Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
+		ClientUser, EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions,
+		FileStorage, Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
 		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
 		Profile, PwaPushSubscription, SentEmail, User []ent.Interceptor
 	}

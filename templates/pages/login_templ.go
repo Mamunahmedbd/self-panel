@@ -80,16 +80,16 @@ func login(page *controller.Page, form *types.LoginForm) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"space-y-6\"><div class=\"space-y-2\"><label for=\"email\" class=\"block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1\">Username / Email</label><div class=\"relative group\"><div class=\"absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5 text-gray-400 group-focus-within:text-purple-500 transition-colors\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z\"></path></svg></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"space-y-6\"><div class=\"space-y-2\"><label for=\"username\" class=\"block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1\">Username</label><div class=\"relative group\"><div class=\"absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5 text-gray-400 group-focus-within:text-purple-500 transition-colors\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z\"></path></svg></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{"block w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-gray-900 dark:text-white focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all outline-none", form.Submission.GetFieldStatusClass("Email")}
+		var templ_7745c5c3_Var4 = []any{"block w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-gray-900 dark:text-white focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all outline-none", form.Submission.GetFieldStatusClass("Username")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<input id=\"email\" type=\"text\" name=\"email\" placeholder=\"Enter your username\" class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<input id=\"username\" type=\"text\" name=\"username\" placeholder=\"Enter your username\" class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -107,9 +107,9 @@ func login(page *controller.Page, form *types.LoginForm) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(form.Email)
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(form.Username)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/login.templ`, Line: 36, Col: 23}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/login.templ`, Line: 36, Col: 26}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
@@ -119,7 +119,7 @@ func login(page *controller.Page, form *types.LoginForm) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.FormFieldErrors(form.Submission.GetFieldErrors("Email")).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.FormFieldErrors(form.Submission.GetFieldErrors("Username")).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

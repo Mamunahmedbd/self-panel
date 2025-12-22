@@ -20,22 +20,22 @@ templ login(page *controller.Page, form *types.LoginForm) {
 		class="space-y-6"
 	>
 		<div class="space-y-2">
-			<label for="email" class="block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Username / Email</label>
-			<div class="relative group">
+			<label for="username" class="block text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Username</label>
+				<div class="relative group">
 				<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 group-focus-within:text-purple-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 					</svg>
 				</div>
 				<input
-					id="email"
+					id="username"
 					type="text"
-					name="email"
+					name="username"
 					placeholder="Enter your username"
-					class={ "block w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-gray-900 dark:text-white focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all outline-none", form.Submission.GetFieldStatusClass("Email") }
-					value={ form.Email }
+					class={ "block w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-800/50 border-2 border-gray-100 dark:border-gray-700 rounded-2xl text-gray-900 dark:text-white focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all outline-none", form.Submission.GetFieldStatusClass("Username") }
+					value={ form.Username }
 				/>
-				@components.FormFieldErrors(form.Submission.GetFieldErrors("Email"))
+				@components.FormFieldErrors(form.Submission.GetFieldErrors("Username"))
 			</div>
 		</div>
 

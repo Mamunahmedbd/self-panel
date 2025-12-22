@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
 	"github.com/mikestefanello/pagoda/ent/emojis"
@@ -90,6 +91,7 @@ var (
 func checkColumn(table, column string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
+			clientuser.Table:             clientuser.ValidColumn,
 			emailsubscription.Table:      emailsubscription.ValidColumn,
 			emailsubscriptiontype.Table:  emailsubscriptiontype.ValidColumn,
 			emojis.Table:                 emojis.ValidColumn,

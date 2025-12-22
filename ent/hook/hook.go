@@ -9,6 +9,18 @@ import (
 	"github.com/mikestefanello/pagoda/ent"
 )
 
+// The ClientUserFunc type is an adapter to allow the use of ordinary
+// function as ClientUser mutator.
+type ClientUserFunc func(context.Context, *ent.ClientUserMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f ClientUserFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.ClientUserMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.ClientUserMutation", m)
+}
+
 // The EmailSubscriptionFunc type is an adapter to allow the use of ordinary
 // function as EmailSubscription mutator.
 type EmailSubscriptionFunc func(context.Context, *ent.EmailSubscriptionMutation) (ent.Value, error)
