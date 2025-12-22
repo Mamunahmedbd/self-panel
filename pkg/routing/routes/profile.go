@@ -128,7 +128,6 @@ func (c *singleProfile) getISPProfile(ctx echo.Context) error {
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main
 	page.Name = templates.PageProfile
-	page.Title = "Dashboard"
 	page.Data = data
 	page.Component = pages.ISPProfile(&page, data)
 	page.HTMX.Request.Boosted = true
