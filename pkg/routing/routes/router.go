@@ -351,6 +351,13 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	singleProfile := NewProfileRoutes(ctr, &profileRepo)
 	onboardedGroup.GET("/profile", singleProfile.Get).Name = routeNames.RouteNameProfile
 
+	isp := NewISPRoutes(ctr)
+	onboardedGroup.GET("/tickets", isp.GetTickets).Name = routeNames.RouteNameTicketCreate
+	onboardedGroup.POST("/tickets", isp.CreateTicket).Name = routeNames.RouteNameTicketSubmit
+	onboardedGroup.POST("/balance/load", isp.AddFunds).Name = routeNames.RouteNameAddFunds
+	onboardedGroup.POST("/package/renew", isp.RenewPackage).Name = routeNames.RouteNameRenewPackage
+	onboardedGroup.GET("/package/change", isp.ChangePlan).Name = routeNames.RouteNameChangePlan
+
 	uploadPhoto := NewUploadPhotoRoutes(ctr, &profileRepo, storageRepo, c.Config.Storage.PhotosMaxFileSizeMB)
 	onboardedGroup.GET("/uploadPhoto", uploadPhoto.Get).Name = "uploadPhoto"
 	onboardedGroup.POST("/uploadPhoto", uploadPhoto.Post).Name = "uploadPhoto.post"

@@ -1,7 +1,5 @@
 package types
 
-import "github.com/mikestefanello/pagoda/pkg/controller"
-
 type (
 	EmailSubscriptionData struct {
 		Description string
@@ -14,6 +12,6 @@ type (
 		Email      string  `form:"email" validate:"required"`
 		Latitude   float64 `form:"latitude" validate:"required"`
 		Longitude  float64 `form:"longitude" validate:"required"`
-		Submission controller.FormSubmission
+		Submission FormSubmission
 	}
 )

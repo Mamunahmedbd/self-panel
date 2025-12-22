@@ -3,7 +3,6 @@ package types
 import (
 	"time"
 
-	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/domain"
 )
 
@@ -13,7 +12,7 @@ type (
 	}
 
 	CreateCheckoutSessionForm struct {
-		Submission controller.FormSubmission
+		Submission FormSubmission
 		PriceID    string `form:"price_id" validate:"required"`
 	}
 

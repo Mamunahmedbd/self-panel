@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/mikestefanello/pagoda/ent/clienttxn"
 	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
@@ -26,10 +27,13 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
+	"github.com/mikestefanello/pagoda/ent/packageplan"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
+	"github.com/mikestefanello/pagoda/ent/radacct"
 	"github.com/mikestefanello/pagoda/ent/sentemail"
+	"github.com/mikestefanello/pagoda/ent/ticket"
 	"github.com/mikestefanello/pagoda/ent/user"
 )
 
@@ -91,6 +95,7 @@ var (
 func checkColumn(table, column string) error {
 	initCheck.Do(func() {
 		columnCheck = sql.NewColumnCheck(map[string]func(string) bool{
+			clienttxn.Table:              clienttxn.ValidColumn,
 			clientuser.Table:             clientuser.ValidColumn,
 			emailsubscription.Table:      emailsubscription.ValidColumn,
 			emailsubscriptiontype.Table:  emailsubscriptiontype.ValidColumn,
@@ -105,10 +110,13 @@ func checkColumn(table, column string) error {
 			notification.Table:           notification.ValidColumn,
 			notificationpermission.Table: notificationpermission.ValidColumn,
 			notificationtime.Table:       notificationtime.ValidColumn,
+			packageplan.Table:            packageplan.ValidColumn,
 			phoneverificationcode.Table:  phoneverificationcode.ValidColumn,
 			profile.Table:                profile.ValidColumn,
 			pwapushsubscription.Table:    pwapushsubscription.ValidColumn,
+			radacct.Table:                radacct.ValidColumn,
 			sentemail.Table:              sentemail.ValidColumn,
+			ticket.Table:                 ticket.ValidColumn,
 			user.Table:                   user.ValidColumn,
 		})
 	})

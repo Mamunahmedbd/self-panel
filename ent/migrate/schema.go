@@ -9,6 +9,53 @@ import (
 )
 
 var (
+	// ClientTxnColumns holds the columns for the "client_txn" table.
+	ClientTxnColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "transaction_ref", Type: field.TypeString, Unique: true, Size: 64},
+		{Name: "balance", Type: field.TypeFloat64, Default: 0},
+		{Name: "type", Type: field.TypeEnum, Enums: []string{"ACTIVE", "RENEWAL", "REFUND", "TRANSFER_REFUND", "TRANSFER_RECEIVED", "AUTO_RENEWAL", "PACKAGE_MIGRATION", "ADVANCE_PAYMENT"}},
+		{Name: "status", Type: field.TypeEnum, Enums: []string{"pending", "completed", "failed", "reversed"}, Default: "completed"},
+		{Name: "total_balance", Type: field.TypeFloat64, Default: 0},
+		{Name: "payment_method", Type: field.TypeEnum, Nullable: true, Enums: []string{"vendor_balance", "client_balance", "cash", "bank_transfer", "mobile_banking", "card", "gateway_sslcommerz", "gateway_bkash", "gateway_nagad", "gateway_stripe", "gateway_paypal", "free", "other"}},
+		{Name: "client_username", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "description", Type: field.TypeString, Nullable: true},
+		{Name: "transaction_date", Type: field.TypeTime},
+		{Name: "created_by", Type: field.TypeString, Size: 255},
+	}
+	// ClientTxnTable holds the schema information for the "client_txn" table.
+	ClientTxnTable = &schema.Table{
+		Name:       "client_txn",
+		Columns:    ClientTxnColumns,
+		PrimaryKey: []*schema.Column{ClientTxnColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "clienttxn_transaction_ref",
+				Unique:  false,
+				Columns: []*schema.Column{ClientTxnColumns[1]},
+			},
+			{
+				Name:    "clienttxn_client_username",
+				Unique:  false,
+				Columns: []*schema.Column{ClientTxnColumns[7]},
+			},
+			{
+				Name:    "clienttxn_status",
+				Unique:  false,
+				Columns: []*schema.Column{ClientTxnColumns[4]},
+			},
+			{
+				Name:    "clienttxn_type",
+				Unique:  false,
+				Columns: []*schema.Column{ClientTxnColumns[3]},
+			},
+			{
+				Name:    "clienttxn_transaction_date",
+				Unique:  false,
+				Columns: []*schema.Column{ClientTxnColumns[9]},
+			},
+		},
+	}
 	// ClientsColumns holds the columns for the "clients" table.
 	ClientsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -468,6 +515,40 @@ var (
 			},
 		},
 	}
+	// PackagesColumns holds the columns for the "packages" table.
+	PackagesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "name", Type: field.TypeString, Size: 255},
+		{Name: "pool_name", Type: field.TypeString, Nullable: true, Size: 255},
+		{Name: "profile_name", Type: field.TypeString, Size: 100},
+		{Name: "price", Type: field.TypeFloat64, Default: 0},
+		{Name: "currency", Type: field.TypeString, Size: 3, Default: "BDT"},
+		{Name: "is_active", Type: field.TypeBool, Default: true},
+		{Name: "created_date", Type: field.TypeTime},
+	}
+	// PackagesTable holds the schema information for the "packages" table.
+	PackagesTable = &schema.Table{
+		Name:       "packages",
+		Columns:    PackagesColumns,
+		PrimaryKey: []*schema.Column{PackagesColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "packageplan_name",
+				Unique:  false,
+				Columns: []*schema.Column{PackagesColumns[1]},
+			},
+			{
+				Name:    "packageplan_profile_name",
+				Unique:  false,
+				Columns: []*schema.Column{PackagesColumns[3]},
+			},
+			{
+				Name:    "packageplan_is_active",
+				Unique:  false,
+				Columns: []*schema.Column{PackagesColumns[6]},
+			},
+		},
+	}
 	// PhoneVerificationCodesColumns holds the columns for the "phone_verification_codes" table.
 	PhoneVerificationCodesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -564,6 +645,48 @@ var (
 			},
 		},
 	}
+	// RadacctColumns holds the columns for the "radacct" table.
+	RadacctColumns = []*schema.Column{
+		{Name: "radacctid", Type: field.TypeInt64, Increment: true},
+		{Name: "acctsessionid", Type: field.TypeString, Size: 64},
+		{Name: "acctuniqueid", Type: field.TypeString, Unique: true, Size: 32},
+		{Name: "username", Type: field.TypeString, Size: 64},
+		{Name: "acctstarttime", Type: field.TypeTime, Nullable: true},
+		{Name: "acctstoptime", Type: field.TypeTime, Nullable: true},
+		{Name: "acctsessiontime", Type: field.TypeUint32, Nullable: true},
+		{Name: "acctinputoctets", Type: field.TypeInt64, Nullable: true},
+		{Name: "acctoutputoctets", Type: field.TypeInt64, Nullable: true},
+		{Name: "framedipaddress", Type: field.TypeString, Size: 15},
+		{Name: "acctterminatecause", Type: field.TypeString, Size: 32},
+	}
+	// RadacctTable holds the schema information for the "radacct" table.
+	RadacctTable = &schema.Table{
+		Name:       "radacct",
+		Columns:    RadacctColumns,
+		PrimaryKey: []*schema.Column{RadacctColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "radacct_username",
+				Unique:  false,
+				Columns: []*schema.Column{RadacctColumns[3]},
+			},
+			{
+				Name:    "radacct_acctstarttime",
+				Unique:  false,
+				Columns: []*schema.Column{RadacctColumns[4]},
+			},
+			{
+				Name:    "radacct_acctstoptime",
+				Unique:  false,
+				Columns: []*schema.Column{RadacctColumns[5]},
+			},
+			{
+				Name:    "radacct_framedipaddress",
+				Unique:  false,
+				Columns: []*schema.Column{RadacctColumns[9]},
+			},
+		},
+	}
 	// SentEmailsColumns holds the columns for the "sent_emails" table.
 	SentEmailsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -583,6 +706,46 @@ var (
 				Columns:    []*schema.Column{SentEmailsColumns[4]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
 				OnDelete:   schema.Cascade,
+			},
+		},
+	}
+	// TicketsColumns holds the columns for the "tickets" table.
+	TicketsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "subject", Type: field.TypeString, Size: 255},
+		{Name: "description", Type: field.TypeString, Size: 2147483647},
+		{Name: "status", Type: field.TypeEnum, Enums: []string{"open", "pending", "closed"}, Default: "open"},
+		{Name: "priority", Type: field.TypeEnum, Enums: []string{"low", "medium", "high"}, Default: "medium"},
+		{Name: "client_id", Type: field.TypeInt},
+		{Name: "client_username", Type: field.TypeString},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+	}
+	// TicketsTable holds the schema information for the "tickets" table.
+	TicketsTable = &schema.Table{
+		Name:       "tickets",
+		Columns:    TicketsColumns,
+		PrimaryKey: []*schema.Column{TicketsColumns[0]},
+		Indexes: []*schema.Index{
+			{
+				Name:    "ticket_client_id",
+				Unique:  false,
+				Columns: []*schema.Column{TicketsColumns[5]},
+			},
+			{
+				Name:    "ticket_client_username",
+				Unique:  false,
+				Columns: []*schema.Column{TicketsColumns[6]},
+			},
+			{
+				Name:    "ticket_status",
+				Unique:  false,
+				Columns: []*schema.Column{TicketsColumns[3]},
+			},
+			{
+				Name:    "ticket_created_at",
+				Unique:  false,
+				Columns: []*schema.Column{TicketsColumns[7]},
 			},
 		},
 	}
@@ -679,6 +842,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		ClientTxnTable,
 		ClientsTable,
 		EmailSubscriptionsTable,
 		EmailSubscriptionTypesTable,
@@ -693,10 +857,13 @@ var (
 		NotificationsTable,
 		NotificationPermissionsTable,
 		NotificationTimesTable,
+		PackagesTable,
 		PhoneVerificationCodesTable,
 		ProfilesTable,
 		PwaPushSubscriptionsTable,
+		RadacctTable,
 		SentEmailsTable,
+		TicketsTable,
 		UsersTable,
 		EmailSubscriptionSubscriptionsTable,
 		MonthlySubscriptionBenefactorsTable,
@@ -705,6 +872,9 @@ var (
 )
 
 func init() {
+	ClientTxnTable.Annotation = &entsql.Annotation{
+		Table: "client_txn",
+	}
 	ClientsTable.Annotation = &entsql.Annotation{
 		Table: "clients",
 	}
@@ -718,10 +888,16 @@ func init() {
 	NotificationsTable.ForeignKeys[0].RefTable = ProfilesTable
 	NotificationPermissionsTable.ForeignKeys[0].RefTable = ProfilesTable
 	NotificationTimesTable.ForeignKeys[0].RefTable = ProfilesTable
+	PackagesTable.Annotation = &entsql.Annotation{
+		Table: "packages",
+	}
 	PhoneVerificationCodesTable.ForeignKeys[0].RefTable = ProfilesTable
 	ProfilesTable.ForeignKeys[0].RefTable = ImagesTable
 	ProfilesTable.ForeignKeys[1].RefTable = UsersTable
 	PwaPushSubscriptionsTable.ForeignKeys[0].RefTable = ProfilesTable
+	RadacctTable.Annotation = &entsql.Annotation{
+		Table: "radacct",
+	}
 	SentEmailsTable.ForeignKeys[0].RefTable = ProfilesTable
 	EmailSubscriptionSubscriptionsTable.ForeignKeys[0].RefTable = EmailSubscriptionsTable
 	EmailSubscriptionSubscriptionsTable.ForeignKeys[1].RefTable = EmailSubscriptionTypesTable

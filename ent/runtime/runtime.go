@@ -5,6 +5,7 @@ package runtime
 import (
 	"time"
 
+	"github.com/mikestefanello/pagoda/ent/clienttxn"
 	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
@@ -19,11 +20,14 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
+	"github.com/mikestefanello/pagoda/ent/packageplan"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
+	"github.com/mikestefanello/pagoda/ent/radacct"
 	"github.com/mikestefanello/pagoda/ent/schema"
 	"github.com/mikestefanello/pagoda/ent/sentemail"
+	"github.com/mikestefanello/pagoda/ent/ticket"
 	"github.com/mikestefanello/pagoda/ent/user"
 )
 
@@ -31,6 +35,36 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	clienttxnFields := schema.ClientTxn{}.Fields()
+	_ = clienttxnFields
+	// clienttxnDescTransactionRef is the schema descriptor for transaction_ref field.
+	clienttxnDescTransactionRef := clienttxnFields[1].Descriptor()
+	// clienttxn.TransactionRefValidator is a validator for the "transaction_ref" field. It is called by the builders before save.
+	clienttxn.TransactionRefValidator = clienttxnDescTransactionRef.Validators[0].(func(string) error)
+	// clienttxnDescAmount is the schema descriptor for amount field.
+	clienttxnDescAmount := clienttxnFields[2].Descriptor()
+	// clienttxn.DefaultAmount holds the default value on creation for the amount field.
+	clienttxn.DefaultAmount = clienttxnDescAmount.Default.(float64)
+	// clienttxnDescTotalBalance is the schema descriptor for total_balance field.
+	clienttxnDescTotalBalance := clienttxnFields[5].Descriptor()
+	// clienttxn.DefaultTotalBalance holds the default value on creation for the total_balance field.
+	clienttxn.DefaultTotalBalance = clienttxnDescTotalBalance.Default.(float64)
+	// clienttxnDescClientUsername is the schema descriptor for client_username field.
+	clienttxnDescClientUsername := clienttxnFields[7].Descriptor()
+	// clienttxn.ClientUsernameValidator is a validator for the "client_username" field. It is called by the builders before save.
+	clienttxn.ClientUsernameValidator = clienttxnDescClientUsername.Validators[0].(func(string) error)
+	// clienttxnDescTransactionDate is the schema descriptor for transaction_date field.
+	clienttxnDescTransactionDate := clienttxnFields[9].Descriptor()
+	// clienttxn.DefaultTransactionDate holds the default value on creation for the transaction_date field.
+	clienttxn.DefaultTransactionDate = clienttxnDescTransactionDate.Default.(func() time.Time)
+	// clienttxnDescCreatedBy is the schema descriptor for created_by field.
+	clienttxnDescCreatedBy := clienttxnFields[10].Descriptor()
+	// clienttxn.CreatedByValidator is a validator for the "created_by" field. It is called by the builders before save.
+	clienttxn.CreatedByValidator = clienttxnDescCreatedBy.Validators[0].(func(string) error)
+	// clienttxnDescID is the schema descriptor for id field.
+	clienttxnDescID := clienttxnFields[0].Descriptor()
+	// clienttxn.IDValidator is a validator for the "id" field. It is called by the builders before save.
+	clienttxn.IDValidator = clienttxnDescID.Validators[0].(func(int) error)
 	clientuserFields := schema.ClientUser{}.Fields()
 	_ = clientuserFields
 	// clientuserDescName is the schema descriptor for name field.
@@ -502,6 +536,70 @@ func init() {
 			return nil
 		}
 	}()
+	packageplanFields := schema.PackagePlan{}.Fields()
+	_ = packageplanFields
+	// packageplanDescName is the schema descriptor for name field.
+	packageplanDescName := packageplanFields[1].Descriptor()
+	// packageplan.NameValidator is a validator for the "name" field. It is called by the builders before save.
+	packageplan.NameValidator = func() func(string) error {
+		validators := packageplanDescName.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(name string) error {
+			for _, fn := range fns {
+				if err := fn(name); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// packageplanDescPoolName is the schema descriptor for pool_name field.
+	packageplanDescPoolName := packageplanFields[2].Descriptor()
+	// packageplan.PoolNameValidator is a validator for the "pool_name" field. It is called by the builders before save.
+	packageplan.PoolNameValidator = packageplanDescPoolName.Validators[0].(func(string) error)
+	// packageplanDescProfileName is the schema descriptor for profile_name field.
+	packageplanDescProfileName := packageplanFields[3].Descriptor()
+	// packageplan.ProfileNameValidator is a validator for the "profile_name" field. It is called by the builders before save.
+	packageplan.ProfileNameValidator = func() func(string) error {
+		validators := packageplanDescProfileName.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(profile_name string) error {
+			for _, fn := range fns {
+				if err := fn(profile_name); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// packageplanDescPrice is the schema descriptor for price field.
+	packageplanDescPrice := packageplanFields[4].Descriptor()
+	// packageplan.DefaultPrice holds the default value on creation for the price field.
+	packageplan.DefaultPrice = packageplanDescPrice.Default.(float64)
+	// packageplanDescCurrency is the schema descriptor for currency field.
+	packageplanDescCurrency := packageplanFields[5].Descriptor()
+	// packageplan.DefaultCurrency holds the default value on creation for the currency field.
+	packageplan.DefaultCurrency = packageplanDescCurrency.Default.(string)
+	// packageplan.CurrencyValidator is a validator for the "currency" field. It is called by the builders before save.
+	packageplan.CurrencyValidator = packageplanDescCurrency.Validators[0].(func(string) error)
+	// packageplanDescIsActive is the schema descriptor for is_active field.
+	packageplanDescIsActive := packageplanFields[6].Descriptor()
+	// packageplan.DefaultIsActive holds the default value on creation for the is_active field.
+	packageplan.DefaultIsActive = packageplanDescIsActive.Default.(bool)
+	// packageplanDescCreatedDate is the schema descriptor for created_date field.
+	packageplanDescCreatedDate := packageplanFields[7].Descriptor()
+	// packageplan.DefaultCreatedDate holds the default value on creation for the created_date field.
+	packageplan.DefaultCreatedDate = packageplanDescCreatedDate.Default.(func() time.Time)
+	// packageplanDescID is the schema descriptor for id field.
+	packageplanDescID := packageplanFields[0].Descriptor()
+	// packageplan.IDValidator is a validator for the "id" field. It is called by the builders before save.
+	packageplan.IDValidator = packageplanDescID.Validators[0].(func(int) error)
 	phoneverificationcodeMixin := schema.PhoneVerificationCode{}.Mixin()
 	phoneverificationcodeMixinFields0 := phoneverificationcodeMixin[0].Fields()
 	_ = phoneverificationcodeMixinFields0
@@ -563,6 +661,28 @@ func init() {
 	pwapushsubscriptionDescAuth := pwapushsubscriptionFields[2].Descriptor()
 	// pwapushsubscription.AuthValidator is a validator for the "auth" field. It is called by the builders before save.
 	pwapushsubscription.AuthValidator = pwapushsubscriptionDescAuth.Validators[0].(func(string) error)
+	radacctFields := schema.RadAcct{}.Fields()
+	_ = radacctFields
+	// radacctDescAcctsessionid is the schema descriptor for acctsessionid field.
+	radacctDescAcctsessionid := radacctFields[1].Descriptor()
+	// radacct.AcctsessionidValidator is a validator for the "acctsessionid" field. It is called by the builders before save.
+	radacct.AcctsessionidValidator = radacctDescAcctsessionid.Validators[0].(func(string) error)
+	// radacctDescAcctuniqueid is the schema descriptor for acctuniqueid field.
+	radacctDescAcctuniqueid := radacctFields[2].Descriptor()
+	// radacct.AcctuniqueidValidator is a validator for the "acctuniqueid" field. It is called by the builders before save.
+	radacct.AcctuniqueidValidator = radacctDescAcctuniqueid.Validators[0].(func(string) error)
+	// radacctDescUsername is the schema descriptor for username field.
+	radacctDescUsername := radacctFields[3].Descriptor()
+	// radacct.UsernameValidator is a validator for the "username" field. It is called by the builders before save.
+	radacct.UsernameValidator = radacctDescUsername.Validators[0].(func(string) error)
+	// radacctDescFramedipaddress is the schema descriptor for framedipaddress field.
+	radacctDescFramedipaddress := radacctFields[9].Descriptor()
+	// radacct.FramedipaddressValidator is a validator for the "framedipaddress" field. It is called by the builders before save.
+	radacct.FramedipaddressValidator = radacctDescFramedipaddress.Validators[0].(func(string) error)
+	// radacctDescAcctterminatecause is the schema descriptor for acctterminatecause field.
+	radacctDescAcctterminatecause := radacctFields[10].Descriptor()
+	// radacct.AcctterminatecauseValidator is a validator for the "acctterminatecause" field. It is called by the builders before save.
+	radacct.AcctterminatecauseValidator = radacctDescAcctterminatecause.Validators[0].(func(string) error)
 	sentemailMixin := schema.SentEmail{}.Mixin()
 	sentemailMixinFields0 := sentemailMixin[0].Fields()
 	_ = sentemailMixinFields0
@@ -578,6 +698,48 @@ func init() {
 	sentemail.DefaultUpdatedAt = sentemailDescUpdatedAt.Default.(func() time.Time)
 	// sentemail.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
 	sentemail.UpdateDefaultUpdatedAt = sentemailDescUpdatedAt.UpdateDefault.(func() time.Time)
+	ticketFields := schema.Ticket{}.Fields()
+	_ = ticketFields
+	// ticketDescSubject is the schema descriptor for subject field.
+	ticketDescSubject := ticketFields[0].Descriptor()
+	// ticket.SubjectValidator is a validator for the "subject" field. It is called by the builders before save.
+	ticket.SubjectValidator = func() func(string) error {
+		validators := ticketDescSubject.Validators
+		fns := [...]func(string) error{
+			validators[0].(func(string) error),
+			validators[1].(func(string) error),
+		}
+		return func(subject string) error {
+			for _, fn := range fns {
+				if err := fn(subject); err != nil {
+					return err
+				}
+			}
+			return nil
+		}
+	}()
+	// ticketDescDescription is the schema descriptor for description field.
+	ticketDescDescription := ticketFields[1].Descriptor()
+	// ticket.DescriptionValidator is a validator for the "description" field. It is called by the builders before save.
+	ticket.DescriptionValidator = ticketDescDescription.Validators[0].(func(string) error)
+	// ticketDescClientID is the schema descriptor for client_id field.
+	ticketDescClientID := ticketFields[4].Descriptor()
+	// ticket.ClientIDValidator is a validator for the "client_id" field. It is called by the builders before save.
+	ticket.ClientIDValidator = ticketDescClientID.Validators[0].(func(int) error)
+	// ticketDescClientUsername is the schema descriptor for client_username field.
+	ticketDescClientUsername := ticketFields[5].Descriptor()
+	// ticket.ClientUsernameValidator is a validator for the "client_username" field. It is called by the builders before save.
+	ticket.ClientUsernameValidator = ticketDescClientUsername.Validators[0].(func(string) error)
+	// ticketDescCreatedAt is the schema descriptor for created_at field.
+	ticketDescCreatedAt := ticketFields[6].Descriptor()
+	// ticket.DefaultCreatedAt holds the default value on creation for the created_at field.
+	ticket.DefaultCreatedAt = ticketDescCreatedAt.Default.(func() time.Time)
+	// ticketDescUpdatedAt is the schema descriptor for updated_at field.
+	ticketDescUpdatedAt := ticketFields[7].Descriptor()
+	// ticket.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	ticket.DefaultUpdatedAt = ticketDescUpdatedAt.Default.(func() time.Time)
+	// ticket.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	ticket.UpdateDefaultUpdatedAt = ticketDescUpdatedAt.UpdateDefault.(func() time.Time)
 	userMixin := schema.User{}.Mixin()
 	userHooks := schema.User{}.Hooks()
 	user.Hooks[0] = userHooks[0]

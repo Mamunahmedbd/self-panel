@@ -47,4 +47,11 @@ const (
 	RouteNamePaymentProcessorWebhook      = "stripe.webhook"
 	RouteNamePricingPage                  = "pricing_page"
 	RouteNamePaymentProcessorSuccess      = "stripe.success"
+
+	// ISP Features
+	RouteNameTicketCreate = "ticket.create"
+	RouteNameTicketSubmit = "ticket.submit"
+	RouteNameRenewPackage = "package.renew"
+	RouteNameChangePlan   = "package.change"
+	RouteNameAddFunds     = "balance.add"
 )

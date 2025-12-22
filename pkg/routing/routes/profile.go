@@ -40,6 +40,11 @@ func NewProfileRoutes(
 const PROFILE_ID_QUERY_PARAM = "profile_id"
 
 func (c *singleProfile) Get(ctx echo.Context) error {
+	// Check if this is an ISP client
+	if c.ctr.Container.IsClientAuthenticated(ctx) {
+		return c.getISPProfile(ctx)
+	}
+
 	var otherProfileID int
 	var selfProfileID int
 	var err error
@@ -79,6 +84,7 @@ func (c *singleProfile) Get(ctx echo.Context) error {
 	// Format the number in international format
 	internationalFormat := phonenumbers.Format(phoneNumber, phonenumbers.INTERNATIONAL)
 	profileData.PhoneNumberInternational = &internationalFormat
+	// Note: profileData.CountryCode is also used in templates but not set here.
 
 	page := controller.NewPage(ctx)
 
@@ -112,6 +118,26 @@ func (c *singleProfile) Get(ctx echo.Context) error {
 
 	return c.ctr.RenderPage(ctx, page)
 }
+
+func (c *singleProfile) getISPProfile(ctx echo.Context) error {
+	data, err := c.ctr.Container.GetISPProfileData(ctx)
+	if err != nil {
+		return c.ctr.Fail(err, "failed to get ISP profile data")
+	}
+
+	page := controller.NewPage(ctx)
+	page.Layout = layouts.Main
+	page.Name = templates.PageProfile
+	page.Title = "Dashboard"
+	page.Data = data
+	page.Component = pages.ISPProfile(&page, data)
+	page.HTMX.Request.Boosted = true
+	page.SelectedBottomNavbarItem = domain.BottomNavbarItemProfile
+	page.ShowBottomNavbar = true
+
+	return c.ctr.RenderPage(ctx, page)
+}
+
 
 func GetFullSecureUrlForRoute(ctx echo.Context, domain, routeName, csrf string) string {
 	url := ctx.Echo().Reverse(routeName)

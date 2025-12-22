@@ -3,7 +3,6 @@ package types
 import (
 	"time"
 
-	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/domain"
 )
 
@@ -27,7 +26,6 @@ type (
 
 		NotificationPermissionsData NotificationPermissionsData
 	}
-
 
 	NotificationPermissionsData struct {
 		// Permissions                    []domain.NotificationPermission
@@ -60,12 +58,12 @@ type (
 		Bio                     string `form:"bio"`
 		SelfBirthdate           string `form:"birthdate"`
 		FinishOnboardingRequest bool   `form:"finish_onboarding"`
-		Submission              controller.FormSubmission
+		Submission              FormSubmission
 	}
 
 	ProfileBioFormData struct {
 		Bio        string `form:"bio" validate:"required"`
-		Submission controller.FormSubmission
+		Submission FormSubmission
 	}
 
 	PhoneNumber struct {
@@ -76,7 +74,7 @@ type (
 
 	PhoneNumberVerification struct {
 		VerificationCode string `form:"verification_code" validate:"required"`
-		Submission       controller.FormSubmission
+		Submission       FormSubmission
 	}
 
 	SmsVerificationCodeInfo struct {
@@ -85,6 +83,6 @@ type (
 
 	DisplayNameForm struct {
 		DisplayName string `form:"name" validate:"required"`
-		Submission  controller.FormSubmission
+		Submission  FormSubmission
 	}
 )

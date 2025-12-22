@@ -4,18 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"net/http"
-	"net/http/httptest"
 	"time"
 
 	mapset "github.com/deckarep/golang-set/v2"
-	"github.com/labstack/echo/v4"
 	"github.com/mikestefanello/pagoda/ent"
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/sentemail"
-	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/domain"
 	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
 	"github.com/mikestefanello/pagoda/pkg/services"
@@ -168,23 +164,11 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 		}
 	}
 
-	// Create a new Echo instance
-	ech := echo.New()
-
-	// Create a dummy request and response writer
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
-	rec := httptest.NewRecorder()
-
-	// Create a new Echo context
-	echoCtx := ech.NewContext(req, rec)
-
 	url := e.container.Web.Reverse(routenames.RouteNameDeleteEmailSubscriptionWithToken,
 		domain.NotificationPermissionNewFriendActivity.Value, partnerUpdatePermissionToken)
 	unsubscribePartnerActivityLink := fmt.Sprintf("%s%s", e.container.Config.HTTP.Domain, url)
 
-	page := controller.NewPage(echoCtx)
-	page.Layout = layouts.Main
-	page.Data = types.EmailUpdate{
+	data := types.EmailUpdate{
 		SelfName:                                 selfName,
 		AppName:                                  string(e.container.Config.App.Name),
 		SupportEmail:                             e.container.Config.Mail.FromAddress,
@@ -203,7 +187,7 @@ func (e *UpdateEmailSender) SendUpdateEmail(
 		To(email).
 		Subject(title).
 		TemplateLayout(layouts.Email).
-		Component(emails.EmailUpdate(&page)).
+		Component(emails.EmailUpdate(data)).
 		Send(ctx)
 	if err != nil {
 		return err

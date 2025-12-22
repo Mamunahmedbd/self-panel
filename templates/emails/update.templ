@@ -1,7 +1,6 @@
 package emails
 
 import (
-	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/types"
 	"html/template"
 )
@@ -559,8 +558,6 @@ var emailUpdateGoTemplate = template.Must(template.New("content").Parse(`
 </html>
 `))
 
-templ EmailUpdate(page *controller.Page) {
-	if data, ok := page.Data.(types.EmailUpdate); ok {
-		@templ.FromGoHTML(emailUpdateGoTemplate, data)
-	}
+templ EmailUpdate(data types.EmailUpdate) {
+	@templ.FromGoHTML(emailUpdateGoTemplate, data)
 }

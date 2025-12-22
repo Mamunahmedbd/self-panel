@@ -15,6 +15,7 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/mikestefanello/pagoda/ent/clienttxn"
 	"github.com/mikestefanello/pagoda/ent/clientuser"
 	"github.com/mikestefanello/pagoda/ent/emailsubscription"
 	"github.com/mikestefanello/pagoda/ent/emailsubscriptiontype"
@@ -29,10 +30,13 @@ import (
 	"github.com/mikestefanello/pagoda/ent/notification"
 	"github.com/mikestefanello/pagoda/ent/notificationpermission"
 	"github.com/mikestefanello/pagoda/ent/notificationtime"
+	"github.com/mikestefanello/pagoda/ent/packageplan"
 	"github.com/mikestefanello/pagoda/ent/phoneverificationcode"
 	"github.com/mikestefanello/pagoda/ent/profile"
 	"github.com/mikestefanello/pagoda/ent/pwapushsubscription"
+	"github.com/mikestefanello/pagoda/ent/radacct"
 	"github.com/mikestefanello/pagoda/ent/sentemail"
+	"github.com/mikestefanello/pagoda/ent/ticket"
 	"github.com/mikestefanello/pagoda/ent/user"
 )
 
@@ -41,6 +45,8 @@ type Client struct {
 	config
 	// Schema is the client for creating, migrating and dropping schema.
 	Schema *migrate.Schema
+	// ClientTxn is the client for interacting with the ClientTxn builders.
+	ClientTxn *ClientTxnClient
 	// ClientUser is the client for interacting with the ClientUser builders.
 	ClientUser *ClientUserClient
 	// EmailSubscription is the client for interacting with the EmailSubscription builders.
@@ -69,14 +75,20 @@ type Client struct {
 	NotificationPermission *NotificationPermissionClient
 	// NotificationTime is the client for interacting with the NotificationTime builders.
 	NotificationTime *NotificationTimeClient
+	// PackagePlan is the client for interacting with the PackagePlan builders.
+	PackagePlan *PackagePlanClient
 	// PhoneVerificationCode is the client for interacting with the PhoneVerificationCode builders.
 	PhoneVerificationCode *PhoneVerificationCodeClient
 	// Profile is the client for interacting with the Profile builders.
 	Profile *ProfileClient
 	// PwaPushSubscription is the client for interacting with the PwaPushSubscription builders.
 	PwaPushSubscription *PwaPushSubscriptionClient
+	// RadAcct is the client for interacting with the RadAcct builders.
+	RadAcct *RadAcctClient
 	// SentEmail is the client for interacting with the SentEmail builders.
 	SentEmail *SentEmailClient
+	// Ticket is the client for interacting with the Ticket builders.
+	Ticket *TicketClient
 	// User is the client for interacting with the User builders.
 	User *UserClient
 }
@@ -90,6 +102,7 @@ func NewClient(opts ...Option) *Client {
 
 func (c *Client) init() {
 	c.Schema = migrate.NewSchema(c.driver)
+	c.ClientTxn = NewClientTxnClient(c.config)
 	c.ClientUser = NewClientUserClient(c.config)
 	c.EmailSubscription = NewEmailSubscriptionClient(c.config)
 	c.EmailSubscriptionType = NewEmailSubscriptionTypeClient(c.config)
@@ -104,10 +117,13 @@ func (c *Client) init() {
 	c.Notification = NewNotificationClient(c.config)
 	c.NotificationPermission = NewNotificationPermissionClient(c.config)
 	c.NotificationTime = NewNotificationTimeClient(c.config)
+	c.PackagePlan = NewPackagePlanClient(c.config)
 	c.PhoneVerificationCode = NewPhoneVerificationCodeClient(c.config)
 	c.Profile = NewProfileClient(c.config)
 	c.PwaPushSubscription = NewPwaPushSubscriptionClient(c.config)
+	c.RadAcct = NewRadAcctClient(c.config)
 	c.SentEmail = NewSentEmailClient(c.config)
+	c.Ticket = NewTicketClient(c.config)
 	c.User = NewUserClient(c.config)
 }
 
@@ -201,6 +217,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 	return &Tx{
 		ctx:                    ctx,
 		config:                 cfg,
+		ClientTxn:              NewClientTxnClient(cfg),
 		ClientUser:             NewClientUserClient(cfg),
 		EmailSubscription:      NewEmailSubscriptionClient(cfg),
 		EmailSubscriptionType:  NewEmailSubscriptionTypeClient(cfg),
@@ -215,10 +232,13 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Notification:           NewNotificationClient(cfg),
 		NotificationPermission: NewNotificationPermissionClient(cfg),
 		NotificationTime:       NewNotificationTimeClient(cfg),
+		PackagePlan:            NewPackagePlanClient(cfg),
 		PhoneVerificationCode:  NewPhoneVerificationCodeClient(cfg),
 		Profile:                NewProfileClient(cfg),
 		PwaPushSubscription:    NewPwaPushSubscriptionClient(cfg),
+		RadAcct:                NewRadAcctClient(cfg),
 		SentEmail:              NewSentEmailClient(cfg),
+		Ticket:                 NewTicketClient(cfg),
 		User:                   NewUserClient(cfg),
 	}, nil
 }
@@ -239,6 +259,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 	return &Tx{
 		ctx:                    ctx,
 		config:                 cfg,
+		ClientTxn:              NewClientTxnClient(cfg),
 		ClientUser:             NewClientUserClient(cfg),
 		EmailSubscription:      NewEmailSubscriptionClient(cfg),
 		EmailSubscriptionType:  NewEmailSubscriptionTypeClient(cfg),
@@ -253,10 +274,13 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Notification:           NewNotificationClient(cfg),
 		NotificationPermission: NewNotificationPermissionClient(cfg),
 		NotificationTime:       NewNotificationTimeClient(cfg),
+		PackagePlan:            NewPackagePlanClient(cfg),
 		PhoneVerificationCode:  NewPhoneVerificationCodeClient(cfg),
 		Profile:                NewProfileClient(cfg),
 		PwaPushSubscription:    NewPwaPushSubscriptionClient(cfg),
+		RadAcct:                NewRadAcctClient(cfg),
 		SentEmail:              NewSentEmailClient(cfg),
+		Ticket:                 NewTicketClient(cfg),
 		User:                   NewUserClient(cfg),
 	}, nil
 }
@@ -264,7 +288,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 // Debug returns a new debug-client. It's used to get verbose logging on specific operations.
 //
 //	client.Debug().
-//		ClientUser.
+//		ClientTxn.
 //		Query().
 //		Count(ctx)
 func (c *Client) Debug() *Client {
@@ -287,11 +311,12 @@ func (c *Client) Close() error {
 // In order to add hooks to a specific client, call: `client.Node.Use(...)`.
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
-		c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType, c.Emojis,
-		c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize, c.Invitation,
-		c.LastSeenOnline, c.MonthlySubscription, c.Notification,
-		c.NotificationPermission, c.NotificationTime, c.PhoneVerificationCode,
-		c.Profile, c.PwaPushSubscription, c.SentEmail, c.User,
+		c.ClientTxn, c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType,
+		c.Emojis, c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize,
+		c.Invitation, c.LastSeenOnline, c.MonthlySubscription, c.Notification,
+		c.NotificationPermission, c.NotificationTime, c.PackagePlan,
+		c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription, c.RadAcct,
+		c.SentEmail, c.Ticket, c.User,
 	} {
 		n.Use(hooks...)
 	}
@@ -301,11 +326,12 @@ func (c *Client) Use(hooks ...Hook) {
 // In order to add interceptors to a specific client, call: `client.Node.Intercept(...)`.
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
-		c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType, c.Emojis,
-		c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize, c.Invitation,
-		c.LastSeenOnline, c.MonthlySubscription, c.Notification,
-		c.NotificationPermission, c.NotificationTime, c.PhoneVerificationCode,
-		c.Profile, c.PwaPushSubscription, c.SentEmail, c.User,
+		c.ClientTxn, c.ClientUser, c.EmailSubscription, c.EmailSubscriptionType,
+		c.Emojis, c.FCMSubscriptions, c.FileStorage, c.Image, c.ImageSize,
+		c.Invitation, c.LastSeenOnline, c.MonthlySubscription, c.Notification,
+		c.NotificationPermission, c.NotificationTime, c.PackagePlan,
+		c.PhoneVerificationCode, c.Profile, c.PwaPushSubscription, c.RadAcct,
+		c.SentEmail, c.Ticket, c.User,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -314,6 +340,8 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 // Mutate implements the ent.Mutator interface.
 func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 	switch m := m.(type) {
+	case *ClientTxnMutation:
+		return c.ClientTxn.mutate(ctx, m)
 	case *ClientUserMutation:
 		return c.ClientUser.mutate(ctx, m)
 	case *EmailSubscriptionMutation:
@@ -342,18 +370,157 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.NotificationPermission.mutate(ctx, m)
 	case *NotificationTimeMutation:
 		return c.NotificationTime.mutate(ctx, m)
+	case *PackagePlanMutation:
+		return c.PackagePlan.mutate(ctx, m)
 	case *PhoneVerificationCodeMutation:
 		return c.PhoneVerificationCode.mutate(ctx, m)
 	case *ProfileMutation:
 		return c.Profile.mutate(ctx, m)
 	case *PwaPushSubscriptionMutation:
 		return c.PwaPushSubscription.mutate(ctx, m)
+	case *RadAcctMutation:
+		return c.RadAcct.mutate(ctx, m)
 	case *SentEmailMutation:
 		return c.SentEmail.mutate(ctx, m)
+	case *TicketMutation:
+		return c.Ticket.mutate(ctx, m)
 	case *UserMutation:
 		return c.User.mutate(ctx, m)
 	default:
 		return nil, fmt.Errorf("ent: unknown mutation type %T", m)
+	}
+}
+
+// ClientTxnClient is a client for the ClientTxn schema.
+type ClientTxnClient struct {
+	config
+}
+
+// NewClientTxnClient returns a client for the ClientTxn from the given config.
+func NewClientTxnClient(c config) *ClientTxnClient {
+	return &ClientTxnClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `clienttxn.Hooks(f(g(h())))`.
+func (c *ClientTxnClient) Use(hooks ...Hook) {
+	c.hooks.ClientTxn = append(c.hooks.ClientTxn, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `clienttxn.Intercept(f(g(h())))`.
+func (c *ClientTxnClient) Intercept(interceptors ...Interceptor) {
+	c.inters.ClientTxn = append(c.inters.ClientTxn, interceptors...)
+}
+
+// Create returns a builder for creating a ClientTxn entity.
+func (c *ClientTxnClient) Create() *ClientTxnCreate {
+	mutation := newClientTxnMutation(c.config, OpCreate)
+	return &ClientTxnCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of ClientTxn entities.
+func (c *ClientTxnClient) CreateBulk(builders ...*ClientTxnCreate) *ClientTxnCreateBulk {
+	return &ClientTxnCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *ClientTxnClient) MapCreateBulk(slice any, setFunc func(*ClientTxnCreate, int)) *ClientTxnCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &ClientTxnCreateBulk{err: fmt.Errorf("calling to ClientTxnClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*ClientTxnCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &ClientTxnCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for ClientTxn.
+func (c *ClientTxnClient) Update() *ClientTxnUpdate {
+	mutation := newClientTxnMutation(c.config, OpUpdate)
+	return &ClientTxnUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *ClientTxnClient) UpdateOne(ct *ClientTxn) *ClientTxnUpdateOne {
+	mutation := newClientTxnMutation(c.config, OpUpdateOne, withClientTxn(ct))
+	return &ClientTxnUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *ClientTxnClient) UpdateOneID(id int) *ClientTxnUpdateOne {
+	mutation := newClientTxnMutation(c.config, OpUpdateOne, withClientTxnID(id))
+	return &ClientTxnUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for ClientTxn.
+func (c *ClientTxnClient) Delete() *ClientTxnDelete {
+	mutation := newClientTxnMutation(c.config, OpDelete)
+	return &ClientTxnDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *ClientTxnClient) DeleteOne(ct *ClientTxn) *ClientTxnDeleteOne {
+	return c.DeleteOneID(ct.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *ClientTxnClient) DeleteOneID(id int) *ClientTxnDeleteOne {
+	builder := c.Delete().Where(clienttxn.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &ClientTxnDeleteOne{builder}
+}
+
+// Query returns a query builder for ClientTxn.
+func (c *ClientTxnClient) Query() *ClientTxnQuery {
+	return &ClientTxnQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeClientTxn},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a ClientTxn entity by its id.
+func (c *ClientTxnClient) Get(ctx context.Context, id int) (*ClientTxn, error) {
+	return c.Query().Where(clienttxn.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *ClientTxnClient) GetX(ctx context.Context, id int) *ClientTxn {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *ClientTxnClient) Hooks() []Hook {
+	return c.hooks.ClientTxn
+}
+
+// Interceptors returns the client interceptors.
+func (c *ClientTxnClient) Interceptors() []Interceptor {
+	return c.inters.ClientTxn
+}
+
+func (c *ClientTxnClient) mutate(ctx context.Context, m *ClientTxnMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&ClientTxnCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&ClientTxnUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&ClientTxnUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&ClientTxnDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown ClientTxn mutation op: %q", m.Op())
 	}
 }
 
@@ -2428,6 +2595,139 @@ func (c *NotificationTimeClient) mutate(ctx context.Context, m *NotificationTime
 	}
 }
 
+// PackagePlanClient is a client for the PackagePlan schema.
+type PackagePlanClient struct {
+	config
+}
+
+// NewPackagePlanClient returns a client for the PackagePlan from the given config.
+func NewPackagePlanClient(c config) *PackagePlanClient {
+	return &PackagePlanClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `packageplan.Hooks(f(g(h())))`.
+func (c *PackagePlanClient) Use(hooks ...Hook) {
+	c.hooks.PackagePlan = append(c.hooks.PackagePlan, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `packageplan.Intercept(f(g(h())))`.
+func (c *PackagePlanClient) Intercept(interceptors ...Interceptor) {
+	c.inters.PackagePlan = append(c.inters.PackagePlan, interceptors...)
+}
+
+// Create returns a builder for creating a PackagePlan entity.
+func (c *PackagePlanClient) Create() *PackagePlanCreate {
+	mutation := newPackagePlanMutation(c.config, OpCreate)
+	return &PackagePlanCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of PackagePlan entities.
+func (c *PackagePlanClient) CreateBulk(builders ...*PackagePlanCreate) *PackagePlanCreateBulk {
+	return &PackagePlanCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *PackagePlanClient) MapCreateBulk(slice any, setFunc func(*PackagePlanCreate, int)) *PackagePlanCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &PackagePlanCreateBulk{err: fmt.Errorf("calling to PackagePlanClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*PackagePlanCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &PackagePlanCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for PackagePlan.
+func (c *PackagePlanClient) Update() *PackagePlanUpdate {
+	mutation := newPackagePlanMutation(c.config, OpUpdate)
+	return &PackagePlanUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *PackagePlanClient) UpdateOne(pp *PackagePlan) *PackagePlanUpdateOne {
+	mutation := newPackagePlanMutation(c.config, OpUpdateOne, withPackagePlan(pp))
+	return &PackagePlanUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *PackagePlanClient) UpdateOneID(id int) *PackagePlanUpdateOne {
+	mutation := newPackagePlanMutation(c.config, OpUpdateOne, withPackagePlanID(id))
+	return &PackagePlanUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for PackagePlan.
+func (c *PackagePlanClient) Delete() *PackagePlanDelete {
+	mutation := newPackagePlanMutation(c.config, OpDelete)
+	return &PackagePlanDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *PackagePlanClient) DeleteOne(pp *PackagePlan) *PackagePlanDeleteOne {
+	return c.DeleteOneID(pp.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *PackagePlanClient) DeleteOneID(id int) *PackagePlanDeleteOne {
+	builder := c.Delete().Where(packageplan.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &PackagePlanDeleteOne{builder}
+}
+
+// Query returns a query builder for PackagePlan.
+func (c *PackagePlanClient) Query() *PackagePlanQuery {
+	return &PackagePlanQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypePackagePlan},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a PackagePlan entity by its id.
+func (c *PackagePlanClient) Get(ctx context.Context, id int) (*PackagePlan, error) {
+	return c.Query().Where(packageplan.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *PackagePlanClient) GetX(ctx context.Context, id int) *PackagePlan {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *PackagePlanClient) Hooks() []Hook {
+	return c.hooks.PackagePlan
+}
+
+// Interceptors returns the client interceptors.
+func (c *PackagePlanClient) Interceptors() []Interceptor {
+	return c.inters.PackagePlan
+}
+
+func (c *PackagePlanClient) mutate(ctx context.Context, m *PackagePlanMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&PackagePlanCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&PackagePlanUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&PackagePlanUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&PackagePlanDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown PackagePlan mutation op: %q", m.Op())
+	}
+}
+
 // PhoneVerificationCodeClient is a client for the PhoneVerificationCode schema.
 type PhoneVerificationCodeClient struct {
 	config
@@ -3067,6 +3367,139 @@ func (c *PwaPushSubscriptionClient) mutate(ctx context.Context, m *PwaPushSubscr
 	}
 }
 
+// RadAcctClient is a client for the RadAcct schema.
+type RadAcctClient struct {
+	config
+}
+
+// NewRadAcctClient returns a client for the RadAcct from the given config.
+func NewRadAcctClient(c config) *RadAcctClient {
+	return &RadAcctClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `radacct.Hooks(f(g(h())))`.
+func (c *RadAcctClient) Use(hooks ...Hook) {
+	c.hooks.RadAcct = append(c.hooks.RadAcct, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `radacct.Intercept(f(g(h())))`.
+func (c *RadAcctClient) Intercept(interceptors ...Interceptor) {
+	c.inters.RadAcct = append(c.inters.RadAcct, interceptors...)
+}
+
+// Create returns a builder for creating a RadAcct entity.
+func (c *RadAcctClient) Create() *RadAcctCreate {
+	mutation := newRadAcctMutation(c.config, OpCreate)
+	return &RadAcctCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of RadAcct entities.
+func (c *RadAcctClient) CreateBulk(builders ...*RadAcctCreate) *RadAcctCreateBulk {
+	return &RadAcctCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *RadAcctClient) MapCreateBulk(slice any, setFunc func(*RadAcctCreate, int)) *RadAcctCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &RadAcctCreateBulk{err: fmt.Errorf("calling to RadAcctClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*RadAcctCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &RadAcctCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for RadAcct.
+func (c *RadAcctClient) Update() *RadAcctUpdate {
+	mutation := newRadAcctMutation(c.config, OpUpdate)
+	return &RadAcctUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *RadAcctClient) UpdateOne(ra *RadAcct) *RadAcctUpdateOne {
+	mutation := newRadAcctMutation(c.config, OpUpdateOne, withRadAcct(ra))
+	return &RadAcctUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *RadAcctClient) UpdateOneID(id int64) *RadAcctUpdateOne {
+	mutation := newRadAcctMutation(c.config, OpUpdateOne, withRadAcctID(id))
+	return &RadAcctUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for RadAcct.
+func (c *RadAcctClient) Delete() *RadAcctDelete {
+	mutation := newRadAcctMutation(c.config, OpDelete)
+	return &RadAcctDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *RadAcctClient) DeleteOne(ra *RadAcct) *RadAcctDeleteOne {
+	return c.DeleteOneID(ra.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *RadAcctClient) DeleteOneID(id int64) *RadAcctDeleteOne {
+	builder := c.Delete().Where(radacct.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &RadAcctDeleteOne{builder}
+}
+
+// Query returns a query builder for RadAcct.
+func (c *RadAcctClient) Query() *RadAcctQuery {
+	return &RadAcctQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeRadAcct},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a RadAcct entity by its id.
+func (c *RadAcctClient) Get(ctx context.Context, id int64) (*RadAcct, error) {
+	return c.Query().Where(radacct.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *RadAcctClient) GetX(ctx context.Context, id int64) *RadAcct {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *RadAcctClient) Hooks() []Hook {
+	return c.hooks.RadAcct
+}
+
+// Interceptors returns the client interceptors.
+func (c *RadAcctClient) Interceptors() []Interceptor {
+	return c.inters.RadAcct
+}
+
+func (c *RadAcctClient) mutate(ctx context.Context, m *RadAcctMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&RadAcctCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&RadAcctUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&RadAcctUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&RadAcctDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown RadAcct mutation op: %q", m.Op())
+	}
+}
+
 // SentEmailClient is a client for the SentEmail schema.
 type SentEmailClient struct {
 	config
@@ -3213,6 +3646,139 @@ func (c *SentEmailClient) mutate(ctx context.Context, m *SentEmailMutation) (Val
 		return (&SentEmailDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown SentEmail mutation op: %q", m.Op())
+	}
+}
+
+// TicketClient is a client for the Ticket schema.
+type TicketClient struct {
+	config
+}
+
+// NewTicketClient returns a client for the Ticket from the given config.
+func NewTicketClient(c config) *TicketClient {
+	return &TicketClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `ticket.Hooks(f(g(h())))`.
+func (c *TicketClient) Use(hooks ...Hook) {
+	c.hooks.Ticket = append(c.hooks.Ticket, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `ticket.Intercept(f(g(h())))`.
+func (c *TicketClient) Intercept(interceptors ...Interceptor) {
+	c.inters.Ticket = append(c.inters.Ticket, interceptors...)
+}
+
+// Create returns a builder for creating a Ticket entity.
+func (c *TicketClient) Create() *TicketCreate {
+	mutation := newTicketMutation(c.config, OpCreate)
+	return &TicketCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of Ticket entities.
+func (c *TicketClient) CreateBulk(builders ...*TicketCreate) *TicketCreateBulk {
+	return &TicketCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *TicketClient) MapCreateBulk(slice any, setFunc func(*TicketCreate, int)) *TicketCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &TicketCreateBulk{err: fmt.Errorf("calling to TicketClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*TicketCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &TicketCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for Ticket.
+func (c *TicketClient) Update() *TicketUpdate {
+	mutation := newTicketMutation(c.config, OpUpdate)
+	return &TicketUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *TicketClient) UpdateOne(t *Ticket) *TicketUpdateOne {
+	mutation := newTicketMutation(c.config, OpUpdateOne, withTicket(t))
+	return &TicketUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *TicketClient) UpdateOneID(id int) *TicketUpdateOne {
+	mutation := newTicketMutation(c.config, OpUpdateOne, withTicketID(id))
+	return &TicketUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for Ticket.
+func (c *TicketClient) Delete() *TicketDelete {
+	mutation := newTicketMutation(c.config, OpDelete)
+	return &TicketDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *TicketClient) DeleteOne(t *Ticket) *TicketDeleteOne {
+	return c.DeleteOneID(t.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *TicketClient) DeleteOneID(id int) *TicketDeleteOne {
+	builder := c.Delete().Where(ticket.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &TicketDeleteOne{builder}
+}
+
+// Query returns a query builder for Ticket.
+func (c *TicketClient) Query() *TicketQuery {
+	return &TicketQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeTicket},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a Ticket entity by its id.
+func (c *TicketClient) Get(ctx context.Context, id int) (*Ticket, error) {
+	return c.Query().Where(ticket.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *TicketClient) GetX(ctx context.Context, id int) *Ticket {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// Hooks returns the client hooks.
+func (c *TicketClient) Hooks() []Hook {
+	return c.hooks.Ticket
+}
+
+// Interceptors returns the client interceptors.
+func (c *TicketClient) Interceptors() []Interceptor {
+	return c.inters.Ticket
+}
+
+func (c *TicketClient) mutate(ctx context.Context, m *TicketMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&TicketCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&TicketUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&TicketUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&TicketDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown Ticket mutation op: %q", m.Op())
 	}
 }
 
@@ -3385,15 +3951,17 @@ func (c *UserClient) mutate(ctx context.Context, m *UserMutation) (Value, error)
 // hooks and interceptors per client, for fast access.
 type (
 	hooks struct {
-		ClientUser, EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions,
-		FileStorage, Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
-		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
-		Profile, PwaPushSubscription, SentEmail, User []ent.Hook
+		ClientTxn, ClientUser, EmailSubscription, EmailSubscriptionType, Emojis,
+		FCMSubscriptions, FileStorage, Image, ImageSize, Invitation, LastSeenOnline,
+		MonthlySubscription, Notification, NotificationPermission, NotificationTime,
+		PackagePlan, PhoneVerificationCode, Profile, PwaPushSubscription, RadAcct,
+		SentEmail, Ticket, User []ent.Hook
 	}
 	inters struct {
-		ClientUser, EmailSubscription, EmailSubscriptionType, Emojis, FCMSubscriptions,
-		FileStorage, Image, ImageSize, Invitation, LastSeenOnline, MonthlySubscription,
-		Notification, NotificationPermission, NotificationTime, PhoneVerificationCode,
-		Profile, PwaPushSubscription, SentEmail, User []ent.Interceptor
+		ClientTxn, ClientUser, EmailSubscription, EmailSubscriptionType, Emojis,
+		FCMSubscriptions, FileStorage, Image, ImageSize, Invitation, LastSeenOnline,
+		MonthlySubscription, Notification, NotificationPermission, NotificationTime,
+		PackagePlan, PhoneVerificationCode, Profile, PwaPushSubscription, RadAcct,
+		SentEmail, Ticket, User []ent.Interceptor
 	}
 )

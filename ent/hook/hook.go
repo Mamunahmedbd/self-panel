@@ -9,6 +9,18 @@ import (
 	"github.com/mikestefanello/pagoda/ent"
 )
 
+// The ClientTxnFunc type is an adapter to allow the use of ordinary
+// function as ClientTxn mutator.
+type ClientTxnFunc func(context.Context, *ent.ClientTxnMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f ClientTxnFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.ClientTxnMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.ClientTxnMutation", m)
+}
+
 // The ClientUserFunc type is an adapter to allow the use of ordinary
 // function as ClientUser mutator.
 type ClientUserFunc func(context.Context, *ent.ClientUserMutation) (ent.Value, error)
@@ -177,6 +189,18 @@ func (f NotificationTimeFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.V
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.NotificationTimeMutation", m)
 }
 
+// The PackagePlanFunc type is an adapter to allow the use of ordinary
+// function as PackagePlan mutator.
+type PackagePlanFunc func(context.Context, *ent.PackagePlanMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f PackagePlanFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.PackagePlanMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.PackagePlanMutation", m)
+}
+
 // The PhoneVerificationCodeFunc type is an adapter to allow the use of ordinary
 // function as PhoneVerificationCode mutator.
 type PhoneVerificationCodeFunc func(context.Context, *ent.PhoneVerificationCodeMutation) (ent.Value, error)
@@ -213,6 +237,18 @@ func (f PwaPushSubscriptionFunc) Mutate(ctx context.Context, m ent.Mutation) (en
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.PwaPushSubscriptionMutation", m)
 }
 
+// The RadAcctFunc type is an adapter to allow the use of ordinary
+// function as RadAcct mutator.
+type RadAcctFunc func(context.Context, *ent.RadAcctMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f RadAcctFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.RadAcctMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.RadAcctMutation", m)
+}
+
 // The SentEmailFunc type is an adapter to allow the use of ordinary
 // function as SentEmail mutator.
 type SentEmailFunc func(context.Context, *ent.SentEmailMutation) (ent.Value, error)
@@ -223,6 +259,18 @@ func (f SentEmailFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, e
 		return f(ctx, mv)
 	}
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.SentEmailMutation", m)
+}
+
+// The TicketFunc type is an adapter to allow the use of ordinary
+// function as Ticket mutator.
+type TicketFunc func(context.Context, *ent.TicketMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f TicketFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.TicketMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.TicketMutation", m)
 }
 
 // The UserFunc type is an adapter to allow the use of ordinary

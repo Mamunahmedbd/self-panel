@@ -1,0 +1,28 @@
+﻿go : # runtime/cgo
+At line:1 char:1
++ go build ./... 2>&1 | Out-File 
+-FilePath build_errors_2.txt -Encoding 
+...
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecif 
+   ied: (# runtime/cgo:String) [], Rem  
+  oteException
+    + FullyQualifiedErrorId : NativeCom 
+   mandError
+ 
+cc1.exe: sorry, unimplemented: 64-bit 
+mode not compiled in
+# 
+github.com/mikestefanello/pagoda/scripts
+scripts\gen_migration.go:13:6: main 
+redeclared in this block
+	scripts\analyze_db.go:11:6: other 
+declaration of main
+scripts\setup_db.go:11:6: main 
+redeclared in this block
+	scripts\analyze_db.go:11:6: other 
+declaration of main
+scripts\table_schema.go:12:6: main 
+redeclared in this block
+	scripts\analyze_db.go:11:6: other 
+declaration of main

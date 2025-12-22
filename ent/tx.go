@@ -12,6 +12,8 @@ import (
 // Tx is a transactional client that is created by calling Client.Tx().
 type Tx struct {
 	config
+	// ClientTxn is the client for interacting with the ClientTxn builders.
+	ClientTxn *ClientTxnClient
 	// ClientUser is the client for interacting with the ClientUser builders.
 	ClientUser *ClientUserClient
 	// EmailSubscription is the client for interacting with the EmailSubscription builders.
@@ -40,14 +42,20 @@ type Tx struct {
 	NotificationPermission *NotificationPermissionClient
 	// NotificationTime is the client for interacting with the NotificationTime builders.
 	NotificationTime *NotificationTimeClient
+	// PackagePlan is the client for interacting with the PackagePlan builders.
+	PackagePlan *PackagePlanClient
 	// PhoneVerificationCode is the client for interacting with the PhoneVerificationCode builders.
 	PhoneVerificationCode *PhoneVerificationCodeClient
 	// Profile is the client for interacting with the Profile builders.
 	Profile *ProfileClient
 	// PwaPushSubscription is the client for interacting with the PwaPushSubscription builders.
 	PwaPushSubscription *PwaPushSubscriptionClient
+	// RadAcct is the client for interacting with the RadAcct builders.
+	RadAcct *RadAcctClient
 	// SentEmail is the client for interacting with the SentEmail builders.
 	SentEmail *SentEmailClient
+	// Ticket is the client for interacting with the Ticket builders.
+	Ticket *TicketClient
 	// User is the client for interacting with the User builders.
 	User *UserClient
 
@@ -181,6 +189,7 @@ func (tx *Tx) Client() *Client {
 }
 
 func (tx *Tx) init() {
+	tx.ClientTxn = NewClientTxnClient(tx.config)
 	tx.ClientUser = NewClientUserClient(tx.config)
 	tx.EmailSubscription = NewEmailSubscriptionClient(tx.config)
 	tx.EmailSubscriptionType = NewEmailSubscriptionTypeClient(tx.config)
@@ -195,10 +204,13 @@ func (tx *Tx) init() {
 	tx.Notification = NewNotificationClient(tx.config)
 	tx.NotificationPermission = NewNotificationPermissionClient(tx.config)
 	tx.NotificationTime = NewNotificationTimeClient(tx.config)
+	tx.PackagePlan = NewPackagePlanClient(tx.config)
 	tx.PhoneVerificationCode = NewPhoneVerificationCodeClient(tx.config)
 	tx.Profile = NewProfileClient(tx.config)
 	tx.PwaPushSubscription = NewPwaPushSubscriptionClient(tx.config)
+	tx.RadAcct = NewRadAcctClient(tx.config)
 	tx.SentEmail = NewSentEmailClient(tx.config)
+	tx.Ticket = NewTicketClient(tx.config)
 	tx.User = NewUserClient(tx.config)
 }
 
@@ -209,7 +221,7 @@ func (tx *Tx) init() {
 // of them in order to commit or rollback the transaction.
 //
 // If a closed transaction is embedded in one of the generated entities, and the entity
-// applies a query, for example: ClientUser.QueryXXX(), the query will be executed
+// applies a query, for example: ClientTxn.QueryXXX(), the query will be executed
 // through the driver which created this transaction.
 //
 // Note that txDriver is not goroutine safe.

@@ -6,6 +6,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 )
 
+// ClientTxn is the predicate function for clienttxn builders.
+type ClientTxn func(*sql.Selector)
+
 // ClientUser is the predicate function for clientuser builders.
 type ClientUser func(*sql.Selector)
 
@@ -48,6 +51,9 @@ type NotificationPermission func(*sql.Selector)
 // NotificationTime is the predicate function for notificationtime builders.
 type NotificationTime func(*sql.Selector)
 
+// PackagePlan is the predicate function for packageplan builders.
+type PackagePlan func(*sql.Selector)
+
 // PhoneVerificationCode is the predicate function for phoneverificationcode builders.
 type PhoneVerificationCode func(*sql.Selector)
 
@@ -57,8 +63,14 @@ type Profile func(*sql.Selector)
 // PwaPushSubscription is the predicate function for pwapushsubscription builders.
 type PwaPushSubscription func(*sql.Selector)
 
+// RadAcct is the predicate function for radacct builders.
+type RadAcct func(*sql.Selector)
+
 // SentEmail is the predicate function for sentemail builders.
 type SentEmail func(*sql.Selector)
+
+// Ticket is the predicate function for ticket builders.
+type Ticket func(*sql.Selector)
 
 // User is the predicate function for user builders.
 type User func(*sql.Selector)
