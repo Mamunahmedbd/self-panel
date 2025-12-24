@@ -239,7 +239,7 @@ func (g *profile) SaveProfile(ctx echo.Context) error {
 	}
 
 	if form.Submission.HasErrors() {
-		return g.Get(ctx)
+		return g.renderProfileDetails(ctx)
 	}
 
 	usr := ctx.Get(context.AuthenticatedUserKey).(*ent.User)
@@ -272,7 +272,51 @@ func (g *profile) SaveProfile(ctx echo.Context) error {
 
 	msg.Success(ctx, "Profile updated successfully")
 	form.Submission.Message = "Profile updated successfully"
-	return g.Get(ctx)
+
+	// Re-set the form in context with the success message
+	ctx.Set(context.FormKey, &form)
+
+	return g.renderProfileDetails(ctx)
+}
+
+func (g *profile) renderProfileDetails(ctx echo.Context) error {
+	page := controller.NewPage(ctx)
+	page.Layout = layouts.Main
+	page.Name = templates.PageProfile
+
+	usr := ctx.Get(context.AuthenticatedUserKey).(*ent.User)
+	profile := usr.QueryProfile().FirstX(ctx.Request().Context())
+
+	// Get the form from context or create a new one with current data
+	if form := ctx.Get(context.FormKey); form != nil {
+		page.Form = form.(*types.UserProfileUpdateForm)
+	} else {
+		page.Form = &types.UserProfileUpdateForm{
+			Name:         usr.Name,
+			Email:        usr.Email,
+			PhoneNumber:  profile.PhoneNumberE164,
+			Description:  profile.Description,
+			AddressLine1: profile.AddressLine1,
+			AddressLine2: profile.AddressLine2,
+			City:         profile.City,
+			District:     profile.District,
+			Upazila:      profile.Upazila,
+			UnionName:    profile.UnionName,
+			Zip:          profile.Zip,
+		}
+	}
+
+	// Get profile settings data for the read-only stats
+	data, err := g.getCurrPreferencesData(ctx)
+	if err != nil {
+		return err
+	}
+	page.Data = data
+
+	// Render just the ProfileDetails component
+	page.Component = pages.ProfileDetails(&page)
+
+	return g.ctr.RenderPage(ctx, page)
 }
 
 func (g *profile) getCurrPreferencesData(ctx echo.Context) (*types.ProfileSettingsData, error) {
@@ -334,20 +378,12 @@ func (g *profile) getCurrPreferencesData(ctx echo.Context) (*types.ProfileSettin
 }
 
 func (p *profile) GetPhoneComponent(ctx echo.Context) error {
-	usr := ctx.Get(context.AuthenticatedUserKey).(*ent.User)
-	profile := usr.QueryProfile().FirstX(ctx.Request().Context())
 
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main
 	page.Component = pages.EditPhonePage(&page)
-	page.Name = templates.PagePhoneNumber
+	page.Name = templates.PageProfile
 	page.HTMX.Request.Boosted = true
-
-	page.Data = &types.PhoneNumber{
-		CountryCode:     profile.CountryCode,
-		PhoneNumberE164: profile.PhoneNumberE164,
-		PhoneVerified:   profile.PhoneVerified,
-	}
 
 	return p.ctr.RenderPage(ctx, page)
 }
@@ -358,7 +394,7 @@ func (p *profile) GetPhoneVerificationComponent(ctx echo.Context) error {
 
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main
-	page.Name = templates.PagePhoneNumber
+	page.Name = templates.PageProfile
 	page.Form = &types.PhoneNumberVerification{}
 	page.Component = pages.PhoneVerificationField(&page)
 	page.Data = &types.SmsVerificationCodeInfo{
@@ -416,7 +452,7 @@ func (p *profile) SubmitPhoneVerificationCode(ctx echo.Context) error {
 
 	page := controller.NewPage(ctx)
 	page.Layout = layouts.Main
-	page.Name = templates.PagePhoneNumber
+	page.Name = templates.PageProfile
 	page.Form = &types.PhoneNumberVerification{}
 	page.Component = pages.PhoneVerificationField(&page)
 

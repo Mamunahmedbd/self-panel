@@ -77,4 +77,33 @@ type (
 		AddSmsSubscriptionEndpoint    string
 		DeleteSmsSubscriptionEndpoint string
 	}
+
+	PushNotificationSubscriptions struct {
+		URLs []string `json:"urls"`
+	}
+
+	ProfileBioFormData struct {
+		Bio        string `form:"bio" validate:"required"`
+		Submission FormSubmission
+	}
+
+	PhoneNumber struct {
+		CountryCode     string
+		PhoneNumberE164 string
+		PhoneVerified   bool
+	}
+
+	PhoneNumberVerification struct {
+		VerificationCode string `form:"verification_code" validate:"required"`
+		Submission       FormSubmission
+	}
+
+	SmsVerificationCodeInfo struct {
+		ExpirationInMinutes int
+	}
+
+	DisplayNameForm struct {
+		DisplayName string `form:"name" validate:"required"`
+		Submission  FormSubmission
+	}
 )
