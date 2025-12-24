@@ -1,6 +1,11 @@
 package routes
 
 import (
+	"fmt"
+	"regexp"
+
+	"github.com/mikestefanello/pagoda/ent"
+	"github.com/mikestefanello/pagoda/ent/packageplan"
 	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/pkg/types"
 	"github.com/mikestefanello/pagoda/templates"
@@ -25,6 +30,65 @@ func (c *homeInternet) Get(ctx echo.Context) error {
 	page.Layout = layouts.LandingPage
 	page.Name = templates.PageLanding // Or create a new constant
 	page.Title = "Home Internet - High Speed Fiber"
+
+	// Fetch packages from database
+	pkgPlans, err := c.ctr.Container.ORM.PackagePlan.
+		Query().
+		Where(
+			packageplan.IsActive(true),
+			packageplan.PriceGT(0),
+		).
+		Order(ent.Asc(packageplan.FieldPrice)).
+		All(ctx.Request().Context())
+
+	if err != nil {
+		return err
+	}
+
+	var packages []types.InternetPackage
+	speedRe := regexp.MustCompile(`(\d+)\s*Mbps`)
+
+	for _, p := range pkgPlans {
+		// Extract speed from name
+		var speedInt int
+		speed := "High"
+		if matches := speedRe.FindStringSubmatch(p.Name); len(matches) > 1 {
+			speed = matches[1]
+			fmt.Sscanf(speed, "%d", &speedInt)
+		}
+
+		// Generate features based on speed ranges (Mbps)
+		var features []string
+
+		switch {
+		case speedInt < 10:
+			features = []string{"Unlimited Data", "Bufferless Browsing", "Standard Support", "Shared IP"}
+		case speedInt < 12:
+			features = []string{"Unlimited Data", "Bufferless Facebook", "Standard Support", "HD Youtube"}
+		case speedInt < 15:
+			features = []string{"Unlimited Data", "Bufferless Youtube", "24/7 Support", "Multi-Device"}
+		case speedInt < 20:
+			features = []string{"Unlimited Data", "Full HD Streaming", "Online Class Ready", "Gaming Optimization"}
+		case speedInt < 25:
+			features = []string{"Unlimited Data", "4K Youtube", "Priority Support", "Public DNS", "Lag-Free Gaming"}
+		case speedInt < 30:
+			features = []string{"Unlimited Data", "4K Netflix", "Smarthome Ready", "Low Latency", "Pro Gaming"}
+		case speedInt < 50:
+			features = []string{"Unlimited Data", "Multiple 4K Streams", "Cloud Sync", "Public IP (Optional)", "4K Everything"}
+		case speedInt < 100:
+			features = []string{"Unlimited Data", "8K Streaming", "Home Office Pro", "Real IP Included", "VIP Support"}
+		default: // 100+
+			features = []string{"Unlimited Data", "Gigabit Experience", "Enterprise Grade", "Dedicated Manager", "All Features Unlocked"}
+		}
+
+		packages = append(packages, types.InternetPackage{
+			Name:     p.Name,
+			Speed:    speed,
+			Price:    fmt.Sprintf("%.0f", p.Price),
+			Popular:  speedInt >= 20 && speedInt < 50, // Popular range logic
+			Features: features,
+		})
+	}
 
 	data := types.ProductLandingPage{
 		Hero: types.HeroSection{
@@ -55,36 +119,7 @@ func (c *homeInternet) Get(ctx echo.Context) error {
 				Description: "Expert technical support team ready to assist you anytime, day or night.",
 			},
 		},
-		Packages: []types.InternetPackage{
-			{
-				Name:     "Entry",
-				Speed:    "15",
-				Price:    "500",
-				Popular:  false,
-				Features: []string{"Unlimited Data", "2k Youtube Bufferless", "Standard Support"},
-			},
-			{
-				Name:     "Standard",
-				Speed:    "30",
-				Price:    "800",
-				Popular:  true,
-				Features: []string{"Unlimited Data", "4k Youtube Bufferless", "Priority Support", "Public DNS"},
-			},
-			{
-				Name:     "Premium",
-				Speed:    "50",
-				Price:    "1200",
-				Popular:  false,
-				Features: []string{"Unlimited Data", "4k Everything", "VIP Support", "BDIX Ultra Fast"},
-			},
-			{
-				Name:     "Elite",
-				Speed:    "100",
-				Price:    "2000",
-				Popular:  false,
-				Features: []string{"Unlimited Data", "8k Ready", "Personal Account Manager", "Real IP Optional"},
-			},
-		},
+		Packages: packages,
 		Technical: types.TechnicalSection{
 			Title:       "Technical Excellence in Every Connection",
 			Description: "We don't just provide internet; we provide a robust ecosystem designed for the modern digital era. Our PPPoE backbone is optimized for low latency gaming and stutter-free streaming.",
