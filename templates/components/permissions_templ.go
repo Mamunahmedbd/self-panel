@@ -13,7 +13,7 @@ import (
 	"github.com/mikestefanello/pagoda/pkg/types"
 )
 
-func PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsPermissions types.NotificationPermissionsData) templ.Component {
+func PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsPermissions types.UserNotificationPermissionsData) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -58,7 +58,7 @@ func PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsPe
 	})
 }
 
-func initNotificationPermissions(componentID string, platforms map[domain.NotificationPlatform]bool, notifsPermissions types.NotificationPermissionsData) templ.ComponentScript {
+func initNotificationPermissions(componentID string, platforms map[domain.NotificationPlatform]bool, notifsPermissions types.UserNotificationPermissionsData) templ.ComponentScript {
 	return templ.ComponentScript{
 		Name: `__templ_initNotificationPermissions_4452`,
 		Function: `function __templ_initNotificationPermissions_4452(componentID, platforms, notifsPermissions){console.log("yay????")

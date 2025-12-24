@@ -30,6 +30,10 @@ type User struct {
 	Password string `json:"-"`
 	// LastOnline holds the value of the "last_online" field.
 	LastOnline time.Time `json:"last_online,omitempty"`
+	// Username holds the value of the "username" field.
+	Username string `json:"username,omitempty"`
+	// Status holds the value of the "status" field.
+	Status string `json:"status,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the UserQuery when eager-loading is set.
 	Edges        UserEdges `json:"edges"`
@@ -74,7 +78,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case user.FieldID:
 			values[i] = new(sql.NullInt64)
-		case user.FieldName, user.FieldEmail, user.FieldPassword:
+		case user.FieldName, user.FieldEmail, user.FieldPassword, user.FieldUsername, user.FieldStatus:
 			values[i] = new(sql.NullString)
 		case user.FieldCreatedAt, user.FieldUpdatedAt, user.FieldLastOnline:
 			values[i] = new(sql.NullTime)
@@ -134,6 +138,18 @@ func (u *User) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field last_online", values[i])
 			} else if value.Valid {
 				u.LastOnline = value.Time
+			}
+		case user.FieldUsername:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field username", values[i])
+			} else if value.Valid {
+				u.Username = value.String
+			}
+		case user.FieldStatus:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field status", values[i])
+			} else if value.Valid {
+				u.Status = value.String
 			}
 		default:
 			u.selectValues.Set(columns[i], values[i])
@@ -197,6 +213,12 @@ func (u *User) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("last_online=")
 	builder.WriteString(u.LastOnline.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("username=")
+	builder.WriteString(u.Username)
+	builder.WriteString(", ")
+	builder.WriteString("status=")
+	builder.WriteString(u.Status)
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/mikestefanello/pagoda/pkg/types"
 )
 
-templ PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsPermissions types.NotificationPermissionsData) {
+templ PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsPermissions types.UserNotificationPermissionsData) {
 	<div id="push-notification-toggles"></div>
 	// @initNotificationPermissions("push-notification-toggles", platforms, notifsPermissions)
 	<div id="push-notification-toggle">
@@ -15,7 +15,7 @@ templ PermissionsButtons(platforms map[domain.NotificationPlatform]bool, notifsP
 	@PlatformPermissionButton(domain.NotificationPlatformSMS, platforms[domain.NotificationPlatformSMS])
 }
 
-script initNotificationPermissions(componentID string, platforms map[domain.NotificationPlatform]bool, notifsPermissions types.NotificationPermissionsData) {
+script initNotificationPermissions(componentID string, platforms map[domain.NotificationPlatform]bool, notifsPermissions types.UserNotificationPermissionsData) {
 	console.log("yay????")
     renderSvelteComponent("NotificationPermissions", componentID, {
 		"vapidPublicKey": notifsPermissions.VapidPublicKey,

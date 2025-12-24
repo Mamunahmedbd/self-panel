@@ -311,25 +311,24 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	// The onboarding group is for all pages that should be accessible during onboarding.
 	// We use middleware in the other authenticated routes to redirect to the onboarding
 	// flow if the user has not completed it.
-	onboardingGroup := g.Group("/welcome", middleware.RequireAuthentication())
-	preferences := NewPreferencesRoute(
+	onboardingGroup := g.Group("", middleware.RequireAuthentication())
+	profile := NewProfileRoute(
 		ctr, &profileRepo, pwaPushNotificationsRepo, notificationSendPermissionRepo, subscriptionsRepo, smsSenderRepo)
-	onboardingGroup.GET("/preferences", preferences.Get).Name = routeNames.RouteNamePreferences
-	onboardingGroup.GET("/preferences/phone", preferences.GetPhoneComponent).Name = routeNames.RouteNameGetPhone
-	onboardingGroup.GET("/preferences/phone/verification", preferences.GetPhoneVerificationComponent).Name = routeNames.RouteNameGetPhoneVerification
-	onboardingGroup.POST("/preferences/phone/verification", preferences.SubmitPhoneVerificationCode).Name = routeNames.RouteNameSubmitPhoneVerification
-	onboardingGroup.POST("/preferences/phone/save", preferences.SavePhoneInfo).Name = routeNames.RouteNameUpdatePhoneNum
-	onboardingGroup.GET("/preferences/display-name/get", preferences.GetDisplayName).Name = routeNames.RouteNameGetDisplayName
-	onboardingGroup.POST("/preferences/display-name/save", preferences.SaveDisplayName).Name = routeNames.RouteNameUpdateDisplayName
+	onboardingGroup.GET("/profile", profile.Get).Name = routeNames.RouteNameProfile
+	onboardingGroup.POST("/profile/save", profile.SaveProfile).Name = routeNames.RouteNameSaveProfile
+	onboardingGroup.GET("/profile/phone", profile.GetPhoneComponent).Name = routeNames.RouteNameGetPhone
+	onboardingGroup.GET("/profile/phone/verification", profile.GetPhoneVerificationComponent).Name = routeNames.RouteNameGetPhoneVerification
+	onboardingGroup.POST("/profile/phone/verification", profile.SubmitPhoneVerificationCode).Name = routeNames.RouteNameSubmitPhoneVerification
+	onboardingGroup.POST("/profile/phone/save", profile.SavePhoneInfo).Name = routeNames.RouteNameUpdatePhoneNum
 
 
 	// TODO: move all pref routes to the preferences route (and not have a gazillion different ..)
 	finishOnboarding := NewOnboardingRoute(ctr, c.ORM, c.Tasks)
-	onboardingGroup.GET("/finish-onboarding", finishOnboarding.Get).Name = routeNames.RouteNameFinishOnboarding
+	onboardingGroup.GET("/welcome/finish-onboarding", finishOnboarding.Get).Name = routeNames.RouteNameFinishOnboarding
 
 	profilePrefs := NewProfilePrefsRoute(ctr, c.ORM)
-	onboardingGroup.GET("/profileBio", profilePrefs.GetBio).Name = routeNames.RouteNameGetBio
-	onboardingGroup.POST("/profileBio/update", profilePrefs.UpdateBio).Name = routeNames.RouteNameUpdateBio
+	onboardingGroup.GET("/welcome/profileBio", profilePrefs.GetBio).Name = routeNames.RouteNameGetBio
+	onboardingGroup.POST("/welcome/profileBio/update", profilePrefs.UpdateBio).Name = routeNames.RouteNameUpdateBio
 
 	outgoingNotifications := NewPushNotifsRoute(ctr, pwaPushNotificationsRepo, fcmPushNotificationsRepo, notificationSendPermissionRepo)
 	onboardingGroup.GET("/subscription/push", outgoingNotifications.GetPushSubscriptions).Name = routeNames.RouteNameGetPushSubscriptions
@@ -343,12 +342,12 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	allGroup.GET("/logout", logout.Get, middleware.RequireAuthentication()).Name = routeNames.RouteNameLogout
 
 	// Auth group is for all routes that are accessible to a fully logged in and onboarded user
-	onboardedGroup := g.Group("/auth", middleware.RequireAuthentication(), middleware.RedirectToOnboardingIfNotComplete())
+	onboardedGroup := g.Group("", middleware.RequireAuthentication(), middleware.RedirectToOnboardingIfNotComplete())
 
 
 
-	singleProfile := NewProfileRoutes(ctr, &profileRepo)
-	onboardedGroup.GET("/profile", singleProfile.Get).Name = routeNames.RouteNameProfile
+	dashboard := NewDashboardRoutes(ctr, &profileRepo)
+	onboardedGroup.GET("/dashboard", dashboard.Get).Name = routeNames.RouteNameDashboard
 
 	isp := NewISPRoutes(ctr)
 	onboardedGroup.GET("/tickets", isp.GetTickets).Name = routeNames.RouteNameTicketCreate

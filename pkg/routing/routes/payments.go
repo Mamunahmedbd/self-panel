@@ -68,7 +68,7 @@ func (p *paymentsRoute) CreateCheckoutSession(ctx echo.Context) error {
 	}
 	successURL := ctx.Echo().Reverse(routeNames.RouteNamePaymentProcessorSuccess)
 	fullSuccessUrl := fmt.Sprintf("%s%s", p.ctr.Container.Config.HTTP.Domain, successURL)
-	cancelURL := ctx.Echo().Reverse(routeNames.RouteNamePreferences)
+	cancelURL := ctx.Echo().Reverse(routeNames.RouteNameProfile)
 	fullCancelUrl := fmt.Sprintf("%s%s", p.ctr.Container.Config.HTTP.Domain, cancelURL)
 
 	usr := ctx.Get(internalContext.AuthenticatedUserKey).(*ent.User)
@@ -116,7 +116,7 @@ func (p *paymentsRoute) CreatePortalSession(ctx echo.Context) error {
 	usr := ctx.Get(internalContext.AuthenticatedUserKey).(*ent.User)
 	profile := usr.QueryProfile().FirstX(ctx.Request().Context())
 
-	returnURL := ctx.Echo().Reverse(routeNames.RouteNamePreferences)
+	returnURL := ctx.Echo().Reverse(routeNames.RouteNameProfile)
 	fullReturnsUrl := fmt.Sprintf("%s%s", p.ctr.Container.Config.HTTP.Domain, returnURL)
 
 	// Authenticate your user.
@@ -238,7 +238,7 @@ func (p *paymentsRoute) HandleWebhook(c echo.Context) error {
 			return echo.NewHTTPError(http.StatusInternalServerError)
 		}
 
-		fullURL := c.Echo().Reverse(routeNames.RouteNamePreferences)
+		fullURL := c.Echo().Reverse(routeNames.RouteNameProfile)
 		err = p.ctr.Container.Notifier.PublishNotification(
 			c.Request().Context(),
 			domain.Notification{

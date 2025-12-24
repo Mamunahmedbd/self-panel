@@ -356,7 +356,7 @@ func (c *outgoingNotifications) createNotificationsPage(ctx echo.Context, profil
 		c.ctr.Container.Config.HTTP.Domain, ctx.Echo().Reverse(
 			routeNames.RouteNameDeleteSubscription, domain.NotificationPlatformSMS.Value)) + "?csrf=" + page.CSRF
 
-	notificationPermissions := types.NotificationPermissionsData{
+	notificationPermissions := types.UserNotificationPermissionsData{
 		VapidPublicKey:                c.ctr.Container.Config.App.VapidPublicKey,
 		PermissionPartnerActivity:     permissions[domain.NotificationPermissionNewFriendActivity],
 		SubscribedEndpoints:           subscribedEndpoints,
@@ -373,7 +373,7 @@ func (c *outgoingNotifications) createNotificationsPage(ctx echo.Context, profil
 
 	page.Layout = layouts.Main
 	page.Component = pages.NotificationPermissions(&page, notificationPermissions)
-	page.Name = templates.PagePreferences
+	page.Name = templates.PageProfile
 	return &page, nil
 }
 

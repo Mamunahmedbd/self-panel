@@ -25,6 +25,22 @@ type Profile struct {
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 	// A short bio of the user.
 	Bio string `json:"bio,omitempty"`
+	// Additional description of the user.
+	Description string `json:"description,omitempty"`
+	// Address Line 1
+	AddressLine1 string `json:"address_line1,omitempty"`
+	// Address Line 2
+	AddressLine2 string `json:"address_line2,omitempty"`
+	// City
+	City string `json:"city,omitempty"`
+	// District
+	District string `json:"district,omitempty"`
+	// Upazila
+	Upazila string `json:"upazila,omitempty"`
+	// Union Name
+	UnionName string `json:"union_name,omitempty"`
+	// Zip Code
+	Zip string `json:"zip,omitempty"`
 	// The birthdate of the user.
 	Birthdate time.Time `json:"birthdate,omitempty"`
 	// The age of the user.
@@ -210,7 +226,7 @@ func (*Profile) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case profile.FieldID, profile.FieldAge:
 			values[i] = new(sql.NullInt64)
-		case profile.FieldBio, profile.FieldPhoneNumberE164, profile.FieldCountryCode, profile.FieldStripeID:
+		case profile.FieldBio, profile.FieldDescription, profile.FieldAddressLine1, profile.FieldAddressLine2, profile.FieldCity, profile.FieldDistrict, profile.FieldUpazila, profile.FieldUnionName, profile.FieldZip, profile.FieldPhoneNumberE164, profile.FieldCountryCode, profile.FieldStripeID:
 			values[i] = new(sql.NullString)
 		case profile.FieldCreatedAt, profile.FieldUpdatedAt, profile.FieldBirthdate:
 			values[i] = new(sql.NullTime)
@@ -256,6 +272,54 @@ func (pr *Profile) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field bio", values[i])
 			} else if value.Valid {
 				pr.Bio = value.String
+			}
+		case profile.FieldDescription:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field description", values[i])
+			} else if value.Valid {
+				pr.Description = value.String
+			}
+		case profile.FieldAddressLine1:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field address_line1", values[i])
+			} else if value.Valid {
+				pr.AddressLine1 = value.String
+			}
+		case profile.FieldAddressLine2:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field address_line2", values[i])
+			} else if value.Valid {
+				pr.AddressLine2 = value.String
+			}
+		case profile.FieldCity:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field city", values[i])
+			} else if value.Valid {
+				pr.City = value.String
+			}
+		case profile.FieldDistrict:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field district", values[i])
+			} else if value.Valid {
+				pr.District = value.String
+			}
+		case profile.FieldUpazila:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field upazila", values[i])
+			} else if value.Valid {
+				pr.Upazila = value.String
+			}
+		case profile.FieldUnionName:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field union_name", values[i])
+			} else if value.Valid {
+				pr.UnionName = value.String
+			}
+		case profile.FieldZip:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field zip", values[i])
+			} else if value.Valid {
+				pr.Zip = value.String
 			}
 		case profile.FieldBirthdate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -422,6 +486,30 @@ func (pr *Profile) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("bio=")
 	builder.WriteString(pr.Bio)
+	builder.WriteString(", ")
+	builder.WriteString("description=")
+	builder.WriteString(pr.Description)
+	builder.WriteString(", ")
+	builder.WriteString("address_line1=")
+	builder.WriteString(pr.AddressLine1)
+	builder.WriteString(", ")
+	builder.WriteString("address_line2=")
+	builder.WriteString(pr.AddressLine2)
+	builder.WriteString(", ")
+	builder.WriteString("city=")
+	builder.WriteString(pr.City)
+	builder.WriteString(", ")
+	builder.WriteString("district=")
+	builder.WriteString(pr.District)
+	builder.WriteString(", ")
+	builder.WriteString("upazila=")
+	builder.WriteString(pr.Upazila)
+	builder.WriteString(", ")
+	builder.WriteString("union_name=")
+	builder.WriteString(pr.UnionName)
+	builder.WriteString(", ")
+	builder.WriteString("zip=")
+	builder.WriteString(pr.Zip)
 	builder.WriteString(", ")
 	builder.WriteString("birthdate=")
 	builder.WriteString(pr.Birthdate.Format(time.ANSIC))

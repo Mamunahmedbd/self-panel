@@ -17,7 +17,7 @@ templ EditPhonePage(page *controller.Page) {
 		<div class="absolute bottom-[20%] -left-[10%] w-[45%] h-[45%] bg-purple-400/15 dark:bg-purple-600/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s"></div>
 	</div>
 
-	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "Phone Security")
+	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNameProfile), "", "Phone Security")
 
 	<div class="relative z-10 p-4 md:p-8 lg:p-12 pb-24 max-w-2xl mx-auto space-y-12" id="phone-number-section">
 		if data, ok := page.Data.(*types.PhoneNumber); ok {

@@ -2,6 +2,7 @@ package pages
 
 import (
 	"github.com/mikestefanello/pagoda/pkg/controller"
+	"github.com/mikestefanello/pagoda/pkg/routing/routenames"
 )
 
 templ NotFound(page *controller.Page) {
@@ -22,7 +23,7 @@ templ NotFound(page *controller.Page) {
 		<div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
 			<a
 				if page.IsAuth {
-					href="/auth/profile"
+					href={ templ.SafeURL(page.ToURL(routenames.RouteNameDashboard)) }
 				} else {
 					href="/"
 				}

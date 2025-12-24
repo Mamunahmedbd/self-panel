@@ -12,6 +12,9 @@ type FormSubmission struct {
 
 	// Errors stores a slice of error message strings keyed by form struct field name
 	Errors map[string][]string
+
+	// Message stores a feedback message
+	Message string
 }
 
 // Process processes a submission for a form
@@ -33,6 +36,11 @@ func (f FormSubmission) HasErrors() bool {
 		return false
 	}
 	return len(f.Errors) > 0
+}
+
+// HasMessage indicates if the submission has a feedback message
+func (f FormSubmission) HasMessage() bool {
+	return f.Message != ""
 }
 
 // FieldHasErrors indicates if a given field on the form has any validation errors

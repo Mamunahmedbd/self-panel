@@ -631,7 +631,7 @@ func init() {
 	// profile.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
 	profile.UpdateDefaultUpdatedAt = profileDescUpdatedAt.UpdateDefault.(func() time.Time)
 	// profileDescFullyOnboarded is the schema descriptor for fully_onboarded field.
-	profileDescFullyOnboarded := profileFields[3].Descriptor()
+	profileDescFullyOnboarded := profileFields[11].Descriptor()
 	// profile.DefaultFullyOnboarded holds the default value on creation for the fully_onboarded field.
 	profile.DefaultFullyOnboarded = profileDescFullyOnboarded.Default.(bool)
 	pwapushsubscriptionMixin := schema.PwaPushSubscription{}.Mixin()
@@ -769,6 +769,10 @@ func init() {
 	userDescPassword := userFields[2].Descriptor()
 	// user.PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	user.PasswordValidator = userDescPassword.Validators[0].(func(string) error)
+	// userDescStatus is the schema descriptor for status field.
+	userDescStatus := userFields[5].Descriptor()
+	// user.DefaultStatus holds the default value on creation for the status field.
+	user.DefaultStatus = userDescStatus.Default.(string)
 }
 
 const (

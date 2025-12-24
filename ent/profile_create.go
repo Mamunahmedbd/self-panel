@@ -73,6 +73,118 @@ func (pc *ProfileCreate) SetNillableBio(s *string) *ProfileCreate {
 	return pc
 }
 
+// SetDescription sets the "description" field.
+func (pc *ProfileCreate) SetDescription(s string) *ProfileCreate {
+	pc.mutation.SetDescription(s)
+	return pc
+}
+
+// SetNillableDescription sets the "description" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableDescription(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetDescription(*s)
+	}
+	return pc
+}
+
+// SetAddressLine1 sets the "address_line1" field.
+func (pc *ProfileCreate) SetAddressLine1(s string) *ProfileCreate {
+	pc.mutation.SetAddressLine1(s)
+	return pc
+}
+
+// SetNillableAddressLine1 sets the "address_line1" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableAddressLine1(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetAddressLine1(*s)
+	}
+	return pc
+}
+
+// SetAddressLine2 sets the "address_line2" field.
+func (pc *ProfileCreate) SetAddressLine2(s string) *ProfileCreate {
+	pc.mutation.SetAddressLine2(s)
+	return pc
+}
+
+// SetNillableAddressLine2 sets the "address_line2" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableAddressLine2(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetAddressLine2(*s)
+	}
+	return pc
+}
+
+// SetCity sets the "city" field.
+func (pc *ProfileCreate) SetCity(s string) *ProfileCreate {
+	pc.mutation.SetCity(s)
+	return pc
+}
+
+// SetNillableCity sets the "city" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableCity(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetCity(*s)
+	}
+	return pc
+}
+
+// SetDistrict sets the "district" field.
+func (pc *ProfileCreate) SetDistrict(s string) *ProfileCreate {
+	pc.mutation.SetDistrict(s)
+	return pc
+}
+
+// SetNillableDistrict sets the "district" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableDistrict(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetDistrict(*s)
+	}
+	return pc
+}
+
+// SetUpazila sets the "upazila" field.
+func (pc *ProfileCreate) SetUpazila(s string) *ProfileCreate {
+	pc.mutation.SetUpazila(s)
+	return pc
+}
+
+// SetNillableUpazila sets the "upazila" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableUpazila(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetUpazila(*s)
+	}
+	return pc
+}
+
+// SetUnionName sets the "union_name" field.
+func (pc *ProfileCreate) SetUnionName(s string) *ProfileCreate {
+	pc.mutation.SetUnionName(s)
+	return pc
+}
+
+// SetNillableUnionName sets the "union_name" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableUnionName(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetUnionName(*s)
+	}
+	return pc
+}
+
+// SetZip sets the "zip" field.
+func (pc *ProfileCreate) SetZip(s string) *ProfileCreate {
+	pc.mutation.SetZip(s)
+	return pc
+}
+
+// SetNillableZip sets the "zip" field if the given value is not nil.
+func (pc *ProfileCreate) SetNillableZip(s *string) *ProfileCreate {
+	if s != nil {
+		pc.SetZip(*s)
+	}
+	return pc
+}
+
 // SetBirthdate sets the "birthdate" field.
 func (pc *ProfileCreate) SetBirthdate(t time.Time) *ProfileCreate {
 	pc.mutation.SetBirthdate(t)
@@ -466,6 +578,38 @@ func (pc *ProfileCreate) createSpec() (*Profile, *sqlgraph.CreateSpec) {
 	if value, ok := pc.mutation.Bio(); ok {
 		_spec.SetField(profile.FieldBio, field.TypeString, value)
 		_node.Bio = value
+	}
+	if value, ok := pc.mutation.Description(); ok {
+		_spec.SetField(profile.FieldDescription, field.TypeString, value)
+		_node.Description = value
+	}
+	if value, ok := pc.mutation.AddressLine1(); ok {
+		_spec.SetField(profile.FieldAddressLine1, field.TypeString, value)
+		_node.AddressLine1 = value
+	}
+	if value, ok := pc.mutation.AddressLine2(); ok {
+		_spec.SetField(profile.FieldAddressLine2, field.TypeString, value)
+		_node.AddressLine2 = value
+	}
+	if value, ok := pc.mutation.City(); ok {
+		_spec.SetField(profile.FieldCity, field.TypeString, value)
+		_node.City = value
+	}
+	if value, ok := pc.mutation.District(); ok {
+		_spec.SetField(profile.FieldDistrict, field.TypeString, value)
+		_node.District = value
+	}
+	if value, ok := pc.mutation.Upazila(); ok {
+		_spec.SetField(profile.FieldUpazila, field.TypeString, value)
+		_node.Upazila = value
+	}
+	if value, ok := pc.mutation.UnionName(); ok {
+		_spec.SetField(profile.FieldUnionName, field.TypeString, value)
+		_node.UnionName = value
+	}
+	if value, ok := pc.mutation.Zip(); ok {
+		_spec.SetField(profile.FieldZip, field.TypeString, value)
+		_node.Zip = value
 	}
 	if value, ok := pc.mutation.Birthdate(); ok {
 		_spec.SetField(profile.FieldBirthdate, field.TypeTime, value)

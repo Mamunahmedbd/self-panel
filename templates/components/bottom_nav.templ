@@ -59,7 +59,7 @@ templ BottomNav(page *controller.Page) {
 			<!-- Profile Dashboard (Centerpiece) -->
 			<button
 				id="bottom-navbar-profile-button"
-				hx-get={ page.ToURL(routenames.RouteNameProfile) }
+				hx-get={ page.ToURL(routenames.RouteNameDashboard) }
 				type="button"
 				class="relative flex flex-col items-center justify-center group"
 				@click="selected = 'profile';"
@@ -78,7 +78,7 @@ templ BottomNav(page *controller.Page) {
 			<!-- Settings -->
 			<button
 				id="bottom-navbar-settings-button"
-				hx-get={ page.ToURL(routenames.RouteNamePreferences) }
+				hx-get={ page.ToURL(routenames.RouteNameProfile) }
 				type="button"
 				class="relative flex flex-col items-center justify-center group"
 				@click="selected = 'settings';"

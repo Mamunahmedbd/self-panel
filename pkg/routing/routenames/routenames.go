@@ -12,7 +12,7 @@ const (
 	RouteNameLandingPage             = "landing_page"
 	RouteNameBlog                    = "blog"
 	RouteNameBlogPost                = "blog.post"
-	RouteNamePreferences             = "preferences"
+	RouteNameProfile                 = "profile"
 	RouteNameGetPhone                = "phone.get"
 	RouteNameUpdatePhoneNum          = "phone.save"
 	RouteNameGetDisplayName          = "display_name.get"
@@ -27,7 +27,8 @@ const (
 	RouteNameTermsAndConditions = "terms_and_conditions"
 	RouteNameRefundPolicy       = "refund_policy"
 
-	RouteNameProfile = "profile"
+	RouteNameDashboard   = "dashboard"
+	RouteNameSaveProfile = "profile.save"
 
 	RouteNameMarkNotificationsAsRead    = "markNormalNotificationRead"
 	RouteNameMarkAllNotificationsAsRead = "normalNotificationsMarkAllAsRead"

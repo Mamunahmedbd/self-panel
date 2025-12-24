@@ -20,6 +20,22 @@ const (
 	FieldUpdatedAt = "updated_at"
 	// FieldBio holds the string denoting the bio field in the database.
 	FieldBio = "bio"
+	// FieldDescription holds the string denoting the description field in the database.
+	FieldDescription = "description"
+	// FieldAddressLine1 holds the string denoting the address_line1 field in the database.
+	FieldAddressLine1 = "address_line1"
+	// FieldAddressLine2 holds the string denoting the address_line2 field in the database.
+	FieldAddressLine2 = "address_line2"
+	// FieldCity holds the string denoting the city field in the database.
+	FieldCity = "city"
+	// FieldDistrict holds the string denoting the district field in the database.
+	FieldDistrict = "district"
+	// FieldUpazila holds the string denoting the upazila field in the database.
+	FieldUpazila = "upazila"
+	// FieldUnionName holds the string denoting the union_name field in the database.
+	FieldUnionName = "union_name"
+	// FieldZip holds the string denoting the zip field in the database.
+	FieldZip = "zip"
 	// FieldBirthdate holds the string denoting the birthdate field in the database.
 	FieldBirthdate = "birthdate"
 	// FieldAge holds the string denoting the age field in the database.
@@ -154,6 +170,14 @@ var Columns = []string{
 	FieldCreatedAt,
 	FieldUpdatedAt,
 	FieldBio,
+	FieldDescription,
+	FieldAddressLine1,
+	FieldAddressLine2,
+	FieldCity,
+	FieldDistrict,
+	FieldUpazila,
+	FieldUnionName,
+	FieldZip,
 	FieldBirthdate,
 	FieldAge,
 	FieldFullyOnboarded,
@@ -226,6 +250,46 @@ func ByUpdatedAt(opts ...sql.OrderTermOption) OrderOption {
 // ByBio orders the results by the bio field.
 func ByBio(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBio, opts...).ToFunc()
+}
+
+// ByDescription orders the results by the description field.
+func ByDescription(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDescription, opts...).ToFunc()
+}
+
+// ByAddressLine1 orders the results by the address_line1 field.
+func ByAddressLine1(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldAddressLine1, opts...).ToFunc()
+}
+
+// ByAddressLine2 orders the results by the address_line2 field.
+func ByAddressLine2(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldAddressLine2, opts...).ToFunc()
+}
+
+// ByCity orders the results by the city field.
+func ByCity(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldCity, opts...).ToFunc()
+}
+
+// ByDistrict orders the results by the district field.
+func ByDistrict(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDistrict, opts...).ToFunc()
+}
+
+// ByUpazila orders the results by the upazila field.
+func ByUpazila(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUpazila, opts...).ToFunc()
+}
+
+// ByUnionName orders the results by the union_name field.
+func ByUnionName(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUnionName, opts...).ToFunc()
+}
+
+// ByZip orders the results by the zip field.
+func ByZip(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldZip, opts...).ToFunc()
 }
 
 // ByBirthdate orders the results by the birthdate field.

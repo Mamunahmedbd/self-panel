@@ -326,8 +326,8 @@ func (c *Container) initORM() {
 	if err := c.ORM.Schema.Create(
 		context.Background(),
 		schema.WithDiffHook(renameColumnHook),
-		migrate.WithDropIndex(true),
-		migrate.WithDropColumn(true),
+		// migrate.WithDropIndex(true),
+		// migrate.WithDropColumn(true),
 	); err != nil {
 		panic(fmt.Sprintf("failed to create database schema: %v", err))
 	}

@@ -27,6 +27,10 @@ const (
 	FieldPassword = "password"
 	// FieldLastOnline holds the string denoting the last_online field in the database.
 	FieldLastOnline = "last_online"
+	// FieldUsername holds the string denoting the username field in the database.
+	FieldUsername = "username"
+	// FieldStatus holds the string denoting the status field in the database.
+	FieldStatus = "status"
 	// EdgeProfile holds the string denoting the profile edge name in mutations.
 	EdgeProfile = "profile"
 	// EdgeLastSeenAt holds the string denoting the last_seen_at edge name in mutations.
@@ -58,6 +62,8 @@ var Columns = []string{
 	FieldEmail,
 	FieldPassword,
 	FieldLastOnline,
+	FieldUsername,
+	FieldStatus,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -89,6 +95,8 @@ var (
 	EmailValidator func(string) error
 	// PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	PasswordValidator func(string) error
+	// DefaultStatus holds the default value on creation for the "status" field.
+	DefaultStatus string
 )
 
 // OrderOption defines the ordering options for the User queries.
@@ -127,6 +135,16 @@ func ByPassword(opts ...sql.OrderTermOption) OrderOption {
 // ByLastOnline orders the results by the last_online field.
 func ByLastOnline(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldLastOnline, opts...).ToFunc()
+}
+
+// ByUsername orders the results by the username field.
+func ByUsername(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUsername, opts...).ToFunc()
+}
+
+// ByStatus orders the results by the status field.
+func ByStatus(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldStatus, opts...).ToFunc()
 }
 
 // ByProfileField orders the results by profile field.

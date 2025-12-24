@@ -21,7 +21,31 @@ func (Profile) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("bio").
 			Optional().
-			Comment("A short bio of the user."),
+			Comment("A short bio of the user. "),
+		field.String("description").
+			Optional().
+			Comment("Additional description of the user."),
+		field.String("address_line1").
+			Optional().
+			Comment("Address Line 1"),
+		field.String("address_line2").
+			Optional().
+			Comment("Address Line 2"),
+		field.String("city").
+			Optional().
+			Comment("City"),
+		field.String("district").
+			Optional().
+			Comment("District"),
+		field.String("upazila").
+			Optional().
+			Comment("Upazila"),
+		field.String("union_name").
+			Optional().
+			Comment("Union Name"),
+		field.String("zip").
+			Optional().
+			Comment("Zip Code"),
 		field.Time("birthdate").
 			Optional().
 			Comment("The birthdate of the user."),

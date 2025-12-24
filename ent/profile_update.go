@@ -65,6 +65,166 @@ func (pu *ProfileUpdate) ClearBio() *ProfileUpdate {
 	return pu
 }
 
+// SetDescription sets the "description" field.
+func (pu *ProfileUpdate) SetDescription(s string) *ProfileUpdate {
+	pu.mutation.SetDescription(s)
+	return pu
+}
+
+// SetNillableDescription sets the "description" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableDescription(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetDescription(*s)
+	}
+	return pu
+}
+
+// ClearDescription clears the value of the "description" field.
+func (pu *ProfileUpdate) ClearDescription() *ProfileUpdate {
+	pu.mutation.ClearDescription()
+	return pu
+}
+
+// SetAddressLine1 sets the "address_line1" field.
+func (pu *ProfileUpdate) SetAddressLine1(s string) *ProfileUpdate {
+	pu.mutation.SetAddressLine1(s)
+	return pu
+}
+
+// SetNillableAddressLine1 sets the "address_line1" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableAddressLine1(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetAddressLine1(*s)
+	}
+	return pu
+}
+
+// ClearAddressLine1 clears the value of the "address_line1" field.
+func (pu *ProfileUpdate) ClearAddressLine1() *ProfileUpdate {
+	pu.mutation.ClearAddressLine1()
+	return pu
+}
+
+// SetAddressLine2 sets the "address_line2" field.
+func (pu *ProfileUpdate) SetAddressLine2(s string) *ProfileUpdate {
+	pu.mutation.SetAddressLine2(s)
+	return pu
+}
+
+// SetNillableAddressLine2 sets the "address_line2" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableAddressLine2(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetAddressLine2(*s)
+	}
+	return pu
+}
+
+// ClearAddressLine2 clears the value of the "address_line2" field.
+func (pu *ProfileUpdate) ClearAddressLine2() *ProfileUpdate {
+	pu.mutation.ClearAddressLine2()
+	return pu
+}
+
+// SetCity sets the "city" field.
+func (pu *ProfileUpdate) SetCity(s string) *ProfileUpdate {
+	pu.mutation.SetCity(s)
+	return pu
+}
+
+// SetNillableCity sets the "city" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableCity(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetCity(*s)
+	}
+	return pu
+}
+
+// ClearCity clears the value of the "city" field.
+func (pu *ProfileUpdate) ClearCity() *ProfileUpdate {
+	pu.mutation.ClearCity()
+	return pu
+}
+
+// SetDistrict sets the "district" field.
+func (pu *ProfileUpdate) SetDistrict(s string) *ProfileUpdate {
+	pu.mutation.SetDistrict(s)
+	return pu
+}
+
+// SetNillableDistrict sets the "district" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableDistrict(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetDistrict(*s)
+	}
+	return pu
+}
+
+// ClearDistrict clears the value of the "district" field.
+func (pu *ProfileUpdate) ClearDistrict() *ProfileUpdate {
+	pu.mutation.ClearDistrict()
+	return pu
+}
+
+// SetUpazila sets the "upazila" field.
+func (pu *ProfileUpdate) SetUpazila(s string) *ProfileUpdate {
+	pu.mutation.SetUpazila(s)
+	return pu
+}
+
+// SetNillableUpazila sets the "upazila" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableUpazila(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetUpazila(*s)
+	}
+	return pu
+}
+
+// ClearUpazila clears the value of the "upazila" field.
+func (pu *ProfileUpdate) ClearUpazila() *ProfileUpdate {
+	pu.mutation.ClearUpazila()
+	return pu
+}
+
+// SetUnionName sets the "union_name" field.
+func (pu *ProfileUpdate) SetUnionName(s string) *ProfileUpdate {
+	pu.mutation.SetUnionName(s)
+	return pu
+}
+
+// SetNillableUnionName sets the "union_name" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableUnionName(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetUnionName(*s)
+	}
+	return pu
+}
+
+// ClearUnionName clears the value of the "union_name" field.
+func (pu *ProfileUpdate) ClearUnionName() *ProfileUpdate {
+	pu.mutation.ClearUnionName()
+	return pu
+}
+
+// SetZip sets the "zip" field.
+func (pu *ProfileUpdate) SetZip(s string) *ProfileUpdate {
+	pu.mutation.SetZip(s)
+	return pu
+}
+
+// SetNillableZip sets the "zip" field if the given value is not nil.
+func (pu *ProfileUpdate) SetNillableZip(s *string) *ProfileUpdate {
+	if s != nil {
+		pu.SetZip(*s)
+	}
+	return pu
+}
+
+// ClearZip clears the value of the "zip" field.
+func (pu *ProfileUpdate) ClearZip() *ProfileUpdate {
+	pu.mutation.ClearZip()
+	return pu
+}
+
 // SetBirthdate sets the "birthdate" field.
 func (pu *ProfileUpdate) SetBirthdate(t time.Time) *ProfileUpdate {
 	pu.mutation.SetBirthdate(t)
@@ -714,6 +874,54 @@ func (pu *ProfileUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if pu.mutation.BioCleared() {
 		_spec.ClearField(profile.FieldBio, field.TypeString)
 	}
+	if value, ok := pu.mutation.Description(); ok {
+		_spec.SetField(profile.FieldDescription, field.TypeString, value)
+	}
+	if pu.mutation.DescriptionCleared() {
+		_spec.ClearField(profile.FieldDescription, field.TypeString)
+	}
+	if value, ok := pu.mutation.AddressLine1(); ok {
+		_spec.SetField(profile.FieldAddressLine1, field.TypeString, value)
+	}
+	if pu.mutation.AddressLine1Cleared() {
+		_spec.ClearField(profile.FieldAddressLine1, field.TypeString)
+	}
+	if value, ok := pu.mutation.AddressLine2(); ok {
+		_spec.SetField(profile.FieldAddressLine2, field.TypeString, value)
+	}
+	if pu.mutation.AddressLine2Cleared() {
+		_spec.ClearField(profile.FieldAddressLine2, field.TypeString)
+	}
+	if value, ok := pu.mutation.City(); ok {
+		_spec.SetField(profile.FieldCity, field.TypeString, value)
+	}
+	if pu.mutation.CityCleared() {
+		_spec.ClearField(profile.FieldCity, field.TypeString)
+	}
+	if value, ok := pu.mutation.District(); ok {
+		_spec.SetField(profile.FieldDistrict, field.TypeString, value)
+	}
+	if pu.mutation.DistrictCleared() {
+		_spec.ClearField(profile.FieldDistrict, field.TypeString)
+	}
+	if value, ok := pu.mutation.Upazila(); ok {
+		_spec.SetField(profile.FieldUpazila, field.TypeString, value)
+	}
+	if pu.mutation.UpazilaCleared() {
+		_spec.ClearField(profile.FieldUpazila, field.TypeString)
+	}
+	if value, ok := pu.mutation.UnionName(); ok {
+		_spec.SetField(profile.FieldUnionName, field.TypeString, value)
+	}
+	if pu.mutation.UnionNameCleared() {
+		_spec.ClearField(profile.FieldUnionName, field.TypeString)
+	}
+	if value, ok := pu.mutation.Zip(); ok {
+		_spec.SetField(profile.FieldZip, field.TypeString, value)
+	}
+	if pu.mutation.ZipCleared() {
+		_spec.ClearField(profile.FieldZip, field.TypeString)
+	}
 	if value, ok := pu.mutation.Birthdate(); ok {
 		_spec.SetField(profile.FieldBirthdate, field.TypeTime, value)
 	}
@@ -1352,6 +1560,166 @@ func (puo *ProfileUpdateOne) SetNillableBio(s *string) *ProfileUpdateOne {
 // ClearBio clears the value of the "bio" field.
 func (puo *ProfileUpdateOne) ClearBio() *ProfileUpdateOne {
 	puo.mutation.ClearBio()
+	return puo
+}
+
+// SetDescription sets the "description" field.
+func (puo *ProfileUpdateOne) SetDescription(s string) *ProfileUpdateOne {
+	puo.mutation.SetDescription(s)
+	return puo
+}
+
+// SetNillableDescription sets the "description" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableDescription(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetDescription(*s)
+	}
+	return puo
+}
+
+// ClearDescription clears the value of the "description" field.
+func (puo *ProfileUpdateOne) ClearDescription() *ProfileUpdateOne {
+	puo.mutation.ClearDescription()
+	return puo
+}
+
+// SetAddressLine1 sets the "address_line1" field.
+func (puo *ProfileUpdateOne) SetAddressLine1(s string) *ProfileUpdateOne {
+	puo.mutation.SetAddressLine1(s)
+	return puo
+}
+
+// SetNillableAddressLine1 sets the "address_line1" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableAddressLine1(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetAddressLine1(*s)
+	}
+	return puo
+}
+
+// ClearAddressLine1 clears the value of the "address_line1" field.
+func (puo *ProfileUpdateOne) ClearAddressLine1() *ProfileUpdateOne {
+	puo.mutation.ClearAddressLine1()
+	return puo
+}
+
+// SetAddressLine2 sets the "address_line2" field.
+func (puo *ProfileUpdateOne) SetAddressLine2(s string) *ProfileUpdateOne {
+	puo.mutation.SetAddressLine2(s)
+	return puo
+}
+
+// SetNillableAddressLine2 sets the "address_line2" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableAddressLine2(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetAddressLine2(*s)
+	}
+	return puo
+}
+
+// ClearAddressLine2 clears the value of the "address_line2" field.
+func (puo *ProfileUpdateOne) ClearAddressLine2() *ProfileUpdateOne {
+	puo.mutation.ClearAddressLine2()
+	return puo
+}
+
+// SetCity sets the "city" field.
+func (puo *ProfileUpdateOne) SetCity(s string) *ProfileUpdateOne {
+	puo.mutation.SetCity(s)
+	return puo
+}
+
+// SetNillableCity sets the "city" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableCity(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetCity(*s)
+	}
+	return puo
+}
+
+// ClearCity clears the value of the "city" field.
+func (puo *ProfileUpdateOne) ClearCity() *ProfileUpdateOne {
+	puo.mutation.ClearCity()
+	return puo
+}
+
+// SetDistrict sets the "district" field.
+func (puo *ProfileUpdateOne) SetDistrict(s string) *ProfileUpdateOne {
+	puo.mutation.SetDistrict(s)
+	return puo
+}
+
+// SetNillableDistrict sets the "district" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableDistrict(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetDistrict(*s)
+	}
+	return puo
+}
+
+// ClearDistrict clears the value of the "district" field.
+func (puo *ProfileUpdateOne) ClearDistrict() *ProfileUpdateOne {
+	puo.mutation.ClearDistrict()
+	return puo
+}
+
+// SetUpazila sets the "upazila" field.
+func (puo *ProfileUpdateOne) SetUpazila(s string) *ProfileUpdateOne {
+	puo.mutation.SetUpazila(s)
+	return puo
+}
+
+// SetNillableUpazila sets the "upazila" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableUpazila(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetUpazila(*s)
+	}
+	return puo
+}
+
+// ClearUpazila clears the value of the "upazila" field.
+func (puo *ProfileUpdateOne) ClearUpazila() *ProfileUpdateOne {
+	puo.mutation.ClearUpazila()
+	return puo
+}
+
+// SetUnionName sets the "union_name" field.
+func (puo *ProfileUpdateOne) SetUnionName(s string) *ProfileUpdateOne {
+	puo.mutation.SetUnionName(s)
+	return puo
+}
+
+// SetNillableUnionName sets the "union_name" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableUnionName(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetUnionName(*s)
+	}
+	return puo
+}
+
+// ClearUnionName clears the value of the "union_name" field.
+func (puo *ProfileUpdateOne) ClearUnionName() *ProfileUpdateOne {
+	puo.mutation.ClearUnionName()
+	return puo
+}
+
+// SetZip sets the "zip" field.
+func (puo *ProfileUpdateOne) SetZip(s string) *ProfileUpdateOne {
+	puo.mutation.SetZip(s)
+	return puo
+}
+
+// SetNillableZip sets the "zip" field if the given value is not nil.
+func (puo *ProfileUpdateOne) SetNillableZip(s *string) *ProfileUpdateOne {
+	if s != nil {
+		puo.SetZip(*s)
+	}
+	return puo
+}
+
+// ClearZip clears the value of the "zip" field.
+func (puo *ProfileUpdateOne) ClearZip() *ProfileUpdateOne {
+	puo.mutation.ClearZip()
 	return puo
 }
 
@@ -2033,6 +2401,54 @@ func (puo *ProfileUpdateOne) sqlSave(ctx context.Context) (_node *Profile, err e
 	}
 	if puo.mutation.BioCleared() {
 		_spec.ClearField(profile.FieldBio, field.TypeString)
+	}
+	if value, ok := puo.mutation.Description(); ok {
+		_spec.SetField(profile.FieldDescription, field.TypeString, value)
+	}
+	if puo.mutation.DescriptionCleared() {
+		_spec.ClearField(profile.FieldDescription, field.TypeString)
+	}
+	if value, ok := puo.mutation.AddressLine1(); ok {
+		_spec.SetField(profile.FieldAddressLine1, field.TypeString, value)
+	}
+	if puo.mutation.AddressLine1Cleared() {
+		_spec.ClearField(profile.FieldAddressLine1, field.TypeString)
+	}
+	if value, ok := puo.mutation.AddressLine2(); ok {
+		_spec.SetField(profile.FieldAddressLine2, field.TypeString, value)
+	}
+	if puo.mutation.AddressLine2Cleared() {
+		_spec.ClearField(profile.FieldAddressLine2, field.TypeString)
+	}
+	if value, ok := puo.mutation.City(); ok {
+		_spec.SetField(profile.FieldCity, field.TypeString, value)
+	}
+	if puo.mutation.CityCleared() {
+		_spec.ClearField(profile.FieldCity, field.TypeString)
+	}
+	if value, ok := puo.mutation.District(); ok {
+		_spec.SetField(profile.FieldDistrict, field.TypeString, value)
+	}
+	if puo.mutation.DistrictCleared() {
+		_spec.ClearField(profile.FieldDistrict, field.TypeString)
+	}
+	if value, ok := puo.mutation.Upazila(); ok {
+		_spec.SetField(profile.FieldUpazila, field.TypeString, value)
+	}
+	if puo.mutation.UpazilaCleared() {
+		_spec.ClearField(profile.FieldUpazila, field.TypeString)
+	}
+	if value, ok := puo.mutation.UnionName(); ok {
+		_spec.SetField(profile.FieldUnionName, field.TypeString, value)
+	}
+	if puo.mutation.UnionNameCleared() {
+		_spec.ClearField(profile.FieldUnionName, field.TypeString)
+	}
+	if value, ok := puo.mutation.Zip(); ok {
+		_spec.SetField(profile.FieldZip, field.TypeString, value)
+	}
+	if puo.mutation.ZipCleared() {
+		_spec.ClearField(profile.FieldZip, field.TypeString)
 	}
 	if value, ok := puo.mutation.Birthdate(); ok {
 		_spec.SetField(profile.FieldBirthdate, field.TypeTime, value)

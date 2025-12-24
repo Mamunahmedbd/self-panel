@@ -584,6 +584,14 @@ var (
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
 		{Name: "bio", Type: field.TypeString, Nullable: true},
+		{Name: "description", Type: field.TypeString, Nullable: true},
+		{Name: "address_line1", Type: field.TypeString, Nullable: true},
+		{Name: "address_line2", Type: field.TypeString, Nullable: true},
+		{Name: "city", Type: field.TypeString, Nullable: true},
+		{Name: "district", Type: field.TypeString, Nullable: true},
+		{Name: "upazila", Type: field.TypeString, Nullable: true},
+		{Name: "union_name", Type: field.TypeString, Nullable: true},
+		{Name: "zip", Type: field.TypeString, Nullable: true},
 		{Name: "birthdate", Type: field.TypeTime, Nullable: true},
 		{Name: "age", Type: field.TypeInt, Nullable: true},
 		{Name: "fully_onboarded", Type: field.TypeBool, Default: false},
@@ -602,13 +610,13 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "profiles_images_profile_image",
-				Columns:    []*schema.Column{ProfilesColumns[11]},
+				Columns:    []*schema.Column{ProfilesColumns[19]},
 				RefColumns: []*schema.Column{ImagesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
 			{
 				Symbol:     "profiles_users_profile",
-				Columns:    []*schema.Column{ProfilesColumns[12]},
+				Columns:    []*schema.Column{ProfilesColumns[20]},
 				RefColumns: []*schema.Column{UsersColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
@@ -758,6 +766,8 @@ var (
 		{Name: "email", Type: field.TypeString, Unique: true},
 		{Name: "password", Type: field.TypeString},
 		{Name: "last_online", Type: field.TypeTime, Nullable: true},
+		{Name: "username", Type: field.TypeString, Unique: true, Nullable: true},
+		{Name: "status", Type: field.TypeString, Default: "active"},
 	}
 	// UsersTable holds the schema information for the "users" table.
 	UsersTable = &schema.Table{

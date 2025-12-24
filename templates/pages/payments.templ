@@ -9,7 +9,7 @@ import (
 )
 
 templ PricingPage(page *controller.Page) {
-	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNamePreferences), "", "🍻 Subscription")
+	@components.PrevNavBarWithTitle(page.ToURL(routenames.RouteNameProfile), "", "🍻 Subscription")
 	if data, ok := page.Data.(types.PricingPageData); ok {
 		@pricingCards(page, data.ProductProPrice, data.ProductProCode, &data.ActivePlan, data.IsTrial)
 	}

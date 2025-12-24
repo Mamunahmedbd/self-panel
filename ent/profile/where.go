@@ -70,6 +70,46 @@ func Bio(v string) predicate.Profile {
 	return predicate.Profile(sql.FieldEQ(FieldBio, v))
 }
 
+// Description applies equality check predicate on the "description" field. It's identical to DescriptionEQ.
+func Description(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldDescription, v))
+}
+
+// AddressLine1 applies equality check predicate on the "address_line1" field. It's identical to AddressLine1EQ.
+func AddressLine1(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldAddressLine1, v))
+}
+
+// AddressLine2 applies equality check predicate on the "address_line2" field. It's identical to AddressLine2EQ.
+func AddressLine2(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldAddressLine2, v))
+}
+
+// City applies equality check predicate on the "city" field. It's identical to CityEQ.
+func City(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldCity, v))
+}
+
+// District applies equality check predicate on the "district" field. It's identical to DistrictEQ.
+func District(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldDistrict, v))
+}
+
+// Upazila applies equality check predicate on the "upazila" field. It's identical to UpazilaEQ.
+func Upazila(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldUpazila, v))
+}
+
+// UnionName applies equality check predicate on the "union_name" field. It's identical to UnionNameEQ.
+func UnionName(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldUnionName, v))
+}
+
+// Zip applies equality check predicate on the "zip" field. It's identical to ZipEQ.
+func Zip(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldZip, v))
+}
+
 // Birthdate applies equality check predicate on the "birthdate" field. It's identical to BirthdateEQ.
 func Birthdate(v time.Time) predicate.Profile {
 	return predicate.Profile(sql.FieldEQ(FieldBirthdate, v))
@@ -258,6 +298,606 @@ func BioEqualFold(v string) predicate.Profile {
 // BioContainsFold applies the ContainsFold predicate on the "bio" field.
 func BioContainsFold(v string) predicate.Profile {
 	return predicate.Profile(sql.FieldContainsFold(FieldBio, v))
+}
+
+// DescriptionEQ applies the EQ predicate on the "description" field.
+func DescriptionEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldDescription, v))
+}
+
+// DescriptionNEQ applies the NEQ predicate on the "description" field.
+func DescriptionNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldDescription, v))
+}
+
+// DescriptionIn applies the In predicate on the "description" field.
+func DescriptionIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldDescription, vs...))
+}
+
+// DescriptionNotIn applies the NotIn predicate on the "description" field.
+func DescriptionNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldDescription, vs...))
+}
+
+// DescriptionGT applies the GT predicate on the "description" field.
+func DescriptionGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldDescription, v))
+}
+
+// DescriptionGTE applies the GTE predicate on the "description" field.
+func DescriptionGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldDescription, v))
+}
+
+// DescriptionLT applies the LT predicate on the "description" field.
+func DescriptionLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldDescription, v))
+}
+
+// DescriptionLTE applies the LTE predicate on the "description" field.
+func DescriptionLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldDescription, v))
+}
+
+// DescriptionContains applies the Contains predicate on the "description" field.
+func DescriptionContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldDescription, v))
+}
+
+// DescriptionHasPrefix applies the HasPrefix predicate on the "description" field.
+func DescriptionHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldDescription, v))
+}
+
+// DescriptionHasSuffix applies the HasSuffix predicate on the "description" field.
+func DescriptionHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldDescription, v))
+}
+
+// DescriptionIsNil applies the IsNil predicate on the "description" field.
+func DescriptionIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldDescription))
+}
+
+// DescriptionNotNil applies the NotNil predicate on the "description" field.
+func DescriptionNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldDescription))
+}
+
+// DescriptionEqualFold applies the EqualFold predicate on the "description" field.
+func DescriptionEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldDescription, v))
+}
+
+// DescriptionContainsFold applies the ContainsFold predicate on the "description" field.
+func DescriptionContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldDescription, v))
+}
+
+// AddressLine1EQ applies the EQ predicate on the "address_line1" field.
+func AddressLine1EQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldAddressLine1, v))
+}
+
+// AddressLine1NEQ applies the NEQ predicate on the "address_line1" field.
+func AddressLine1NEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldAddressLine1, v))
+}
+
+// AddressLine1In applies the In predicate on the "address_line1" field.
+func AddressLine1In(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldAddressLine1, vs...))
+}
+
+// AddressLine1NotIn applies the NotIn predicate on the "address_line1" field.
+func AddressLine1NotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldAddressLine1, vs...))
+}
+
+// AddressLine1GT applies the GT predicate on the "address_line1" field.
+func AddressLine1GT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldAddressLine1, v))
+}
+
+// AddressLine1GTE applies the GTE predicate on the "address_line1" field.
+func AddressLine1GTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldAddressLine1, v))
+}
+
+// AddressLine1LT applies the LT predicate on the "address_line1" field.
+func AddressLine1LT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldAddressLine1, v))
+}
+
+// AddressLine1LTE applies the LTE predicate on the "address_line1" field.
+func AddressLine1LTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldAddressLine1, v))
+}
+
+// AddressLine1Contains applies the Contains predicate on the "address_line1" field.
+func AddressLine1Contains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldAddressLine1, v))
+}
+
+// AddressLine1HasPrefix applies the HasPrefix predicate on the "address_line1" field.
+func AddressLine1HasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldAddressLine1, v))
+}
+
+// AddressLine1HasSuffix applies the HasSuffix predicate on the "address_line1" field.
+func AddressLine1HasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldAddressLine1, v))
+}
+
+// AddressLine1IsNil applies the IsNil predicate on the "address_line1" field.
+func AddressLine1IsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldAddressLine1))
+}
+
+// AddressLine1NotNil applies the NotNil predicate on the "address_line1" field.
+func AddressLine1NotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldAddressLine1))
+}
+
+// AddressLine1EqualFold applies the EqualFold predicate on the "address_line1" field.
+func AddressLine1EqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldAddressLine1, v))
+}
+
+// AddressLine1ContainsFold applies the ContainsFold predicate on the "address_line1" field.
+func AddressLine1ContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldAddressLine1, v))
+}
+
+// AddressLine2EQ applies the EQ predicate on the "address_line2" field.
+func AddressLine2EQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldAddressLine2, v))
+}
+
+// AddressLine2NEQ applies the NEQ predicate on the "address_line2" field.
+func AddressLine2NEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldAddressLine2, v))
+}
+
+// AddressLine2In applies the In predicate on the "address_line2" field.
+func AddressLine2In(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldAddressLine2, vs...))
+}
+
+// AddressLine2NotIn applies the NotIn predicate on the "address_line2" field.
+func AddressLine2NotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldAddressLine2, vs...))
+}
+
+// AddressLine2GT applies the GT predicate on the "address_line2" field.
+func AddressLine2GT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldAddressLine2, v))
+}
+
+// AddressLine2GTE applies the GTE predicate on the "address_line2" field.
+func AddressLine2GTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldAddressLine2, v))
+}
+
+// AddressLine2LT applies the LT predicate on the "address_line2" field.
+func AddressLine2LT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldAddressLine2, v))
+}
+
+// AddressLine2LTE applies the LTE predicate on the "address_line2" field.
+func AddressLine2LTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldAddressLine2, v))
+}
+
+// AddressLine2Contains applies the Contains predicate on the "address_line2" field.
+func AddressLine2Contains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldAddressLine2, v))
+}
+
+// AddressLine2HasPrefix applies the HasPrefix predicate on the "address_line2" field.
+func AddressLine2HasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldAddressLine2, v))
+}
+
+// AddressLine2HasSuffix applies the HasSuffix predicate on the "address_line2" field.
+func AddressLine2HasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldAddressLine2, v))
+}
+
+// AddressLine2IsNil applies the IsNil predicate on the "address_line2" field.
+func AddressLine2IsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldAddressLine2))
+}
+
+// AddressLine2NotNil applies the NotNil predicate on the "address_line2" field.
+func AddressLine2NotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldAddressLine2))
+}
+
+// AddressLine2EqualFold applies the EqualFold predicate on the "address_line2" field.
+func AddressLine2EqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldAddressLine2, v))
+}
+
+// AddressLine2ContainsFold applies the ContainsFold predicate on the "address_line2" field.
+func AddressLine2ContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldAddressLine2, v))
+}
+
+// CityEQ applies the EQ predicate on the "city" field.
+func CityEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldCity, v))
+}
+
+// CityNEQ applies the NEQ predicate on the "city" field.
+func CityNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldCity, v))
+}
+
+// CityIn applies the In predicate on the "city" field.
+func CityIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldCity, vs...))
+}
+
+// CityNotIn applies the NotIn predicate on the "city" field.
+func CityNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldCity, vs...))
+}
+
+// CityGT applies the GT predicate on the "city" field.
+func CityGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldCity, v))
+}
+
+// CityGTE applies the GTE predicate on the "city" field.
+func CityGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldCity, v))
+}
+
+// CityLT applies the LT predicate on the "city" field.
+func CityLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldCity, v))
+}
+
+// CityLTE applies the LTE predicate on the "city" field.
+func CityLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldCity, v))
+}
+
+// CityContains applies the Contains predicate on the "city" field.
+func CityContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldCity, v))
+}
+
+// CityHasPrefix applies the HasPrefix predicate on the "city" field.
+func CityHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldCity, v))
+}
+
+// CityHasSuffix applies the HasSuffix predicate on the "city" field.
+func CityHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldCity, v))
+}
+
+// CityIsNil applies the IsNil predicate on the "city" field.
+func CityIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldCity))
+}
+
+// CityNotNil applies the NotNil predicate on the "city" field.
+func CityNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldCity))
+}
+
+// CityEqualFold applies the EqualFold predicate on the "city" field.
+func CityEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldCity, v))
+}
+
+// CityContainsFold applies the ContainsFold predicate on the "city" field.
+func CityContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldCity, v))
+}
+
+// DistrictEQ applies the EQ predicate on the "district" field.
+func DistrictEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldDistrict, v))
+}
+
+// DistrictNEQ applies the NEQ predicate on the "district" field.
+func DistrictNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldDistrict, v))
+}
+
+// DistrictIn applies the In predicate on the "district" field.
+func DistrictIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldDistrict, vs...))
+}
+
+// DistrictNotIn applies the NotIn predicate on the "district" field.
+func DistrictNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldDistrict, vs...))
+}
+
+// DistrictGT applies the GT predicate on the "district" field.
+func DistrictGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldDistrict, v))
+}
+
+// DistrictGTE applies the GTE predicate on the "district" field.
+func DistrictGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldDistrict, v))
+}
+
+// DistrictLT applies the LT predicate on the "district" field.
+func DistrictLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldDistrict, v))
+}
+
+// DistrictLTE applies the LTE predicate on the "district" field.
+func DistrictLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldDistrict, v))
+}
+
+// DistrictContains applies the Contains predicate on the "district" field.
+func DistrictContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldDistrict, v))
+}
+
+// DistrictHasPrefix applies the HasPrefix predicate on the "district" field.
+func DistrictHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldDistrict, v))
+}
+
+// DistrictHasSuffix applies the HasSuffix predicate on the "district" field.
+func DistrictHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldDistrict, v))
+}
+
+// DistrictIsNil applies the IsNil predicate on the "district" field.
+func DistrictIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldDistrict))
+}
+
+// DistrictNotNil applies the NotNil predicate on the "district" field.
+func DistrictNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldDistrict))
+}
+
+// DistrictEqualFold applies the EqualFold predicate on the "district" field.
+func DistrictEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldDistrict, v))
+}
+
+// DistrictContainsFold applies the ContainsFold predicate on the "district" field.
+func DistrictContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldDistrict, v))
+}
+
+// UpazilaEQ applies the EQ predicate on the "upazila" field.
+func UpazilaEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldUpazila, v))
+}
+
+// UpazilaNEQ applies the NEQ predicate on the "upazila" field.
+func UpazilaNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldUpazila, v))
+}
+
+// UpazilaIn applies the In predicate on the "upazila" field.
+func UpazilaIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldUpazila, vs...))
+}
+
+// UpazilaNotIn applies the NotIn predicate on the "upazila" field.
+func UpazilaNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldUpazila, vs...))
+}
+
+// UpazilaGT applies the GT predicate on the "upazila" field.
+func UpazilaGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldUpazila, v))
+}
+
+// UpazilaGTE applies the GTE predicate on the "upazila" field.
+func UpazilaGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldUpazila, v))
+}
+
+// UpazilaLT applies the LT predicate on the "upazila" field.
+func UpazilaLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldUpazila, v))
+}
+
+// UpazilaLTE applies the LTE predicate on the "upazila" field.
+func UpazilaLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldUpazila, v))
+}
+
+// UpazilaContains applies the Contains predicate on the "upazila" field.
+func UpazilaContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldUpazila, v))
+}
+
+// UpazilaHasPrefix applies the HasPrefix predicate on the "upazila" field.
+func UpazilaHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldUpazila, v))
+}
+
+// UpazilaHasSuffix applies the HasSuffix predicate on the "upazila" field.
+func UpazilaHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldUpazila, v))
+}
+
+// UpazilaIsNil applies the IsNil predicate on the "upazila" field.
+func UpazilaIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldUpazila))
+}
+
+// UpazilaNotNil applies the NotNil predicate on the "upazila" field.
+func UpazilaNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldUpazila))
+}
+
+// UpazilaEqualFold applies the EqualFold predicate on the "upazila" field.
+func UpazilaEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldUpazila, v))
+}
+
+// UpazilaContainsFold applies the ContainsFold predicate on the "upazila" field.
+func UpazilaContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldUpazila, v))
+}
+
+// UnionNameEQ applies the EQ predicate on the "union_name" field.
+func UnionNameEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldUnionName, v))
+}
+
+// UnionNameNEQ applies the NEQ predicate on the "union_name" field.
+func UnionNameNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldUnionName, v))
+}
+
+// UnionNameIn applies the In predicate on the "union_name" field.
+func UnionNameIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldUnionName, vs...))
+}
+
+// UnionNameNotIn applies the NotIn predicate on the "union_name" field.
+func UnionNameNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldUnionName, vs...))
+}
+
+// UnionNameGT applies the GT predicate on the "union_name" field.
+func UnionNameGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldUnionName, v))
+}
+
+// UnionNameGTE applies the GTE predicate on the "union_name" field.
+func UnionNameGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldUnionName, v))
+}
+
+// UnionNameLT applies the LT predicate on the "union_name" field.
+func UnionNameLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldUnionName, v))
+}
+
+// UnionNameLTE applies the LTE predicate on the "union_name" field.
+func UnionNameLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldUnionName, v))
+}
+
+// UnionNameContains applies the Contains predicate on the "union_name" field.
+func UnionNameContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldUnionName, v))
+}
+
+// UnionNameHasPrefix applies the HasPrefix predicate on the "union_name" field.
+func UnionNameHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldUnionName, v))
+}
+
+// UnionNameHasSuffix applies the HasSuffix predicate on the "union_name" field.
+func UnionNameHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldUnionName, v))
+}
+
+// UnionNameIsNil applies the IsNil predicate on the "union_name" field.
+func UnionNameIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldUnionName))
+}
+
+// UnionNameNotNil applies the NotNil predicate on the "union_name" field.
+func UnionNameNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldUnionName))
+}
+
+// UnionNameEqualFold applies the EqualFold predicate on the "union_name" field.
+func UnionNameEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldUnionName, v))
+}
+
+// UnionNameContainsFold applies the ContainsFold predicate on the "union_name" field.
+func UnionNameContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldUnionName, v))
+}
+
+// ZipEQ applies the EQ predicate on the "zip" field.
+func ZipEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEQ(FieldZip, v))
+}
+
+// ZipNEQ applies the NEQ predicate on the "zip" field.
+func ZipNEQ(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldNEQ(FieldZip, v))
+}
+
+// ZipIn applies the In predicate on the "zip" field.
+func ZipIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldIn(FieldZip, vs...))
+}
+
+// ZipNotIn applies the NotIn predicate on the "zip" field.
+func ZipNotIn(vs ...string) predicate.Profile {
+	return predicate.Profile(sql.FieldNotIn(FieldZip, vs...))
+}
+
+// ZipGT applies the GT predicate on the "zip" field.
+func ZipGT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGT(FieldZip, v))
+}
+
+// ZipGTE applies the GTE predicate on the "zip" field.
+func ZipGTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldGTE(FieldZip, v))
+}
+
+// ZipLT applies the LT predicate on the "zip" field.
+func ZipLT(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLT(FieldZip, v))
+}
+
+// ZipLTE applies the LTE predicate on the "zip" field.
+func ZipLTE(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldLTE(FieldZip, v))
+}
+
+// ZipContains applies the Contains predicate on the "zip" field.
+func ZipContains(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContains(FieldZip, v))
+}
+
+// ZipHasPrefix applies the HasPrefix predicate on the "zip" field.
+func ZipHasPrefix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasPrefix(FieldZip, v))
+}
+
+// ZipHasSuffix applies the HasSuffix predicate on the "zip" field.
+func ZipHasSuffix(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldHasSuffix(FieldZip, v))
+}
+
+// ZipIsNil applies the IsNil predicate on the "zip" field.
+func ZipIsNil() predicate.Profile {
+	return predicate.Profile(sql.FieldIsNull(FieldZip))
+}
+
+// ZipNotNil applies the NotNil predicate on the "zip" field.
+func ZipNotNil() predicate.Profile {
+	return predicate.Profile(sql.FieldNotNull(FieldZip))
+}
+
+// ZipEqualFold applies the EqualFold predicate on the "zip" field.
+func ZipEqualFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldEqualFold(FieldZip, v))
+}
+
+// ZipContainsFold applies the ContainsFold predicate on the "zip" field.
+func ZipContainsFold(v string) predicate.Profile {
+	return predicate.Profile(sql.FieldContainsFold(FieldZip, v))
 }
 
 // BirthdateEQ applies the EQ predicate on the "birthdate" field.

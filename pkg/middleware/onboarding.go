@@ -16,7 +16,7 @@ func RedirectToOnboardingIfNotComplete() echo.MiddlewareFunc {
 			}
 			isFullyOnboarded := c.Get(context.ProfileFullyOnboarded).(bool)
 			if !isFullyOnboarded {
-				url := c.Echo().Reverse(routenames.RouteNamePreferences)
+				url := c.Echo().Reverse(routenames.RouteNameProfile)
 				return c.Redirect(303, url)
 			}
 			return next(c)

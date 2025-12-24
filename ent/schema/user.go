@@ -37,6 +37,11 @@ func (User) Fields() []ent.Field {
 			NotEmpty(),
 		field.Time("last_online").
 			Optional(),
+		field.String("username").
+			Optional().
+			Unique(),
+		field.String("status").
+			Default("active"),
 	}
 }
 
