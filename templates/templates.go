@@ -11,6 +11,7 @@ const (
 	PageBlog                   Page = "blog"
 	PageBlogPost               Page = "blog_post"
 	PageError                  Page = "error"
+	PageNotFound               Page = "not_found"
 	PageLogin                  Page = "login"
 	PageEmailSubscribe         Page = "email-subscribe"
 	PagePreferences            Page = "preferences"

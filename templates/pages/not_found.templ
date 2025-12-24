@@ -1,0 +1,42 @@
+package pages
+
+import (
+	"github.com/mikestefanello/pagoda/pkg/controller"
+)
+
+templ NotFound(page *controller.Page) {
+	<div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+		<div class="relative">
+			<h1 class="text-[150px] font-black text-gray-200 dark:text-gray-800 leading-none select-none">404</h1>
+			<div class="absolute inset-0 flex items-center justify-center">
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-xl">
+					Page Not Found
+				</h2>
+			</div>
+		</div>
+
+		<p class="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+			Oops! The page you're looking for seems to have vanished into the digital void.
+		</p>
+
+		<div class="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center">
+			<a
+				if page.IsAuth {
+					href="/auth/profile"
+				} else {
+					href="/"
+				}
+				class="group relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all duration-200 bg-blue-600 hover:bg-blue-700 rounded-full hover:shadow-lg hover:-translate-y-0.5"
+			>
+				<span class="mr-2">Back to Home</span>
+				<svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+				</svg>
+			</a>
+		</div>
+
+		<div class="mt-16 text-sm text-gray-400 dark:text-gray-600">
+			Error Code: 404
+		</div>
+	</div>
+}

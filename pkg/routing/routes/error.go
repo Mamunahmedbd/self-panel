@@ -1,6 +1,9 @@
 package routes
 
 import (
+	"bytes"
+	stdContext "context"
+	"fmt"
 	"net/http"
 
 	"github.com/mikestefanello/pagoda/pkg/context"
@@ -46,10 +49,32 @@ func (e *errorHandler) Get(err error, ctx echo.Context) {
 	page.HTMX.Request.Enabled = false
 	page.HTMX.Request.Boosted = true
 
-	page.Component = pages.Error(&page)
+	if code == http.StatusNotFound {
+		page.Name = templates.PageNotFound
+		// Use a detached context for invalid/not-found pages to prevent
+		// early cancellation from middleware (like timeout) causing rendering to fail
+		// for static error pages.
+		buf := new(bytes.Buffer)
+		// We still wrap it in the layout
+		component := pages.NotFound(&page)
+		if page.Layout != nil {
+			component = page.Layout(component, &page)
+		}
+
+		if err := component.Render(stdContext.Background(), buf); err != nil {
+			ctx.Logger().Error(err)
+			ctx.HTML(http.StatusInternalServerError, fmt.Sprintf("Error rendering 404 page: %v", err))
+		} else {
+			ctx.HTMLBlob(code, buf.Bytes())
+		}
+		return
+	} else {
+		page.Component = pages.Error(&page)
+	}
 
 	if err = e.ctr.RenderPage(ctx, page); err != nil {
 		ctx.Logger().Error(err)
+		ctx.HTML(http.StatusInternalServerError, fmt.Sprintf("Error rendering page: %v", err))
 	}
 }
 
