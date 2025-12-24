@@ -281,8 +281,6 @@ func (g *profile) SaveProfile(ctx echo.Context) error {
 
 func (g *profile) renderProfileDetails(ctx echo.Context) error {
 	page := controller.NewPage(ctx)
-	page.Layout = layouts.Main
-	page.Name = templates.PageProfile
 
 	usr := ctx.Get(context.AuthenticatedUserKey).(*ent.User)
 	profile := usr.QueryProfile().FirstX(ctx.Request().Context())
@@ -313,10 +311,8 @@ func (g *profile) renderProfileDetails(ctx echo.Context) error {
 	}
 	page.Data = data
 
-	// Render just the ProfileDetails component
-	page.Component = pages.ProfileDetails(&page)
-
-	return g.ctr.RenderPage(ctx, page)
+	// Render just the ProfileDetails component without the layout
+	return pages.ProfileDetails(&page).Render(ctx.Request().Context(), ctx.Response().Writer)
 }
 
 func (g *profile) getCurrPreferencesData(ctx echo.Context) (*types.ProfileSettingsData, error) {
