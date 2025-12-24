@@ -75,3 +75,30 @@ func (c *ispRoutes) ChangePlan(ctx echo.Context) error {
 	// Implement plan change logic
 	return c.ctr.Redirect(ctx, "profile")
 }
+
+func (c *ispRoutes) ToggleAutoRenew(ctx echo.Context) error {
+	client, err := c.ctr.Container.GetAuthenticatedClient(ctx)
+	if err != nil {
+		return err
+	}
+
+	// Toggle the current state
+	newStatus := !client.AutoRenew
+
+	_, err = c.ctr.Container.ORM.ClientUser.
+		UpdateOne(client).
+		SetAutoRenew(newStatus).
+		Save(ctx.Request().Context())
+
+	if err != nil {
+		return c.ctr.Fail(err, "failed to update settings")
+	}
+
+	if newStatus {
+		msg.Success(ctx, "Auto-renew enabled")
+	} else {
+		msg.Info(ctx, "Auto-renew disabled")
+	}
+
+	return c.ctr.Redirect(ctx, "profile")
+}

@@ -63,11 +63,28 @@ func (c *Container) GetISPProfileData(ctx echo.Context) (*types.ISPProfileData, 
 		}
 	}
 
-	// 2. Determine Package Status
+	// 2. Determining Expiry & Package Status
+	// Query radcheck for Expiration attribute to get strictly accurate expiry
+	var expirationVal string
+	// Using raw SQL because radcheck might not be in Ent schema or we want to be direct
+	err = c.Database.QueryRowContext(ctx.Request().Context(),
+		"SELECT value FROM radcheck WHERE username = ? AND attribute = 'Expiration'",
+		client.Username).Scan(&expirationVal)
+
+	if err == nil {
+		// Parse format: "14 Nov 2025 13:00:22"
+		layout := "02 Jan 2006 15:04:05"
+		if t, err := time.Parse(layout, expirationVal); err == nil {
+			data.ValidUntil = &t
+		}
+	}
+
+	// Set status based on the determined expiry date
 	data.PackageStatus = "Active"
-	if client.PaymentDate != nil && time.Now().After(*client.PaymentDate) {
+	if data.ValidUntil != nil && time.Now().After(*data.ValidUntil) {
 		data.PackageStatus = "Expired"
 	}
+	// Fallback if client is explicitly inactive in DB
 	if client.Status != "active" {
 		data.PackageStatus = "Inactive"
 	}

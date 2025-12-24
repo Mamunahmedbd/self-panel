@@ -357,6 +357,7 @@ func coreAuthRoutes(c *services.Container, g *echo.Group, ctr controller.Control
 	onboardedGroup.POST("/balance/load", isp.AddFunds).Name = routeNames.RouteNameAddFunds
 	onboardedGroup.POST("/package/renew", isp.RenewPackage).Name = routeNames.RouteNameRenewPackage
 	onboardedGroup.GET("/package/change", isp.ChangePlan).Name = routeNames.RouteNameChangePlan
+	onboardedGroup.POST("/package/autorenew", isp.ToggleAutoRenew).Name = routeNames.RouteNameToggleAutoRenew
 
 	uploadPhoto := NewUploadPhotoRoutes(ctr, &profileRepo, storageRepo, c.Config.Storage.PhotosMaxFileSizeMB)
 	onboardedGroup.GET("/uploadPhoto", uploadPhoto.Get).Name = "uploadPhoto"

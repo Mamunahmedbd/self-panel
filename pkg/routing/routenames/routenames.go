@@ -53,9 +53,10 @@ const (
 	RouteNamePaymentProcessorSuccess      = "stripe.success"
 
 	// ISP Features
-	RouteNameTicketCreate = "ticket.create"
-	RouteNameTicketSubmit = "ticket.submit"
-	RouteNameRenewPackage = "package.renew"
-	RouteNameChangePlan   = "package.change"
-	RouteNameAddFunds     = "balance.add"
+	RouteNameTicketCreate    = "ticket.create"
+	RouteNameTicketSubmit    = "ticket.submit"
+	RouteNameRenewPackage    = "package.renew"
+	RouteNameChangePlan      = "package.change"
+	RouteNameAddFunds        = "balance.add"
+	RouteNameToggleAutoRenew = "package.autorenew"
 )

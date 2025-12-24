@@ -98,7 +98,12 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 					<div class="p-4 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-500 shadow-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg>
 					</div>
-					<span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Access Expiry</span>
+					<div class="flex flex-col items-end">
+						<span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-2">Access Expiry</span>
+						<span class={ "px-2.5 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm border border-white/50 dark:border-gray-800/50", getStatusClass(data.PackageStatus) }>
+							{ data.PackageStatus }
+						</span>
+					</div>
 				</div>
 				if data.ValidUntil != nil {
 					<p class="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Ending Date</p>
@@ -117,7 +122,8 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 							type="checkbox"
 							checked?={ data.AutoRenew }
 							class="sr-only peer"
-							hx-post={ page.ToURL(routenames.RouteNamePreferences) }
+							name="auto_renew"
+							hx-post={ page.ToURL(routenames.RouteNameToggleAutoRenew) }
 						/>
 						<div class="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
 					</label>
