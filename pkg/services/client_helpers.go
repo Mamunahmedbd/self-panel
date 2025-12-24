@@ -98,6 +98,12 @@ func (c *Container) GetISPProfileData(ctx echo.Context) (*types.ISPProfileData, 
 	// 5. Get Session history (last 5 sessions)
 	data.Sessions, _ = c.GetSessionHistory(ctx, client.Username, 5)
 
+	// Determine Connection Status from latest session
+	data.ConnectionStatus = "Offline"
+	if len(data.Sessions) > 0 && data.Sessions[0].Acctstoptime == nil {
+		data.ConnectionStatus = "Online"
+	}
+
 	// 6. Get Recent tickets
 	data.Tickets, _ = c.GetRecentTickets(ctx, client.ID, 5)
 

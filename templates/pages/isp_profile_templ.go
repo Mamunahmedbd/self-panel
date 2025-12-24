@@ -50,68 +50,48 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "! 👋</h1><p class=\"text-gray-500 dark:text-gray-400 mt-2 font-medium text-lg\">Welcome back to your high-speed dashboard.</p></div><div class=\"flex items-center gap-4 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex -space-x-2\"><div class=\"w-10 h-10 rounded-full bg-green-500/10 border-2 border-white dark:border-gray-900 flex items-center justify-center text-green-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l5 5L20 7\"></path></svg></div></div><div class=\"pr-5\"><p class=\"text-[9px] font-black uppercase text-gray-400 tracking-[0.2em] leading-none mb-1\">Status</p><div class=\"flex items-center gap-1.5\"><div class=\"w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse\"></div><p class=\"text-xs font-black text-green-500 uppercase\">Fiber Online</p></div></div></div></header><!-- Hero Stats Grid --><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-5 md:py-10\"><div class=\"relative group overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-blue-500/30 transition-all hover:scale-[1.03] hover:-translate-y-1 duration-500 ring-1 ring-white/20\"><div class=\"absolute -top-12 -right-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-all duration-700 group-hover:scale-125\"></div><div class=\"absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent\"></div><div class=\"relative z-10 flex flex-col h-full justify-between\"><div><p class=\"text-[10px] font-black uppercase text-blue-100/60 tracking-[0.2em] mb-3\">Available Credit</p><div class=\"flex items-baseline gap-2\"><span class=\"text-2xl font-black opacity-60\">৳</span><h2 class=\"text-5xl font-black tabular-nums tracking-tighter\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "! 👋</h1><p class=\"text-gray-500 dark:text-gray-400 mt-2 font-medium text-lg\">Welcome back to your high-speed dashboard.</p></div><div class=\"flex items-center gap-4 bg-base-100/40 dark:bg-gray-900/40 backdrop-blur-2xl p-2 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-xl shadow-black/5 ring-1 ring-black/5 dark:ring-white/5\"><div class=\"flex -space-x-2\"><div class=\"w-10 h-10 rounded-full bg-green-500/10 border-2 border-white dark:border-gray-900 flex items-center justify-center text-green-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12l5 5L20 7\"></path></svg></div></div><div class=\"pr-5\"><p class=\"text-[9px] font-black uppercase text-gray-400 tracking-[0.2em] leading-none mb-1\">Status</p><div class=\"flex items-center gap-1.5\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if data.ConnectionStatus == "Online" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse\"></div><p class=\"text-xs font-black text-green-500 uppercase\">Fiber Online</p>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"w-1.5 h-1.5 rounded-full bg-rose-500\"></div><p class=\"text-xs font-black text-gray-500 uppercase\">Offline</p>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div></div></div></header><!-- Hero Stats Grid --><div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-5 md:py-10\"><div class=\"relative group overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-blue-500/30 transition-all hover:scale-[1.03] hover:-translate-y-1 duration-500 ring-1 ring-white/20\"><div class=\"absolute -top-12 -right-12 w-48 h-48 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-all duration-700 group-hover:scale-125\"></div><div class=\"absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent\"></div><div class=\"relative z-10 flex flex-col h-full justify-between\"><div><p class=\"text-[10px] font-black uppercase text-blue-100/60 tracking-[0.2em] mb-3\">Available Credit</p><div class=\"flex items-baseline gap-2\"><span class=\"text-2xl font-black opacity-60\">৳</span><h2 class=\"text-5xl font-black tabular-nums tracking-tighter\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", data.Balance))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 58, Col: 104}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 63, Col: 104}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h2></div></div><button hx-post=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</h2></div></div><button hx-post=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameAddFunds))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 62, Col: 56}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 67, Col: 56}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"mt-10 w-full py-4.5 bg-white text-blue-700 hover:bg-blue-50 text-sm font-black rounded-2xl transition-all shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 flex items-center justify-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14\"></path><path d=\"M5 12h14\"></path></svg> Recharge Account</button></div></div><!-- Current Package Card --><div class=\"bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"></path><path d=\"m3.3 7 8.7 5 8.7-5\"></path><path d=\"M12 22V12\"></path></svg></div>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var5 = []any{"px-4 py-1.5 text-[9px] font-black uppercase rounded-full shadow-lg border-2 border-white/50 dark:border-gray-800/50", getStatusClass(data.PackageStatus)}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var5...)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<span class=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var5).String())
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 1, Col: 0}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var7 string
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(data.PackageStatus)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 77, Col: 26}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"mt-10 w-full py-4.5 bg-white text-blue-700 hover:bg-blue-50 text-sm font-black rounded-2xl transition-all shadow-[0_10px_20px_rgba(0,0,0,0.1)] active:scale-95 flex items-center justify-center gap-2\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14\"></path><path d=\"M5 12h14\"></path></svg> Recharge Account</button></div></div><!-- Current Package Card --><div class=\"bg-base-100/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-[2.5rem] p-8 shadow-xl shadow-black/5 border border-white/20 dark:border-white/5 ring-1 ring-black/5 dark:ring-white/5 transition-all hover:shadow-2xl hover:scale-[1.02] group\"><div class=\"flex items-center justify-between mb-8\"><div class=\"p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"></path><path d=\"m3.3 7 8.7 5 8.7-5\"></path><path d=\"M12 22V12\"></path></svg></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -120,12 +100,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var8 string
-			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(data.CurrentPackage.Name)
+			var templ_7745c5c3_Var5 string
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(data.CurrentPackage.Name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 82, Col: 132}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 85, Col: 132}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -133,12 +113,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var9 string
-			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f %s / Month", data.CurrentPackage.Price, data.CurrentPackage.Currency))
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f %s / Month", data.CurrentPackage.Price, data.CurrentPackage.Currency))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 83, Col: 142}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 86, Col: 142}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -156,12 +136,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var10 templ.SafeURL
-		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameChangePlan)))
+		var templ_7745c5c3_Var7 templ.SafeURL
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameChangePlan)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 88, Col: 68}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 91, Col: 68}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -169,8 +149,8 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var11 = []any{"px-2.5 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm border border-white/50 dark:border-gray-800/50", getStatusClass(data.PackageStatus)}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var11...)
+		var templ_7745c5c3_Var8 = []any{"px-2.5 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm border border-white/50 dark:border-gray-800/50", getStatusClass(data.PackageStatus)}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var8...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -178,12 +158,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var12 string
-		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var11).String())
+		var templ_7745c5c3_Var9 string
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var8).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -191,12 +171,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var13 string
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(data.PackageStatus)
+		var templ_7745c5c3_Var10 string
+		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(data.PackageStatus)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 104, Col: 27}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 107, Col: 27}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -205,16 +185,16 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			return templ_7745c5c3_Err
 		}
 		if data.ValidUntil != nil {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<p class=\"text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1\">Ending Date</p><h2 class=\"text-3xl font-black text-gray-900 dark:text-white leading-none tracking-tighter\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "<p class=\"text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1\">Ending Date</p><h2 class=\"text-2xl font-black text-gray-900 dark:text-white leading-none tracking-tighter\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var14 string
-			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(data.ValidUntil.Format("02 Jan 2006"))
+			var templ_7745c5c3_Var11 string
+			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(data.ValidUntil.Format("02 Jan 2006 03:04 PM"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 110, Col: 136}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 113, Col: 145}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -222,12 +202,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var15 string
-			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(getTimeRemaining(*data.ValidUntil))
+			var templ_7745c5c3_Var12 string
+			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(getTimeRemaining(*data.ValidUntil))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 113, Col: 42}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 116, Col: 42}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -255,12 +235,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var16 string
-		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameToggleAutoRenew))
+		var templ_7745c5c3_Var13 string
+		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameToggleAutoRenew))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 126, Col: 64}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 129, Col: 64}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -268,12 +248,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var17 string
-		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameRenewPackage))
+		var templ_7745c5c3_Var14 string
+		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(page.ToURL(routenames.RouteNameRenewPackage))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 143, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 146, Col: 59}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -281,12 +261,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var18 string
-		templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Today))
+		var templ_7745c5c3_Var15 string
+		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Today))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 175, Col: 132}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 178, Col: 132}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -294,12 +274,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var19 string
-		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Weekly))
+		var templ_7745c5c3_Var16 string
+		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Weekly))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 184, Col: 136}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 187, Col: 136}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -307,12 +287,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var20 string
-		templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Monthly))
+		var templ_7745c5c3_Var17 string
+		templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(data.Usage.Monthly))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 192, Col: 137}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 195, Col: 137}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -325,12 +305,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var21 string
-			templ_7745c5c3_Var21, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("height: %d%%", 20+(i*3)%70))
+			var templ_7745c5c3_Var18 string
+			templ_7745c5c3_Var18, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("height: %d%%", 20+(i*3)%70))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 199, Col: 133}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 202, Col: 133}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -343,12 +323,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var22 string
-		templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(data.Sessions)))
+		var templ_7745c5c3_Var19 string
+		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(data.Sessions)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 216, Col: 38}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 219, Col: 38}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -361,12 +341,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var23 string
-			templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(s.Framedipaddress)
+			var templ_7745c5c3_Var20 string
+			templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(s.Framedipaddress)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 226, Col: 119}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 229, Col: 119}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -379,12 +359,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var24 string
-				templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(s.Acctstarttime.Format("15:04"))
+				var templ_7745c5c3_Var21 string
+				templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(s.Acctstarttime.Format("15:04"))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 229, Col: 118}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 232, Col: 118}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -402,12 +382,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var25 string
-				templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctinputoctets)))
+				var templ_7745c5c3_Var22 string
+				templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctinputoctets)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 236, Col: 97}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 239, Col: 97}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -430,12 +410,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var26 string
-				templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctoutputoctets)))
+				var templ_7745c5c3_Var23 string
+				templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(formatBytes(uint64(*s.Acctoutputoctets)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 244, Col: 98}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 247, Col: 98}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -469,8 +449,8 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var27 = []any{"w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0", getTxIconBg(string(tx.Type))}
-			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var27...)
+			var templ_7745c5c3_Var24 = []any{"w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0", getTxIconBg(string(tx.Type))}
+			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var24...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -478,12 +458,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var28 string
-			templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var27).String())
+			var templ_7745c5c3_Var25 string
+			templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var24).String())
 			if templ_7745c5c3_Err != nil {
 				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 1, Col: 0}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -499,12 +479,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var29 string
-			templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionRef)
+			var templ_7745c5c3_Var26 string
+			templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionRef)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 282, Col: 97}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 285, Col: 97}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -512,12 +492,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var30 string
-			templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionDate.Format("02 Jan 2006"))
+			var templ_7745c5c3_Var27 string
+			templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(tx.TransactionDate.Format("02 Jan 2006"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 283, Col: 125}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 286, Col: 125}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -525,12 +505,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var31 string
-			templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", tx.Amount))
+			var templ_7745c5c3_Var28 string
+			templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.2f", tx.Amount))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 287, Col: 131}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 290, Col: 131}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -538,8 +518,8 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var32 = []any{"inline-block px-3 py-1 text-[9px] font-black uppercase rounded-lg sm:mt-2 shadow-sm", getTxStatusClass(string(tx.Status))}
-			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var32...)
+			var templ_7745c5c3_Var29 = []any{"inline-block px-3 py-1 text-[9px] font-black uppercase rounded-lg sm:mt-2 shadow-sm", getTxStatusClass(string(tx.Status))}
+			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var29...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -547,12 +527,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var33 string
-			templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var32).String())
+			var templ_7745c5c3_Var30 string
+			templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var29).String())
 			if templ_7745c5c3_Err != nil {
 				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 1, Col: 0}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -560,12 +540,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var34 string
-			templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(string(tx.Status))
+			var templ_7745c5c3_Var31 string
+			templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(string(tx.Status))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 289, Col: 28}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 292, Col: 28}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -583,8 +563,8 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var35 = []any{"px-3 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm", getTicketStatusClass(string(t.Status))}
-			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var35...)
+			var templ_7745c5c3_Var32 = []any{"px-3 py-1 text-[9px] font-black uppercase rounded-lg shadow-sm", getTicketStatusClass(string(t.Status))}
+			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var32...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -592,12 +572,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var36 string
-			templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var35).String())
+			var templ_7745c5c3_Var33 string
+			templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var32).String())
 			if templ_7745c5c3_Err != nil {
 				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 1, Col: 0}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -605,12 +585,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var37 string
-			templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(string(t.Status))
+			var templ_7745c5c3_Var34 string
+			templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(string(t.Status))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 310, Col: 27}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 313, Col: 27}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -618,12 +598,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var38 string
-			templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(t.CreatedAt.Format("15:04 — 02 Jan"))
+			var templ_7745c5c3_Var35 string
+			templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinStringErrs(t.CreatedAt.Format("15:04 — 02 Jan"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 312, Col: 122}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 315, Col: 122}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -631,12 +611,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var39 string
-			templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(t.Subject)
+			var templ_7745c5c3_Var36 string
+			templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(t.Subject)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 314, Col: 154}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 317, Col: 154}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -644,12 +624,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var40 string
-			templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs(t.Description)
+			var templ_7745c5c3_Var37 string
+			templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(t.Description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 315, Col: 101}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 318, Col: 101}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -668,12 +648,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var41 templ.SafeURL
-		templ_7745c5c3_Var41, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameTicketSubmit)))
+		var templ_7745c5c3_Var38 templ.SafeURL
+		templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameTicketSubmit)))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 342, Col: 74}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 345, Col: 74}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var41))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -681,12 +661,12 @@ func ISPProfile(page *controller.Page, data *types.ISPProfileData) templ.Compone
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var42 string
-		templ_7745c5c3_Var42, templ_7745c5c3_Err = templ.JoinStringErrs(page.CSRF)
+		var templ_7745c5c3_Var39 string
+		templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(page.CSRF)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 343, Col: 55}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/isp_profile.templ`, Line: 346, Col: 55}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var42))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -727,9 +707,9 @@ func getTxIcon(txType string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var43 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var43 == nil {
-			templ_7745c5c3_Var43 = templ.NopComponent
+		templ_7745c5c3_Var40 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var40 == nil {
+			templ_7745c5c3_Var40 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		switch txType {

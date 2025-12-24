@@ -18,6 +18,7 @@ type ISPProfileData struct {
 	ValidUntil      *time.Time
 	AutoRenew       bool
 	PackageStatus   string // "Active", "Expired", etc.
+	ConnectionStatus string // "Online", "Offline"
 }
 
 type ISPUsageStats struct {

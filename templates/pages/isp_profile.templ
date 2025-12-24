@@ -38,8 +38,13 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 				<div class="pr-5">
 					<p class="text-[9px] font-black uppercase text-gray-400 tracking-[0.2em] leading-none mb-1">Status</p>
 					<div class="flex items-center gap-1.5">
-						<div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-						<p class="text-xs font-black text-green-500 uppercase">Fiber Online</p>
+						if data.ConnectionStatus == "Online" {
+							<div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+							<p class="text-xs font-black text-green-500 uppercase">Fiber Online</p>
+						} else {
+							<div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+							<p class="text-xs font-black text-gray-500 uppercase">Offline</p>
+						}
 					</div>
 				</div>
 			</div>
@@ -73,9 +78,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 					<div class="p-4 bg-purple-500/10 dark:bg-purple-500/20 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-500 shadow-inner">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
 					</div>
-					<span class={ "px-4 py-1.5 text-[9px] font-black uppercase rounded-full shadow-lg border-2 border-white/50 dark:border-gray-800/50", getStatusClass(data.PackageStatus) }>
-						{ data.PackageStatus }
-					</span>
+
 				</div>
 				if data.CurrentPackage != nil {
 					<p class="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Active Subscription</p>
@@ -107,7 +110,7 @@ templ ISPProfile(page *controller.Page, data *types.ISPProfileData) {
 				</div>
 				if data.ValidUntil != nil {
 					<p class="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Ending Date</p>
-					<h2 class="text-3xl font-black text-gray-900 dark:text-white leading-none tracking-tighter">{ data.ValidUntil.Format("02 Jan 2006") }</h2>
+					<h2 class="text-2xl font-black text-gray-900 dark:text-white leading-none tracking-tighter">{ data.ValidUntil.Format("02 Jan 2006 03:04 PM") }</h2>
 					<p class="text-sm font-black text-orange-500 mt-2 uppercase flex items-center gap-1.5 animate-pulse">
 						<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
 						{ getTimeRemaining(*data.ValidUntil) }
