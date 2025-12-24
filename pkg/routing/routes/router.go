@@ -260,7 +260,7 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	g.GET("/contact", contact.Get).Name = routeNames.RouteNameContact
 	g.POST("/contact", contact.Post).Name = routeNames.RouteNameContactSubmit
 
-	userGroup := g.Group("/user", middleware.RequireNoAuthentication())
+	userGroup := g.Group("", middleware.RequireNoAuthentication())
 
 	login := NewLoginRoute(ctr)
 	userGroup.GET("/login", login.Get).Name = routeNames.RouteNameLogin
