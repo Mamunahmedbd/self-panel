@@ -80,6 +80,8 @@ func (c *landingPage) Get(ctx echo.Context) error {
 	}
 
 	data.ContactEmail = c.ctr.Container.Config.Mail.FromAddress
+	data.ContactPhone = "09624352563"
+	data.ContactWhatsApp = "01303051882"
 	data.ProductProCode = c.ctr.Container.Config.App.OperationalConstants.ProductProCode
 	data.ProductProPrice = fmt.Sprintf("%.2f", c.ctr.Container.Config.App.OperationalConstants.ProductProPrice)
 	data.IsPaymentEnabled = true // Enable visual payment section

@@ -120,7 +120,7 @@ func Metatags(page *controller.Page) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<meta name=\"application-name\" content=\"Self Panel\"><meta name=\"msapplication-starturl\" content=\"https://cherie.chatbond.app\"><meta name=\"mobile-web-app-capable\" content=\"yes\"><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"><meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\"><meta name=\"apple-mobile-web-app-title\" content=\"Self Panel\"><link rel=\"apple-touch-startup-image\" href=\"ios-startup.png\"><meta name=\"color-scheme\" content=\"light dark\"><meta name=\"description\" content=\"Self Panel is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once.\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<meta name=\"application-name\" content=\"Self Care\"><meta name=\"msapplication-starturl\" content=\"https://cherie.chatbond.app\"><meta name=\"mobile-web-app-capable\" content=\"yes\"><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"><meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\"><meta name=\"apple-mobile-web-app-title\" content=\"Self Care\"><link rel=\"apple-touch-startup-image\" href=\"ios-startup.png\"><meta name=\"color-scheme\" content=\"light dark\"><meta name=\"description\" content=\"Self Care is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once.\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -501,7 +501,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</span></div><p class=\"text-sm leading-relaxed max-w-xs\">Providing ultra-fast fiber connectivity and premium digital services to thousands of happy families and businesses since 2020.</p><div class=\"text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500\">Managed by Systems & Technologies Ltd.</div></div><!-- Column 2: Quick Links --><div class=\"space-y-6\"><h3 class=\"text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm\">Services</h3><ul class=\"space-y-4 text-sm\"><li><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</span></div><p class=\"text-sm leading-relaxed max-w-xs\">Providing ultra-fast fiber connectivity and premium digital services to thousands of happy families and businesses since 2020.</p><div class=\"text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500\">Managed by Mim IT Ltd.</div></div><!-- Column 2: Quick Links --><div class=\"space-y-6\"><h3 class=\"text-gray-900 dark:text-white font-bold uppercase tracking-widest text-sm\">Services</h3><ul class=\"space-y-4 text-sm\"><li><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -592,7 +592,7 @@ func TextFooter(page *controller.Page) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, ". All rights reserved.</div><div class=\"flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2\"><span class=\"text-rose-500 font-bold\">DBID No: 178299482</span> <a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, ". All rights reserved.</div><div class=\"flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2\"><span class=\"text-rose-500 font-bold\">DBID No: 23432232</span> <a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

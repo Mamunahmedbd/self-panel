@@ -43,7 +43,9 @@ type LandingPage struct {
 	ProductProCode   string
 	ProductProPrice  string
 
-	ContactEmail string
+	ContactEmail    string
+	ContactPhone    string
+	ContactWhatsApp string
 }
 
 type QAItem struct {

@@ -25,15 +25,15 @@ templ Metatags(page *controller.Page) {
 	if len(page.Metatags.Keywords) > 0 {
 		<meta name="keywords" content={ strings.Join(page.Metatags.Keywords, ", ") }/>
 	}
-	<meta name="application-name" content="Self Panel"/>
+	<meta name="application-name" content="Self Care"/>
 	<meta name="msapplication-starturl" content="https://cherie.chatbond.app"/>
 	<meta name="mobile-web-app-capable" content="yes"/>
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-	<meta name="apple-mobile-web-app-title" content="Self Panel"/>
+	<meta name="apple-mobile-web-app-title" content="Self Care"/>
 	<link rel="apple-touch-startup-image" href="ios-startup.png"/>
 	<meta name="color-scheme" content="light dark"/>
-	<meta name="description" content="Self Panel is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once."/>
+	<meta name="description" content="Self Care is a Go/HTMX starter kit here to help you get your idea to market before you can sneeze once."/>
 }
 
 templ CSS() {
@@ -211,7 +211,7 @@ templ TextFooter(page *controller.Page) {
 						Providing ultra-fast fiber connectivity and premium digital services to thousands of happy families and businesses since 2020.
 					</p>
 					<div class="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">
-						Managed by Systems & Technologies Ltd.
+						Managed by Mim IT Ltd.
 					</div>
 				</div>
 
@@ -264,7 +264,7 @@ templ TextFooter(page *controller.Page) {
 					© <span id="currentYear"></span> { page.AppName }. All rights reserved.
 				</div>
 				<div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 order-1 md:order-2">
-					<span class="text-rose-500 font-bold">DBID No: 178299482</span>
+					<span class="text-rose-500 font-bold">DBID No: 23432232</span>
 					<a href={ templ.URL(page.ToURL(routenames.RouteNameTermsAndConditions)) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Terms & Conditions</a>
 					<a href={ templ.URL(page.ToURL(routenames.RouteNamePrivacyPolicy)) } class="cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Privacy Policy</a>
 					<a href={ templ.URL(page.ToURL(routenames.RouteNameRefundPolicy)) } class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Refund & Delivery Policy</a>

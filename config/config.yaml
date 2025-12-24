@@ -12,8 +12,8 @@ http:
     key: ""
 
 app:
-  name: "Self Panel"
-  supportEmail: "info@goship.run"
+  name: "Self Care"
+  supportEmail: "info@ispcrmcloud.com"
   environment: "local"
   # Change this on any live environments
   encryptionKey: "?E(G+KbPeShVmYq3t6w9z$C&F)J@McQf"
@@ -59,7 +59,7 @@ database:
   user: "mim_it"
   password: "P@$$mim_it!1"
   databaseNameLocal: "mim_it"
-  testDatabase: "goship_testdb"
+  testDatabase: "self_testdb"
 #  sslCertPath: "prod-ca-2021.cer"
 #  sslMode: "require"
 
@@ -69,7 +69,7 @@ mail:
   smtpPort: 1025
   user: "admin"
   password: "admin"
-  fromAddress: "info@goship.app"
+  fromAddress: "info@ispcrmcloud.com"
   resendAPIKey: ""
 
 phone:
@@ -81,8 +81,8 @@ recommender:
   numProfilesToMatchAtOnce: 100
 
 storage:
-  appBucketName: "goship-dev"
-  staticFilesBucketName: "goship-static"
+  appBucketName: "self-dev"
+  staticFilesBucketName: "self-static"
   s3Endpoint: "s3.us-west-002.backblazeb2.com"
   # Below is for chatbond dev
   s3AccessKey: "0072..."

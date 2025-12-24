@@ -74,7 +74,7 @@ func LandingPage(page *controller.Page) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = faqSection().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = faqSection(data).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -665,33 +665,98 @@ func contactTeamSection(page *controller.Page, d types.LandingPage) templ.Compon
 			templ_7745c5c3_Var22 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<div class=\"py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800\"><div class=\"max-w-screen-xl mx-auto px-6 md:px-8 text-center\"><div class=\"inline-block mb-4\"><span class=\"bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold px-4 py-2 rounded-full\">GET IN TOUCH</span></div><h2 class=\"text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-purple-900 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent\">Contact Team</h2><p class=\"text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto text-lg\">We try and sort out any issues before you're even aware of them. But if you ever need us, there are a bunch of ways you can get in touch.</p><div class=\"grid md:grid-cols-2 gap-6 max-w-4xl mx-auto\"><a href=\"#\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-green-600 dark:text-green-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z\"></path></svg></div><div class=\"text-left\"><span class=\"text-green-600 dark:text-green-400 text-lg font-bold block\">WhatsApp</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Text 'Hi' to 01799000566</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-green-600 dark:group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"#\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z\"></path></svg></div><div class=\"text-left\"><span class=\"text-purple-600 dark:text-purple-400 text-lg font-bold block\">Call</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Call 09642363694 for IVR</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "<div class=\"py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800\"><div class=\"max-w-screen-xl mx-auto px-6 md:px-8 text-center\"><div class=\"inline-block mb-4\"><span class=\"bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold px-4 py-2 rounded-full\">GET IN TOUCH</span></div><h2 class=\"text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-purple-900 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent\">Contact Team</h2><p class=\"text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto text-lg\">We try and sort out any issues before you're even aware of them. But if you ever need us, there are a bunch of ways you can get in touch.</p><div class=\"grid md:grid-cols-2 gap-6 max-w-4xl mx-auto\"><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var23 templ.SafeURL
-		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameContact)))
+		templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("https://wa.me/88" + d.ContactWhatsApp))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 563, Col: 64}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 527, Col: 67}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-blue-600 dark:text-blue-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z\"></path></svg></div><div class=\"text-left\"><span class=\"text-blue-600 dark:text-blue-400 text-lg font-bold block\">Message</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Message us in Facebook</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-green-600 dark:text-green-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z\"></path></svg></div><div class=\"text-left\"><span class=\"text-green-600 dark:text-green-400 text-lg font-bold block\">WhatsApp</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Text 'Hi' to ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var24 templ.SafeURL
-		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("mailto:%s", d.ContactEmail)))
+		var templ_7745c5c3_Var24 string
+		templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactWhatsApp)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 581, Col: 69}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 538, Col: 95}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var24))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-red-600 dark:text-red-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z\"></path></svg></div><div class=\"text-left\"><span class=\"text-red-600 dark:text-red-400 text-lg font-bold block\">Email</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Email us</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-green-600 dark:group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var25 templ.SafeURL
+		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("tel:" + d.ContactPhone))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 545, Col: 52}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z\"></path></svg></div><div class=\"text-left\"><span class=\"text-purple-600 dark:text-purple-400 text-lg font-bold block\">Call</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Call ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var26 string
+		templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactPhone)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 556, Col: 84}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, " ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var27 string
+		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs("for")
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 556, Col: 94}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, " IVR</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var28 templ.SafeURL
+		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(page.ToURL(routenames.RouteNameContact)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 563, Col: 64}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-blue-600 dark:text-blue-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z\"></path></svg></div><div class=\"text-left\"><span class=\"text-blue-600 dark:text-blue-400 text-lg font-bold block\">Message</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Message us in Facebook</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var29 templ.SafeURL
+		templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("mailto:%s", d.ContactEmail)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 581, Col: 69}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "\" class=\"group relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-red-500 dark:hover:border-red-500\"><div class=\"absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300\"></div><div class=\"relative flex items-center justify-between\"><div class=\"flex items-center space-x-4\"><div class=\"w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300\"><svg class=\"w-6 h-6 text-red-600 dark:text-red-400\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z\"></path></svg></div><div class=\"text-left\"><span class=\"text-red-600 dark:text-red-400 text-lg font-bold block\">Email</span> <span class=\"text-gray-700 dark:text-gray-300 text-sm\">Email us</span></div></div><svg class=\"w-5 h-5 text-gray-400 group-hover:text-red-600 dark:group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"></path></svg></div></a></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -699,7 +764,7 @@ func contactTeamSection(page *controller.Page, d types.LandingPage) templ.Compon
 	})
 }
 
-func faqSection() templ.Component {
+func faqSection(d types.LandingPage) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -715,12 +780,103 @@ func faqSection() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var25 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var25 == nil {
-			templ_7745c5c3_Var25 = templ.NopComponent
+		templ_7745c5c3_Var30 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var30 == nil {
+			templ_7745c5c3_Var30 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "<div class=\"py-20 md:py-28 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900\"><div class=\"max-w-screen-xl mx-auto px-6 md:px-8\"><div class=\"text-center mb-16\" data-aos=\"fade-up\"><div class=\"inline-block mb-4\"><span class=\"bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold px-4 py-2 rounded-full\">HELP CENTER</span></div><h2 class=\"text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-purple-900 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent\">Frequently Asked Questions</h2><p class=\"text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto\">Find answers to common questions about our internet services, installation, and support.</p></div><div class=\"max-w-4xl mx-auto space-y-4\"><!-- FAQ Item 1 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"0\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">How long does installation take?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">Our standard installation typically takes 2-4 hours. Our certified technicians will visit your location, set up the fiber optic connection, install the router, and ensure everything is working perfectly. We'll also provide a brief tutorial on how to use your new internet service. Installation is usually scheduled within 3-5 business days of your order.</p></div></div><!-- FAQ Item 2 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"50\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">What internet speeds do you offer?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed mb-4\">We offer a range of fiber optic internet plans to suit different needs:</p><ul class=\"space-y-2 text-gray-600 dark:text-gray-300\"><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Basic:</strong> Up to 50 Mbps - Perfect for browsing and streaming</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Standard:</strong> Up to 100 Mbps - Ideal for families and remote work</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Premium:</strong> Up to 200 Mbps - Best for gaming and 4K streaming</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Enterprise:</strong> Up to 1 Gbps - For businesses and power users</span></li></ul></div></div><!-- FAQ Item 3 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"100\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Is there a data cap or limit?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">No! All our plans come with <strong>unlimited data</strong>. Stream, download, game, and browse as much as you want without worrying about data caps, overage fees, or throttling. We believe in providing truly unlimited internet access to all our customers.</p></div></div><!-- FAQ Item 4 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"150\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">What if I experience technical issues?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed mb-4\">Our dedicated support team is available 24/7 to help you. You can reach us through multiple channels:</p><ul class=\"space-y-2 text-gray-600 dark:text-gray-300\"><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-blue-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z\"></path></svg> <span>Phone: 09642363694 (24/7 hotline)</span></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-green-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z\"></path><path d=\"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z\"></path></svg> <span>WhatsApp: Text 'Hi' to 01799000566</span></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-purple-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z\"></path><path d=\"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z\"></path></svg> <span>Email: support@ispcrmcloud.com</span></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-blue-600 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z\" clip-rule=\"evenodd\"></path></svg> <span>Live Chat: Available on our website</span></li></ul></div></div><!-- FAQ Item 5 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"200\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">How does billing work?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">We offer flexible monthly billing with no hidden fees. Your bill is generated on the same day each month, and you can choose from multiple payment methods including credit/debit card, bank transfer, mobile banking (bKash, Nagad, Rocket), or cash payment at our offices. We also offer auto-pay options for your convenience. All prices are transparent and include taxes.</p></div></div><!-- FAQ Item 6 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"250\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Is Our network available in my area?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">We're continuously expanding our fiber optic network across the country. To check availability in your area, simply enter your address on our website or contact our sales team at 09642363694. If we're not currently available in your location, we'll add you to our waitlist and notify you as soon as service becomes available.</p></div></div><!-- FAQ Item 7 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"300\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Do I need to buy my own router?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">No! We provide a high-quality dual-band WiFi router as part of your installation at no extra cost. The router is included in your monthly subscription and is maintained by us. If you experience any issues with the equipment, we'll replace it free of charge. However, if you prefer to use your own router, you're welcome to do so.</p></div></div><!-- FAQ Item 8 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"350\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Can I cancel my service anytime?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">Yes! We offer flexible month-to-month plans with no long-term contracts. You can cancel your service anytime with 30 days' notice. However, we also offer discounted rates for customers who opt for 6-month or 12-month commitments. There are no cancellation fees for month-to-month plans.</p></div></div></div><!-- CTA at bottom of FAQ --><div class=\"mt-16 text-center\" data-aos=\"fade-up\"><p class=\"text-gray-600 dark:text-gray-400 mb-6 text-lg\">Still have questions?</p><button class=\"bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 transform\">Contact Our Support Team</button></div></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "<div class=\"py-20 md:py-28 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900\"><div class=\"max-w-screen-xl mx-auto px-6 md:px-8\"><div class=\"text-center mb-16\" data-aos=\"fade-up\"><div class=\"inline-block mb-4\"><span class=\"bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold px-4 py-2 rounded-full\">HELP CENTER</span></div><h2 class=\"text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-purple-900 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent\">Frequently Asked Questions</h2><p class=\"text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto\">Find answers to common questions about our internet services, installation, and support.</p></div><div class=\"max-w-4xl mx-auto space-y-4\"><!-- FAQ Item 1 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"0\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">How long does installation take?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">Our standard installation typically takes 2-4 hours. Our certified technicians will visit your location, set up the fiber optic connection, install the router, and ensure everything is working perfectly. We'll also provide a brief tutorial on how to use your new internet service. Installation is usually scheduled within 3-5 business days of your order.</p></div></div><!-- FAQ Item 2 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"50\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">What internet speeds do you offer?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed mb-4\">We offer a range of fiber optic internet plans to suit different needs:</p><ul class=\"space-y-2 text-gray-600 dark:text-gray-300\"><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Basic:</strong> Up to 50 Mbps - Perfect for browsing and streaming</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Standard:</strong> Up to 100 Mbps - Ideal for families and remote work</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Premium:</strong> Up to 200 Mbps - Best for gaming and 4K streaming</span></li><li class=\"flex items-start\"><svg class=\"w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"></path></svg> <span><strong>Enterprise:</strong> Up to 1 Gbps - For businesses and power users</span></li></ul></div></div><!-- FAQ Item 3 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"100\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Is there a data cap or limit?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">No! All our plans come with <strong>unlimited data</strong>. Stream, download, game, and browse as much as you want without worrying about data caps, overage fees, or throttling. We believe in providing truly unlimited internet access to all our customers.</p></div></div><!-- FAQ Item 4 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"150\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">What if I experience technical issues?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed mb-4\">Our dedicated support team is available 24/7 to help you. You can reach us through multiple channels:</p><ul class=\"space-y-2 text-gray-600 dark:text-gray-300\"><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-blue-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z\"></path></svg> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var31 templ.SafeURL
+		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("tel:" + d.ContactPhone))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 695, Col: 56}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "\" class=\"hover:text-purple-600 transition-colors\">Phone: ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var32 string
+		templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactPhone)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 695, Col: 130}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var32))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, " (24/7 hotline)</a></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-green-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z\"></path><path d=\"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z\"></path></svg> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var33 templ.SafeURL
+		templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL("https://wa.me/88" + d.ContactWhatsApp))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 699, Col: 71}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "\" class=\"hover:text-purple-600 transition-colors\">WhatsApp: Text 'Hi' to ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var34 string
+		templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactWhatsApp)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 699, Col: 164}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</a></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-purple-500 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path d=\"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z\"></path><path d=\"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z\"></path></svg> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var35 templ.SafeURL
+		templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("mailto:%s", d.ContactEmail)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 703, Col: 73}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "\" class=\"hover:text-purple-600 transition-colors\">Email: ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var36 string
+		templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactEmail)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 703, Col: 147}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</a></li><li class=\"flex items-center\"><svg class=\"w-5 h-5 text-blue-600 mr-2\" fill=\"currentColor\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z\" clip-rule=\"evenodd\"></path></svg> <span>Live Chat: Available on our website</span></li></ul></div></div><!-- FAQ Item 5 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"200\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">How does billing work?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">We offer flexible monthly billing with no hidden fees. Your bill is generated on the same day each month, and you can choose from multiple payment methods including credit/debit card, bank transfer, mobile banking (bKash, Nagad, Rocket), or cash payment at our offices. We also offer auto-pay options for your convenience. All prices are transparent and include taxes.</p></div></div><!-- FAQ Item 6 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"250\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Is Our network available in my area?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">We're continuously expanding our fiber optic network across the country. To check availability in your area, simply enter your address on our website or contact our sales team at ")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var37 string
+		templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(d.ContactPhone)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 738, Col: 202}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, ". If we're not currently available in your location, we'll add you to our waitlist and notify you as soon as service becomes available.</p></div></div><!-- FAQ Item 7 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"300\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Do I need to buy my own router?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">No! We provide a high-quality dual-band WiFi router as part of your installation at no extra cost. The router is included in your monthly subscription and is maintained by us. If you experience any issues with the equipment, we'll replace it free of charge. However, if you prefer to use your own router, you're welcome to do so.</p></div></div><!-- FAQ Item 8 --><div class=\"group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700\" data-aos=\"fade-up\" data-aos-delay=\"350\" x-data=\"{ open: false }\"><button @click=\"open = !open\" class=\"w-full px-6 md:px-8 py-6 flex items-center justify-between text-left\"><span class=\"text-lg md:text-xl font-bold text-gray-900 dark:text-white pr-4\">Can I cancel my service anytime?</span> <svg class=\"w-6 h-6 text-purple-600 dark:text-purple-400 transform transition-transform duration-300\" :class=\"{ 'rotate-180': open }\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path></svg></button><div x-show=\"open\" x-collapse class=\"px-6 md:px-8 pb-6\"><p class=\"text-gray-600 dark:text-gray-300 leading-relaxed\">Yes! We offer flexible month-to-month plans with no long-term contracts. You can cancel your service anytime with 30 days' notice. However, we also offer discounted rates for customers who opt for 6-month or 12-month commitments. There are no cancellation fees for month-to-month plans.</p></div></div></div><!-- CTA at bottom of FAQ --><div class=\"mt-16 text-center\" data-aos=\"fade-up\"><p class=\"text-gray-600 dark:text-gray-400 mb-6 text-lg\">Still have questions?</p><button class=\"bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 transform\">Contact Our Support Team</button></div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -744,56 +900,56 @@ func questionExample(questionType, prompt string) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var26 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var26 == nil {
-			templ_7745c5c3_Var26 = templ.NopComponent
+		templ_7745c5c3_Var38 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var38 == nil {
+			templ_7745c5c3_Var38 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "<!-- Create type 1 question --><div class=\" w-full flex items-stretch rounded-lg\"><a class=\"flex items-stretch\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<!-- Create type 1 question --><div class=\" w-full flex items-stretch rounded-lg\"><a class=\"flex items-stretch\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var27 = []any{"transition-colors duration-300 rounded-l-lg p-2 md:p-4 flex items-center", templ.KV("bg-violet-300 hover:bg-red-400", questionType == "matched"), templ.KV("bg-red-200 hover:bg-red-400", questionType != "matched")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var27...)
+		var templ_7745c5c3_Var39 = []any{"transition-colors duration-300 rounded-l-lg p-2 md:p-4 flex items-center", templ.KV("bg-violet-300 hover:bg-red-400", questionType == "matched"), templ.KV("bg-red-200 hover:bg-red-400", questionType != "matched")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var39...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "<div class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<div class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var28 string
-		templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var27).String())
+		var templ_7745c5c3_Var40 string
+		templ_7745c5c3_Var40, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var39).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var40))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "\"><span class=\"text-black w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6\"><!-- Dislike icon --><svg class=\"dislike-question-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M18.905 12.75a1.25 1.25 0 1 1-2.5 0v-7.5a1.25 1.25 0 0 1 2.5 0v7.5ZM8.905 17v1.3c0 .268-.14.526-.395.607A2 2 0 0 1 5.905 17c0-.995.182-1.948.514-2.826.204-.54-.166-1.174-.744-1.174h-2.52c-1.243 0-2.261-1.01-2.146-2.247.193-2.08.651-4.082 1.341-5.974C2.752 3.678 3.833 3 5.005 3h3.192a3 3 0 0 1 1.341.317l2.734 1.366A3 3 0 0 0 13.613 5h1.292v7h-.963c-.685 0-1.258.482-1.612 1.068a4.01 4.01 0 0 1-2.166 1.73c-.432.143-.853.386-1.011.814-.16.432-.248.9-.248 1.388Z\"></path></svg></span></div></a><!-- Question div -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "\"><span class=\"text-black w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6\"><!-- Dislike icon --><svg class=\"dislike-question-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M18.905 12.75a1.25 1.25 0 1 1-2.5 0v-7.5a1.25 1.25 0 0 1 2.5 0v7.5ZM8.905 17v1.3c0 .268-.14.526-.395.607A2 2 0 0 1 5.905 17c0-.995.182-1.948.514-2.826.204-.54-.166-1.174-.744-1.174h-2.52c-1.243 0-2.261-1.01-2.146-2.247.193-2.08.651-4.082 1.341-5.974C2.752 3.678 3.833 3 5.005 3h3.192a3 3 0 0 1 1.341.317l2.734 1.366A3 3 0 0 0 13.613 5h1.292v7h-.963c-.685 0-1.258.482-1.612 1.068a4.01 4.01 0 0 1-2.166 1.73c-.432.143-.853.386-1.011.814-.16.432-.248.9-.248 1.388Z\"></path></svg></span></div></a><!-- Question div -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var29 = []any{"bg-gradient-to-r flex-grow p-2 flex flex-col items-center", templ.KV("from-violet-300 to-yellow-100", questionType == "matched"), templ.KV("from-red-200 via-red-400 to-yellow-100", questionType != "matched")}
-		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var29...)
+		var templ_7745c5c3_Var41 = []any{"bg-gradient-to-r flex-grow p-2 flex flex-col items-center", templ.KV("from-violet-300 to-yellow-100", questionType == "matched"), templ.KV("from-red-200 via-red-400 to-yellow-100", questionType != "matched")}
+		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var41...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<div class=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<div class=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var30 string
-		templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var29).String())
+		var templ_7745c5c3_Var42 string
+		templ_7745c5c3_Var42, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var41).String())
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 1, Col: 0}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var42))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "\"><div class=\"pr-2 flex m-3\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "\"><div class=\"pr-2 flex m-3\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -808,20 +964,20 @@ func questionExample(questionType, prompt string) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "</div><span class=\"text-black md:text-lg\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "</div><span class=\"text-black md:text-lg\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var31 string
-		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(prompt)
+		var templ_7745c5c3_Var43 string
+		templ_7745c5c3_Var43, templ_7745c5c3_Err = templ.JoinStringErrs(prompt)
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/pages/landing_page.templ`, Line: 811, Col: 47}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var43))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 36, "</span></div><!-- Arrow div --><a class=\"flex items-stretch\"><div class=\"p-2 md:p-4 flex items-center rounded-r-lg bg-yellow-200 hover:bg-green-400 transition-colors duration-300\"><span class=\"text-black\"><!-- Edit icon --><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" class=\"w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6\"><path d=\"m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z\"></path> <path d=\"M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z\"></path></svg></span></div></a></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</span></div><!-- Arrow div --><a class=\"flex items-stretch\"><div class=\"p-2 md:p-4 flex items-center rounded-r-lg bg-yellow-200 hover:bg-green-400 transition-colors duration-300\"><span class=\"text-black\"><!-- Edit icon --><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"currentColor\" class=\"w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6\"><path d=\"m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z\"></path> <path d=\"M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z\"></path></svg></span></div></a></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

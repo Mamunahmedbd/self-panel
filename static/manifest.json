@@ -1,10 +1,10 @@
 {
-  "name": "Self Panel",
-  "short_name": "Self Panel",
+  "name": "Self Care",
+  "short_name": "Self Care",
   "start_url": "/",
   "display": "standalone",
   "description": "Your Relationship Conversation Assist.",
-  "id": "self-panel",
+  "id": "self-care",
   "lang": "en",
   "dir": "ltr",
   "background_color": "#000000",
@@ -100,7 +100,7 @@
   "prefer_related_applications": false,
   "shortcuts": [
     {
-      "name": "Self Panel",
+      "name": "Self Care",
       "url": "/auth/homeFeed",
       "description": "Go to your home feed"
     }

@@ -134,7 +134,7 @@
 
 <pwa-install
   class="z-50"
-  name="Self Panel"
+  name="Self Care"
   description="Your Quick Productization Tool."
   manifest-url="/files/manifest.json"
   icon="https://chatbond-static.s3.us-west-002.backblazeb2.com/cherie/pwa/manifest-icon-192.maskable.png"

@@ -188,7 +188,7 @@ self.addEventListener("push", (event) => {
     console.log("[Service Worker] Push Received.");
 
     const data = event.data.json();
-    const title = data.title || "Self Panel";
+    const title = data.title || "Self Care";
     // Extract the unread count from the push message data.
     const message = event.data.json();
     const unreadCount = message.unreadCount;
