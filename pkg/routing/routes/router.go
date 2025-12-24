@@ -248,8 +248,7 @@ func generalRoutes(c *services.Container, g *echo.Group, ctr controller.Controll
 	verifyEmailSubscription := NewVerifyEmailSubscriptionRoute(ctr, emailRepo)
 	g.GET("/email/subscription/:token", verifyEmailSubscription.Get).Name = "verify_email_subscription"
 
-	installApp := NewInstallAppRoute(ctr)
-	g.GET("/install-app", installApp.GetInstallPage).Name = routeNames.RouteNameInstallApp
+
 
 	about := NewAboutUsRoute(ctr)
 	g.GET("/about", about.Get).Name = routeNames.RouteNameAboutUs

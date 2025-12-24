@@ -27,8 +27,7 @@ const (
 	RouteNameTermsAndConditions = "terms_and_conditions"
 	RouteNameRefundPolicy       = "refund_policy"
 
-	RouteNameProfile    = "profile"
-	RouteNameInstallApp = "install_app"
+	RouteNameProfile = "profile"
 
 	RouteNameMarkNotificationsAsRead    = "markNormalNotificationRead"
 	RouteNameMarkAllNotificationsAsRead = "normalNotificationsMarkAllAsRead"
